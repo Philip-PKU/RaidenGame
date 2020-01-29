@@ -1,34 +1,33 @@
 package RaidenObjects.Aircrafts.ShootingAircrafts;
 
-import RaidenObjects.Weapons.BigBullet;
+import RaidenObjects.Weapons.SmallBullet;
 import Utils.RaidenObjectController;
 import Utils.RaidenObjectOwner;
 
 import static World.World.gameStep;
-import static World.World.rand;
 
-public class BigShootingAircraft extends BaseShootingAircraft{
-    static float maxSpeedX = 1.0f;
+public class MiddleShootingAircraft extends BaseShootingAircraft {
+    static float maxSpeedX = 2.0f;
 
-    public BigShootingAircraft(float x, float y) {
-        super("BigShootingAircraft", x, y, 100, 65, 0.3f,
+    public MiddleShootingAircraft(float x, float y) {
+        super("MiddleShootingAircraft", x, y, 60, 40, 0.5f,
                 RaidenObjectOwner.BOSS, RaidenObjectController.AI,
-                500, 13, 300, 150, 150);
+                200, 13, 150, 256, 50);
     }
 
     public void shootWeapon() {
-        PlayerAircraft closestPlayer = getClosestPlayer();
         int gameStepSinceBirth = gameStep.intValue() - gameStepAtBirth;
         if (gameStepSinceBirth % getWeaponCoolDown() < 15 && gameStepSinceBirth % 5 == 0) {
-                new BigBullet(getX() - 20, getMaxY() - 5,
-                        closestPlayer.getX() + rand.nextFloat() * 50, closestPlayer.getY() + rand.nextFloat() * 100);
-                new BigBullet(getX() + 20, getMaxY() - 5,
-                        closestPlayer.getX() + rand.nextFloat() * 50, closestPlayer.getY() + rand.nextFloat() * 100);
+            PlayerAircraft closestPlayer = getClosestPlayer();
+            new SmallBullet(getX() - 10, getMaxY(),
+                    closestPlayer.getX(), closestPlayer.getY());
+            new SmallBullet(getX() + 10, getMaxY(),
+                    closestPlayer.getX(), closestPlayer.getY());
         }
     }
 
     @Override
-    public void initSpeed() {
+    protected void initSpeed() {
         super.initSpeed();
         setSpeedY(getMaxSpeed());
         if ((gameStep.intValue() - gameStepAtBirth) % 100 < 50 && !isOutOfWorld(getX() - maxSpeedX, getY()))

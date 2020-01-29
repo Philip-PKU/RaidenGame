@@ -14,7 +14,6 @@ import static java.lang.Math.*;
 
 public abstract class BaseWeapon extends BaseRaidenObject {
     protected int damage;
-    protected float speedX, speedY;
 
     BaseWeapon(String name, float x, float y, int sizeX, int sizeY, float maxSpeed,
                RaidenObjectOwner owner, RaidenObjectController controller,
@@ -44,7 +43,7 @@ public abstract class BaseWeapon extends BaseRaidenObject {
                int damage, float theta) {
         super(name, x, y, sizeX, sizeY, maxSpeed, owner, controller);
         this.damage = damage;
-        float thetaInRad = theta/180.0f*(float)PI;
+        float thetaInRad = (float) toRadians(theta);
         speedX = (float) sin(thetaInRad) * maxSpeed;
         speedY = (float) cos(thetaInRad) * maxSpeed;
         interactantList.add(this);
@@ -52,14 +51,6 @@ public abstract class BaseWeapon extends BaseRaidenObject {
 
     public int getDamage() {
         return damage;
-    }
-
-    public float getSpeedX() {
-        return speedX;
-    }
-
-    public float getSpeedY() {
-        return speedY;
     }
 
     public void interactWith(BaseAircraft aircraft) {
@@ -74,15 +65,13 @@ public abstract class BaseWeapon extends BaseRaidenObject {
         return Paths.get("data", "images", getName() + ".png").toFile();
     }
 
+    protected void initSpeed() {}
+
     public void step() {
+        initSpeed();
         move();
         markAsDeadIfOutOfBound();
         aircraftList.forEach(this::interactWith);
-    }
-
-    protected void move() {
-        setX(getX() + getSpeedX());
-        setY(getY() + getSpeedY());
     }
 
     @Override

@@ -4,6 +4,7 @@ import Utils.RaidenObjectController;
 import Utils.RaidenObjectOwner;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Paths;
 
@@ -18,10 +19,6 @@ public class Background extends BaseRaidenObject {
 
     private float getY2() {
         return y2;
-    }
-
-    private int getY2AsInt() {
-        return (int)y2;
     }
 
     private void setY2(float y2) {
@@ -39,8 +36,9 @@ public class Background extends BaseRaidenObject {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(loadImage(getImageFile()), getXAsInt(), getY2AsInt(), null);
+        BufferedImage bufferedImage = loadImage(getImageFile());
+        g.drawImage(bufferedImage, 0, (int) getY(), null);
+        g.drawImage(bufferedImage, 0, (int) getY2(), null);
     }
 
     public File getImageFile() {

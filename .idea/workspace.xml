@@ -1,52 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="add bullet">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/BaseAircraft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/PlayerAircraft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Background.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/BaseRaidenObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/BaseWeapon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/BigBullet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/HeroBullet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/SmallBullet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utils/RaidenKeyAdapter1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utils/RaidenObjectController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utils/RaidenObjectOwner.java" afterDir="false" />
+    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="an almost-complete demo">
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/MiddleShootingAircraft9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/Player0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/Player1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallBullet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/SmallShootingAircraft9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/images/StandardPlayerBullet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/MiddleShootingAircraft.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/SmallShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bigplane9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/bossbullet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/enemybullet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/hero0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/hero1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/images/sky.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/BaseAircraft.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlyingObjects/BaseFlyingObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlyingObjects/Weapons/BaseWeapon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlyingObjects/Weapons/SmallBullet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/World/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft0.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft1.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft10.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft11.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft11.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft12.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft13.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft13.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft2.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft3.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft4.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft5.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft6.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft7.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft8.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/BigShootingAircraft9.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/images/BigShootingAircraft9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/bomber9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/herobullet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/smallplane9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/BaseAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/BaseAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/PlayerAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/BaseRaidenObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/BaseRaidenObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Weapons/BaseWeapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/BaseWeapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Weapons/BigBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/BigBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Weapons/HeroBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/StandardPlayerBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RaidenObjects/Weapons/SmallBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RaidenObjects/Weapons/SmallBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/World/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/World/World.java" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,146 +102,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/HeroBullet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/SmallBullet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/BigBullet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/BaseWeapon.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#787#788#0" expanded="true" />
-                <element signature="e#808#809#0" expanded="true" />
-                <element signature="e#852#853#0" expanded="true" />
-                <element signature="e#881#882#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/BaseRaidenObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1879#1880#0" expanded="true" />
-                <element signature="e#1907#1908#0" expanded="true" />
-                <element signature="e#3078#3079#0" expanded="true" />
-                <element signature="e#3109#3110#0" expanded="true" />
-                <element signature="e#3142#3143#0" expanded="true" />
-                <element signature="e#3175#3176#0" expanded="true" />
-                <element signature="e#3627#3628#0" expanded="true" />
-                <element signature="e#3646#3647#0" expanded="true" />
-                <element signature="e#3810#3811#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/BaseAircraft.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
-              <folding>
-                <element signature="e#2958#2959#0" expanded="true" />
-                <element signature="e#2991#2992#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Background.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="22" column="78" lean-forward="true" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/PlayerAircraft.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1163#1164#0" expanded="true" />
-                <element signature="e#1234#1235#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -219,169 +126,18 @@
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="hui2000ji &lt;391085296@qq.com&gt;" />
+        <option value="3" />
+        <option value="hui2000ji &lt;32122441+hui2000ji@users.noreply.github.com&gt;" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/FlyingObject.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObject/FlyingObject.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Bullets/Bullet.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Missles/Missle.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Weapons/Missle.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Planes/ShootingPlane.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Planes/Plane.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingPlane.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircraft.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/Aircraft.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Weapons/Weapon.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/FlyingObject.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircrafts/ShootingAircraft.java" />
-        <option value="$PROJECT_DIR$/src/flyingObjects/Aircrafts/BaseAircraft.java" />
-        <option value="$PROJECT_DIR$/src/Agents/BaseAgent.java" />
-        <option value="$PROJECT_DIR$/src/Utils/FlyingObjectOwner.java" />
-        <option value="$PROJECT_DIR$/src/World.java" />
-        <option value="$PROJECT_DIR$/src/Utils/WindowUtils.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/InteractableWithAircrafts.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/BaseAircraft.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/BaseFlyingObject.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Weapons/BaseWeapon.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Weapons/SmallBullet.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Interactants/BaseInteractant.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Interactants/Weapons/BaseWeapon.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Interactants/Weapons/SmallBullet.java" />
-        <option value="$PROJECT_DIR$/src/FlyingObjects/Background.java" />
-        <option value="$PROJECT_DIR$/src/App.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Interactants/Weapons/SmallBullet.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Interactants/Weapons/HeroBullet.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Interactants/Weapons/BaseWeapon.java" />
-        <option value="$PROJECT_DIR$/src/Utils/RaidenObjectController.java" />
-        <option value="$PROJECT_DIR$/src/Utils/RaidenKeyAdapter.java" />
-        <option value="$PROJECT_DIR$/src/Utils/RaidenKeyAdapter1.java" />
-        <option value="$PROJECT_DIR$/src/Utils/RaidenObjectOwner.java" />
-        <option value="$PROJECT_DIR$/src/World/World.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/BaseRaidenObject.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Background.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/BaseAircraft.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Weapons/BaseWeapon.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Weapons/SmallBullet.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Weapons/BigBullet.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/PlayerAircraft.java" />
-        <option value="$PROJECT_DIR$/src/RaidenObjects/Weapons/HeroBullet.java" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="892" />
-    <option name="width" value="1035" />
-    <option name="height" value="1047" />
-  </component>
+  <component name="ProjectId" id="1X3txiR8neNl7HlKtkeuc8xj5Mt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="RaidenObjects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="RaidenObjects" type="462c0819:PsiDirectoryNode" />
-              <item name="Aircrafts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="RaidenObjects" type="462c0819:PsiDirectoryNode" />
-              <item name="Aircrafts" type="462c0819:PsiDirectoryNode" />
-              <item name="ShootingAircrafts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="RaidenObjects" type="462c0819:PsiDirectoryNode" />
-              <item name="Weapons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Raiden" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="World" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="commons-lang3-3.7" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="commons-lang3-3.7" type="70bed36:NamedLibraryElementNode" />
-              <item name="commons-lang3-3.7.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="commons-lang3-3.7" type="70bed36:NamedLibraryElementNode" />
-              <item name="commons-lang3-3.7.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="lang3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Raiden" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="commons-lang3-3.7" type="70bed36:NamedLibraryElementNode" />
-              <item name="commons-lang3-3.7.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="lang3" type="462c0819:PsiDirectoryNode" />
-              <item name="mutable" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -394,18 +150,6 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -449,7 +193,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580085816680</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add background, bullets with direction, x-moving planes">
+      <created>1580271570114</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580271570114</updated>
+    </task>
+    <task id="LOCAL-00004" summary="upload renamed pictures">
+      <created>1580271658210</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580271658210</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -461,536 +219,58 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Learn" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49838188" visible="true" weight="0.25373134" />
-      <window_info id="Structure" order="1" sideWeight="0.50161815" side_tool="true" visible="true" weight="0.25373134" />
-      <window_info anchor="bottom" id="Inspection Results" weight="0.329718" />
-      <window_info anchor="bottom" id="Version Control" sideWeight="0.49946696" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.5026652" side_tool="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Messages" sideWeight="0.49520257" weight="0.329718" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49733475" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49573562" visible="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.3991323" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add readme" />
     <MESSAGE value="a basic demo of a flying plane" />
     <MESSAGE value="add bullet" />
-    <option name="LAST_COMMIT_MESSAGE" value="add bullet" />
+    <MESSAGE value="add background, bullets with direction, x-moving planes" />
+    <MESSAGE value="upload renamed pictures" />
+    <MESSAGE value="an almost-complete demo" />
+    <option name="LAST_COMMIT_MESSAGE" value="an almost-complete demo" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/TreeMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="917">
-          <caret line="146" column="11" selection-start-line="146" selection-start-column="11" selection-end-line="146" selection-end-column="11" />
-          <folding>
-            <element signature="e#5776#5777#0" expanded="true" />
-            <element signature="e#5809#5810#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/Container.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="430" column="21" selection-start-line="430" selection-start-column="21" selection-end-line="430" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/javax/swing/JFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="2906" column="25" selection-start-line="2906" selection-start-column="25" selection-end-line="2906" selection-end-column="25" />
-          <folding>
-            <element signature="e#116079#116080#0" expanded="true" />
-            <element signature="e#116121#116122#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/javax/swing/JComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="907" selection-start-line="907" selection-end-line="907" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/javax/swing/JPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/Graphics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="882" column="28" selection-start-line="882" selection-start-column="28" selection-end-line="882" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Agents/BaseAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="2055" column="18" selection-start-line="2055" selection-start-column="18" selection-end-line="2055" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/WindowUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/function/Consumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/EventDispatchThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="89" selection-start-line="89" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/ref/Reference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="163" column="31" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/sun/awt/windows/WToolkit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="311" column="24" selection-start-line="311" selection-start-column="24" selection-end-line="311" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Aircrafts/BaseAircraft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1986#1987#0" expanded="true" />
-            <element signature="e#2019#2020#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="2274" column="23" selection-start-line="2274" selection-start-column="23" selection-end-line="2274" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar!/org/apache/commons/lang3/mutable/MutableInt.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-          <folding>
-            <element signature="e#2292#2293#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/InteractableWithAircrafts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Interactants/Weapons/BaseInteractant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Interactants/BaseInteractant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#164#165#0" expanded="true" />
-            <element signature="e#186#187#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1975#1976#0" expanded="true" />
-            <element signature="e#2012#2013#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Interactants/Weapons/BaseWeapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#234#235#0" expanded="true" />
-            <element signature="e#271#272#0" expanded="true" />
-            <element signature="e#335#336#0" expanded="true" />
-            <element signature="e#364#365#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/BaseFlyingObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="117" column="20" selection-start-line="117" selection-start-column="20" selection-end-line="117" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2944#2945#0" expanded="true" />
-            <element signature="e#3030#3031#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="25" column="92" selection-start-line="25" selection-start-column="92" selection-end-line="25" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Interactants/Weapons/SmallBullet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#106#107#0" expanded="true" />
-            <element signature="e#133#134#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
-            <element signature="e#1150#1151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FlyingObjects/Background.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/event/KeyListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/event/KeyAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="52" column="49" lean-forward="true" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/event/KeyEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14140">
-          <caret line="1027" column="9" selection-start-line="1027" selection-start-column="9" selection-end-line="1027" selection-end-column="9" />
-          <folding>
-            <element signature="e#43830#43831#0" expanded="true" />
-            <element signature="e#43860#43861#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Iterable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="1253" column="19" selection-start-line="1253" selection-start-column="19" selection-end-line="1253" selection-end-column="19" />
-          <folding>
-            <element signature="e#40220#40221#0" expanded="true" />
-            <element signature="e#40266#40267#0" expanded="true" />
-            <element signature="e#41311#41312#0" expanded="true" />
-            <element signature="e#41346#41347#0" expanded="true" />
-            <element signature="e#114719#114720#0" expanded="true" />
-            <element signature="e#114766#114767#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/LinkedList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="969" column="22" selection-start-line="969" selection-start-column="22" selection-end-line="969" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="300" column="30" selection-start-line="300" selection-start-column="30" selection-end-line="300" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Interactants/BaseInteractant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/RaidenKeyAdapter1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#376#377#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/RaidenObjectController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-          <folding>
-            <element signature="e#104#105#0" expanded="true" />
-            <element signature="e#148#149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/RaidenObjectOwner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding>
-            <element signature="e#117#118#0" expanded="true" />
-            <element signature="e#160#161#0" expanded="true" />
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#219#220#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/World/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/BaseAircraft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
-          <folding>
-            <element signature="e#2958#2959#0" expanded="true" />
-            <element signature="e#2991#2992#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BaseShootingAircraft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/BaseRaidenObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1879#1880#0" expanded="true" />
-            <element signature="e#1907#1908#0" expanded="true" />
-            <element signature="e#3078#3079#0" expanded="true" />
-            <element signature="e#3109#3110#0" expanded="true" />
-            <element signature="e#3142#3143#0" expanded="true" />
-            <element signature="e#3175#3176#0" expanded="true" />
-            <element signature="e#3627#3628#0" expanded="true" />
-            <element signature="e#3646#3647#0" expanded="true" />
-            <element signature="e#3810#3811#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Background.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="106" column="19" selection-start-line="106" selection-start-column="19" selection-end-line="106" selection-end-column="19" />
-          <folding>
-            <element signature="e#5907#5908#0" expanded="true" />
-            <element signature="e#5988#5989#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/BaseWeapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#787#788#0" expanded="true" />
-            <element signature="e#808#809#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#881#882#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/BigShootingAircraft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="22" column="78" lean-forward="true" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Aircrafts/ShootingAircrafts/PlayerAircraft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1163#1164#0" expanded="true" />
-            <element signature="e#1234#1235#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/BigBullet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/SmallBullet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RaidenObjects/Weapons/HeroBullet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580286870617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580286870617" />
+    <state x="518" y="113" key="CommitChangelistDialog2" timestamp="1580289715489">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="518" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1580289715489" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1580289114972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1580289114972" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1580289114972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1580289114972" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1580289114972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1580289114972" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1580289114972">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1580289114972" />
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1580289191338">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580289191338" />
   </component>
   <component name="masterDetails">
     <states>

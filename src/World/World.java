@@ -2,7 +2,9 @@ package World;
 
 import RaidenObjects.Aircrafts.BaseAircraft;
 import RaidenObjects.Aircrafts.ShootingAircrafts.BigShootingAircraft;
+import RaidenObjects.Aircrafts.ShootingAircrafts.MiddleShootingAircraft;
 import RaidenObjects.Aircrafts.ShootingAircrafts.PlayerAircraft;
+import RaidenObjects.Aircrafts.ShootingAircrafts.SmallShootingAircraft;
 import RaidenObjects.Background;
 import RaidenObjects.BaseRaidenObject;
 import Utils.RaidenKeyAdapter1;
@@ -41,10 +43,7 @@ public class World extends JPanel {
         aircraftList.clear();
         interactantList.clear();
 
-        aircraftList.add(new BigShootingAircraft(40, 20));
-        aircraftList.add(new BigShootingAircraft(540, 20));
-
-        player1 = new PlayerAircraft(200, 600, RaidenObjectOwner.PLAYER1, RaidenObjectController.KEYBOARD1);
+        player1 = new PlayerAircraft(320, 700, RaidenObjectOwner.PLAYER1, RaidenObjectController.KEYBOARD1);
         aircraftList.add(player1);
 
         gameStep.setValue(0);
@@ -65,6 +64,17 @@ public class World extends JPanel {
     public void startGame() throws InterruptedException {
         while(!aircraftList.isEmpty() && player1 != null) {
             synchronized (this) {
+                if (gameStep.intValue() % 179 == 37) {
+                    aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 50));
+                }
+                if (gameStep.intValue() % 269 == 0) {
+                    aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth/2), 100));
+                    aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth/2) + windowWidth/2.0f, 100));
+                }
+                if (gameStep.intValue() % 397 == 100) {
+                    aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2), 50));
+                    aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2) + windowWidth/2.0f, 50));
+                }
                 background.step();
                 aircraftList.forEach(BaseAircraft::step);
                 interactantList.forEach(BaseRaidenObject::step);
@@ -73,8 +83,8 @@ public class World extends JPanel {
                         aircraftList.get(i).interactWith(aircraftList.get(j));
                     }
                 }
-                aircraftList.removeIf(aircraft -> !aircraft.isOnScreen());
-                interactantList.removeIf(interactant -> !interactant.isOnScreen());
+                aircraftList.removeIf(BaseRaidenObject::isOffScreen);
+                interactantList.removeIf(BaseRaidenObject::isOffScreen);
             }
             repaint();
             gameStep.increment();

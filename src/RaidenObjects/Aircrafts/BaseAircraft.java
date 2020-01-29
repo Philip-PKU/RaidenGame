@@ -13,15 +13,16 @@ import java.nio.file.Paths;
  * Class attributes include:
  *     - file2image - An object-image mapping for loadImage function
  * Object attributes include:
- *     - coordinates
- *     - states (alive?)
+ *     - coordinates of object center
+ *     - states (alive? on screen?)
  *     - reference to global game step (protected) & born time (protected final)
  *     - object name
- *     - object owner
+ *     - object owner and controller
  *     - object size
- *     - max speed in pixels per step
+ *     - max speed and speed (in pixels per step)
  *     - max and current hp
  *     - max and current steps after death - for death effects
+ *     - crash damage - for air craft crashes
  * Object methods include:
  *     - Getters (public) and setters (protected) for some of the attributes
  *     - step (public abstract) - Take a step and modify relative attributes
@@ -30,6 +31,9 @@ import java.nio.file.Paths;
  *     - paint - Paint the object on screen
  *     - hasHit - Judge if two objects has hit each other
  *     - isOutOfWorld - Judge if the object is out of the Raiden world
+ *     - getRandomPlayer (protected) - Get a random player. Used in enemy air crafts / weapons.
+ *     - getClosestPlayer (protected) - Get the closest player. Used in enemy air crafts / weapons.
+ *     - move (protected) - Move at current speed. Used in {@code step} function.
  *     - receiveDamage - Receive damage and change state if dead
  */
 public abstract class BaseAircraft extends BaseRaidenObject {
