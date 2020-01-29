@@ -1,17 +1,18 @@
+import World.World;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
+
+import static World.World.*;
 
 public class App {
-    final static int windowWidth = 400;
-    final static int windowHeight = 700;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Construct and initialize the window frame
         JFrame frame = new JFrame();
         World world = new World();
         frame.add(world);
-        // frame.addKeyListener(l); //添加键盘侦听对象
+        frame.addKeyListener(keyAdapter);  // monitor the keyboard
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(windowWidth, windowHeight);
         frame.setLocationRelativeTo(null);
@@ -27,6 +28,7 @@ public class App {
             world.startGame();
         }
         catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
