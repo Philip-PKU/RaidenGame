@@ -14,7 +14,7 @@ import static World.World.gameStep;
  * Object attributes include:
  *     - coordinates of object center
  *     - states (alive? on screen?)
- *     - reference to global game step (protected) & born time (protected final)
+ *     - born time (protected)
  *     - object name
  *     - object owner and controller
  *     - object size
@@ -42,21 +42,26 @@ import static World.World.gameStep;
  */
 public abstract class BaseShootingAircraft extends BaseAircraft {
     protected int weaponCoolDown, initWeaponCoolDown;
+    protected float initMaxSpeed;
+    protected boolean hasReachedTarget;
 
     public BaseShootingAircraft(String name, float x, float y, int sizeX, int sizeY, float maxSpeed,
                                 RaidenObjectOwner owner, RaidenObjectController controller,
                                 int maxHp, int maxStepsAfterDeath, int crashDamage,
-                                int weaponCoolDown, int initWeaponCoolDown) {
+                                int weaponCoolDown, int initWeaponCoolDown, float initMaxSpeed) {
         super(name, x, y, sizeX, sizeY, maxSpeed, owner, controller,
                 maxHp, maxStepsAfterDeath, crashDamage);
         this.weaponCoolDown = weaponCoolDown;
         this.initWeaponCoolDown = initWeaponCoolDown;
+        this.initMaxSpeed = initMaxSpeed;
     }
 
     public abstract void shootWeapon();
+
     protected void initSpeed() {
         speedX = 0.0f;
         speedY = 0.0f;
+
     }
 
     public int getWeaponCoolDown() {
@@ -67,12 +72,16 @@ public abstract class BaseShootingAircraft extends BaseAircraft {
         return initWeaponCoolDown;
     }
 
+    public float getInitMaxSpeed() {
+        return initMaxSpeed;
+    }
+
     public void step() {
         if (isAlive()) {
             initSpeed();
             move();
             markAsDeadIfOutOfBound();
-            if (gameStep.intValue() - gameStepAtBirth >= initWeaponCoolDown)
+            if (hasReachedTarget && gameStep.intValue() - gameStepWhenReady >= getInitWeaponCoolDown())
                 shootWeapon();
         }
     }

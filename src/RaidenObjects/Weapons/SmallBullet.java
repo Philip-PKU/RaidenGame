@@ -3,7 +3,7 @@ package RaidenObjects.Weapons;
 import Utils.RaidenObjectController;
 import Utils.RaidenObjectOwner;
 
-public class SmallBullet extends BaseWeapon {
+public final class SmallBullet extends BaseWeapon {
 
     public SmallBullet(float x, float y) {
         super("SmallBullet", x, y, 5, 5, 6,

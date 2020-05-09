@@ -7,6 +7,7 @@ import RaidenObjects.Aircrafts.ShootingAircrafts.PlayerAircraft;
 import RaidenObjects.Aircrafts.ShootingAircrafts.SmallShootingAircraft;
 import RaidenObjects.Background;
 import RaidenObjects.BaseRaidenObject;
+import RaidenObjects.Flyable;
 import Utils.RaidenKeyAdapter1;
 import Utils.RaidenObjectController;
 import Utils.RaidenObjectOwner;
@@ -20,18 +21,21 @@ import java.util.Random;
 
 import static java.lang.Thread.sleep;
 
+// import Utils.Mp3Player;
+// import java.nio.file.Paths;
+
 public class World extends JPanel {
     private static Background background;
 
     public static PlayerAircraft player1, player2;
     public static List<BaseAircraft> aircraftList = new LinkedList<>();
-    public static List<BaseRaidenObject> interactantList = new LinkedList<>();
+    public static List<Flyable> interactantList = new LinkedList<>();
     public static MutableInt gameStep = new MutableInt(0);
     public static RaidenKeyAdapter1 keyAdapter = new RaidenKeyAdapter1();
     public static Random rand = new Random();
 
-    public final static int windowWidth = 640;
-    public final static int windowHeight = 960;
+    public final static int windowWidth = 480;
+    public final static int windowHeight = 720;
 
     public World() {
         init();
@@ -43,7 +47,8 @@ public class World extends JPanel {
         aircraftList.clear();
         interactantList.clear();
 
-        player1 = new PlayerAircraft(320, 700, RaidenObjectOwner.PLAYER1, RaidenObjectController.KEYBOARD1);
+        player1 = new PlayerAircraft(windowWidth/2.0f, windowHeight - 150,
+                RaidenObjectOwner.PLAYER1, RaidenObjectController.KEYBOARD1);
         aircraftList.add(player1);
 
         gameStep.setValue(0);
@@ -62,29 +67,34 @@ public class World extends JPanel {
     }
 
     public void startGame() throws InterruptedException {
+        // new Mp3Player(Paths.get("data", "bgm", "05. Unknown Pollution.mp3").toFile(), 100000).start();
         while(!aircraftList.isEmpty() && player1 != null) {
             synchronized (this) {
-                if (gameStep.intValue() % 179 == 37) {
-                    aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 50));
+                if (gameStep.intValue() % 279 == 37) {
+                    aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
                 }
                 if (gameStep.intValue() % 269 == 0) {
-                    aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth/2), 100));
-                    aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth/2) + windowWidth/2.0f, 100));
+                    aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth/2) + windowWidth/2.0f, 0));
+                }
+                if (gameStep.intValue() % 269 == 198) {
+                    aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth / 2), 0));
                 }
                 if (gameStep.intValue() % 397 == 100) {
-                    aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2), 50));
-                    aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2) + windowWidth/2.0f, 50));
+                    aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2), 0));
+                }
+                if (gameStep.intValue() % 397 == 300) {
+                    aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2) + windowWidth/2.0f, 0));
                 }
                 background.step();
                 aircraftList.forEach(BaseAircraft::step);
-                interactantList.forEach(BaseRaidenObject::step);
+                interactantList.forEach(Flyable::step);
                 for (int i = 0; i < aircraftList.size(); ++i) {
                     for (int j = i + 1; j < aircraftList.size(); ++j) {
-                        aircraftList.get(i).interactWith(aircraftList.get(j));
+                        aircraftList.get(i).interactIfContacted(aircraftList.get(j));
                     }
                 }
                 aircraftList.removeIf(BaseRaidenObject::isOffScreen);
-                interactantList.removeIf(BaseRaidenObject::isOffScreen);
+                interactantList.removeIf(Flyable::isOffScreen);
             }
             repaint();
             gameStep.increment();

@@ -7,6 +7,8 @@ import Utils.RaidenObjectOwner;
 import java.io.File;
 import java.nio.file.Paths;
 
+import static World.World.gameStep;
+
 /**
  * Subclass of BaseRaidenObject, base class of all air crafts in the game,
  * including shooting air crafts and self-destruct air crafts.
@@ -15,7 +17,7 @@ import java.nio.file.Paths;
  * Object attributes include:
  *     - coordinates of object center
  *     - states (alive? on screen?)
- *     - reference to global game step (protected) & born time (protected final)
+ *     - born time (protected)
  *     - object name
  *     - object owner and controller
  *     - object size
@@ -82,7 +84,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
             markAsDead();
     }
 
-    public void interactWith(BaseAircraft aircraft) {
+    public void interactIfContacted(BaseAircraft aircraft) {
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
                 this.getOwner().isEnemyTo(aircraft.getOwner())) {
             this.receiveDamage(aircraft.getCrashDamage());
@@ -98,7 +100,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         int stepsAfterDeath = getStepsAfterDeath();
         if (stepsAfterDeath <= getMaxStepsAfterDeath()) {
             String filename = getName() + stepsAfterDeath;
-            if (!isAlive()) {
+            if (!isAlive() && gameStep.intValue() % 2 == 0) {
                 incrStepsAfterDeath();
             }
             return Paths.get("data", "images", filename + ".png").toFile();

@@ -4,31 +4,60 @@ import RaidenObjects.Weapons.SmallBullet;
 import Utils.RaidenObjectController;
 import Utils.RaidenObjectOwner;
 
-import static World.World.gameStep;
+import static World.World.*;
+import static java.lang.Math.abs;
+import static java.lang.Math.sqrt;
 
-public class SmallShootingAircraft extends BaseShootingAircraft {
-    static float maxSpeedX = 3.0f;
+public final class SmallShootingAircraft extends BaseShootingAircraft {
+    private static float maxSpeedX = 3.0f;
+    private float targetX, targetY;
+    private PlayerAircraft target;
 
     public SmallShootingAircraft(float x, float y) {
-        super("SmallShootingAircraft", x, y, 35, 21, 0.3f,
+        super("SmallShootingAircraft", x, y, 35, 21, 0.4f,
                 RaidenObjectOwner.BOSS, RaidenObjectController.AI,
-                100, 13, 50, 76, 30);
+                100, 13, 50,
+                126, 30, 8f);
+        target = getClosestPlayer();
+        if (getX() < windowWidth/2f)
+            targetX = rand.nextInt(windowWidth / 3);
+        else
+            targetX = windowWidth - rand.nextInt(windowWidth / 3);
+        float dyToBottom = windowHeight - target.getY();
+        if (dyToBottom < windowHeight / 3f)
+            targetY = windowHeight - rand.nextFloat() * (windowHeight/3f) - windowHeight/6f;
+        else
+            targetY = rand.nextFloat() * (dyToBottom - windowHeight/6f) + target.getY();
     }
 
     public void shootWeapon() {
-        int gameStepSinceBirth = gameStep.intValue() - gameStepAtBirth;
-        if (gameStepSinceBirth % getWeaponCoolDown() == 0) {
-            new SmallBullet(getX() - 10, getMaxY());
+        int gameStepSinceReady = gameStep.intValue() - gameStepWhenReady - getInitWeaponCoolDown();
+        if (hasReachedTarget && gameStepSinceReady % getWeaponCoolDown() == 0) {
+            if (target == null)
+                target = getClosestPlayer();
+            new SmallBullet(getX() - 10, getMaxY(), target.getX(), target.getY());
         }
     }
 
     @Override
     protected void initSpeed() {
         super.initSpeed();
+        if (!hasReachedTarget) {
+            if ((abs(getX() - targetX) < getInitMaxSpeed() && abs(getY() - targetY) < getInitMaxSpeed()) ||
+                    (abs(getX() - target.getX()) < getSizeX() + target.getSizeX() &&
+                            abs(getY() - target.getY()) < getSizeY() + target.getSizeY())) {
+                hasReachedTarget = true;
+                gameStepWhenReady = gameStep.intValue();
+            }
+            else {
+                float dx = targetX - getX(), dy = targetY - getY();
+                float speedNorm = (float) sqrt(dx * dx + dy * dy);
+                float normalizer = getInitMaxSpeed() / speedNorm;
+                setSpeedX(dx * normalizer);
+                setSpeedY(dy * normalizer);
+                return;
+            }
+        }
         setSpeedY(getMaxSpeed());
-        if ((gameStep.intValue() - gameStepAtBirth) % 100 < 50 && !isOutOfWorld(getX() - maxSpeedX, getY()))
-            setSpeedX(-maxSpeedX);
-        else if (!isOutOfWorld(getX() + maxSpeedX, getY()))
-            setSpeedX(maxSpeedX);
     }
 }

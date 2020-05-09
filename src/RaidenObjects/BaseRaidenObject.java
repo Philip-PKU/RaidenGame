@@ -21,7 +21,7 @@ import static java.lang.Math.sqrt;
  * Object attributes include:
  *     - coordinates of object center
  *     - states (alive? on screen?)
- *     - born time (protected final)
+ *     - born time (protected)
  *     - object name
  *     - object owner and controller
  *     - object size
@@ -38,7 +38,7 @@ import static java.lang.Math.sqrt;
  *     - getClosestPlayer (protected) - Get the closest player. Used in enemy air crafts / weapons.
  *     - move (protected) - Move at current speed. Used in {@code step} function.
  */
-public abstract class BaseRaidenObject {
+public abstract class BaseRaidenObject implements Flyable{
     protected String name;
     protected RaidenObjectOwner owner;
     protected RaidenObjectController controller;
@@ -46,7 +46,7 @@ public abstract class BaseRaidenObject {
     protected float x, y;  // coordinates of object center
     protected float maxSpeed;  // max speed
     protected float speedX, speedY;  // current speed
-    protected final int gameStepAtBirth;  // game step when the object is constructed
+    protected int gameStepWhenReady;  // game step when the object is in position
     boolean alive, offScreen;  // states
     static TreeMap<File, BufferedImage> file2image = new TreeMap<>();
 
@@ -62,7 +62,7 @@ public abstract class BaseRaidenObject {
         this.alive = true;
         this.offScreen = false;
         this.controller = controller;
-        this.gameStepAtBirth = gameStep.intValue();
+        this.gameStepWhenReady = gameStep.intValue();
     }
 
     public String getName() {
@@ -203,15 +203,14 @@ public abstract class BaseRaidenObject {
     }
 
     public boolean isOutOfWorld(float x, float y) {
-        return isOutOfWindow(getMinX(x), getMinY(y)) ||
-               isOutOfWindow(getMaxX(x), getMaxY(y));
+        return isOutOfWindow(x, getMaxY(y));
     }
 
     public void paint(Graphics g) {
         g.drawImage(loadImage(getImageFile()), (int) getMinX(), (int) getMinY(), null);
     }
 
-    public boolean hasHit(BaseRaidenObject other) {
+    public boolean hasHit(Flyable other) {
         return getHitTopLeftX() < other.getHitBottomRightX() &&
                getHitTopLeftY() < other.getHitBottomRightY() &&
                other.getHitTopLeftX() < getHitBottomRightX() &&
@@ -239,7 +238,7 @@ public abstract class BaseRaidenObject {
     protected PlayerAircraft getRandomPlayer() {
         if (player1 == null) {
             if (player2 == null) {
-                return null;
+                throw new RuntimeException("No player exists.");
             }
             else {
                 return player2;

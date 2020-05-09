@@ -4,20 +4,23 @@ import RaidenObjects.Weapons.SmallBullet;
 import Utils.RaidenObjectController;
 import Utils.RaidenObjectOwner;
 
-import static World.World.gameStep;
+import static World.World.*;
 
-public class MiddleShootingAircraft extends BaseShootingAircraft {
-    static float maxSpeedX = 2.0f;
+public final class MiddleShootingAircraft extends BaseShootingAircraft {
+    private static float maxSpeedX = 0.2f, targetY = 80f;
+    boolean movingLeft;
 
     public MiddleShootingAircraft(float x, float y) {
-        super("MiddleShootingAircraft", x, y, 60, 40, 0.5f,
+        super("MiddleShootingAircraft", x, y, 60, 40, 0.8f,
                 RaidenObjectOwner.BOSS, RaidenObjectController.AI,
-                200, 13, 150, 256, 50);
+                200, 13, 150,
+                192, 10, 5f);
+        this.movingLeft = rand.nextBoolean();
     }
 
     public void shootWeapon() {
-        int gameStepSinceBirth = gameStep.intValue() - gameStepAtBirth;
-        if (gameStepSinceBirth % getWeaponCoolDown() < 15 && gameStepSinceBirth % 5 == 0) {
+        int gameStepSinceReady = gameStep.intValue() - gameStepWhenReady - getInitWeaponCoolDown();
+        if (gameStepSinceReady % getWeaponCoolDown() < 18 && gameStepSinceReady % 6 == 0) {
             PlayerAircraft closestPlayer = getClosestPlayer();
             new SmallBullet(getX() - 10, getMaxY(),
                     closestPlayer.getX(), closestPlayer.getY());
@@ -29,10 +32,28 @@ public class MiddleShootingAircraft extends BaseShootingAircraft {
     @Override
     protected void initSpeed() {
         super.initSpeed();
+        if (!hasReachedTarget) {
+            if (getY() > targetY) {
+                hasReachedTarget = true;
+                gameStepWhenReady = gameStep.intValue();
+            }
+            else {
+                setSpeedY(getInitMaxSpeed());
+                return;
+            }
+        }
         setSpeedY(getMaxSpeed());
-        if ((gameStep.intValue() - gameStepAtBirth) % 100 < 50 && !isOutOfWorld(getX() - maxSpeedX, getY()))
-            setSpeedX(-maxSpeedX);
-        else if (!isOutOfWorld(getX() + maxSpeedX, getY()))
-            setSpeedX(maxSpeedX);
+
+        // x-direction: move across the map
+        if (movingLeft) {
+            if (getX() > getSizeX())
+                setSpeedX(-maxSpeedX);
+            else movingLeft = false;
+        }
+        else {
+            if (getX() < windowWidth - getSizeX())
+                setSpeedX(maxSpeedX);
+            else movingLeft = true;
+        }
     }
 }
