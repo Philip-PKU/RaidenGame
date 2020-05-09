@@ -38,7 +38,7 @@ import static java.lang.Math.sqrt;
  *     - getClosestPlayer (protected) - Get the closest player. Used in enemy air crafts / weapons.
  *     - move (protected) - Move at current speed. Used in {@code step} function.
  */
-public abstract class BaseRaidenObject implements Flyable{
+public abstract class BaseRaidenObject{
     protected String name;
     protected RaidenObjectOwner owner;
     protected RaidenObjectController controller;
@@ -210,7 +210,7 @@ public abstract class BaseRaidenObject implements Flyable{
         g.drawImage(loadImage(getImageFile()), (int) getMinX(), (int) getMinY(), null);
     }
 
-    public boolean hasHit(Flyable other) {
+    public boolean hasHit(BaseRaidenObject other) {
         return getHitTopLeftX() < other.getHitBottomRightX() &&
                getHitTopLeftY() < other.getHitBottomRightY() &&
                other.getHitTopLeftX() < getHitBottomRightX() &&

@@ -7,7 +7,6 @@ import RaidenObjects.Aircrafts.ShootingAircrafts.PlayerAircraft;
 import RaidenObjects.Aircrafts.ShootingAircrafts.SmallShootingAircraft;
 import RaidenObjects.Background;
 import RaidenObjects.BaseRaidenObject;
-import RaidenObjects.Flyable;
 import Utils.RaidenKeyAdapter1;
 import Utils.RaidenObjectController;
 import Utils.RaidenObjectOwner;
@@ -29,7 +28,7 @@ public class World extends JPanel {
 
     public static PlayerAircraft player1, player2;
     public static List<BaseAircraft> aircraftList = new LinkedList<>();
-    public static List<Flyable> interactantList = new LinkedList<>();
+    public static List<BaseRaidenObject> interactantList = new LinkedList<>();
     public static MutableInt gameStep = new MutableInt(0);
     public static RaidenKeyAdapter1 keyAdapter = new RaidenKeyAdapter1();
     public static Random rand = new Random();
@@ -87,14 +86,14 @@ public class World extends JPanel {
                 }
                 background.step();
                 aircraftList.forEach(BaseAircraft::step);
-                interactantList.forEach(Flyable::step);
+                interactantList.forEach(BaseRaidenObject::step);
                 for (int i = 0; i < aircraftList.size(); ++i) {
                     for (int j = i + 1; j < aircraftList.size(); ++j) {
                         aircraftList.get(i).interactIfContacted(aircraftList.get(j));
                     }
                 }
                 aircraftList.removeIf(BaseRaidenObject::isOffScreen);
-                interactantList.removeIf(Flyable::isOffScreen);
+                interactantList.removeIf(BaseRaidenObject::isOffScreen);
             }
             repaint();
             gameStep.increment();
