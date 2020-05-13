@@ -1,13 +1,13 @@
 package world;
 
-import raidenObjects.Aircrafts.BaseAircraft;
-import raidenObjects.Aircrafts.BumpingAircraft;
-import raidenObjects.Aircrafts.shootingAircrafts.BigShootingAircraft;
-import raidenObjects.Aircrafts.shootingAircrafts.MiddleShootingAircraft;
-import raidenObjects.Aircrafts.shootingAircrafts.PlayerAircraft;
-import raidenObjects.Aircrafts.shootingAircrafts.SmallShootingAircraft;
 import raidenObjects.Background;
 import raidenObjects.BaseRaidenObject;
+import raidenObjects.aircrafts.BaseAircraft;
+import raidenObjects.aircrafts.BumpingAircraft;
+import raidenObjects.aircrafts.shootingAircrafts.BigShootingAircraft;
+import raidenObjects.aircrafts.shootingAircrafts.MiddleShootingAircraft;
+import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+import raidenObjects.aircrafts.shootingAircrafts.SmallShootingAircraft;
 import utils.*;
 
 import javax.swing.*;
@@ -26,7 +26,7 @@ public class World extends JPanel {
     public static List<BaseAircraft> aircraftList = new LinkedList<>();
     public static List<BaseRaidenObject> interactantList = new LinkedList<>();
     public static MutableInt gameStep = new MutableInt(0);
-    public static RaidenKeyAdapter keyAdapter = new RaidenKeyAdapter();
+    public static BaseRaidenKeyAdapter keyAdapter1 = new RaidenKeyAdapter1();
     public static Random rand = new Random();
 
     public final static int windowWidth = 480;
@@ -43,7 +43,7 @@ public class World extends JPanel {
         interactantList.clear();
 
         player1 = new PlayerAircraft(windowWidth/2.0f, windowHeight - 150,
-                RaidenObjectOwner.PLAYER1, RaidenObjectController.KEYBOARD1);
+                RaidenObjectOwner.PLAYER1, PlayerController.KEYBOARD1);
         aircraftList.add(player1);
 
         gameStep.setValue(0);

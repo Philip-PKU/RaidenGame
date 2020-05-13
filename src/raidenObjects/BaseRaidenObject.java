@@ -1,7 +1,8 @@
 package raidenObjects;
 
-import raidenObjects.Aircrafts.shootingAircrafts.PlayerAircraft;
-import utils.RaidenObjectController;
+import motionControllers.MotionController;
+import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+import utils.Bivector;
 import utils.RaidenObjectOwner;
 
 import javax.imageio.ImageIO;
@@ -11,57 +12,32 @@ import java.io.File;
 import java.io.IOException;
 import java.util.TreeMap;
 
-import static java.lang.Math.sqrt;
 import static world.World.*;
 
 /**
  * Base class of all flying objects in the game, including planes and interactants.
- * Class attributes include:
- *     - file2image - An object-image mapping for loadImage function
- * Object attributes include:
- *     - coordinates of object center
- *     - states (alive? on screen?)
- *     - born time (protected)
- *     - object name
- *     - object owner and controller
- *     - object size
- *     - max speed and current speed (in pixels per step)
- * Object methods include:
- *     - Getters (public) and setters (protected) for some of the attributes
- *     - step (public abstract) - Take a step and modify relative attributes
- *     - getImageFile (public abstract) - Get path to current image of the object
- *     - loadImage (protected static) - Load an image to memory. Used in {@code paint} function.
- *     - paint - Paint the object on screen
- *     - hasHit - Judge if two objects has hit each other
- *     - isOutOfWorld - Judge if the object is out of the Raiden world
- *     - getRandomPlayer (protected) - Get a random player. Used in enemy air crafts / weapons.
- *     - getClosestPlayer (protected) - Get the closest player. Used in enemy air crafts / weapons.
- *     - move (protected) - Move at current speed. Used in {@code step} function.
  */
 public abstract class BaseRaidenObject{
     protected String name;
     protected RaidenObjectOwner owner;
-    protected RaidenObjectController controller;
+    protected MotionController motionController;
     protected int sizeX, sizeY;  // object size
     protected float x, y;  // coordinates of object center
-    protected float maxSpeed;  // max speed
     protected float speedX, speedY;  // current speed
     protected int gameStepWhenReady;  // game step when the object is in position
     boolean alive, offScreen;  // states
     static TreeMap<File, BufferedImage> file2image = new TreeMap<>();
 
-    protected BaseRaidenObject(String name, float x, float y, int sizeX, int sizeY, float maxSpeed,
-                               RaidenObjectOwner owner, RaidenObjectController controller) {
+    protected BaseRaidenObject(String name, float x, float y, int sizeX, int sizeY,
+                               RaidenObjectOwner owner) {
         this.name = name;
         this.x = x;
         this.y = y;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.maxSpeed = maxSpeed;
         this.owner = owner;
         this.alive = true;
         this.offScreen = false;
-        this.controller = controller;
         this.gameStepWhenReady = gameStep.intValue();
     }
 
@@ -83,10 +59,6 @@ public abstract class BaseRaidenObject{
 
     public int getHitSizeY() {
         return sizeY;
-    }
-
-    public float getMaxSpeed() {
-        return maxSpeed;
     }
 
     public float getSpeedX() {
@@ -117,8 +89,13 @@ public abstract class BaseRaidenObject{
         return owner;
     }
 
-    public RaidenObjectController getController() {
-        return controller;
+    public MotionController getMotionController() {
+        return motionController;
+    }
+
+    public void registerMotionController(MotionController motionController){
+        this.motionController = motionController;
+        motionController.registerParent(this);
     }
 
     protected void setX(float x) {
@@ -129,11 +106,11 @@ public abstract class BaseRaidenObject{
         this.y = y;
     }
 
-    protected void setSpeedX(float speedX) {
+    public void setSpeedX(float speedX) {
         this.speedX = speedX;
     }
 
-    protected void setSpeedY(float speedY) {
+    public void setSpeedY(float speedY) {
         this.speedY = speedY;
     }
 
@@ -217,6 +194,10 @@ public abstract class BaseRaidenObject{
                other.getHitTopLeftY() < getHitBottomRightY();
     }
 
+    public float distTo(BaseRaidenObject other) {
+        return new Bivector(getX() - other.getX(), getY() - other.getY()).getNorm();
+    }
+
     protected static BufferedImage loadImage(File file) {
         if (file == null)
             return null;
@@ -235,7 +216,7 @@ public abstract class BaseRaidenObject{
         }
     }
 
-    protected PlayerAircraft getRandomPlayer() {
+    public PlayerAircraft getRandomPlayer() {
         if (player1 == null) {
             if (player2 == null) {
                 throw new RuntimeException("No player exists.");
@@ -255,15 +236,15 @@ public abstract class BaseRaidenObject{
         }
     }
 
-    protected PlayerAircraft getClosestPlayer() {
+    public PlayerAircraft getClosestPlayer() {
         float dist1 = Float.POSITIVE_INFINITY, dist2 = Float.POSITIVE_INFINITY;
         if (player1 != null) {
             float dx = player1.getX() - getX(), dy = player1.getY() - getY();
-            dist1 = (float) sqrt(dx*dx + dy*dy);
+            dist1 = new Bivector(dx, dy).getNorm();
         }
         if (player2 != null) {
             float dx = player2.getX() - getX(), dy = player2.getY() - getY();
-            dist2 = (float) sqrt(dx*dx + dy*dy);
+            dist2 = new Bivector(dx, dy).getNorm();
         }
         return dist1 < dist2 ? player1 : player2;
     }

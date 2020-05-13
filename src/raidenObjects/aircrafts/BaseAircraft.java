@@ -1,7 +1,6 @@
-package raidenObjects.Aircrafts;
+package raidenObjects.aircrafts;
 
 import raidenObjects.BaseRaidenObject;
-import utils.RaidenObjectController;
 import utils.RaidenObjectOwner;
 
 import java.io.File;
@@ -12,40 +11,14 @@ import static world.World.*;
 /**
  * Subclass of BaseRaidenObject, base class of all air crafts in the game,
  * including shooting air crafts and self-destruct air crafts.
- * Class attributes include:
- *     - file2image - An object-image mapping for loadImage function
- * Object attributes include:
- *     - coordinates of object center
- *     - states (alive? on screen?)
- *     - born time (protected)
- *     - object name
- *     - object owner and controller
- *     - object size
- *     - max speed and speed (in pixels per step)
- *     - max and current hp
- *     - max and current steps after death - for death effects
- *     - crash damage - for air craft crashes
- * Object methods include:
- *     - Getters (public) and setters (protected) for some of the attributes
- *     - step (public abstract) - Take a step and modify relative attributes
- *     - getImageFile (public) - Get path to current image of the object
- *     - loadImage (protected static) - Load an image to memory. Used in {@code paint} function.
- *     - paint - Paint the object on screen
- *     - hasHit - Judge if two objects has hit each other
- *     - isOutOfWorld - Judge if the object is out of the Raiden world
- *     - getRandomPlayer (protected) - Get a random player. Used in enemy air crafts / weapons.
- *     - getClosestPlayer (protected) - Get the closest player. Used in enemy air crafts / weapons.
- *     - move (protected) - Move at current speed. Used in {@code step} function.
- *     - receiveDamage - Receive damage and change state if dead
  */
 public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, stepsAfterDeath = 0;
     protected int maxHp, maxStepsAfterDeath, crashDamage;
 
-    protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, float maxSpeed,
-                           RaidenObjectOwner owner, RaidenObjectController controller,
+    protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, RaidenObjectOwner owner,
                            int maxHp, int maxStepsAfterDeath, int crashDamage) {
-        super(name, x, y, sizeX, sizeY, maxSpeed, owner, controller);
+        super(name, x, y, sizeX, sizeY, owner);
         this.maxHp = maxHp;
         this.hp = maxHp;
         this.maxStepsAfterDeath = maxStepsAfterDeath;
@@ -117,11 +90,9 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         }
     }
 
-    protected abstract void updateSpeed();
-
     public void step() {
         if (isAlive()) {
-            updateSpeed();
+            getMotionController().scheduleSpeed();
             move();
             interactWith(player1);
             interactWith(player2);

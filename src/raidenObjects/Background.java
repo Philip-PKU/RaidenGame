@@ -1,6 +1,5 @@
 package raidenObjects;
 
-import utils.RaidenObjectController;
 import utils.RaidenObjectOwner;
 
 import java.awt.*;
@@ -10,10 +9,10 @@ import java.nio.file.Paths;
 
 public class Background extends BaseRaidenObject {
     private float y2;
+    private float maxSpeed = 1;
 
     public Background() {
-        super("Background4", 0, 0, 640, 1260, 1,
-                RaidenObjectOwner.NEUTRAL, RaidenObjectController.AI);
+        super("Background4", 0, 0, 640, 1260, RaidenObjectOwner.NEUTRAL);
         y2 = -sizeY;
     }
 
@@ -26,8 +25,8 @@ public class Background extends BaseRaidenObject {
     }
 
     public void step() {
-        setY(getY() + getMaxSpeed());
-        setY2(getY2() + getMaxSpeed());
+        setY(getY() + maxSpeed);
+        setY2(getY2() + maxSpeed);
         if (getY() >= getSizeY())
             setY(getY() - 2 * getSizeY());
         if (getY2() >= getSizeY())
