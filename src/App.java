@@ -1,9 +1,10 @@
-import World.World;
+import world.World;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static World.World.*;
+import static java.lang.System.exit;
+import static world.World.*;
 
 public class App {
 
@@ -19,16 +20,17 @@ public class App {
         frame.setVisible(true);  // make the window visible, and call the paint function
 
         // make mouse invisible
-        Toolkit tk=Toolkit.getDefaultToolkit();
-        Image img=tk.getImage("");
-        Cursor cu=tk.createCustomCursor(img,new Point(10,10),"stick");
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Image img = tk.getImage("");
+        Cursor cu = tk.createCustomCursor(img, new Point(10, 10), "stick");
         frame.setCursor(cu);
 
         try {
             world.startGame();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        exit(0);
     }
 }
