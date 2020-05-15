@@ -3,7 +3,7 @@ package raidenObjects;
 import motionControllers.MotionController;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Bivector;
-import utils.RaidenObjectOwner;
+import utils.Faction;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -19,22 +19,22 @@ import static world.World.*;
  */
 public abstract class BaseRaidenObject{
     protected String name;
-    protected RaidenObjectOwner owner;
+    protected Faction owner;
     protected MotionController motionController;
-    protected int sizeX, sizeY;  // object size
+    protected int imgSizeX, imgSizeY;  // object size
     protected float x, y;  // coordinates of object center
     protected float speedX, speedY;  // current speed
     protected int gameStepWhenReady;  // game step when the object is in position
     boolean alive, offScreen;  // states
     static TreeMap<File, BufferedImage> file2image = new TreeMap<>();
 
-    protected BaseRaidenObject(String name, float x, float y, int sizeX, int sizeY,
-                               RaidenObjectOwner owner) {
+    protected BaseRaidenObject(String name, float x, float y, int imgSizeX, int imgSizeY,
+                               Faction owner) {
         this.name = name;
         this.x = x;
         this.y = y;
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+        this.imgSizeX = imgSizeX;
+        this.imgSizeY = imgSizeY;
         this.owner = owner;
         this.alive = true;
         this.offScreen = false;
@@ -45,20 +45,40 @@ public abstract class BaseRaidenObject{
         return name;
     }
 
-    public int getSizeX() {
-        return sizeX;
+    /**
+     * Returns X image size of current object. Img size is the size of the image of the object.
+     * @return imgSizeX
+     * @author 蔡辉宇
+     */
+    public int getImgSizeX() {
+        return imgSizeX;
     }
 
-    public int getSizeY() {
-        return sizeY;
+    public int getImgSizeY() {
+        return imgSizeY;
     }
 
+    public void setImgSizeX(int imgSizeX) {
+        this.imgSizeX = imgSizeX;
+    }
+
+    public void setImgSizeY(int imgSizeY) {
+        this.imgSizeY = imgSizeY;
+    }
+
+    /**
+     * Returns X hit size of current object. Hit size is the size of the rectangle centered at (x, y)
+     * that is used to judge if two objects (e.g. plane/plane and plane/weapon) have hit each other.
+     * In default, this is just {@code imgSizeX}, but subclasses can override this behavior.
+     * @return hitSizeX, which defaults to imgSizeX.
+     * @author 蔡辉宇
+     */
     public int getHitSizeX() {
-        return sizeX;
+        return imgSizeX;
     }
 
     public int getHitSizeY() {
-        return sizeY;
+        return imgSizeY;
     }
 
     public float getSpeedX() {
@@ -77,6 +97,14 @@ public abstract class BaseRaidenObject{
         return y;
     }
 
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
     public boolean isAlive() {
         return alive;
     }
@@ -85,7 +113,7 @@ public abstract class BaseRaidenObject{
         return offScreen;
     }
 
-    public RaidenObjectOwner getOwner() {
+    public Faction getOwner() {
         return owner;
     }
 
@@ -93,17 +121,14 @@ public abstract class BaseRaidenObject{
         return motionController;
     }
 
+    /**
+     * Set MotionController for the current object, and set parent of motionController to the current object.
+     * @param motionController A motionController object that will control the movement of the current object.
+     * @author 蔡辉宇
+     */
     public void registerMotionController(MotionController motionController){
         this.motionController = motionController;
         motionController.registerParent(this);
-    }
-
-    protected void setX(float x) {
-        this.x = x;
-    }
-
-    protected void setY(float y) {
-        this.y = y;
     }
 
     public void setSpeedX(float speedX) {
@@ -148,19 +173,19 @@ public abstract class BaseRaidenObject{
     }
 
     public float getMinX(float x) {
-        return x - getSizeX() / 2.0f;
+        return x - getImgSizeX() / 2.0f;
     }
 
     public float getMinY(float y) {
-        return y - getSizeY() / 2.0f;
+        return y - getImgSizeY() / 2.0f;
     }
 
     public float getMaxX(float x) {
-        return x + getSizeX() / 2.0f;
+        return x + getImgSizeX() / 2.0f;
     }
 
     public float getMaxY(float y) {
-        return y + getSizeY() / 2.0f;
+        return y + getImgSizeY() / 2.0f;
     }
 
     public float getHitTopLeftX() {
@@ -180,7 +205,7 @@ public abstract class BaseRaidenObject{
     }
 
     public boolean isOutOfWorld(float x, float y) {
-        return isOutOfWindow(x, getMaxY(y));
+        return isOutOfWindow(x, y);
     }
 
     public void paint(Graphics g) {
@@ -216,6 +241,11 @@ public abstract class BaseRaidenObject{
         }
     }
 
+    /**
+     * Return a random player.
+     * @return A random PlayerAircraft
+     * @author 蔡辉宇
+     */
     public PlayerAircraft getRandomPlayer() {
         if (player1 == null) {
             if (player2 == null) {
@@ -236,6 +266,11 @@ public abstract class BaseRaidenObject{
         }
     }
 
+    /**
+     * Return the closest player.
+     * @return The closest PlayerAircraft
+     * @author 蔡辉宇
+     */
     public PlayerAircraft getClosestPlayer() {
         float dist1 = Float.POSITIVE_INFINITY, dist2 = Float.POSITIVE_INFINITY;
         if (player1 != null) {
@@ -249,7 +284,11 @@ public abstract class BaseRaidenObject{
         return dist1 < dist2 ? player1 : player2;
     }
 
-    protected void move() {
+    /**
+     * Move according to the scheduled speed, and mark as dead if the current object is out of bound after moving.
+     * @author 蔡辉宇
+     */
+    protected void moveAndCheckPosition() {
         setX(getX() + getSpeedX());
         setY(getY() + getSpeedY());
         markAsDeadIfOutOfBound();

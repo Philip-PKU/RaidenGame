@@ -1,6 +1,6 @@
 package raidenObjects;
 
-import utils.RaidenObjectOwner;
+import utils.Faction;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,8 +12,8 @@ public class Background extends BaseRaidenObject {
     private float maxSpeed = 1;
 
     public Background() {
-        super("Background4", 0, 0, 640, 1260, RaidenObjectOwner.NEUTRAL);
-        y2 = -sizeY;
+        super("Background4", 0, 0, 640, 1260, Faction.NEUTRAL);
+        y2 = -imgSizeY;
     }
 
     private float getY2() {
@@ -27,10 +27,10 @@ public class Background extends BaseRaidenObject {
     public void step() {
         setY(getY() + maxSpeed);
         setY2(getY2() + maxSpeed);
-        if (getY() >= getSizeY())
-            setY(getY() - 2 * getSizeY());
-        if (getY2() >= getSizeY())
-            setY2(getY2() - 2 * getSizeY());
+        if (getY() >= getImgSizeY())
+            setY(getY() - 2 * getImgSizeY());
+        if (getY2() >= getImgSizeY())
+            setY2(getY2() - 2 * getImgSizeY());
     }
 
     @Override

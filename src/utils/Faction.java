@@ -1,7 +1,12 @@
 package utils;
 
-public enum RaidenObjectOwner {
-    NEUTRAL, BOSS, PLAYER1, PLAYER2;
+/**
+ * An enum for the faction (side) of raiden objects.
+ * Awards should be neutral, enemy aircrafts and bullets are the enemy, players(1/2) and their bullets are player(1/2).
+ * @author 蔡辉宇
+ */
+public enum Faction {
+    NEUTRAL, ENEMY, PLAYER1, PLAYER2;
 
     public boolean isPlayer1() {
         return this.equals(PLAYER1);
@@ -12,24 +17,24 @@ public enum RaidenObjectOwner {
     }
 
     public boolean isPlayer() {
-        return this.equals(PLAYER1) || this.equals(PLAYER2);
+        return isPlayer1() || isPlayer2();
     }
 
-    public boolean isBoss() {
-        return this.equals(BOSS);
+    public boolean isEnemy() {
+        return this.equals(ENEMY);
     }
 
     public boolean isNeutral() {
         return this.equals(NEUTRAL);
     }
 
-    public boolean isEnemyTo(RaidenObjectOwner other) {
+    public boolean isEnemyTo(Faction other) {
         switch(this) {
-            case BOSS:
+            case ENEMY:
                 return other.isPlayer();
             case PLAYER1:
             case PLAYER2:
-                return other.isBoss();
+                return other.isEnemy();
             case NEUTRAL:
                 return false;
         }

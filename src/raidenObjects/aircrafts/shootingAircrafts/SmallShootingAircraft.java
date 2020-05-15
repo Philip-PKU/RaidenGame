@@ -1,10 +1,11 @@
 package raidenObjects.aircrafts.shootingAircrafts;
 
+import launchControllers.PeriodicLaunchController;
 import motionControllers.ConstSpeedYMotionController;
 import motionControllers.TargetAwareConstSpeedXYMotionController;
 import motionControllers.TwoStagedMotionController;
 import raidenObjects.weapons.bullets.SmallBullet;
-import utils.RaidenObjectOwner;
+import utils.Faction;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -14,9 +15,8 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
     private PlayerAircraft target;
 
     public SmallShootingAircraft(float x, float y) {
-        super("SmallShootingAircraft", x, y, 35, 21, RaidenObjectOwner.BOSS,
-                100, 13, 50,
-                126, 30);
+        super("SmallShootingAircraft", x, y, 35, 21, Faction.ENEMY,
+                100, 13, 50);
         PlayerAircraft target = getClosestPlayer();
         TargetAwareConstSpeedXYMotionController stageOneController = TargetAwareConstSpeedXYMotionController.fromTargetXY(
                 x,
@@ -28,16 +28,10 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
                 stageOneController,
                 new ConstSpeedYMotionController(0.4f),
                 () -> stageOneController.distToTarget() < stageOneController.getMaxSpeed() || distTo(getClosestPlayer()) < 150,
-                () -> hasReachedTargetPos = true
+                () -> weaponLaunchController.activate()
         ));
-    }
-
-    public void shootWeapon() {
-        int gameStepSinceReady = gameStep.intValue() - gameStepWhenReady - getInitWeaponCoolDown();
-        if (hasReachedTargetPos && gameStepSinceReady % getWeaponCoolDown() == 0) {
-            if (target == null)
-                target = getClosestPlayer();
-            new SmallBullet(getX() - 10, getMaxY(), target.getX(), target.getY());
-        }
+        this.registerWeaponLaunchController(new PeriodicLaunchController(126, 30, () -> {
+            interactantList.add(new SmallBullet(getX(), getMaxY(), target.getX(), target.getY()));
+        }));
     }
 }

@@ -14,12 +14,12 @@ public class HoveringXMotionController extends BaseMotionController implements M
     @Override
     public void scheduleSpeed() {
         if (movingLeft) {
-            if (raidenObject.getX() > leftBoundX)
+            if (raidenObject.getX() - speedX - 1 > leftBoundX)
                 raidenObject.setSpeedX(-speedX);
             else movingLeft = false;
         }
         else {
-            if (raidenObject.getX() < rightBoundX)
+            if (raidenObject.getX() + speedX + 1 < rightBoundX)
                 raidenObject.setSpeedX(speedX);
             else movingLeft = true;
         }

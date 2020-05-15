@@ -3,7 +3,6 @@ import world.World;
 import javax.swing.*;
 import java.awt.*;
 
-import static java.lang.System.exit;
 import static world.World.*;
 
 public class App {
@@ -26,11 +25,11 @@ public class App {
         frame.setCursor(cu);
 
         try {
-            world.startGame();
+            world.run();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        exit(0);
+        // exit(0);
     }
 }

@@ -1,7 +1,7 @@
 package raidenObjects.aircrafts;
 
 import raidenObjects.BaseRaidenObject;
-import utils.RaidenObjectOwner;
+import utils.Faction;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -9,14 +9,19 @@ import java.nio.file.Paths;
 import static world.World.*;
 
 /**
- * Subclass of BaseRaidenObject, base class of all air crafts in the game,
- * including shooting air crafts and self-destruct air crafts.
+ * Subclass of BaseRaidenObject, base class of all aircrafts in the game,
+ * including shooting aircrafts and self-destruct bumping aircrafts.
+ *
+ * Difference to BaseRaidenObject:
+ *  - has HP (hit points), will die if hp <= 0
+ *  - cause crashDamages, i.e. if it bumps into enemy aircrafts it will cause damage to them
+ *  - has visual effects after death (see {@code getImageFile})
  */
 public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, stepsAfterDeath = 0;
     protected int maxHp, maxStepsAfterDeath, crashDamage;
 
-    protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, RaidenObjectOwner owner,
+    protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
                            int maxHp, int maxStepsAfterDeath, int crashDamage) {
         super(name, x, y, sizeX, sizeY, owner);
         this.maxHp = maxHp;
@@ -49,10 +54,6 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         return maxStepsAfterDeath;
     }
 
-    public int getStepsAfterDeath() {
-        return stepsAfterDeath;
-    }
-
     public void receiveDamage(int damage) {
         hp -= damage;
         if (getOwner().isPlayer())
@@ -71,16 +72,20 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         }
     }
 
-    protected void incrStepsAfterDeath() {
-        ++stepsAfterDeath;
-    }
-
+    /**
+     * Return the image file.
+     * The file name starts with {@code name}, continues with {@code stepsAfterDeath} (0 if the aircraft is alive,
+     * 1~maxStepsAfterDeath if the aircraft is dead but still on screen), and ends with suffix ".jpg".
+     * Note: The image files are all stored in "data/images".
+     * @return A File object representing current image of this aircraft.
+     * @author 蔡辉宇
+     */
     public File getImageFile() {
-        int stepsAfterDeath = getStepsAfterDeath();
         if (stepsAfterDeath <= getMaxStepsAfterDeath()) {
             String filename = getName() + stepsAfterDeath;
+            // Trick: slow down the visual effect so that aircrafts will not vanish too quickly
             if (!isAlive() && gameStep.intValue() % 2 == 0) {
-                incrStepsAfterDeath();
+                ++stepsAfterDeath;
             }
             return Paths.get("data", "images", filename + ".png").toFile();
         }
@@ -90,10 +95,17 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         }
     }
 
+    /**
+     * This function combines all control logic for this aircraft.
+     * Note: It is often overridden by children if additional logic is needed.
+     * @author 蔡辉宇
+     */
     public void step() {
         if (isAlive()) {
             getMotionController().scheduleSpeed();
-            move();
+            moveAndCheckPosition();
+        }
+        if (isAlive()) {
             interactWith(player1);
             interactWith(player2);
         }

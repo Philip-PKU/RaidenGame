@@ -2,6 +2,10 @@ package utils;
 
 import static java.lang.Math.sqrt;
 
+/**
+ * Two-element vector. A simple utility class.
+ * @author 蔡辉宇
+ */
 public class Bivector {
     public float X, Y;
 

@@ -5,24 +5,24 @@ import raidenObjects.BaseRaidenObject;
 public class TwoStagedMotionController extends BaseMotionController implements MotionController {
     MotionController stageOneScheduler, stageTwoScheduler;
     StateTransitionJudge stateTransitionJudge;
-    StateTransitionAdapter stateTransitionAdapter;
+    StateTransitionEventAdapter stateTransitionEventAdapter;
     boolean isInStageTwo = false;
 
     public TwoStagedMotionController(MotionController stageOneScheduler, MotionController stageTwoScheduler,
                                   StateTransitionJudge stateTransitionJudge,
-                                  StateTransitionAdapter stateTransitionAdapter) {
+                                  StateTransitionEventAdapter stateTransitionEventAdapter) {
         this.stageOneScheduler = stageOneScheduler;
         this.stageTwoScheduler = stageTwoScheduler;
         this.stateTransitionJudge = stateTransitionJudge;
-        this.stateTransitionAdapter = stateTransitionAdapter;
+        this.stateTransitionEventAdapter = stateTransitionEventAdapter;
     }
 
     public TwoStagedMotionController(MotionController stageOneScheduler, MotionController stageTwoScheduler, StateTransitionJudge stateTransitionJudge) {
         this(stageOneScheduler, stageTwoScheduler, stateTransitionJudge, null);
     }
 
-    public void setStateTransitionAdapter(StateTransitionAdapter stateTransitionAdapter) {
-        this.stateTransitionAdapter = stateTransitionAdapter;
+    public void setStateTransitionEventAdapter(StateTransitionEventAdapter stateTransitionEventAdapter) {
+        this.stateTransitionEventAdapter = stateTransitionEventAdapter;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class TwoStagedMotionController extends BaseMotionController implements M
             if (stateTransitionJudge.conditionSatisfied()) {
                 isInStageTwo = true;
                 resetSpeed();
-                if (stateTransitionAdapter != null)
-                    stateTransitionAdapter.stageOneFinished();
+                if (stateTransitionEventAdapter != null)
+                    stateTransitionEventAdapter.stageOneFinished();
             }
             else
                 stageOneScheduler.scheduleSpeed();

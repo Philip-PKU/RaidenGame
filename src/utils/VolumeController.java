@@ -1,37 +1,16 @@
 package utils;
 
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
-
 import javax.sound.sampled.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 import static javax.sound.sampled.Port.Info.*;
 
-public class Mp3Player extends Thread {
-    Player player;
+/**
+ * A convenience class for music volume control. The setVolume function in maryb.player.Player seems to have broken.
+ * @author 蔡辉宇
+ */
+public class VolumeController {
 
-    public Mp3Player(File file, float initVolume) {
-        try {
-            player = new Player(new FileInputStream(file));
-        } catch (JavaLayerException | FileNotFoundException ignored) {
-        }
-        setVolume(initVolume);
-    }
-
-    @Override
-    public void run() {
-        try {
-            while (!isInterrupted()) {
-                player.play();
-            }
-        } catch (JavaLayerException ignored) {
-        }
-    }
-
-    public float getVolume() {
+    public static float getVolume() {
         Line.Info[] sources = {SPEAKER, LINE_OUT, HEADPHONE};
 
         for (Line.Info source : sources) {
@@ -50,7 +29,7 @@ public class Mp3Player extends Thread {
         throw new RuntimeException("In Utils.Mp3Player: Unable to find any output line.");
     }
 
-    public void setVolume(float volume) {
+    public static void setVolume(float volume) {
         Line.Info[] sources = {SPEAKER, LINE_OUT, HEADPHONE};
         boolean foundSource = false;
         for (Line.Info source : sources) {

@@ -19,42 +19,39 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="separated motionControllers">
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/BaseMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/ConstAccelerationYMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/ConstSpeedXYMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/ConstSpeedYMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/HoveringXMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/KeyboardMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/MotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/StateTransitionAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/StateTransitionJudge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/TargetAwareConstSpeedXYMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/TargetAwareMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/TargetTrackingMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/TwoStagedMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/XYMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/motionControllers/YAwareMotionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/Bivector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/RaidenKeyAdapter1.java" afterDir="false" />
+    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/JavaMediaPlayer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/JavaMediaPlayer.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/launchControllers/LaunchController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/launchControllers/LaunchEventAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/launchControllers/PeriodicLaunchController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Raiden.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Raiden.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/Aircrafts/BaseAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BaseAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/Aircrafts/BumpingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BumpingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/Aircrafts/shootingAircrafts/BaseShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BaseShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/Aircrafts/shootingAircrafts/BigShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/Aircrafts/shootingAircrafts/MiddleShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/Aircrafts/shootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/Aircrafts/shootingAircrafts/SmallShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/motionControllers/HoveringXMotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/motionControllers/HoveringXMotionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/motionControllers/MotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/motionControllers/MotionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/motionControllers/StateTransitionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/motionControllers/StateTransitionEventAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/motionControllers/TwoStagedMotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/motionControllers/TwoStagedMotionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/Background.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/BaseRaidenObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/BaseRaidenObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BaseAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BaseAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BumpingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BumpingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BaseShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BaseShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BaseWeapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BaseWeapon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/bullets/BigBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/bullets/BigBullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/bullets/SmallBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/bullets/SmallBullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/bullets/StandardPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/bullets/StandardPlayerBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/RaidenKeyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BaseRaidenKeyAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/RaidenObjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/PlayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/BaseRaidenKeyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BaseRaidenKeyAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Bivector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Bivector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Mp3Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/VolumeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/PlayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/RaidenObjectOwner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Faction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,8 +67,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -137,7 +134,8 @@
       <workItem from="1589100654936" duration="20000" />
       <workItem from="1589290034040" duration="15098000" />
       <workItem from="1589353404007" duration="1311000" />
-      <workItem from="1589354739569" duration="24533000" />
+      <workItem from="1589354739569" duration="25262000" />
+      <workItem from="1589545966138" duration="21503000" />
     </task>
     <task id="LOCAL-00001" summary="add readme">
       <created>1580021981762</created>
@@ -195,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589349504395</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="separated motionControllers, updated readme.md">
+      <created>1589390969949</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589390969950</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,74 +229,83 @@
     <MESSAGE value="New Bumping Aircraft, moderate modifications elsewhere" />
     <MESSAGE value="Removed Flyable Interface" />
     <MESSAGE value="can play bgm now; add BumpingAircraft" />
-    <option name="LAST_COMMIT_MESSAGE" value="can play bgm now; add BumpingAircraft" />
+    <MESSAGE value="separated motionControllers, updated readme.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="separated motionControllers, updated readme.md" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1589387927487">
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1589570404518">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589387927487" />
-    <state x="656" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589389114687">
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589570404518" />
+    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589568356579">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589389114687" />
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589038261826">
+    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589568356579" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589570870190">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589038261826" />
-    <state x="480" y="86" key="CommitChangelistDialog2" timestamp="1589390764803">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589570870190" />
+    <state x="480" y="86" key="CommitChangelistDialog2" timestamp="1589390966318">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="480" y="86" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589390764803" />
-    <state x="-228" y="545" width="1736" height="856" key="DiffContextDialog" timestamp="1589383420183">
+    <state x="480" y="86" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589390966318" />
+    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog" timestamp="1589559645729">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-228" y="545" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589383420183" />
-    <state x="634" y="261" key="FileChooserDialogImpl" timestamp="1589348965724">
+    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589559645729" />
+    <state x="634" y="261" key="FileChooserDialogImpl" timestamp="1589554143232">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="634" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589348965724" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1589390586454">
+    <state x="634" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589554143232" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1589572964463">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589390586454" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1589390586454">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589572964463" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1589572964463">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589390586454" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1589390586454">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589572964463" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1589572964463">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589390586454" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1589390586454">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589572964463" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1589572964463">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589390586454" />
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1589390363490">
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589572964463" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1589572242285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589390363490" />
-    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1589390363490">
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589572242285" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1589572242285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589390363490" />
-    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1589390363490">
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589572242285" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1589572242285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589390363490" />
-    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1589390363490">
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589572242285" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1589572242285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589390363490" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589572242285" />
     <state x="440" y="95" key="SettingsEditor" timestamp="1589349136318">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589349136318" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1589349508666">
+    <state x="806" y="433" key="VCS.ChangelistChooser" timestamp="1589555236580">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589349508666" />
+    <state x="806" y="433" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589555236580" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1589390973001">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1589390973001" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589555180285">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589555180285" />
     <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1584337574479">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -308,5 +322,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589358523390" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1589564688218">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589564688218" />
   </component>
 </project>

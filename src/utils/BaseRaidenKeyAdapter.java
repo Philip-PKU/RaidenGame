@@ -3,6 +3,10 @@ package utils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * A key adapter that logs key activity and returns current key state.
+ * @author 蔡辉宇
+ */
 public class BaseRaidenKeyAdapter extends KeyAdapter {
     public final int left = 1, right = 2, up = 4, down = 8;
     int left_key, right_key, up_key, down_key;

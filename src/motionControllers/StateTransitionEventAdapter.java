@@ -1,5 +1,5 @@
 package motionControllers;
 
-public interface StateTransitionAdapter {
+public interface StateTransitionEventAdapter {
     void stageOneFinished();
 }
