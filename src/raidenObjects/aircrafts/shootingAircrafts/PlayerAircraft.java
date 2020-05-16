@@ -43,7 +43,12 @@ public final class PlayerAircraft extends BaseShootingAircraft {
 
     @Override
     public File getImageFile() {
-        return Paths.get("data", "images", "Player0.png").toFile();
+    	if(isInvincible == 0) {
+    		return Paths.get("data", "images", "Player0.png").toFile();
+    	}
+    	else {
+    		return Paths.get("data", "images", "Player0withshield.png").toFile();
+    	}
     }
 
     @Override

@@ -20,6 +20,9 @@ import static world.World.*;
 public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, stepsAfterDeath = 0;
     protected int maxHp, maxStepsAfterDeath, crashDamage;
+    protected int isInvincible = 0;
+    protected int isAttractive = 0;
+    protected int coin = 0;
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
                            int maxHp, int maxStepsAfterDeath, int crashDamage) {
@@ -37,6 +40,14 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public void setHp(int hp) {
         this.hp = hp;
     }
+    
+    public int getCoin() {
+    	return coin;
+    }
+    
+    public void setCoin(int coin) {
+    	this.coin = coin;
+    }
 
     public int getMaxHp() {
         return maxHp;
@@ -53,22 +64,49 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public int getMaxStepsAfterDeath() {
         return maxStepsAfterDeath;
     }
+    
+    public int getisInvincible() {
+    	return isInvincible;
+    }
+    
+    protected void desisInvincible() {
+    	--isInvincible;
+    }
+    
+    public void setisInvincible(int isInvincible) {
+    	this.isInvincible = isInvincible;
+    }
+    
+    public void bonus(BaseAircraft aircraft) {
+    	return;
+    }
 
     public void receiveDamage(int damage) {
         hp -= damage;
         if (getOwner().isPlayer())
-            System.out.println(hp);
+            System.out.println("hp: " + hp);
         if (hp <= 0)
             markAsDead();
+    }
+    
+    public void receiveCoin(int coin) {
+    	this.coin += coin;
+    	System.out.println("coin: " + this.coin);
     }
 
     public void interactWith(BaseAircraft aircraft) {
         if (aircraft == null || aircraft == this)
             return;
+        if(this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) && this.getOwner().isBonus()) {
+        	this.bonus(aircraft);
+        	this.markAsDead();
+        }
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
                 this.getOwner().isEnemyTo(aircraft.getOwner())) {
             this.receiveDamage(aircraft.getCrashDamage());
-            aircraft.receiveDamage(this.getCrashDamage());
+            if(aircraft.isInvincible == 0) {
+       		 	aircraft.receiveDamage(this.getCrashDamage());
+            }
         }
     }
 
@@ -78,7 +116,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
      * 1~maxStepsAfterDeath if the aircraft is dead but still on screen), and ends with suffix ".jpg".
      * Note: The image files are all stored in "data/images".
      * @return A File object representing current image of this aircraft.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public File getImageFile() {
         if (stepsAfterDeath <= getMaxStepsAfterDeath()) {
@@ -98,7 +136,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     /**
      * This function combines all control logic for this aircraft.
      * Note: It is often overridden by children if additional logic is needed.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public void step() {
         if (isAlive()) {
@@ -109,5 +147,9 @@ public abstract class BaseAircraft extends BaseRaidenObject {
             interactWith(player1);
             interactWith(player2);
         }
+        if(getisInvincible() > 0) {
+        	desisInvincible();
+        }
+        	
     }
 }

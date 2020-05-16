@@ -5,7 +5,12 @@ import raidenObjects.Background;
 import raidenObjects.BaseRaidenObject;
 import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.BumpingAircraft;
+import raidenObjects.aircrafts.bonus.CoinBonus;
+import raidenObjects.aircrafts.bonus.CureBonus;
+import raidenObjects.aircrafts.bonus.InvincibleBonus;
+import raidenObjects.aircrafts.shootingAircrafts.BarbetteAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.BigShootingAircraft;
+import raidenObjects.aircrafts.shootingAircrafts.BlackHoleAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.MiddleShootingAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.SmallShootingAircraft;
@@ -56,7 +61,7 @@ public class World extends JPanel {
 
     /**
      * Initialize the game.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public void init() {
         // The background image
@@ -105,7 +110,7 @@ public class World extends JPanel {
      * @param x The x coordinate of the point.
      * @param y The y coordinate of the point.
      * @return true iff (x, y) is out of the window, and false otherwise.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public static boolean isOutOfWindow(float x, float y) {
         return x < 0 || x >= windowWidth || y < 0 || y >= windowHeight;
@@ -115,7 +120,7 @@ public class World extends JPanel {
      * TODO: In startup interface, paint the menu, etc.
      * In gaming interface, paint the panel by painting the background, all aircrafts and all interactants.
      * @param g A java.awt.Graphics object.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public void paint(Graphics g) {
         synchronized (this) {
@@ -128,7 +133,7 @@ public class World extends JPanel {
     /**
      * Run the game.
      * @throws InterruptedException If sleep is interrupted.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public void run() throws InterruptedException {
         musicPlayer.play();
@@ -136,22 +141,36 @@ public class World extends JPanel {
         while(!aircraftList.isEmpty() && player1 != null) {
             synchronized (this) {
                 // Periodically add new planes
-                if (gameStep.intValue() % 279 == 37) {
+            	if (gameStep.intValue() % 679 == 37) {
                     aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
                 }
-                if (gameStep.intValue() % 269 == 198) {
+                if (gameStep.intValue() % 569 == 198) {
                     aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth), 0));
                 }
-                if (gameStep.intValue() % 397 == 100) {
+                if (gameStep.intValue() % 997 == 100) {
                     aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2), 0));
                 }
-                if (gameStep.intValue() % 397 == 300) {
+                if (gameStep.intValue() % 997 == 300) {
                     aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth/2) + windowWidth/2.0f, 0));
                 }
-                if (gameStep.intValue() % 397 == 200) {
+                if (gameStep.intValue() % 597 == 200) {
                     aircraftList.add(new BumpingAircraft(rand.nextInt(windowWidth), 0));
                 }
-
+                if(gameStep.intValue() % 1094 == 432) {
+                	aircraftList.add(new BlackHoleAircraft(rand.nextInt(windowWidth), 0));
+                }
+                if(gameStep.intValue() % 794 == 732) {
+                	aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0));
+                }
+                if(gameStep.intValue() % 10 == 0 && rand.nextInt(100) > 95) {
+                	aircraftList.add(new InvincibleBonus(rand.nextInt(windowWidth), 0));
+                }
+                if(gameStep.intValue()% 10 == 0 && rand.nextInt(100) > 90) {
+                	aircraftList.add(new CoinBonus(rand.nextInt(windowWidth), 0, rand.nextInt(3)));
+                }
+                if(gameStep.intValue() % 10 == 0 && rand.nextInt(100) > 95) {
+                	aircraftList.add(new CureBonus(rand.nextInt(windowWidth), 0));
+                }
                 // Move everything in the game one step forward
                 background.step();
                 aircraftList.forEach(BaseAircraft::step);

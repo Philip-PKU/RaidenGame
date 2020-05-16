@@ -32,7 +32,9 @@ public abstract class BaseWeapon extends BaseRaidenObject {
     public void interactWith(BaseAircraft aircraft) {
         if (aircraft.isAlive() && this.isAlive() && this.hasHit(aircraft) &&
                 this.getOwner().isEnemyTo(aircraft.getOwner())) {
-            aircraft.receiveDamage(getDamage());
+        	if(aircraft.getisInvincible() == 0) {
+        		aircraft.receiveDamage(getDamage());
+        	}
             this.markAsDead();
         }
     }
