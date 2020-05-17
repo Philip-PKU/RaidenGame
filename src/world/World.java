@@ -8,6 +8,7 @@ import raidenObjects.aircrafts.BumpingAircraft;
 import raidenObjects.aircrafts.bonus.CoinBonus;
 import raidenObjects.aircrafts.bonus.CureBonus;
 import raidenObjects.aircrafts.bonus.InvincibleBonus;
+import raidenObjects.aircrafts.bonus.MagnetBonus;
 import raidenObjects.aircrafts.shootingAircrafts.BarbetteAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.BigShootingAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.BlackHoleAircraft;
@@ -120,7 +121,7 @@ public class World extends JPanel {
      * TODO: In startup interface, paint the menu, etc.
      * In gaming interface, paint the panel by painting the background, all aircrafts and all interactants.
      * @param g A java.awt.Graphics object.
-     * @author 钄¤緣瀹�
+     * @author 蔡辉宇
      */
     public void paint(Graphics g) {
         synchronized (this) {
@@ -133,7 +134,7 @@ public class World extends JPanel {
     /**
      * Run the game.
      * @throws InterruptedException If sleep is interrupted.
-     * @author 钄¤緣瀹�
+     * @author 蔡辉宇
      */
     public void run() throws InterruptedException {
         musicPlayer.play();
@@ -162,14 +163,17 @@ public class World extends JPanel {
                 if(gameStep.intValue() % 794 == 732) {
                 	aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0));
                 }
-                if(gameStep.intValue() % 10 == 0 && rand.nextInt(100) > 95) {
+                if(gameStep.intValue() % 50 == 0 && rand.nextInt(100) > 95) {
                 	aircraftList.add(new InvincibleBonus(rand.nextInt(windowWidth), 0));
                 }
-                if(gameStep.intValue()% 10 == 0 && rand.nextInt(100) > 90) {
+                if(gameStep.intValue()% 20 == 0 && rand.nextInt(100) > 95) {
                 	aircraftList.add(new CoinBonus(rand.nextInt(windowWidth), 0, rand.nextInt(3)));
                 }
-                if(gameStep.intValue() % 10 == 0 && rand.nextInt(100) > 95) {
+                if(gameStep.intValue() % 50 == 0 && rand.nextInt(100) > 95) {
                 	aircraftList.add(new CureBonus(rand.nextInt(windowWidth), 0));
+                }
+                if(gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
+                	aircraftList.add(new MagnetBonus(rand.nextInt(windowWidth), 0));
                 }
                 // Move everything in the game one step forward
                 background.step();
@@ -193,6 +197,4 @@ public class World extends JPanel {
         musicPlayer.stop();
         gameSpeedAdjusterTimer.stop();
     }
-
-
 }

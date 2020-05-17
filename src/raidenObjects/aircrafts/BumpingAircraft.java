@@ -6,8 +6,6 @@ import motionControllers.TwoStagedMotionController;
 import utils.Faction;
 
 public final class BumpingAircraft extends BaseAircraft {
-    private boolean hasReachedTargetPos;
-
     public BumpingAircraft(float x, float y) {
         super("BumpingAircraft", x, y, 30, 23, Faction.ENEMY,
                 100, 13, 50);

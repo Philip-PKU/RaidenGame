@@ -12,7 +12,6 @@ import static java.lang.Math.min;
 import static world.World.*;
 
 public final class SmallShootingAircraft extends BaseShootingAircraft {
-    private PlayerAircraft target;
 
     public SmallShootingAircraft(float x, float y) {
         super("SmallShootingAircraft", x, y, 35, 21, Faction.ENEMY,

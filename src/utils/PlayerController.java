@@ -3,7 +3,7 @@ package utils;
 /**
  * An enum for the controller of the player.
  * Used in constructor of {@code PlayerAircraft} for selcting motion controller.
- * @author è”¡è¾‰å®‡
+ * @author ²Ì»ÔÓî
  */
 public enum PlayerController {
     KEYBOARD1, KEYBOARD2, NETWORK;

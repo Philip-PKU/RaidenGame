@@ -1,6 +1,7 @@
 package raidenObjects.aircrafts.bonus;
 
 import static world.World.windowWidth;
+
 import java.util.Arrays;
 
 import launchControllers.PeriodicLaunchController;
@@ -11,10 +12,9 @@ import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.BaseShootingAircraft;
 import utils.Faction;
 
-
-public final class InvincibleBonus extends BaseShootingAircraft{
-	public InvincibleBonus(float x, float y) {
-		super("InvincibleBonus", x, y, 20, 20, Faction.BOUNS,
+public final class MagnetBonus extends BaseShootingAircraft{
+	public MagnetBonus(float x, float y) {
+		super("MagnetBonus", x, y, 20, 20, Faction.BOUNS,
 				1, 0, 0);
 		 MotionController XController = new HoveringXMotionController(0.5f, 20, windowWidth - 20);
 		 MotionController XYController = XYMotionController.defaultFromXController(
@@ -27,6 +27,6 @@ public final class InvincibleBonus extends BaseShootingAircraft{
 	
 	@Override
 	public void bonus(BaseAircraft aircraft) {
-		aircraft.setisInvincible(100 + aircraft.getisInvincible());
+		aircraft.setisAttractive(100 + aircraft.getisAttractive());
 	}
 }
