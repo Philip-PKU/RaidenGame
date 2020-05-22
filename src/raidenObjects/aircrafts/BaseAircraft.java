@@ -28,6 +28,8 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     protected int isInvincible = 0;
     protected int isAttractive = 0;
     protected int coin = 0;
+    protected int weaponType = 0;
+    protected int superPower = 0;
     protected boolean isAttracted = false;
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
@@ -54,7 +56,18 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public void setCoin(int coin) {
     	this.coin = coin;
     }
-
+    public int getWeaponType() {
+    	return weaponType;
+    }
+    public void setWeaponType(int weaponType) {
+    	this.weaponType = weaponType;
+    }
+    public int getSuperPower() {
+    	return superPower;
+    }
+    public void setSuperPower(int superPower) {
+    	this.superPower = superPower;
+    }
     public int getMaxHp() {
         return maxHp;
     }

@@ -9,6 +9,8 @@ import raidenObjects.aircrafts.bonus.CoinBonus;
 import raidenObjects.aircrafts.bonus.CureBonus;
 import raidenObjects.aircrafts.bonus.InvincibleBonus;
 import raidenObjects.aircrafts.bonus.MagnetBonus;
+import raidenObjects.aircrafts.bonus.WeaponUpgradeBonus;
+import raidenObjects.aircrafts.bonus.SuperPowerBonus;
 import raidenObjects.aircrafts.shootingAircrafts.BarbetteAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.BigShootingAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.BlackHoleAircraft;
@@ -174,6 +176,12 @@ public class World extends JPanel {
                 }
                 if(gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
                 	aircraftList.add(new MagnetBonus(rand.nextInt(windowWidth), 0));
+                }
+                if(gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 97) {
+                	aircraftList.add(new WeaponUpgradeBonus(rand.nextInt(windowWidth), 0, rand.nextInt(2)));
+                }
+                if(gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 97) {
+                	aircraftList.add(new SuperPowerBonus(rand.nextInt(windowWidth), 0));
                 }
                 // Move everything in the game one step forward
                 background.step();
