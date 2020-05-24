@@ -233,6 +233,7 @@ public abstract class BaseRaidenObject{
             try {
                 image = ImageIO.read(file);
             } catch (IOException e) {
+                System.out.println(file.toString());
                 e.printStackTrace();
                 throw new RuntimeException();
             }

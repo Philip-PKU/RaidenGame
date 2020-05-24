@@ -30,16 +30,11 @@ public abstract class BaseWeapon extends BaseRaidenObject {
     }
 
     public void interactWith(BaseAircraft aircraft) {
-    	// base weapon hits the blackhole
-        if (aircraft.isAlive() && this.isAlive() && this.hasHit(aircraft) &&
-                aircraft.getOwner().isBlackhole()) {
-            this.markAsDead();
-        }
-        // base weapon hits players, players recieve damage when they're 
-        // not invincible
+        // weapon hits aircraft, aircraft receive damage when they're not invincible
+        // Note: this will cause player's weapon to disappear at contact with the black hole
         if (aircraft.isAlive() && this.isAlive() && this.hasHit(aircraft) &&
                 this.getOwner().isEnemyTo(aircraft.getOwner())) {
-        	if(aircraft.getisInvincible() == 0) {
+        	if (!aircraft.getInvincibleCountdown().isEffective()) {
         		aircraft.receiveDamage(getDamage());
         	}
             this.markAsDead();

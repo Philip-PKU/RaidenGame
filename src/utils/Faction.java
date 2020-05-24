@@ -6,7 +6,7 @@ package utils;
  * @author 蔡辉宇
  */
 public enum Faction {
-    NEUTRAL, ENEMY, PLAYER1, PLAYER2, BOUNS, BLACKHOLE;
+    ENEMY, PLAYER1, PLAYER2, BONUS;
 
     public boolean isPlayer1() {
         return this.equals(PLAYER1);
@@ -25,17 +25,9 @@ public enum Faction {
     }
     
     public boolean isBonus() {
-    	return this.equals(BOUNS);
-    }
-
-    public boolean isNeutral() {
-        return this.equals(NEUTRAL);
+    	return this.equals(BONUS);
     }
     
-    public boolean isBlackhole() {
-    	return this.equals(BLACKHOLE);
-    }
-
     public boolean isEnemyTo(Faction other) {
         switch(this) {
             case ENEMY:
@@ -43,7 +35,7 @@ public enum Faction {
             case PLAYER1:
             case PLAYER2:
                 return other.isEnemy();
-            case NEUTRAL:
+            case BONUS:
                 return false;
 		default:
 			break;

@@ -12,7 +12,7 @@ public class Background extends BaseRaidenObject {
     private float maxSpeed = 1;
 
     public Background() {
-        super("Background4", 0, 0, 640, 1260, Faction.NEUTRAL);
+        super("Background4", 0, 0, 640, 1260, Faction.BONUS);
         y2 = -imgSizeY;
     }
 
