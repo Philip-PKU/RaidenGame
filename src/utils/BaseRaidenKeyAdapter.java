@@ -5,20 +5,22 @@ import java.awt.event.KeyEvent;
 
 /**
  * A key adapter that logs key activity and returns current key state.
- * @author 蔡辉宇
+ * @author 钄¤緣瀹�
  */
 public class BaseRaidenKeyAdapter extends KeyAdapter {
     public final int LEFT = 1, RIGHT = 2, UP = 4, DOWN = 8;
     public final int SHOOT = 1;
-    int left_key, right_key, up_key, down_key, shoot_key;
-    private int motionState, weaponState;
+    public final int BOMB = 1;
+    int left_key, right_key, up_key, down_key, shoot_key, bomb_key;
+    private int motionState, weaponState, bombState;
 
-    public BaseRaidenKeyAdapter(int left_key, int right_key, int up_key, int down_key, int shoot_key) {
+    public BaseRaidenKeyAdapter(int left_key, int right_key, int up_key, int down_key, int shoot_key, int bomb_key) {
         this.left_key = left_key;
         this.right_key = right_key;
         this.up_key = up_key;
         this.down_key = down_key;
         this.shoot_key = shoot_key;
+        this.bomb_key = bomb_key;
     }
 
     public int getMotionState() {
@@ -27,6 +29,9 @@ public class BaseRaidenKeyAdapter extends KeyAdapter {
 
     public int getWeaponState() {
         return weaponState;
+    }
+    public int getBombState() {
+        return bombState;
     }
 
     @Override
@@ -42,6 +47,8 @@ public class BaseRaidenKeyAdapter extends KeyAdapter {
             motionState |= DOWN;
         else if (keyCode == shoot_key)
             weaponState |= SHOOT;
+        else if (keyCode == bomb_key)
+        	bombState |= BOMB;
     }
 
     @Override
@@ -57,5 +64,7 @@ public class BaseRaidenKeyAdapter extends KeyAdapter {
             motionState &= ~DOWN;
         else if (keyCode == shoot_key)
             weaponState &= ~SHOOT;
+        else if (keyCode == bomb_key)
+        	bombState &= ~BOMB;
     }
 }

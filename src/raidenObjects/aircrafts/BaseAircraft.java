@@ -1,6 +1,7 @@
 package raidenObjects.aircrafts;
 
 import raidenObjects.BaseRaidenObject;
+import utils.BaseRaidenKeyAdapter;
 import utils.EffectCountdown;
 import utils.Faction;
 
@@ -28,6 +29,9 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     protected int score = 0;
     protected int weaponType = 0;
     protected int superPower = 0;
+    protected int weaponTime = 99999999;
+    protected int powerUse = 0;
+    protected BaseRaidenKeyAdapter keyAdapter = null;
     protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
@@ -55,7 +59,6 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public int getScore() {
     	return score;
     }
-    
     public void addScore(int score) {
     	this.score += score;
     }
@@ -63,7 +66,12 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public int calculateScore() {
     	return score + coin * 10;
     }
-
+    public BaseRaidenKeyAdapter GetKeyAdapter() {
+    	return keyAdapter;
+    }
+    public void setKeyAdapter(BaseRaidenKeyAdapter keyAdapter) {
+    	this.keyAdapter = keyAdapter;
+    }
     public int getWeaponType() {
         return weaponType;
     }
@@ -71,7 +79,18 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public void setWeaponType(int weaponType) {
         this.weaponType = weaponType;
     }
-
+    public int getWeaponTime() {
+        return weaponTime;
+    }
+    public void setPowerUse(int powerUse) {
+        this.powerUse = powerUse;
+    }
+    public int getPowerUse() {
+        return powerUse;
+    }
+    public void setWeaponTime(int weaponTime) {
+        this.weaponTime = weaponTime;
+    }
     public int getSuperPower() {
         return superPower;
     }
@@ -85,8 +104,9 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         interactantList.clear();
         for (int i = 0; i < aircraftList.size(); i++) {
             if (aircraftList.get(i).getOwner().isEnemyTo(this.getOwner())) {
-                aircraftList.remove(i);
-                i--;
+                //aircraftList.remove(i);
+            	aircraftList.get(i).receiveDamage(1000);
+                //i--;
             }
         }
     }

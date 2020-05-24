@@ -25,6 +25,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             keyAdapter = keyAdapter1;
         else if (playerController == PlayerController.KEYBOARD2)
             keyAdapter = keyAdapter2;
+        this.setKeyAdapter(keyAdapter);
         this.registerMotionController(new KeyboardMotionController(keyAdapter, 5));
         this.registerWeaponLaunchController(new KeyboardLaunchController(
                 2, keyAdapter,  () -> {
