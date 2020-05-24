@@ -24,8 +24,6 @@ import static world.World.*;
 public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, stepsAfterDeath = 0;
     protected int maxHp, maxStepsAfterDeath, crashDamage;
-    protected int isInvincible = 0;
-    protected int isAttractive = 0;
     protected int coin = 0;
     protected int weaponType = 0;
     protected int superPower = 0;
@@ -124,7 +122,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
                 this.getOwner().isEnemyTo(aircraft.getOwner())) {
             this.receiveDamage(aircraft.getCrashDamage());
-            if (aircraft.isInvincible == 0) {
+            if (!aircraft.getInvincibleCountdown().isEffective()) {
                 aircraft.receiveDamage(this.getCrashDamage());
             }
         }

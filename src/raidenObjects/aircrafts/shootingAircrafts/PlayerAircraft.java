@@ -1,8 +1,9 @@
 package raidenObjects.aircrafts.shootingAircrafts;
 
-import launchControllers.PeriodicLaunchController;
+import launchControllers.KeyboardLaunchController;
 import motionControllers.KeyboardMotionController;
 import raidenObjects.weapons.bullets.StandardPlayerBullet;
+import utils.BaseRaidenKeyAdapter;
 import utils.Faction;
 import utils.PlayerController;
 
@@ -19,11 +20,14 @@ public final class PlayerAircraft extends BaseShootingAircraft {
                 100, 0, 100);
         if (!owner.isPlayer())
             throw new RuntimeException("Invalid owner: player must be owned by either Player1 or Player2.");
+        BaseRaidenKeyAdapter keyAdapter = null;
         if (playerController == PlayerController.KEYBOARD1)
-            this.registerMotionController(new KeyboardMotionController(keyAdapter1, 5));
+            keyAdapter = keyAdapter1;
         else if (playerController == PlayerController.KEYBOARD2)
-            this.registerMotionController(new KeyboardMotionController(keyAdapter2, 5));
-        this.registerWeaponLaunchController(new PeriodicLaunchController(2, 0, () -> {
+            keyAdapter = keyAdapter2;
+        this.registerMotionController(new KeyboardMotionController(keyAdapter, 5));
+        this.registerWeaponLaunchController(new KeyboardLaunchController(
+                2, keyAdapter,  () -> {
             interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), 0));
             interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), 8));
             interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), -8));
@@ -47,17 +51,17 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             return null;
 
         if (owner.isPlayer1()) {
-            if (isInvincible == 0) {
-                return Paths.get("data", "images", "Player0.png").toFile();
-            } else {
+            if (getInvincibleCountdown().isEffective()) {
                 return Paths.get("data", "images", "Player0WithShield.png").toFile();
+            } else {
+                return Paths.get("data", "images", "Player0.png").toFile();
             }
         }
         else {
-            if (isInvincible == 0) {
-                return Paths.get("data", "images", "Player1.png").toFile();
-            } else {
+            if (getInvincibleCountdown().isEffective()) {
                 return Paths.get("data", "images", "Player1WithShield.png").toFile();
+            } else {
+                return Paths.get("data", "images", "Player1.png").toFile();
             }
         }
     }

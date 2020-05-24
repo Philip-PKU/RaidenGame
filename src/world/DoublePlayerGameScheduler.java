@@ -5,11 +5,18 @@ import raidenObjects.aircrafts.BumpingAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.*;
 import raidenObjects.bonus.*;
 import utils.Faction;
+import utils.GameLevel;
 import utils.PlayerController;
 
 import static world.World.*;
 
 public class DoublePlayerGameScheduler implements GameScheduler {
+    GameLevel level;
+
+    public DoublePlayerGameScheduler(GameLevel level) {
+        this.level = level;
+    }
+
     @Override
     public void init() {
         player1 = new PlayerAircraft(windowWidth * .75f, windowHeight - 150,
@@ -27,6 +34,7 @@ public class DoublePlayerGameScheduler implements GameScheduler {
 
     @Override
     public void scheduleObjectInserts() {
+        // TODO: Verify the parameters based on game level
 
         if (gameStep.intValue() % 679 == 37) {
             aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));

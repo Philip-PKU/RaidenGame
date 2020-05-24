@@ -20,10 +20,12 @@ public class PeriodicLaunchController implements LaunchController {
         this(cooldown, initCooldown, launchEventAdapter, Collections.singletonList(0));
     }
 
+    @Override
     public void activate() {
         active = true;
     }
 
+    @Override
     public void launchIfPossible() {
         if (active) {
             --curCooldown;

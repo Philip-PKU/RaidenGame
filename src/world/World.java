@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 import static java.lang.Thread.sleep;
+import static utils.GameLevel.LEVEL_NORMAL;
 
 /**
  * The game panel added to JFrame in App (the main class).
@@ -45,6 +46,8 @@ public class World extends JPanel {
     public static volatile int msToSleepAtEachGameStep = 15;
     public static final int desiredFPS = 50;
     public static Timer gameSpeedAdjusterTimer;
+    public static boolean survivalMode = false;
+    public static int survivalModeSeconds = 300;
     public static boolean doublePlayerMode = false;
     public static GameScheduler gameScheduler;
 
@@ -74,9 +77,9 @@ public class World extends JPanel {
 
         // Set game scheduler and initialize
         if (doublePlayerMode) {
-            gameScheduler = new DoublePlayerGameScheduler();
+            gameScheduler = new DoublePlayerGameScheduler(LEVEL_NORMAL);
         } else {
-            gameScheduler = new SinglePlayerGameScheduler();
+            gameScheduler = new SinglePlayerGameScheduler(LEVEL_NORMAL);
         }
         gameScheduler.init();
 
@@ -156,6 +159,8 @@ public class World extends JPanel {
             sleep(msToSleepAtEachGameStep);
 
             gameStep.increment();
+            if (survivalMode && gameStep.intValue() >= desiredFPS * survivalModeSeconds)
+                ;  // TODO: You've survived! (Link to "victory" UI components)
         }
         System.out.println("End");
         musicPlayer.stop();
