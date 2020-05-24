@@ -53,7 +53,7 @@ public class World extends JPanel {
     public static GameScheduler gameScheduler;
     public static GameMode gameMode = SURVIVAL;
     public static PageStatus pageStatus = GAMING;
-    public static PlayerNumber playerNumber =ONE;
+    public static PlayerNumber playerNumber = ONE;
 
     public World() {
         init();
@@ -218,6 +218,7 @@ public class World extends JPanel {
      * @throws InterruptedException
      */
     public void run() throws InterruptedException{
+    	//**********
     	pageStatus = GAMING;
     	while (pageStatus != CLOSE) {
     		repaint();
@@ -236,6 +237,8 @@ public class World extends JPanel {
         	case GAMING:
         		runGame();
         		break;
+        	case VICTORY:
+        		VictoryPage.run();
         	case END:
         		EndPage.run();
         		break;
