@@ -20,9 +20,9 @@ public abstract class BaseShootingAircraft extends BaseAircraft {
     protected LaunchController weaponLaunchController;
 
     public BaseShootingAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
-                                int maxHp, int maxStepsAfterDeath, int crashDamage) {
+                                int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
         super(name, x, y, sizeX, sizeY, owner,
-                maxHp, maxStepsAfterDeath, crashDamage);
+                maxHp, maxStepsAfterDeath, crashDamage, score);
     }
 
     public void registerWeaponLaunchController(LaunchController weaponLaunchController) {

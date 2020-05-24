@@ -25,17 +25,19 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, stepsAfterDeath = 0;
     protected int maxHp, maxStepsAfterDeath, crashDamage;
     protected int coin = 0;
+    protected int score = 0;
     protected int weaponType = 0;
     protected int superPower = 0;
     protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
-                           int maxHp, int maxStepsAfterDeath, int crashDamage) {
+                           int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
         super(name, x, y, sizeX, sizeY, owner);
         this.maxHp = maxHp;
         this.hp = maxHp;
         this.maxStepsAfterDeath = maxStepsAfterDeath;
         this.crashDamage = crashDamage;
+        this.score = score;
     }
 
     public int getHp() {
@@ -48,6 +50,18 @@ public abstract class BaseAircraft extends BaseRaidenObject {
 
     public int getCoin() {
         return coin;
+    }
+    
+    public int getScore() {
+    	return score;
+    }
+    
+    public void addScore(int score) {
+    	this.score += score;
+    }
+    
+    public int calculateScore() {
+    	return score + coin * 10;
     }
 
     public int getWeaponType() {
@@ -100,13 +114,17 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public EffectCountdown getMagnetCountdown() {
         return magnetCountdown;
     }
-
-    public void receiveDamage(int damage) {
+    
+    // If this.hp <= 0, the return true
+    public boolean receiveDamage(int damage) {
         hp -= damage;
         if (getOwner().isPlayer())
             System.out.println("hp: " + hp);
-        if (hp <= 0)
+        if (hp <= 0) {
             markAsDead();
+            return true;
+        }
+        return false;
     }
 
     public void receiveCoin(int coin) {
@@ -121,7 +139,9 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         // if player hit enemy
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
                 this.getOwner().isEnemyTo(aircraft.getOwner())) {
-            this.receiveDamage(aircraft.getCrashDamage());
+        	// if the player kill this aircraft, he gets score.
+        	if(this.receiveDamage(aircraft.getCrashDamage()))
+        		aircraft.addScore(this.getScore());
             if (!aircraft.getInvincibleCountdown().isEffective()) {
                 aircraft.receiveDamage(this.getCrashDamage());
             }

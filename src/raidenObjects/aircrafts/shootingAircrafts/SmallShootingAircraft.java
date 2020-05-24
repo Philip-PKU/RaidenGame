@@ -15,7 +15,7 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
 
     public SmallShootingAircraft(float x, float y) {
         super("SmallShootingAircraft", x, y, 35, 21, Faction.ENEMY,
-                100, 13, 50);
+                100, 13, 50, 50);
         PlayerAircraft target = getClosestPlayer();
         TargetAwareConstSpeedXYMotionController stageOneController = TargetAwareConstSpeedXYMotionController.fromTargetXY(
                 x,

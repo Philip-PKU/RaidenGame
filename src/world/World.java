@@ -46,7 +46,7 @@ public class World extends JPanel {
     public static volatile int msToSleepAtEachGameStep = 15;
     public static final int desiredFPS = 50;
     public static Timer gameSpeedAdjusterTimer;
-    public static boolean survivalMode = false;
+    public static boolean survivalMode = true;
     public static int survivalModeSeconds = 300;
     public static boolean doublePlayerMode = false;
     public static GameScheduler gameScheduler;
@@ -154,6 +154,13 @@ public class World extends JPanel {
                 // Remove off screen objects from the global lists and fields
                 aircraftList.removeIf(BaseRaidenObject::isOffScreen);
                 interactantList.removeIf(BaseRaidenObject::isOffScreen);
+                
+                // Periodically print the score
+                if(gameStep.intValue() % 100 == 0) {
+                	System.out.println("player1: " + player1.calculateScore());
+                	if(doublePlayerMode)
+                		System.out.println("player2: " + player2.calculateScore());
+                }
             }
             repaint();
             sleep(msToSleepAtEachGameStep);

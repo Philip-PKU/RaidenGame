@@ -17,7 +17,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
 
     public PlayerAircraft(float x, float y, Faction owner, PlayerController playerController) {
         super("Player0", x, y, 50, 40, owner,
-                100, 0, 100);
+                100, 0, 100, 0);
         if (!owner.isPlayer())
             throw new RuntimeException("Invalid owner: player must be owned by either Player1 or Player2.");
         BaseRaidenKeyAdapter keyAdapter = null;
