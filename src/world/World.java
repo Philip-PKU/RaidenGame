@@ -198,12 +198,17 @@ public class World extends JPanel {
             sleep(msToSleepAtEachGameStep);
 
             gameStep.increment();
-            if (gameMode==SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds)
-                ;  // TODO: You've survived! (Link to "victory" UI components)
+            if (gameMode==SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds) {
+            	System.out.println("Victory!");
+            	musicPlayer.stop();
+            	gameSpeedAdjusterTimer.stop();
+            	//pageStatus = VICTORY;
+            }
         }
         System.out.println("Game over");
         musicPlayer.stop();
         gameSpeedAdjusterTimer.stop();
+        //pageStatus = END;
     }
     
     
