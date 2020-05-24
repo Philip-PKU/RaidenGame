@@ -6,7 +6,11 @@ import raidenObjects.weapons.bullets.StandardPlayerBullet;
 import utils.BaseRaidenKeyAdapter;
 import utils.Faction;
 import utils.PlayerController;
+import world.World;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.io.File;
 import java.nio.file.Paths;
 
@@ -71,5 +75,55 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     public void markAsDead() {
         super.markAsDead();
         getOffScreen();
+    }
+    
+    /**
+     * Paint the blood bar and scores.
+     * @author 杨芳源
+     */
+    @Override 
+    public void paint(Graphics g) {
+    	super.paint(g);
+    	//paint the blood bar and scores
+    	
+    	Font defaultFont = new Font("Dialog",Font.PLAIN,12);
+    	//System.out.println(defaultFont);
+    	if (this==World.player1) {
+    		g.setColor(Color.white);
+    		g.drawString("生命：", (int)(World.windowWidth*0.05), (int)(World.windowHeight*0.05));
+    		g.setColor(Color.red);
+    		g.drawRect((int)(World.windowWidth*0.12), (int)(World.windowHeight*0.035),
+						(int)(World.windowWidth*0.2), (int)(World.windowHeight*0.02));
+    		g.fillRect((int)(World.windowWidth*0.12), (int)(World.windowHeight*0.035), 
+    					(int)(World.windowWidth*0.2*hp/maxHp), (int)(World.windowHeight*0.02));
+    		
+    		g.setColor(Color.white);
+    		g.drawString("得分："+score, (int)(World.windowWidth*0.05), (int)(World.windowHeight*0.09));
+    		
+    		g.drawImage(loadImage(Paths.get("data", "images","CoinBonus20.png").toFile()), 
+    					(int)(World.windowWidth*0.05), (int)(World.windowHeight*0.11), null);
+    		//Font font = new Font("宋体",Font.BOLD,15);
+    		//g.setFont(font);
+    		g.drawString("\u00D7"+coin, (int)(World.windowWidth*0.1), (int)(World.windowHeight*0.13));
+    	}
+    	if (this==World.player2) {
+    		g.setColor(Color.white);
+    		//g.setFont(defaultFont);
+    		g.drawString("生命：", (int)(World.windowWidth*0.6), (int)(World.windowHeight*0.05));
+    		g.setColor(Color.red);
+    		g.drawRect((int)(World.windowWidth*0.72), (int)(World.windowHeight*0.035),
+						(int)(World.windowWidth*0.2), (int)(World.windowHeight*0.02));
+    		g.fillRect((int)(World.windowWidth*0.72), (int)(World.windowHeight*0.035), 
+    					(int)(World.windowWidth*0.2*hp/maxHp), (int)(World.windowHeight*0.02));
+    		
+    		g.setColor(Color.white);
+    		g.drawString("得分："+score, (int)(World.windowWidth*0.60), (int)(World.windowHeight*0.09));
+    		
+    		g.drawImage(loadImage(Paths.get("data", "images","CoinBonus20.png").toFile()), 
+    					(int)(World.windowWidth*0.60), (int)(World.windowHeight*0.11), null);
+    		//Font font = new Font("宋体",Font.BOLD,15);
+    		//g.setFont(font);
+    		g.drawString("\u00D7"+coin, (int)(World.windowWidth*0.65), (int)(World.windowHeight*0.13));
+    	}
     }
 }

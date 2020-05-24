@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.Random;
 
 import static java.lang.Thread.sleep;
-import static utils.GameLevel.LEVEL_NORMAL;
+import static utils.GameLevel.*;
+import static utils.GameMode.*;
+import static utils.PageStatus.*;
+import static utils.PlayerNumber.*;
 
 /**
  * The game panel added to JFrame in App (the main class).
@@ -46,10 +49,11 @@ public class World extends JPanel {
     public static volatile int msToSleepAtEachGameStep = 15;
     public static final int desiredFPS = 50;
     public static Timer gameSpeedAdjusterTimer;
-    public static boolean survivalMode = true;
     public static int survivalModeSeconds = 300;
-    public static boolean doublePlayerMode = false;
     public static GameScheduler gameScheduler;
+    public static GameMode gameMode = SURVIVAL;
+    public static PageStatus pageStatus = GAMING;
+    public static PlayerNumber playerNumber =ONE;
 
     public World() {
         init();
@@ -76,7 +80,7 @@ public class World extends JPanel {
         interactantList.clear();
 
         // Set game scheduler and initialize
-        if (doublePlayerMode) {
+        if (playerNumber == TWO) {
             gameScheduler = new DoublePlayerGameScheduler(LEVEL_NORMAL);
         } else {
             gameScheduler = new SinglePlayerGameScheduler(LEVEL_NORMAL);
@@ -116,9 +120,16 @@ public class World extends JPanel {
     public static boolean isOutOfWindow(float x, float y) {
         return x < 0 || x >= windowWidth || y < 0 || y >= windowHeight;
     }
+    
+    /**
+     * Paint the gaming page
+     */
+    public void paintGame(Graphics g) {
+    	aircraftList.forEach(aircraft -> aircraft.paint(g));
+        interactantList.forEach(interactant -> interactant.paint(g));
+    }
 
     /**
-     * TODO: In startup interface, paint the menu, etc.
      * In gaming interface, paint the panel by painting the background, all aircrafts and all interactants.
      *
      * @param g A java.awt.Graphics object.
@@ -127,8 +138,29 @@ public class World extends JPanel {
     public void paint(Graphics g) {
         synchronized (this) {
             background.paint(g);
-            aircraftList.forEach(aircraft -> aircraft.paint(g));
-            interactantList.forEach(interactant -> interactant.paint(g));
+            switch (pageStatus){
+            	case MAIN:
+            		MainPage.paint(g);
+            		break;
+            	case HELP:
+            		HelpPage.paint(g);
+            		break;
+            	case RANKLIST:
+            		RanklistPage.paint(g);
+            		break;
+            	case MODECHOSE:
+            		ModeChosePage.paint(g);
+            	case GAMING:
+            		paintGame(g);
+            		break;
+            	case VICTORY:
+            		VictoryPage.paint(g);
+            		break;
+            	case END:
+            		EndPage.paint(g);
+            		break;
+            	default:
+            }
         }
     }
 
@@ -138,7 +170,7 @@ public class World extends JPanel {
      * @throws InterruptedException If sleep is interrupted.
      * @author 蔡辉宇
      */
-    public void run() throws InterruptedException {
+    public void runGame() throws InterruptedException {
         musicPlayer.play();
         gameSpeedAdjusterTimer.start();
         while (gameScheduler.gameIsNotOver()) {
@@ -158,7 +190,7 @@ public class World extends JPanel {
                 // Periodically print the score
                 if(gameStep.intValue() % 100 == 0) {
                 	System.out.println("player1: " + player1.calculateScore());
-                	if(doublePlayerMode)
+                	if(playerNumber == TWO)
                 		System.out.println("player2: " + player2.calculateScore());
                 }
             }
@@ -166,11 +198,44 @@ public class World extends JPanel {
             sleep(msToSleepAtEachGameStep);
 
             gameStep.increment();
-            if (survivalMode && gameStep.intValue() >= desiredFPS * survivalModeSeconds)
+            if (gameMode==SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds)
                 ;  // TODO: You've survived! (Link to "victory" UI components)
         }
-        System.out.println("End");
+        System.out.println("Game over");
         musicPlayer.stop();
         gameSpeedAdjusterTimer.stop();
+    }
+    
+    
+    /**
+     * Run the game from main page.
+     * @author 杨芳源
+     * @throws InterruptedException
+     */
+    public void run() throws InterruptedException{
+    	pageStatus = GAMING;
+    	while (pageStatus != CLOSE) {
+    		repaint();
+    		sleep(msToSleepAtEachGameStep);
+    		gameStep.increment();
+    		switch (pageStatus){
+        	case MAIN:
+        		MainPage.run();
+        		break;
+        	case HELP:
+        		HelpPage.run();
+        		break;
+        	case RANKLIST:
+        		RanklistPage.run();
+        		break;
+        	case GAMING:
+        		runGame();
+        		break;
+        	case END:
+        		EndPage.run();
+        		break;
+        	default:
+    		}
+    	}
     }
 }
