@@ -5,8 +5,8 @@ import utils.Faction;
 
 public final class BigPlayerBullet extends BaseWeapon {
     public BigPlayerBullet(float x, float y, Faction owner) {
-        super("BigPlayerBullet", x, y, 5, 5, owner, 15);
-        this.registerMotionController(new ConstAccelerationYMotionController(5f, 0.03f));
+        super("BigPlayerBullet", x, y, 5, 5, owner, 20);
+        this.registerMotionController(new ConstAccelerationYMotionController(6f, 0.05f));
     }
 
     @Override

@@ -15,9 +15,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Paths;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Deque;
 import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
@@ -25,7 +25,6 @@ import static utils.GameLevel.LEVEL_NORMAL;
 import static utils.GameMode.SURVIVAL;
 import static utils.PageStatus.CLOSE;
 import static utils.PageStatus.GAMING;
-import static utils.PlayerNumber.ONE;
 import static utils.PlayerNumber.TWO;
 
 /**
@@ -44,8 +43,8 @@ public class World extends JPanel {
     // Note that every aircraft/interactant should be added to the following lists by the CALLER of its constructor,
     // not the constructor itself. Because in future two-player mode, we might need two sets of lists,
     // and appending every aircraft/interactant to the following lists might cause serious problems.
-    public static List<BaseAircraft> aircraftList = new LinkedList<>();
-    public static List<BaseRaidenObject> interactantList = new LinkedList<>();
+    public static Deque<BaseAircraft> aircraftList = new ConcurrentLinkedDeque<>();
+    public static Deque<BaseRaidenObject> interactantList = new ConcurrentLinkedDeque<>();
     public static MutableInt gameStep = new MutableInt(0);
     public static BaseRaidenKeyAdapter keyAdapter1 = new RaidenKeyAdapter1(), keyAdapter2 = new RaidenKeyAdapter2();
     public static Random rand = new Random();
@@ -59,7 +58,7 @@ public class World extends JPanel {
     public static GameScheduler gameScheduler;
     public static GameMode gameMode = SURVIVAL;
     public static PageStatus pageStatus = GAMING;
-    public static PlayerNumber playerNumber = ONE;
+    public static PlayerNumber playerNumber = TWO;
 
     public World() {
         init();
@@ -129,17 +128,22 @@ public class World extends JPanel {
 
     /**
      * Paint the Gaming page
+     *
      * @author 蔡辉宇
      */
     public void paintGame(Graphics g) {
-        aircraftList.forEach(aircraft -> aircraft.paint(g));
+        aircraftList.forEach(aircraft -> {
+            if (aircraft != null)
+                aircraft.paint(g);
+        });
         interactantList.forEach(interactant -> interactant.paint(g));
         // Game state info should be at the top of the game page, so we paint it last
         paintGameState(g);
     }
 
     /**
-     * Paint the game state, including HP bar, number of coins and game points earned. 
+     * Paint the game state, including HP bar, number of coins and game points earned.
+     *
      * @author 杨芳源
      */
     public void paintGameState(Graphics g) {
@@ -190,7 +194,7 @@ public class World extends JPanel {
                     (int) (windowWidth * 0.65), (int) (windowHeight * 0.13));
             g.drawImage(loadImage(Paths.get("data", "images", "SuperpowerBonusSmall.png").toFile()),
                     (int) (windowWidth * 0.75), (int) (windowHeight * 0.11), null);
-            g.drawString("\u00D7" + player1.getAvailableSuperpowers(),
+            g.drawString("\u00D7" + player2.getAvailableSuperpowers(),
                     (int) (windowWidth * 0.8), (int) (windowHeight * 0.13));
         }
     }
@@ -257,11 +261,17 @@ public class World extends JPanel {
                 // Remove off screen objects from the global lists and fields
                 aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
                 interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
+                // TODO: inform UI that player1 has died and collect scores before setting it to NULL
+                if (player1 != null && !player1.isAlive())
+                    player1 = null;
+                if (player2 != null && !player2.isAlive())
+                    player2 = null;
 
                 // Periodically print the score
                 if (gameStep.intValue() % 100 == 0) {
-                    System.out.println("player1: " + player1.calculateScore());
-                    if (playerNumber == TWO)
+                    if (player1 != null)
+                        System.out.println("player1: " + player1.calculateScore());
+                    if (playerNumber == TWO && player2 != null)
                         System.out.println("player2: " + player2.calculateScore());
                 }
             }

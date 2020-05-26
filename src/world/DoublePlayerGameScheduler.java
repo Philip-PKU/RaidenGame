@@ -29,12 +29,11 @@ public class DoublePlayerGameScheduler implements GameScheduler {
 
     @Override
     public boolean gameIsNotOver() {
-        return player1.isAlive() || player2.isAlive();
+        return player1 != null || player2 != null;
     }
 
     @Override
     public void scheduleObjectInserts() {
-        // TODO: Verify the parameters based on game level
         // TODO: Verify the parameters based on game level
         if (gameStep.intValue() % getFrequency(700) == 37) {
             aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
@@ -51,15 +50,25 @@ public class DoublePlayerGameScheduler implements GameScheduler {
         if (gameStep.intValue() % getFrequency(400) == 200) {
             aircraftList.add(new BumpingAircraft(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % getFrequency(1200)== 432) {
+        if (gameStep.intValue() % getFrequency(1200)== 400) {
             aircraftList.add(new BlackHoleAircraft(rand.nextInt(windowWidth), 0));
         }
         if (gameStep.intValue() % getFrequency(2000) == 965 ||
                 gameStep.intValue() % getFrequency(1500) == 665) {
             aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
-            interactantList.add(new InvincibleBonus(rand.nextInt(windowWidth), 0));
+        if (gameStep.intValue() % getFrequency(5000) == 1500) {
+            aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new BumpingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new BumpingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth), 0));
+        }
+        if (gameStep.intValue() % getFrequency(6000) == 2400) {
+            aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth), 0));
         }
         if (gameStep.intValue() % 50 == 0 && rand.nextInt(100) > 80) {
             interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, 0));
@@ -67,22 +76,20 @@ public class DoublePlayerGameScheduler implements GameScheduler {
         if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
             interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, 1));
         }
-        if (gameStep.intValue() % 200 == 0 && rand.nextInt(100) > 95) {
+        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 97) {
             interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, 2));
+        }
+        if (gameStep.intValue() % 200 == 0 && rand.nextInt(100) > 95) {
+            interactantList.add(new InvincibleBonus(rand.nextInt(windowWidth), 0));
         }
         if (gameStep.intValue() % 200 == 0 && rand.nextInt(100) > 95) {
             interactantList.add(new CureBonus(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
+        if (gameStep.intValue() % 200 == 0 && rand.nextInt(100) > 95) {
             interactantList.add(new MagnetBonus(rand.nextInt(windowWidth), 0));
         }
         if (gameStep.intValue() % 200 == 0 && rand.nextInt(100) > 95) {
-            interactantList.add(new WeaponUpgradeBonus(rand.nextInt(windowWidth), 0, rand.nextInt(
-                    WeaponUpgradeBonus.weapons.length
-            )));
-        }
-        if (gameStep.intValue() % 400 == 0 && rand.nextInt(100) > 97) {
-            interactantList.add(new SuperPowerBonus(rand.nextInt(windowWidth), 0));
+            interactantList.add(new WeaponUpgradeBonus(rand.nextInt(windowWidth), 0));
         }
     }
     

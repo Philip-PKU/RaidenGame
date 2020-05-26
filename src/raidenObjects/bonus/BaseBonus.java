@@ -39,8 +39,9 @@ public abstract class BaseBonus extends BaseRaidenObject {
         }
         // if player is attractive (has magnet) and the bonus hasn't been attracted
         if (aircraft.getMagnetCountdown().isEffective() && !this.isAttracted()) {
-            this.becomesAttracted();
-            this.registerMotionController(new ConstSpeedTargetTrackingMotionController(aircraft, 0.2f, 10f));
+            becomesAttracted();
+            if (isAttracted())
+                this.registerMotionController(new ConstSpeedTargetTrackingMotionController(aircraft, 0.3f, 10f));
         }
     }
 

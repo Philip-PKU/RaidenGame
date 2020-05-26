@@ -8,6 +8,7 @@ import raidenObjects.aircrafts.BlackHoleAircraft;
 import raidenObjects.weapons.BigPlayerBullet;
 import raidenObjects.weapons.StandardPlayerBullet;
 import raidenObjects.weapons.TrackingPlayerBullet;
+import utils.EffectCountdown;
 import utils.Faction;
 import utils.PlayerController;
 import utils.keyAdapters.BaseRaidenKeyAdapter;
@@ -28,7 +29,8 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     protected int availableSuperpowers;
     protected BaseRaidenKeyAdapter keyAdapter;
     protected LaunchController superpowerLaunchController, trackingBulletLaunchController;
-    
+    protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
+
     class WeaponMultiLaunchController extends LaunchControllerWithLevel {
         public WeaponMultiLaunchController(int weaponLevel) {
             super(weaponLevel);
@@ -64,7 +66,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     class WeaponSingleLaunchController extends LaunchControllerWithLevel {
         public WeaponSingleLaunchController(int weaponLevel) {
             super(weaponLevel);
-            setLaunchEventScheduler(new KeyboardWeaponLaunchEventScheduler(4, keyAdapter));
+            setLaunchEventScheduler(new KeyboardWeaponLaunchEventScheduler(3, keyAdapter));
             if (weaponLevel == 0) {
                 this.setLaunchable(() -> {
                     interactantList.add(new BigPlayerBullet(getX(), getMinY(), getFaction()));
@@ -94,8 +96,8 @@ public final class PlayerAircraft extends BaseShootingAircraft {
                 decrAvailableSuperpowers();
                 interactantList.removeIf(i -> i.getFaction().isEnemyTo(getFaction()));
                 for (BaseAircraft aircraft : aircraftList) {
-                    if (aircraft.getFaction().isEnemyTo(getFaction())) {
-                        aircraft.receiveDamage(1000);
+                    if (aircraft.getFaction().isEnemyTo(getFaction()) && !(aircraft instanceof BlackHoleAircraft)) {
+                        aircraft.markAsDead();
                     }
                 }
                 interactantList.add(new SuperpowerResidue(getX(), getY() - 240, getFaction()));
@@ -135,6 +137,14 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         this.registerMotionController(new KeyboardMotionController(keyAdapter, 5));
         this.registerWeaponLaunchController(new WeaponMultiLaunchController(0), true);
         this.registerSuperpowerLaunchController(new SuperpowerLaunchController(10), true);
+    }
+
+    public EffectCountdown getInvincibleCountdown() {
+        return invincibleCountdown;
+    }
+
+    public EffectCountdown getMagnetCountdown() {
+        return magnetCountdown;
     }
 
     public LaunchController getSuperPowerLaunchController() {
@@ -251,6 +261,8 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     public void step() {
         super.step();
         if (isAlive()) {
+            invincibleCountdown.step();
+            magnetCountdown.step();
             getSuperPowerLaunchController().launchIfPossible();
             if (getTrackingBulletLaunchController() != null) {
                 getTrackingBulletLaunchController().launchIfPossible();

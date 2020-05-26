@@ -1,5 +1,7 @@
 package utils;
 
+import static world.World.desiredFPS;
+
 public class EffectCountdown {
     int remainingSteps;
 
@@ -27,5 +29,10 @@ public class EffectCountdown {
 
     public void extendDurationBy(int additionalSteps) {
         remainingSteps += additionalSteps;
+    }
+
+    public void reset() {
+        if (remainingSteps > desiredFPS)
+            remainingSteps = desiredFPS;
     }
 }

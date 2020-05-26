@@ -31,5 +31,12 @@ public final class BigShootingAircraft extends BaseShootingAircraft{
                             getX() + rand.nextFloat() * 100 - 50, getY() + windowHeight / 2f + rand.nextFloat() * 150 - 75));
                 })
         );
+        probCoin0 = 0.2f;
+        probCoin1 = 0.2f;
+        probCoin2 = 0.1f;
+        probCure = 0.1f;
+        probInvincible = 0.1f;
+        probWeaponUpgrade = 0.03f;
+        probMagnet = 0.07f;
     }
 }

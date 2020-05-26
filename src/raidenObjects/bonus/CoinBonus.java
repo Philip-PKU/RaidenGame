@@ -6,6 +6,7 @@ import motionControllers.XYMotionController;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Faction;
 
+import static world.World.rand;
 import static world.World.windowWidth;
 
 public final class CoinBonus extends BaseBonus {
@@ -19,6 +20,10 @@ public final class CoinBonus extends BaseBonus {
 		 MotionController XYController = XYMotionController.createFromXController(
 	                XController, 1.5f);
 		 this.registerMotionController(XYController);
+	}
+
+	public CoinBonus(float x, float y) {
+		this(x, y, rand.nextInt(coins.length));
 	}
 
 	@Override

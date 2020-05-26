@@ -1,7 +1,7 @@
 package raidenObjects.aircrafts;
 
 import raidenObjects.BaseRaidenObject;
-import utils.EffectCountdown;
+import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Faction;
 
 import java.io.File;
@@ -25,7 +25,6 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, stepsAfterDeath = 0;
     protected int maxHp, maxStepsAfterDeath, crashDamage;
     protected int score;
-    protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
                            int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
@@ -69,38 +68,37 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         return maxStepsAfterDeath;
     }
 
-    public EffectCountdown getInvincibleCountdown() {
-        return invincibleCountdown;
-    }
 
-    public EffectCountdown getMagnetCountdown() {
-        return magnetCountdown;
-    }
-
-    // If this.hp <= 0, the return true
-    public boolean receiveDamage(int damage) {
+    public void receiveDamage(int damage) {
         hp -= damage;
         if (getFaction().isPlayer())
             System.out.println("hp: " + hp);
         if (hp <= 0) {
             markAsDead();
-            return true;
+            afterKilledByPlayer();
         }
-        return false;
     }
 
-    public void interactWith(BaseAircraft aircraft) {
+    public void afterKilledByPlayer() {
+
+    }
+
+    public void interactWith(PlayerAircraft aircraft) {
         if (aircraft == null || aircraft == this)
             return;
 
         // if player hit enemy
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
                 this.getFaction().isEnemyTo(aircraft.getFaction())) {
+            this.receiveDamage(aircraft.getCrashDamage());
         	// if the player kill this aircraft, he gets score.
-            if (this.receiveDamage(aircraft.getCrashDamage()))
-        		aircraft.addScore(this.getScore());
+            if (!this.isAlive()) {
+                aircraft.addScore(this.getScore());
+            }
             if (!aircraft.getInvincibleCountdown().isEffective()) {
                 aircraft.receiveDamage(this.getCrashDamage());
+            } else {
+                aircraft.getInvincibleCountdown().reset();
             }
         }
     }
@@ -143,7 +141,5 @@ public abstract class BaseAircraft extends BaseRaidenObject {
             interactWith(player1);
             interactWith(player2);
         }
-        invincibleCountdown.step();
-        magnetCountdown.step();
     }
 }

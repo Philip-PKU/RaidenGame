@@ -14,7 +14,6 @@ public final class BlackHoleAircraft extends BaseAircraft {
 	 * Ignore any damage received. This is a blackhole!
 	 */
 	@Override
-	public boolean receiveDamage(int damage) {
-		return false;
+	public void receiveDamage(int damage) {
 	}
 }
