@@ -6,6 +6,9 @@ import raidenObjects.BaseRaidenObject;
 import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.*;
+import utils.keyAdapters.BaseRaidenKeyAdapter;
+import utils.keyAdapters.RaidenKeyAdapter1;
+import utils.keyAdapters.RaidenKeyAdapter2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +20,13 @@ import java.util.List;
 import java.util.Random;
 
 import static java.lang.Thread.sleep;
-import static utils.GameLevel.*;
-import static utils.GameMode.*;
-import static utils.PageStatus.*;
-import static utils.PlayerNumber.*;
+import static raidenObjects.BaseRaidenObject.loadImage;
+import static utils.GameLevel.LEVEL_NORMAL;
+import static utils.GameMode.SURVIVAL;
+import static utils.PageStatus.CLOSE;
+import static utils.PageStatus.GAMING;
+import static utils.PlayerNumber.ONE;
+import static utils.PlayerNumber.TWO;
 
 /**
  * The game panel added to JFrame in App (the main class).
@@ -120,13 +126,73 @@ public class World extends JPanel {
     public static boolean isOutOfWindow(float x, float y) {
         return x < 0 || x >= windowWidth || y < 0 || y >= windowHeight;
     }
-    
+
     /**
-     * Paint the gaming page
+     * Paint the Gaming page
+     * @author 蔡辉宇
      */
     public void paintGame(Graphics g) {
-    	aircraftList.forEach(aircraft -> aircraft.paint(g));
+        aircraftList.forEach(aircraft -> aircraft.paint(g));
         interactantList.forEach(interactant -> interactant.paint(g));
+        // Game state info should be at the top of the game page, so we paint it last
+        paintGameState(g);
+    }
+
+    /**
+     * Paint the game state, including HP bar, number of coins and game points earned. 
+     * @author 杨芳源
+     */
+    public void paintGameState(Graphics g) {
+        Font defaultFont = new Font("Dialog", Font.PLAIN, 12);
+        //System.out.println(defaultFont);
+        if (player1 != null) {
+            g.setColor(Color.white);
+            g.drawString("生命：", (int) (windowWidth * 0.05), (int) (windowHeight * 0.05));
+            g.setColor(Color.red);
+            g.drawRect((int) (windowWidth * 0.12), (int) (windowHeight * 0.035),
+                    (int) (windowWidth * 0.2), (int) (windowHeight * 0.02));
+            g.fillRect((int) (windowWidth * 0.12), (int) (windowHeight * 0.035),
+                    (int) (windowWidth * 0.2 * player1.getHp() / player1.getMaxHp()), (int) (windowHeight * 0.02));
+
+            g.setColor(Color.white);
+            g.drawString("得分：" + player1.getScore(), (int) (windowWidth * 0.05), (int) (windowHeight * 0.09));
+
+            g.drawImage(loadImage(Paths.get("data", "images", "CoinBonus20.png").toFile()),
+                    (int) (windowWidth * 0.05), (int) (windowHeight * 0.11), null);
+            //Font font = new Font("宋体",Font.BOLD,15);
+            //g.setFont(font);
+            g.drawString("\u00D7" + player1.getCoin(),
+                    (int) (windowWidth * 0.1), (int) (windowHeight * 0.13));
+
+            g.drawImage(loadImage(Paths.get("data", "images", "SuperpowerBonusSmall.png").toFile()),
+                    (int) (windowWidth * 0.2), (int) (windowHeight * 0.11), null);
+            g.drawString("\u00D7" + player1.getAvailableSuperpowers(),
+                    (int) (windowWidth * 0.25), (int) (windowHeight * 0.13));
+        }
+        if (player2 != null) {
+            g.setColor(Color.white);
+            //g.setFont(defaultFont);
+            g.drawString("生命：", (int) (windowWidth * 0.6), (int) (windowHeight * 0.05));
+            g.setColor(Color.red);
+            g.drawRect((int) (windowWidth * 0.72), (int) (windowHeight * 0.035),
+                    (int) (windowWidth * 0.2), (int) (windowHeight * 0.02));
+            g.fillRect((int) (windowWidth * 0.72), (int) (windowHeight * 0.035),
+                    (int) (windowWidth * 0.2 * player2.getHp() / player2.getMaxHp()), (int) (windowHeight * 0.02));
+
+            g.setColor(Color.white);
+            g.drawString("得分：" + player2.getScore(), (int) (windowWidth * 0.60), (int) (windowHeight * 0.09));
+
+            g.drawImage(loadImage(Paths.get("data", "images", "CoinBonus20.png").toFile()),
+                    (int) (windowWidth * 0.60), (int) (windowHeight * 0.11), null);
+            //Font font = new Font("宋体",Font.BOLD,15);
+            //g.setFont(font);
+            g.drawString("\u00D7" + player2.getCoin(),
+                    (int) (windowWidth * 0.65), (int) (windowHeight * 0.13));
+            g.drawImage(loadImage(Paths.get("data", "images", "SuperpowerBonusSmall.png").toFile()),
+                    (int) (windowWidth * 0.75), (int) (windowHeight * 0.11), null);
+            g.drawString("\u00D7" + player1.getAvailableSuperpowers(),
+                    (int) (windowWidth * 0.8), (int) (windowHeight * 0.13));
+        }
     }
 
     /**
@@ -138,28 +204,29 @@ public class World extends JPanel {
     public void paint(Graphics g) {
         synchronized (this) {
             background.paint(g);
-            switch (pageStatus){
-            	case MAIN:
-            		MainPage.paint(g);
-            		break;
-            	case HELP:
-            		HelpPage.paint(g);
-            		break;
-            	case RANKLIST:
-            		RanklistPage.paint(g);
-            		break;
-            	case MODECHOSE:
-            		ModeChosePage.paint(g);
-            	case GAMING:
-            		paintGame(g);
-            		break;
-            	case VICTORY:
-            		VictoryPage.paint(g);
-            		break;
-            	case END:
-            		EndPage.paint(g);
-            		break;
-            	default:
+            switch (pageStatus) {
+                case MAIN:
+                    MainPage.paint(g);
+                    break;
+                case HELP:
+                    HelpPage.paint(g);
+                    break;
+                case RANKLIST:
+                    RanklistPage.paint(g);
+                    break;
+                case MODECHOSE:
+                    ModeChosePage.paint(g);
+                    // TODO: 这里是不是该有个break？
+                case GAMING:
+                    paintGame(g);
+                    break;
+                case VICTORY:
+                    VictoryPage.paint(g);
+                    break;
+                case END:
+                    EndPage.paint(g);
+                    break;
+                default:
             }
         }
     }
@@ -174,6 +241,10 @@ public class World extends JPanel {
         musicPlayer.play();
         gameSpeedAdjusterTimer.start();
         while (gameScheduler.gameIsNotOver()) {
+            if (musicPlayer.isEndOfMediaReached()) {
+                musicPlayer.seek(0);
+                musicPlayer.play();
+            }
             synchronized (this) {
                 // Periodically add new planes / bonuses
                 gameScheduler.scheduleObjectInserts();
@@ -184,25 +255,25 @@ public class World extends JPanel {
                 interactantList.forEach(BaseRaidenObject::step);
 
                 // Remove off screen objects from the global lists and fields
-                aircraftList.removeIf(BaseRaidenObject::isOffScreen);
-                interactantList.removeIf(BaseRaidenObject::isOffScreen);
-                
+                aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
+                interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
+
                 // Periodically print the score
-                if(gameStep.intValue() % 100 == 0) {
-                	System.out.println("player1: " + player1.calculateScore());
-                	if(playerNumber == TWO)
-                		System.out.println("player2: " + player2.calculateScore());
+                if (gameStep.intValue() % 100 == 0) {
+                    System.out.println("player1: " + player1.calculateScore());
+                    if (playerNumber == TWO)
+                        System.out.println("player2: " + player2.calculateScore());
                 }
             }
             repaint();
             sleep(msToSleepAtEachGameStep);
 
             gameStep.increment();
-            if (gameMode==SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds) {
-            	System.out.println("Victory!");
-            	musicPlayer.stop();
-            	gameSpeedAdjusterTimer.stop();
-            	//pageStatus = VICTORY;
+            if (gameMode == SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds) {
+                System.out.println("Victory!");
+                musicPlayer.stop();
+                gameSpeedAdjusterTimer.stop();
+                //pageStatus = VICTORY;
             }
         }
         System.out.println("Game over");
@@ -210,40 +281,41 @@ public class World extends JPanel {
         gameSpeedAdjusterTimer.stop();
         //pageStatus = END;
     }
-    
-    
+
+
     /**
      * Run the game from main page.
-     * @author 杨芳源
+     *
      * @throws InterruptedException
+     * @author 杨芳源
      */
-    public void run() throws InterruptedException{
-    	//**********
-    	pageStatus = GAMING;
-    	while (pageStatus != CLOSE) {
-    		repaint();
-    		sleep(msToSleepAtEachGameStep);
-    		gameStep.increment();
-    		switch (pageStatus){
-        	case MAIN:
-        		MainPage.run();
-        		break;
-        	case HELP:
-        		HelpPage.run();
-        		break;
-        	case RANKLIST:
-        		RanklistPage.run();
-        		break;
-        	case GAMING:
-        		runGame();
-        		break;
-        	case VICTORY:
-        		VictoryPage.run();
-        	case END:
-        		EndPage.run();
-        		break;
-        	default:
-    		}
-    	}
+    public void run() throws InterruptedException {
+        //**********
+        pageStatus = GAMING;
+        while (pageStatus != CLOSE) {
+            repaint();
+            sleep(msToSleepAtEachGameStep);
+            gameStep.increment();
+            switch (pageStatus) {
+                case MAIN:
+                    MainPage.run();
+                    break;
+                case HELP:
+                    HelpPage.run();
+                    break;
+                case RANKLIST:
+                    RanklistPage.run();
+                    break;
+                case GAMING:
+                    runGame();
+                    break;
+                case VICTORY:
+                    VictoryPage.run();
+                case END:
+                    EndPage.run();
+                    break;
+                default:
+            }
+        }
     }
 }

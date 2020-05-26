@@ -4,7 +4,7 @@ import static world.World.gameStep;
 
 public class ConstAccelerationYMotionController extends BaseMotionController implements YAwareMotionController {
     float acceleration, maxSpeedY, initSpeedY;
-    boolean isAccelerating = false;
+    boolean isAccelerating = false, reverseSpeedDirection;
     int gameStepWhenAccelerationStarted;
 
     public ConstAccelerationYMotionController(float initSpeedY, float acceleration, float maxSpeedY) {
@@ -15,11 +15,6 @@ public class ConstAccelerationYMotionController extends BaseMotionController imp
 
     public ConstAccelerationYMotionController(float initSpeedY, float acceleration) {
         this(initSpeedY, acceleration, Float.MAX_VALUE);
-    }
-
-    public void startAccelerating() {
-        isAccelerating = true;
-        gameStepWhenAccelerationStarted = gameStep.intValue();
     }
 
     @Override
@@ -35,6 +30,9 @@ public class ConstAccelerationYMotionController extends BaseMotionController imp
                     maxSpeedY
             );
             raidenObject.setSpeedY(speedY);
+        } else {
+            isAccelerating = true;
+            gameStepWhenAccelerationStarted = gameStep.intValue();
         }
     }
 }

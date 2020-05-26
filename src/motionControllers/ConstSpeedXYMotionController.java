@@ -16,7 +16,7 @@ public class ConstSpeedXYMotionController extends ConstSpeedYMotionController {
         raidenObject.setSpeedX(speedX);
     }
 
-    public static ConstSpeedXYMotionController fromTargetAngle(float theta, float maxSpeed) {
+    public static ConstSpeedXYMotionController createFromAngle(float theta, float maxSpeed) {
         float thetaInRad = (float) toRadians(theta);
         float speedX = (float) sin(thetaInRad) * maxSpeed;
         float speedY = (float) cos(thetaInRad) * maxSpeed;

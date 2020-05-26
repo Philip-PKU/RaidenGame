@@ -1,7 +1,6 @@
 package raidenObjects.aircrafts;
 
 import raidenObjects.BaseRaidenObject;
-import utils.BaseRaidenKeyAdapter;
 import utils.EffectCountdown;
 import utils.Faction;
 
@@ -25,13 +24,7 @@ import static world.World.*;
 public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, stepsAfterDeath = 0;
     protected int maxHp, maxStepsAfterDeath, crashDamage;
-    protected int coin = 0;
-    protected int score = 0;
-    protected int weaponType = 0;
-    protected int superPower = 0;
-    protected int weaponTime = 99999999;
-    protected int powerUse = 0;
-    protected BaseRaidenKeyAdapter keyAdapter = null;
+    protected int score;
     protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
@@ -52,63 +45,12 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         this.hp = hp;
     }
 
-    public int getCoin() {
-        return coin;
-    }
-    
     public int getScore() {
     	return score;
     }
+
     public void addScore(int score) {
     	this.score += score;
-    }
-    
-    public int calculateScore() {
-    	return score + coin * 10;
-    }
-    public BaseRaidenKeyAdapter GetKeyAdapter() {
-    	return keyAdapter;
-    }
-    public void setKeyAdapter(BaseRaidenKeyAdapter keyAdapter) {
-    	this.keyAdapter = keyAdapter;
-    }
-    public int getWeaponType() {
-        return weaponType;
-    }
-
-    public void setWeaponType(int weaponType) {
-        this.weaponType = weaponType;
-    }
-    public int getWeaponTime() {
-        return weaponTime;
-    }
-    public void setPowerUse(int powerUse) {
-        this.powerUse = powerUse;
-    }
-    public int getPowerUse() {
-        return powerUse;
-    }
-    public void setWeaponTime(int weaponTime) {
-        this.weaponTime = weaponTime;
-    }
-    public int getSuperPower() {
-        return superPower;
-    }
-
-    public void setSuperPower(int superPower) {
-        this.superPower = superPower;
-    }
-
-    public void useSuperPower() {
-        this.setSuperPower(0);
-        interactantList.clear();
-        for (int i = 0; i < aircraftList.size(); i++) {
-            if (aircraftList.get(i).getOwner().isEnemyTo(this.getOwner())) {
-                //aircraftList.remove(i);
-            	aircraftList.get(i).receiveDamage(1000);
-                //i--;
-            }
-        }
     }
 
     public int getMaxHp() {
@@ -134,11 +76,11 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public EffectCountdown getMagnetCountdown() {
         return magnetCountdown;
     }
-    
+
     // If this.hp <= 0, the return true
     public boolean receiveDamage(int damage) {
         hp -= damage;
-        if (getOwner().isPlayer())
+        if (getFaction().isPlayer())
             System.out.println("hp: " + hp);
         if (hp <= 0) {
             markAsDead();
@@ -147,20 +89,15 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         return false;
     }
 
-    public void receiveCoin(int coin) {
-        this.coin += coin;
-        System.out.println("coin: " + this.coin);
-    }
-
     public void interactWith(BaseAircraft aircraft) {
         if (aircraft == null || aircraft == this)
             return;
 
         // if player hit enemy
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
-                this.getOwner().isEnemyTo(aircraft.getOwner())) {
+                this.getFaction().isEnemyTo(aircraft.getFaction())) {
         	// if the player kill this aircraft, he gets score.
-        	if(this.receiveDamage(aircraft.getCrashDamage()))
+            if (this.receiveDamage(aircraft.getCrashDamage()))
         		aircraft.addScore(this.getScore());
             if (!aircraft.getInvincibleCountdown().isEffective()) {
                 aircraft.receiveDamage(this.getCrashDamage());
@@ -200,7 +137,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     public void step() {
         if (isAlive()) {
             getMotionController().scheduleSpeed();
-            moveAndCheckPosition();
+            move();
         }
         if (isAlive()) {
             interactWith(player1);

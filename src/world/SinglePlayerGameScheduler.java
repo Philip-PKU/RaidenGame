@@ -41,37 +41,56 @@ public class SinglePlayerGameScheduler implements GameScheduler {
         if (gameStep.intValue() % getFrequency(900) == 100) {
             aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth / 2), 0));
         }
-        if (gameStep.intValue() % getFrequency(900) == 300) {
+        if (gameStep.intValue() % getFrequency(900) == 500) {
             aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth / 2) + windowWidth / 2.0f, 0));
         }
-        if (gameStep.intValue() % getFrequency(600) == 200) {
+        if (gameStep.intValue() % getFrequency(400) == 200) {
             aircraftList.add(new BumpingAircraft(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % getFrequency(1000)== 432) {
+        if (gameStep.intValue() % getFrequency(1200)== 400) {
             aircraftList.add(new BlackHoleAircraft(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % getFrequency(2000) == 965) {
+        if (gameStep.intValue() % getFrequency(2000) == 965 ||
+                gameStep.intValue() % getFrequency(1500) == 665) {
             aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % getFrequency(1500) == 665) {
+        if (gameStep.intValue() % getFrequency(5000) == 1500) {
             aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new BumpingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new BumpingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new BigShootingAircraft(rand.nextInt(windowWidth / 2), 0));
         }
-        if (gameStep.intValue() % 50 == 0 && rand.nextInt(100) > 95) {
+        if (gameStep.intValue() % getFrequency(6000) == 2400) {
+            aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth), 0));
+            aircraftList.add(new MiddleShootingAircraft(rand.nextInt(windowWidth), 0));
+        }
+        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
             interactantList.add(new InvincibleBonus(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % 20 == 0 && rand.nextInt(100) > 95) {
-            interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, rand.nextInt(3)));
+        if (gameStep.intValue() % 50 == 0 && rand.nextInt(100) > 60) {
+            interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, 0));
         }
-        if (gameStep.intValue() % 50 == 0 && rand.nextInt(100) > 95) {
+        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 90) {
+            interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, 1));
+        }
+        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
+            interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, 2));
+        }
+        if (gameStep.intValue() % 200 == 0 && rand.nextInt(100) > 95) {
             interactantList.add(new CureBonus(rand.nextInt(windowWidth), 0));
         }
         if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
             interactantList.add(new MagnetBonus(rand.nextInt(windowWidth), 0));
         }
-        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 97) {
-            interactantList.add(new WeaponUpgradeBonus(rand.nextInt(windowWidth), 0, rand.nextInt(2)));
+        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 95) {
+            interactantList.add(new WeaponUpgradeBonus(rand.nextInt(windowWidth), 0, rand.nextInt(
+                    WeaponUpgradeBonus.weapons.length
+            )));
         }
-        if (gameStep.intValue() % 100 == 0 && rand.nextInt(100) > 97) {
+        if (gameStep.intValue() % 400 == 0 && rand.nextInt(100) > 97) {
             interactantList.add(new SuperPowerBonus(rand.nextInt(windowWidth), 0));
         }
     }

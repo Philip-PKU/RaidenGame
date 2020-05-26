@@ -1,8 +1,8 @@
 package raidenObjects.bonus;
 
-import motionControllers.TargetTrackingMotionController;
+import motionControllers.ConstSpeedTargetTrackingMotionController;
 import raidenObjects.BaseRaidenObject;
-import raidenObjects.aircrafts.BaseAircraft;
+import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Faction;
 
 import java.io.File;
@@ -26,18 +26,21 @@ public abstract class BaseBonus extends BaseRaidenObject {
         attracted = true;
     }
 
-    public abstract void bonus(BaseAircraft aircraft);
+    public abstract void bonus(PlayerAircraft aircraft);
 
-    public void interactWith(BaseAircraft aircraft) {
+    public void interactWith(PlayerAircraft aircraft) {
+        if (!(this.isAlive() && aircraft.isAlive()))
+            return;
+
         // if bonus hits the player
-        if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft)) {
+        if (this.hasHit(aircraft)) {
             this.bonus(aircraft);
             this.markAsDead();
         }
         // if player is attractive (has magnet) and the bonus hasn't been attracted
-        if (this.isAlive() && aircraft.getMagnetCountdown().isEffective() && !this.isAttracted()) {
+        if (aircraft.getMagnetCountdown().isEffective() && !this.isAttracted()) {
             this.becomesAttracted();
-            this.registerMotionController(new TargetTrackingMotionController(aircraft, 0.2f, 10f));
+            this.registerMotionController(new ConstSpeedTargetTrackingMotionController(aircraft, 0.2f, 10f));
         }
     }
 
@@ -68,7 +71,7 @@ public abstract class BaseBonus extends BaseRaidenObject {
     public void step() {
         if (isAlive()) {
             getMotionController().scheduleSpeed();
-            moveAndCheckPosition();
+            move();
         }
         if (isAlive()) {
             if (player1 != null)

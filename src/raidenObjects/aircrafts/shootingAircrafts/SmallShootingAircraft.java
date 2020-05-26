@@ -1,10 +1,11 @@
 package raidenObjects.aircrafts.shootingAircrafts;
 
-import launchControllers.PeriodicLaunchController;
+import launchControllers.LaunchController;
+import launchControllers.PeriodicLaunchEventScheduler;
 import motionControllers.ConstSpeedYMotionController;
 import motionControllers.TargetAwareConstSpeedXYMotionController;
 import motionControllers.TwoStagedMotionController;
-import raidenObjects.weapons.bullets.SmallBullet;
+import raidenObjects.weapons.SmallBullet;
 import utils.Faction;
 
 import static java.lang.Math.max;
@@ -17,7 +18,7 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
         super("SmallShootingAircraft", x, y, 35, 21, Faction.ENEMY,
                 100, 13, 50, 50);
         PlayerAircraft target = getClosestPlayer();
-        TargetAwareConstSpeedXYMotionController stageOneController = TargetAwareConstSpeedXYMotionController.fromTargetXY(
+        TargetAwareConstSpeedXYMotionController stageOneController = TargetAwareConstSpeedXYMotionController.createFromXY(
                 x,
                 y,
                 target.getX() > windowWidth / 2f ? rand.nextInt(windowWidth / 2) : windowWidth - rand.nextInt(windowWidth / 2),
@@ -27,10 +28,19 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
                 stageOneController,
                 new ConstSpeedYMotionController(0.4f),
                 () -> stageOneController.distToTarget() < stageOneController.getMaxSpeed() || distTo(getClosestPlayer()) < 150,
-                () -> weaponLaunchController.activate()
+                () -> getWeaponLaunchController().activate()
         ));
-        this.registerWeaponLaunchController(new PeriodicLaunchController(126, 30, () -> {
-            interactantList.add(new SmallBullet(getX(), getMaxY(), target.getX(), target.getY()));
-        }));
+        this.registerWeaponLaunchController(new LaunchController(
+                new PeriodicLaunchEventScheduler(126, 60),
+                () -> interactantList.add(new SmallBullet(getX(), getMaxY(), target.getX(), target.getY()))
+        ));
+    }
+
+    @Override
+    public void step() {
+        super.step();
+        if (isAlive()) {
+            rotateToFaceTargetAircraft(getClosestPlayer());
+        }
     }
 }

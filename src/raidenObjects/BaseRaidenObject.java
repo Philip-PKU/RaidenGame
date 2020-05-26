@@ -1,17 +1,21 @@
 package raidenObjects;
 
 import motionControllers.MotionController;
+import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Bivector;
 import utils.Faction;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.TreeMap;
 
+import static java.lang.Math.PI;
+import static java.lang.Math.atan;
 import static world.World.*;
 
 /**
@@ -19,26 +23,25 @@ import static world.World.*;
  */
 public abstract class BaseRaidenObject{
     protected String name;
-    protected Faction owner;
+    protected Faction faction;
     protected MotionController motionController;
     protected int imgSizeX, imgSizeY;  // object size
     protected float x, y;  // coordinates of object center
     protected float speedX, speedY;  // current speed
-    protected int gameStepWhenReady;  // game step when the object is in position
-    boolean alive, offScreen;  // states
+    protected float rotation;  // rotation angle (in radians)
+    boolean alive, invisible;  // states
     static TreeMap<File, BufferedImage> file2image = new TreeMap<>();
 
     protected BaseRaidenObject(String name, float x, float y, int imgSizeX, int imgSizeY,
-                               Faction owner) {
+                               Faction faction) {
         this.name = name;
         this.x = x;
         this.y = y;
         this.imgSizeX = imgSizeX;
         this.imgSizeY = imgSizeY;
-        this.owner = owner;
+        this.faction = faction;
         this.alive = true;
-        this.offScreen = false;
-        this.gameStepWhenReady = gameStep.intValue();
+        this.invisible = false;
     }
 
     public String getName() {
@@ -64,6 +67,14 @@ public abstract class BaseRaidenObject{
 
     public void setImgSizeY(int imgSizeY) {
         this.imgSizeY = imgSizeY;
+    }
+
+    public float getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(float rotation) {
+        this.rotation = rotation;
     }
 
     /**
@@ -109,12 +120,16 @@ public abstract class BaseRaidenObject{
         return alive;
     }
 
-    public boolean isOffScreen() {
-        return offScreen;
+    public boolean isInvisibleOrOutOfWorld() {
+        if (isOutOfWorld(getX(), getY())) {
+            markAsDead();
+            return true;
+        }
+        return invisible;
     }
 
-    public Faction getOwner() {
-        return owner;
+    public Faction getFaction() {
+        return faction;
     }
 
     public MotionController getMotionController() {
@@ -143,14 +158,8 @@ public abstract class BaseRaidenObject{
         this.alive = false;
     }
 
-    public void markAsDeadIfOutOfBound() {
-        if (isOutOfWorld(getX(), getY())) {
-            markAsDead();
-        }
-    }
-
     public void getOffScreen() {
-        this.offScreen = true;
+        this.invisible = true;
     }
 
     public abstract void step();
@@ -209,7 +218,20 @@ public abstract class BaseRaidenObject{
     }
 
     public void paint(Graphics g) {
-        g.drawImage(loadImage(getImageFile()), (int) getMinX(), (int) getMinY(), null);
+        if (rotation != 0) {
+            Graphics2D g2d = (Graphics2D) g;
+            Image image = loadImage(getImageFile());
+            if (image != null) {
+                AffineTransform backup = g2d.getTransform();
+                AffineTransform a = AffineTransform.getRotateInstance(rotation, getX(), getY());
+                //Set our Graphics2D object to the transform
+                g2d.setTransform(a);
+                //Draw our image like normal
+                g2d.drawImage(image, (int) getMinX(), (int) getMinY(), null);
+                g2d.setTransform(backup);
+            }
+        } else
+            g.drawImage(loadImage(getImageFile()), (int) getMinX(), (int) getMinY(), null);
     }
 
     public boolean hasHit(BaseRaidenObject other) {
@@ -223,7 +245,7 @@ public abstract class BaseRaidenObject{
         return new Bivector(getX() - other.getX(), getY() - other.getY()).getNorm();
     }
 
-    protected static BufferedImage loadImage(File file) {
+    public static BufferedImage loadImage(File file) {
         if (file == null)
             return null;
         if (file2image.containsKey(file))
@@ -289,9 +311,31 @@ public abstract class BaseRaidenObject{
      * Move according to the scheduled speed, and mark as dead if the current object is out of bound after moving.
      * @author 蔡辉宇
      */
-    protected void moveAndCheckPosition() {
+    protected void move() {
         setX(getX() + getSpeedX());
         setY(getY() + getSpeedY());
-        markAsDeadIfOutOfBound();
+    }
+
+    /**
+     * Rotate this object to face the given target aircraft.
+     * @param target The target to face by this object.
+     * @author 蔡辉宇
+     */
+    public void rotateToFaceTargetAircraft(BaseAircraft target) {
+        if (target == null)
+            return;
+
+        //rx is the x coordinate for rotation, ry is the y coordinate for rotation, and angle
+        //is the angle to rotate the image. If you want to rotate around the center of an image,
+        //use the image's center x and y coordinates for rx and ry.
+        float dx = target.getX() - getX(), dy = target.getY() - getY(), theta;
+        if (dy == 0) {
+            theta = dx > 0 ? -(float)PI/2f : (float)PI/2f;
+        } else {
+            theta = (float) -atan(dx / dy);
+            if (dy < 0)
+                theta += (float)PI;
+        }
+        setRotation(theta);
     }
 }

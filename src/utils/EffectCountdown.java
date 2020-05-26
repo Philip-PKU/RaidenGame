@@ -21,6 +21,10 @@ public class EffectCountdown {
         return remainingSteps > 0;
     }
 
+    public int getRemainingSteps() {
+        return remainingSteps;
+    }
+
     public void extendDurationBy(int additionalSteps) {
         remainingSteps += additionalSteps;
     }

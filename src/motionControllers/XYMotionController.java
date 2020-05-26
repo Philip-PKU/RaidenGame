@@ -23,7 +23,7 @@ public class XYMotionController extends BaseMotionController implements MotionCo
         YMotionController.registerParent(raidenObject);
     }
 
-    public static XYMotionController defaultFromXController(MotionController XMotionController, float speedY) {
+    public static XYMotionController createFromXController(MotionController XMotionController, float speedY) {
         return new XYMotionController(XMotionController, new ConstSpeedYMotionController(speedY));
     }
 }
