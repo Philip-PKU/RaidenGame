@@ -20,7 +20,7 @@ public final class MiddleShootingAircraft extends BaseShootingAircraft {
         this.registerMotionController(new TwoStagedMotionController(stageOneController, stageTwoController,
                 () -> getY() > 80,
                 () -> getWeaponLaunchController().activate()));
-        this.registerWeaponLaunchController(new LaunchController(
+        this.registerWeaponLaunchController(new LaunchController<>(
                 new PeriodicLaunchEventScheduler(192, 14, 6, 3),
                 () -> {
                     PlayerAircraft closestPlayer = getClosestPlayer();

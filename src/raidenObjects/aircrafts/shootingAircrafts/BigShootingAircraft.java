@@ -22,7 +22,7 @@ public final class BigShootingAircraft extends BaseShootingAircraft{
         this.registerMotionController(new TwoStagedMotionController(stageOneController, stageTwoController,
                 () -> getY() > 80,
                 () -> getWeaponLaunchController().activate()));
-        this.registerWeaponLaunchController(new LaunchController(
+        this.registerWeaponLaunchController(new LaunchController<>(
                 new PeriodicLaunchEventScheduler(150, 50, 6, 3),
                 () -> {
                     interactantList.add(new BigBullet(getX() - 20, getMaxY() - 5,

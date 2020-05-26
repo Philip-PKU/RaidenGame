@@ -30,7 +30,7 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
                 () -> stageOneController.distToTarget() < stageOneController.getMaxSpeed() || distTo(getClosestPlayer()) < 150,
                 () -> getWeaponLaunchController().activate()
         ));
-        this.registerWeaponLaunchController(new LaunchController(
+        this.registerWeaponLaunchController(new LaunchController<>(
                 new PeriodicLaunchEventScheduler(126, 60),
                 () -> interactantList.add(new SmallBullet(getX(), getMaxY(), target.getX(), target.getY()))
         ));

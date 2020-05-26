@@ -25,6 +25,7 @@ import static utils.GameLevel.LEVEL_NORMAL;
 import static utils.GameMode.SURVIVAL;
 import static utils.PageStatus.CLOSE;
 import static utils.PageStatus.GAMING;
+import static utils.PlayerNumber.ONE;
 import static utils.PlayerNumber.TWO;
 
 /**
@@ -54,11 +55,11 @@ public class World extends JPanel {
     public static volatile int msToSleepAtEachGameStep = 15;
     public static final int desiredFPS = 50;
     public static Timer gameSpeedAdjusterTimer;
-    public static int survivalModeSeconds = 300;
-    public static GameScheduler gameScheduler;
     public static GameMode gameMode = SURVIVAL;
+    public static int survivalModeSeconds = 222;
     public static PageStatus pageStatus = GAMING;
-    public static PlayerNumber playerNumber = TWO;
+    public static PlayerNumber playerNumber = ONE;
+    public static GameScheduler gameScheduler = new GameScheduler(LEVEL_NORMAL, playerNumber);
 
     public World() {
         init();
@@ -86,11 +87,17 @@ public class World extends JPanel {
 
         // Set game scheduler and initialize
         if (playerNumber == TWO) {
-            gameScheduler = new DoublePlayerGameScheduler(LEVEL_NORMAL);
+            player1 = new PlayerAircraft(windowWidth * .75f, windowHeight - 150,
+                    Faction.PLAYER1, PlayerController.KEYBOARD1);
+            aircraftList.add(player1);
+            player2 = new PlayerAircraft(windowWidth * .25f, windowHeight - 150,
+                    Faction.PLAYER2, PlayerController.KEYBOARD2);
+            aircraftList.add(player2);
         } else {
-            gameScheduler = new SinglePlayerGameScheduler(LEVEL_NORMAL);
+            player1 = new PlayerAircraft(windowWidth * .5f, windowHeight - 150,
+                    Faction.PLAYER1, PlayerController.KEYBOARD1);
+            aircraftList.add(player1);
         }
-        gameScheduler.init();
 
         // Reset game step to zero.
         gameStep.setValue(0);
@@ -206,32 +213,30 @@ public class World extends JPanel {
      * @author 蔡辉宇
      */
     public void paint(Graphics g) {
-        synchronized (this) {
-            background.paint(g);
-            switch (pageStatus) {
-                case MAIN:
-                    MainPage.paint(g);
-                    break;
-                case HELP:
-                    HelpPage.paint(g);
-                    break;
-                case RANKLIST:
-                    RanklistPage.paint(g);
-                    break;
-                case MODECHOSE:
-                    ModeChosePage.paint(g);
-                    // TODO: 这里是不是该有个break？
-                case GAMING:
-                    paintGame(g);
-                    break;
-                case VICTORY:
-                    VictoryPage.paint(g);
-                    break;
-                case END:
-                    EndPage.paint(g);
-                    break;
-                default:
-            }
+        background.paint(g);
+        switch (pageStatus) {
+            case MAIN:
+                MainPage.paint(g);
+                break;
+            case HELP:
+                HelpPage.paint(g);
+                break;
+            case RANKLIST:
+                RanklistPage.paint(g);
+                break;
+            case MODECHOSE:
+                ModeChosePage.paint(g);
+                // TODO: 这里是不是该有个break？
+            case GAMING:
+                paintGame(g);
+                break;
+            case VICTORY:
+                VictoryPage.paint(g);
+                break;
+            case END:
+                EndPage.paint(g);
+                break;
+            default:
         }
     }
 
@@ -242,38 +247,37 @@ public class World extends JPanel {
      * @author 蔡辉宇
      */
     public void runGame() throws InterruptedException {
+        sleep(3000);
         musicPlayer.play();
         gameSpeedAdjusterTimer.start();
-        while (gameScheduler.gameIsNotOver()) {
+        while (player1 != null || player2 != null) {
             if (musicPlayer.isEndOfMediaReached()) {
                 musicPlayer.seek(0);
                 musicPlayer.play();
             }
-            synchronized (this) {
-                // Periodically add new planes / bonuses
-                gameScheduler.scheduleObjectInserts();
+            // Periodically add new planes / bonuses
+            gameScheduler.scheduleObjectInserts();
 
-                // Move everything in the game one step forward
-                background.step();
-                aircraftList.forEach(BaseAircraft::step);
-                interactantList.forEach(BaseRaidenObject::step);
+            // Move everything in the game one step forward
+            background.step();
+            aircraftList.forEach(BaseAircraft::step);
+            interactantList.forEach(BaseRaidenObject::step);
 
-                // Remove off screen objects from the global lists and fields
-                aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
-                interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
-                // TODO: inform UI that player1 has died and collect scores before setting it to NULL
-                if (player1 != null && !player1.isAlive())
-                    player1 = null;
-                if (player2 != null && !player2.isAlive())
-                    player2 = null;
+            // Remove off screen objects from the global lists and fields
+            aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
+            interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
+            // TODO: inform UI that player1 has died and collect scores before setting it to NULL
+            if (player1 != null && !player1.isAlive())
+                player1 = null;
+            if (player2 != null && !player2.isAlive())
+                player2 = null;
 
-                // Periodically print the score
-                if (gameStep.intValue() % 100 == 0) {
-                    if (player1 != null)
-                        System.out.println("player1: " + player1.calculateScore());
-                    if (playerNumber == TWO && player2 != null)
-                        System.out.println("player2: " + player2.calculateScore());
-                }
+            // Periodically print the score
+            if (gameStep.intValue() % 100 == 0) {
+                if (player1 != null)
+                    System.out.println("player1: " + player1.calculateScore());
+                if (playerNumber == TWO && player2 != null)
+                    System.out.println("player2: " + player2.calculateScore());
             }
             repaint();
             sleep(msToSleepAtEachGameStep);

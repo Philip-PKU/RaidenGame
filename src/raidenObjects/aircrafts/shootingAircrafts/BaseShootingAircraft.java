@@ -1,6 +1,7 @@
 package raidenObjects.aircrafts.shootingAircrafts;
 
 import launchControllers.LaunchController;
+import launchControllers.LaunchEventScheduler;
 import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.bonus.*;
 import utils.Faction;
@@ -16,7 +17,7 @@ import static world.World.rand;
  * - has weapon (registered in constructor)
  */
 public abstract class BaseShootingAircraft extends BaseAircraft {
-    protected LaunchController weaponLaunchController;
+    protected LaunchController<? extends LaunchEventScheduler> weaponLaunchController;
     protected float probCoin0, probCoin1, probCoin2, probInvincible, probMagnet, probSuperpower, probWeaponUpgrade, probCure;
     public BaseShootingAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
                                 int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
@@ -24,17 +25,17 @@ public abstract class BaseShootingAircraft extends BaseAircraft {
                 maxHp, maxStepsAfterDeath, crashDamage, score);
     }
 
-    public void registerWeaponLaunchController(LaunchController weaponLaunchController) {
+    public void registerWeaponLaunchController(LaunchController<? extends LaunchEventScheduler> weaponLaunchController) {
         registerWeaponLaunchController(weaponLaunchController, false);
     }
 
-    public void registerWeaponLaunchController(LaunchController weaponLaunchController, boolean activateNow) {
+    public void registerWeaponLaunchController(LaunchController<? extends LaunchEventScheduler> weaponLaunchController, boolean activateNow) {
         this.weaponLaunchController = weaponLaunchController;
         if (activateNow)
             weaponLaunchController.activate();
     }
 
-    public LaunchController getWeaponLaunchController() {
+    public LaunchController<? extends LaunchEventScheduler> getWeaponLaunchController() {
         return weaponLaunchController;
     }
 

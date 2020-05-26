@@ -16,8 +16,7 @@ import utils.keyAdapters.BaseRaidenKeyAdapter;
 import java.io.File;
 import java.nio.file.Paths;
 
-import static java.lang.Math.min;
-import static java.lang.Math.sqrt;
+import static java.lang.Math.*;
 import static world.World.*;
 
 public final class PlayerAircraft extends BaseShootingAircraft {
@@ -28,10 +27,11 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     protected int coin = 0;
     protected int availableSuperpowers;
     protected BaseRaidenKeyAdapter keyAdapter;
-    protected LaunchController superpowerLaunchController, trackingBulletLaunchController;
+    protected LaunchController<KeyboardSuperpowerLaunchEventScheduler> superpowerLaunchController;
+    protected LaunchController<PeriodicLaunchEventScheduler> trackingBulletLaunchController;
     protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
 
-    class WeaponMultiLaunchController extends LaunchControllerWithLevel {
+    class WeaponMultiLaunchController extends LaunchControllerWithLevel<KeyboardWeaponLaunchEventScheduler> {
         public WeaponMultiLaunchController(int weaponLevel) {
             super(weaponLevel);
             setLaunchEventScheduler(new KeyboardWeaponLaunchEventScheduler(2, keyAdapter));
@@ -63,7 +63,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         }
     }
     
-    class WeaponSingleLaunchController extends LaunchControllerWithLevel {
+    class WeaponSingleLaunchController extends LaunchControllerWithLevel<KeyboardWeaponLaunchEventScheduler> {
         public WeaponSingleLaunchController(int weaponLevel) {
             super(weaponLevel);
             setLaunchEventScheduler(new KeyboardWeaponLaunchEventScheduler(3, keyAdapter));
@@ -88,7 +88,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
 
     }
 
-    class SuperpowerLaunchController extends LaunchController {
+    class SuperpowerLaunchController extends LaunchController<KeyboardSuperpowerLaunchEventScheduler> {
         public SuperpowerLaunchController(int cooldown) {
             setLaunchEventScheduler(new KeyboardSuperpowerLaunchEventScheduler(cooldown, keyAdapter,
                     () -> getAvailableSuperpowers() > 0));
@@ -100,12 +100,12 @@ public final class PlayerAircraft extends BaseShootingAircraft {
                         aircraft.markAsDead();
                     }
                 }
-                interactantList.add(new SuperpowerResidue(getX(), getY() - 240, getFaction()));
+                interactantList.add(new SuperpowerResidue(getX(), max(0, getY() - 240), getFaction()));
             });
         }
     }
 
-    class TrackingBulletLaunchController extends LaunchControllerWithLevel {
+    class TrackingBulletLaunchController extends LaunchControllerWithLevel<PeriodicLaunchEventScheduler> {
         public TrackingBulletLaunchController(int weaponLevel) {
             super(weaponLevel);
             setLaunchable(() -> {
@@ -115,12 +115,12 @@ public final class PlayerAircraft extends BaseShootingAircraft {
                         getX() + 20, getMinY(), getFaction(), getEnemyToTrack(false), 50));
             });
             if (weaponLevel == 0) {
-                setLaunchEventScheduler(new PeriodicLaunchEventScheduler(30, 0));
+                setLaunchEventScheduler(new PeriodicLaunchEventScheduler(50, 0));
             } else if (weaponLevel == 1) {
-                setLaunchEventScheduler(new PeriodicLaunchEventScheduler(30, 0, 5, 2));
+                setLaunchEventScheduler(new PeriodicLaunchEventScheduler(50, 0, 5, 2));
 
             } else if (weaponLevel >= 2) {
-                setLaunchEventScheduler(new PeriodicLaunchEventScheduler(30, 0, 5, 3));
+                setLaunchEventScheduler(new PeriodicLaunchEventScheduler(50, 0, 5, 3));
             }
         }
     }
@@ -147,21 +147,21 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         return magnetCountdown;
     }
 
-    public LaunchController getSuperPowerLaunchController() {
+    public LaunchController<KeyboardSuperpowerLaunchEventScheduler> getSuperPowerLaunchController() {
         return superpowerLaunchController;
     }
 
-    public void registerSuperpowerLaunchController(LaunchController superpowerLaunchController, boolean activateNow) {
+    public void registerSuperpowerLaunchController(LaunchController<KeyboardSuperpowerLaunchEventScheduler> superpowerLaunchController, boolean activateNow) {
         this.superpowerLaunchController = superpowerLaunchController;
         if (activateNow)
             superpowerLaunchController.activate();
     }
 
-    public LaunchController getTrackingBulletLaunchController() {
+    public LaunchController<PeriodicLaunchEventScheduler> getTrackingBulletLaunchController() {
         return trackingBulletLaunchController;
     }
 
-    public void registerTrackingBulletLaunchController(LaunchController trackingBulletLaunchController, boolean activateNow) {
+    public void registerTrackingBulletLaunchController(LaunchController<PeriodicLaunchEventScheduler> trackingBulletLaunchController, boolean activateNow) {
         this.trackingBulletLaunchController = trackingBulletLaunchController;
         if (activateNow)
             trackingBulletLaunchController.activate();
@@ -234,25 +234,25 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             return;  // No weapon updates to commit
 
         if (updateWeaponType == UPDATE_WEAPON_MULTI) {
-            LaunchControllerWithLevel currentLaunchController = (LaunchControllerWithLevel) getWeaponLaunchController();
+            LaunchControllerWithLevel<? extends LaunchEventScheduler> currentLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getWeaponLaunchController();
             this.registerWeaponLaunchController(
                     new WeaponMultiLaunchController(
                             currentLaunchController instanceof WeaponMultiLaunchController ?
-                            currentLaunchController.getWeaponLevel() + 1 : 0),
+                            currentLaunchController.getLevel() + 1 : 0),
                     true);
         } else if (updateWeaponType == UPDATE_WEAPON_SINGLE) {
-            LaunchControllerWithLevel currentLaunchController = (LaunchControllerWithLevel) getWeaponLaunchController();
+            LaunchControllerWithLevel<? extends LaunchEventScheduler> currentLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getWeaponLaunchController();
             this.registerWeaponLaunchController(
                     new WeaponSingleLaunchController(
                             currentLaunchController instanceof WeaponSingleLaunchController ?
-                            currentLaunchController.getWeaponLevel() + 1 : 0),
+                            currentLaunchController.getLevel() + 1 : 0),
                     true);
         } else if (updateWeaponType == UPDATE_WEAPON_TRACKING) {
-            LaunchControllerWithLevel currentLaunchController = (LaunchControllerWithLevel) getTrackingBulletLaunchController();
+            LaunchControllerWithLevel<? extends LaunchEventScheduler> currentLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getTrackingBulletLaunchController();
             this.registerTrackingBulletLaunchController(
                     new TrackingBulletLaunchController(
                             currentLaunchController == null ?
-                            0 : currentLaunchController.getWeaponLevel() + 1),
+                            0 : currentLaunchController.getLevel() + 1),
                     true);
         }
     }
