@@ -31,20 +31,20 @@ public class GameScheduler {
 
         aircraftHpControllers = Arrays.asList(
                 new LaunchController<>(
-                        new PeriodicStochasticLaunchEventScheduler(2000, 1000, 0.5f),
-                        () -> SmallShootingAircraft.setStaticMaxHp(min(300, (int) (SmallShootingAircraft.getStaticMaxHp() * 1.3f)))
+                        new PeriodicStochasticLaunchEventScheduler(2000, 1000, 0.7f),
+                        () -> SmallShootingAircraft.setStaticMaxHp(min(300, (int) (SmallShootingAircraft.getStaticMaxHp() * 1.4f)))
                 ),
                 new LaunchController<>(
-                        new PeriodicStochasticLaunchEventScheduler(2000, 1500, 0.4f),
-                        () -> MiddleShootingAircraft.setStaticMaxHp(min(400, (int) (MiddleShootingAircraft.getStaticMaxHp() * 1.2f)))
+                        new PeriodicStochasticLaunchEventScheduler(2000, 1500, 0.6f),
+                        () -> MiddleShootingAircraft.setStaticMaxHp(min(400, (int) (MiddleShootingAircraft.getStaticMaxHp() * 1.3f)))
                 ),
                 new LaunchController<>(
-                        new PeriodicStochasticLaunchEventScheduler(2000, 1800, 0.6f),
+                        new PeriodicStochasticLaunchEventScheduler(2000, 1800, 0.5f),
                         () -> BigShootingAircraft.setStaticMaxHp(min(1200, (int) (BigShootingAircraft.getStaticMaxHp() * 1.2f)))
                 ),
                 new LaunchController<>(
-                        new PeriodicStochasticLaunchEventScheduler(2000, 1400, 0.7f),
-                        () -> BarbetteAircraft.setStaticMaxHp(min(1500, (int) (BarbetteAircraft.getStaticMaxHp() * 1.2f)))
+                        new PeriodicStochasticLaunchEventScheduler(3000, 1400, 0.4f),
+                        () -> BarbetteAircraft.setStaticMaxHp(min(1500, (int) (BarbetteAircraft.getStaticMaxHp() * 1.15f)))
                 )
         );
         aircraftHpControllers.forEach(hpController -> {

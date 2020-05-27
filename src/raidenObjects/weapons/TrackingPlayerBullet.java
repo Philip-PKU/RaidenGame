@@ -13,22 +13,12 @@ public class TrackingPlayerBullet extends BaseWeapon {
         super("TrackingBullet", x, y, 5, 9, owner, staticDamage);
         this.target = target;
         if (target == null) {
-            this.registerMotionController(ConstSpeedXYMotionController.createFromAngle(initAngle, 8f));
+            this.registerMotionController(ConstSpeedXYMotionController.createFromAngle(180 - initAngle, 8f));
             setRotation(initAngle);
         } else {
             this.registerMotionController(new ConstSpeedTargetTrackingMotionController(target,
-                    0.8f, 8f));
+                    0.8f, 8f, 180 - initAngle));
             setRotation(initAngle);
-        }
-    }
-
-    @Override
-    protected void move() {
-        if (target == null) {
-            setX(getX() + getSpeedX());
-            setY(getY() - getSpeedY());
-        } else {
-            super.move();
         }
     }
 

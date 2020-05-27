@@ -22,7 +22,7 @@ import static world.World.*;
 
 public final class PlayerAircraft extends BaseShootingAircraft {
     private static int hitSizeX = 25, hitSizeY = 20;
-    private final int superpowerCost = 300, coinScore = 10, weaponLevelToActivateBeam = 3;
+    private final int superpowerCost = 200, coinScore = 10, weaponLevelToActivateBeam = 3;
     private static int staticMaxHp = 200;
 
     public static int UPDATE_WEAPON_NONE = 0, UPDATE_WEAPON_MULTI = 1, UPDATE_WEAPON_SINGLE = 2, UPDATE_WEAPON_TRACKING = 3;
