@@ -8,6 +8,7 @@ import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.*;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,7 +53,7 @@ public class World extends JPanel {
     public static int survivalModeSeconds = 300;
     public static GameScheduler gameScheduler;
     public static GameMode gameMode = SURVIVAL;
-    public static PageStatus pageStatus = GAMING;
+    public static PageStatus pageStatus = MAIN;
     public static PlayerNumber playerNumber = ONE;
 
     public World() {
@@ -67,6 +68,9 @@ public class World extends JPanel {
     public void init() {
         // The background image
         background = new Background();
+        
+        setLayout(null);
+        setVisible(true);
 
         // The background music
         // TODO: change the bgm in different scenarios
@@ -140,7 +144,7 @@ public class World extends JPanel {
             background.paint(g);
             switch (pageStatus){
             	case MAIN:
-            		MainPage.paint(g);
+					MainPage.paint(g, this);
             		break;
             	case HELP:
             		HelpPage.paint(g);
@@ -150,6 +154,10 @@ public class World extends JPanel {
             		break;
             	case MODECHOSE:
             		ModeChosePage.paint(g);
+            		break;
+            	case PLAYERCHOSE:
+            		PlayerChosePage.paint(g);
+            		break;
             	case GAMING:
             		paintGame(g);
             		break;
@@ -214,16 +222,20 @@ public class World extends JPanel {
     
     /**
      * Run the game from main page.
-     * @author 杨芳源
+     * 
      * @throws InterruptedException
+     * @author 杨芳源
      */
     public void run() throws InterruptedException{
-    	//**********
     	pageStatus = GAMING;
+    	PageStatus flag = MAIN;
     	while (pageStatus != CLOSE) {
+    		while (pageStatus == flag) {
+    			sleep(msToSleepAtEachGameStep);
+        		gameStep.increment();
+    		}
+    		flag = pageStatus;
     		repaint();
-    		sleep(msToSleepAtEachGameStep);
-    		gameStep.increment();
     		switch (pageStatus){
         	case MAIN:
         		MainPage.run();
@@ -234,15 +246,24 @@ public class World extends JPanel {
         	case RANKLIST:
         		RanklistPage.run();
         		break;
+        	case PLAYERCHOSE:
+        		PlayerChosePage.run();
+        		break;
+        	case MODECHOSE:
+        		PlayerChosePage.run();
+        		break;
         	case GAMING:
+        		System.out.println("((((((((((((");
         		runGame();
+        		System.out.println("))))))))))))");
         		break;
         	case VICTORY:
         		VictoryPage.run();
+        		break;
         	case END:
         		EndPage.run();
         		break;
-        	default:
+        	default: return;
     		}
     	}
     }
