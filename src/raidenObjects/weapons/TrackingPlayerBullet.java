@@ -6,10 +6,11 @@ import raidenObjects.aircrafts.BaseAircraft;
 import utils.Faction;
 
 public class TrackingPlayerBullet extends BaseWeapon {
+    private static int staticDamage = 30;
     BaseAircraft target;
 
     public TrackingPlayerBullet(float x, float y, Faction owner, BaseAircraft target, float initAngle) {
-        super("TrackingBullet", x, y, 5, 9, owner, 50);
+        super("TrackingBullet", x, y, 5, 9, owner, staticDamage);
         this.target = target;
         if (target == null) {
             this.registerMotionController(ConstSpeedXYMotionController.createFromAngle(initAngle, 8f));
@@ -35,5 +36,13 @@ public class TrackingPlayerBullet extends BaseWeapon {
     public void step() {
         super.step();
         rotateToFaceTargetAircraft(target);
+    }
+
+    public static int getStaticDamage() {
+        return staticDamage;
+    }
+
+    public static void setStaticDamage(int staticDamage1) {
+        staticDamage = staticDamage1;
     }
 }

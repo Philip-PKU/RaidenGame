@@ -23,6 +23,7 @@ import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.GameLevel.LEVEL_NORMAL;
 import static utils.GameMode.SURVIVAL;
+import static utils.GameMode.TIMER;
 import static utils.PageStatus.CLOSE;
 import static utils.PageStatus.GAMING;
 import static utils.PlayerNumber.ONE;
@@ -55,11 +56,12 @@ public class World extends JPanel {
     public static volatile int msToSleepAtEachGameStep = 15;
     public static final int desiredFPS = 50;
     public static Timer gameSpeedAdjusterTimer;
-    public static GameMode gameMode = SURVIVAL;
+    public static GameMode gameMode = TIMER;
     public static int survivalModeSeconds = 222;
     public static PageStatus pageStatus = GAMING;
     public static PlayerNumber playerNumber = ONE;
-    public static GameScheduler gameScheduler = new GameScheduler(LEVEL_NORMAL, playerNumber);
+    public static GameLevel gameLevel = LEVEL_NORMAL;
+    public static GameScheduler gameScheduler = new GameScheduler(gameLevel, playerNumber);
 
     public World() {
         init();

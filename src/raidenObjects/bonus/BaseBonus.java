@@ -48,7 +48,7 @@ public abstract class BaseBonus extends BaseRaidenObject {
     @Override
     public void markAsDead() {
         super.markAsDead();
-        getOffScreen();
+        becomeInvisible();
     }
 
     /**

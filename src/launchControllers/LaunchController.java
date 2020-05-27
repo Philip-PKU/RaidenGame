@@ -39,4 +39,8 @@ public class LaunchController <T extends LaunchEventScheduler> {
     public void activate() {
         activated = true;
     }
+
+    public void deactivate() {
+        activated = false;
+    }
 }

@@ -36,6 +36,10 @@ public class PeriodicLaunchEventScheduler implements LaunchEventScheduler {
         this(cooldown, initCooldown, 0, 1);
     }
 
+    public int getCurCooldown() {
+        return curCooldown;
+    }
+
     @Override
     public boolean shouldLaunchNow() {
         --curCooldown;

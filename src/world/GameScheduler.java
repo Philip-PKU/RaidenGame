@@ -32,7 +32,7 @@ public class GameScheduler {
         aircraftHpControllers = Arrays.asList(
                 new LaunchController<>(
                         new PeriodicStochasticLaunchEventScheduler(2000, 1000, 0.5f),
-                        () -> SmallShootingAircraft.setStaticMaxHp(min(200, (int) (SmallShootingAircraft.getStaticMaxHp() * 1.2f)))
+                        () -> SmallShootingAircraft.setStaticMaxHp(min(300, (int) (SmallShootingAircraft.getStaticMaxHp() * 1.3f)))
                 ),
                 new LaunchController<>(
                         new PeriodicStochasticLaunchEventScheduler(2000, 1500, 0.4f),
@@ -89,7 +89,7 @@ public class GameScheduler {
                         () -> aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0))
                 ),
                 new LaunchController<>(
-                        new ConstAccelerationLaunchEventScheduler(5000, 1800,
+                        new ConstAccelerationLaunchEventScheduler(5000, 2800,
                                 0.02f, 0.02f, 0.15f),
                         () -> {
                             aircraftList.add(new BarbetteAircraft(rand.nextInt(windowWidth), 0));
@@ -99,7 +99,7 @@ public class GameScheduler {
                         }
                 ),
                 new LaunchController<>(
-                        new ConstAccelerationLaunchEventScheduler(5000, 3000,
+                        new ConstAccelerationLaunchEventScheduler(5000, 1500,
                                 0.02f, 0.02f, 0.15f),
                         () -> {
                             aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth / 2), 0));

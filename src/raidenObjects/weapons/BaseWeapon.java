@@ -55,7 +55,7 @@ public abstract class BaseWeapon extends BaseRaidenObject {
     @Override
     public void markAsDead() {
         super.markAsDead();
-        getOffScreen();
+        becomeInvisible();
     }
 
     public File getImageFile() {

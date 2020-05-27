@@ -6,6 +6,7 @@ import raidenObjects.SuperpowerResidue;
 import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.BlackHoleAircraft;
 import raidenObjects.weapons.BigPlayerBullet;
+import raidenObjects.weapons.PlayerBeam;
 import raidenObjects.weapons.StandardPlayerBullet;
 import raidenObjects.weapons.TrackingPlayerBullet;
 import utils.EffectCountdown;
@@ -21,7 +22,7 @@ import static world.World.*;
 
 public final class PlayerAircraft extends BaseShootingAircraft {
     private static int hitSizeX = 25, hitSizeY = 20;
-    private final int superpowerCost = 200, coinScore = 10;
+    private final int superpowerCost = 300, coinScore = 10, weaponLevelToActivateBeam = 3;
     private static int staticMaxHp = 200;
 
     public static int UPDATE_WEAPON_NONE = 0, UPDATE_WEAPON_MULTI = 1, UPDATE_WEAPON_SINGLE = 2, UPDATE_WEAPON_TRACKING = 3;
@@ -30,6 +31,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     protected BaseRaidenKeyAdapter keyAdapter;
     protected LaunchController<KeyboardSuperpowerLaunchEventScheduler> superpowerLaunchController;
     protected LaunchController<PeriodicLaunchEventScheduler> trackingBulletLaunchController;
+    protected LaunchController<KeyboardWeaponLaunchEventScheduler> beamLaunchController;
     protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
 
     class WeaponMultiLaunchController extends LaunchControllerWithLevel<KeyboardWeaponLaunchEventScheduler> {
@@ -63,30 +65,40 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             }
         }
     }
-    
+
+
     class WeaponSingleLaunchController extends LaunchControllerWithLevel<KeyboardWeaponLaunchEventScheduler> {
         public WeaponSingleLaunchController(int weaponLevel) {
             super(weaponLevel);
             setLaunchEventScheduler(new KeyboardWeaponLaunchEventScheduler(3, keyAdapter));
             if (weaponLevel == 0) {
                 this.setLaunchable(() -> {
-                    interactantList.add(new BigPlayerBullet(getX(), getMinY(), getFaction()));
+                    interactantList.add(new BigPlayerBullet(getX(), getMinY(), getFaction(), signum(getSpeedX())));
                 });
             } else if (weaponLevel == 1) {
+                BigPlayerBullet.setStaticDamage(BigPlayerBullet.getStaticDamage() * 4 / 5);
                 this.setLaunchable(() -> {
-                    interactantList.add(new BigPlayerBullet(getX() - 5, getMinY(), getFaction()));
-                    interactantList.add(new BigPlayerBullet(getX() + 5, getMinY(), getFaction()));
+                    interactantList.add(new BigPlayerBullet(getX() - 10, getMinY(), getFaction(), signum(getSpeedX())));
+                    interactantList.add(new BigPlayerBullet(getX() + 10, getMinY(), getFaction(), signum(getSpeedX())));
                 });
             } else if (weaponLevel >= 2) {
                 this.setLaunchable(() -> {
-                    interactantList.add(new BigPlayerBullet(getX() - 10, getMinY(), getFaction()));
-                    interactantList.add(new BigPlayerBullet(getX() - 5, getMinY(), getFaction()));
-                    interactantList.add(new BigPlayerBullet(getX() + 5, getMinY(), getFaction()));
-                    interactantList.add(new BigPlayerBullet(getX() + 10, getMinY(), getFaction()));
+                    interactantList.add(new BigPlayerBullet(getX() - 10, getMinY(), getFaction(), signum(getSpeedX())));
+                    interactantList.add(new BigPlayerBullet(getX() - 5, getMinY(), getFaction(), signum(getSpeedX())));
+                    interactantList.add(new BigPlayerBullet(getX() + 5, getMinY(), getFaction(), -signum(getSpeedX())));
+                    interactantList.add(new BigPlayerBullet(getX() + 10, getMinY(), getFaction(), -signum(getSpeedX())));
                 });
             }
         }
+    }
 
+    class BeamLaunchController extends LaunchController<KeyboardWeaponLaunchEventScheduler> {
+        public BeamLaunchController() {
+            setLaunchEventScheduler(new KeyboardWeaponLaunchEventScheduler(1, keyAdapter));
+            setLaunchable(() -> {
+                interactantList.add(new PlayerBeam(getX(), getMinY() + 10, getFaction()));
+            });
+        }
     }
 
     class SuperpowerLaunchController extends LaunchController<KeyboardSuperpowerLaunchEventScheduler> {
@@ -137,6 +149,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             keyAdapter = keyAdapter2;
         this.registerMotionController(new KeyboardMotionController(keyAdapter, 5));
         this.registerWeaponLaunchController(new WeaponMultiLaunchController(0), true);
+        // this.registerWeaponLaunchController(new WeaponSingleLaunchController(0), true);
         this.registerSuperpowerLaunchController(new SuperpowerLaunchController(10), true);
     }
 
@@ -166,6 +179,16 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         this.trackingBulletLaunchController = trackingBulletLaunchController;
         if (activateNow)
             trackingBulletLaunchController.activate();
+    }
+
+    public LaunchController<KeyboardWeaponLaunchEventScheduler> getBeamLaunchController() {
+        return beamLaunchController;
+    }
+
+    public void registerBeamLaunchController(LaunchController<KeyboardWeaponLaunchEventScheduler> beamLaunchController, boolean activateNow) {
+        this.beamLaunchController = beamLaunchController;
+        if (activateNow)
+            beamLaunchController.activate();
     }
 
     public int calculateScore() {
@@ -235,34 +258,41 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     @Override
     public void markAsDead() {
         super.markAsDead();
-        getOffScreen();
+        becomeInvisible();
     }
 
     public void updateWeapon(int updateWeaponType) {
         if (updateWeaponType == UPDATE_WEAPON_NONE)
             return;  // No weapon updates to commit
 
+        LaunchControllerWithLevel<? extends LaunchEventScheduler> currentWeaponLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getWeaponLaunchController();
         if (updateWeaponType == UPDATE_WEAPON_MULTI) {
-            LaunchControllerWithLevel<? extends LaunchEventScheduler> currentLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getWeaponLaunchController();
             this.registerWeaponLaunchController(
                     new WeaponMultiLaunchController(
-                            currentLaunchController instanceof WeaponMultiLaunchController ?
-                            currentLaunchController.getLevel() + 1 : 0),
+                            currentWeaponLaunchController instanceof WeaponMultiLaunchController ?
+                                    currentWeaponLaunchController.getLevel() + 1 : 0),
                     true);
         } else if (updateWeaponType == UPDATE_WEAPON_SINGLE) {
-            LaunchControllerWithLevel<? extends LaunchEventScheduler> currentLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getWeaponLaunchController();
             this.registerWeaponLaunchController(
                     new WeaponSingleLaunchController(
-                            currentLaunchController instanceof WeaponSingleLaunchController ?
-                            currentLaunchController.getLevel() + 1 : 0),
+                            currentWeaponLaunchController instanceof WeaponSingleLaunchController ?
+                                    currentWeaponLaunchController.getLevel() + 1 : 0),
                     true);
         } else if (updateWeaponType == UPDATE_WEAPON_TRACKING) {
-            LaunchControllerWithLevel<? extends LaunchEventScheduler> currentLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getTrackingBulletLaunchController();
+            LaunchControllerWithLevel<? extends LaunchEventScheduler> trackingBulletLaunchController = (LaunchControllerWithLevel<? extends LaunchEventScheduler>) getTrackingBulletLaunchController();
             this.registerTrackingBulletLaunchController(
                     new TrackingBulletLaunchController(
-                            currentLaunchController == null ?
-                            0 : currentLaunchController.getLevel() + 1),
+                            trackingBulletLaunchController == null ?
+                                    0 : trackingBulletLaunchController.getLevel() + 1),
                     true);
+        }
+
+        if (((LaunchControllerWithLevel<? extends LaunchEventScheduler>) getWeaponLaunchController()).getLevel() >= weaponLevelToActivateBeam) {
+            if (getBeamLaunchController() == null) {
+                this.registerBeamLaunchController(new BeamLaunchController(), true);
+            }
+        } else if (getBeamLaunchController() != null) {
+            getBeamLaunchController().deactivate();
         }
     }
 
@@ -275,6 +305,9 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             getSuperPowerLaunchController().launchIfPossible();
             if (getTrackingBulletLaunchController() != null) {
                 getTrackingBulletLaunchController().launchIfPossible();
+            }
+            if (getBeamLaunchController() != null) {
+                getBeamLaunchController().launchIfPossible();
             }
         }
     }
