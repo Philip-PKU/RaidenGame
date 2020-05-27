@@ -18,8 +18,8 @@ public class PlayerChosePage {
 	static MyButton ButtonOne, ButtonTwo;
 	
 	static public void run() {
-		
 	}
+	
 	static public void paint(Graphics g, World world) {
 		g.drawImage(loadImage(Paths.get("data", "images", "oneplayer.png").toFile()), 
 					120, 180, 240, 90, null);
@@ -33,7 +33,9 @@ public class PlayerChosePage {
 	}
 
 	public static void clean(World world) {
-		world.remove(ButtonOne);
-		world.remove(ButtonTwo);
+		if (ButtonOne!=null)
+			world.remove(ButtonOne);
+		if (ButtonTwo!=null)
+			world.remove(ButtonTwo);
 	}
 }

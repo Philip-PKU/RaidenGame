@@ -1,6 +1,3 @@
-/**
- * 
- */
 package world;
 
 import java.awt.Graphics;
@@ -21,10 +18,6 @@ public class VictoryPage {
 
 	}
 
-	/**
-	 * @param world 
-	 * 
-	 */
 	public static void clean(World world) {
 		// TODO Auto-generated method stub
 		

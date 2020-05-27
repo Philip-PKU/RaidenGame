@@ -1,6 +1,3 @@
-/**
- * 
- */
 package world;
 
 import java.awt.Graphics;
@@ -16,9 +13,7 @@ public class EndPage {
 	static public void paint(Graphics g, World world) {
 		
 	}
-	/**
-	 * @param world
-	 */
+
 	public static void clean(World world) {
 		// TODO Auto-generated method stub
 		

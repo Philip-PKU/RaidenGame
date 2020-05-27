@@ -42,10 +42,14 @@ public class MainPage {
 	}
 	
 	public static void clean(World world) {
-		world.remove(ButtonExit);
-		world.remove(ButtonHelp);
-		world.remove(ButtonRanklist);
-		world.remove(ButtonStart);
+		if (ButtonExit!=null)
+			world.remove(ButtonExit);
+		if (ButtonHelp!=null)
+			world.remove(ButtonHelp);
+		if (ButtonRanklist!=null)
+			world.remove(ButtonRanklist);
+		if (ButtonStart!=null)
+			world.remove(ButtonStart);
 	}
 	
 }
