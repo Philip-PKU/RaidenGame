@@ -11,7 +11,6 @@ import utils.keyAdapters.RaidenKeyAdapter1;
 import utils.keyAdapters.RaidenKeyAdapter2;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,9 +57,10 @@ public class World extends JPanel {
     public static Timer gameSpeedAdjusterTimer;
     public static GameMode gameMode = SURVIVAL;
     public static int survivalModeSeconds = 222;
-    public static PageStatus pageStatus;
+    public static PageStatus pageStatus = GAMING;
     public static PlayerNumber playerNumber = ONE;
     public static GameScheduler gameScheduler;
+    public static GameLevel gameLevel = LEVEL_NORMAL;
 
     public World() {
         init();
@@ -69,7 +69,7 @@ public class World extends JPanel {
     /**
      * Initialize the game.
      *
-     * @author 钄¤緣瀹�
+     * @author 蔡辉宇
      */
     public void init() {
         // The background image
@@ -144,7 +144,7 @@ public class World extends JPanel {
      * @param x The x coordinate of the point.
      * @param y The y coordinate of the point.
      * @return true iff (x, y) is out of the window, and false otherwise.
-     * @author 钄¤緣瀹�
+     * @author 蔡辉宇
      */
     public static boolean isOutOfWindow(float x, float y) {
         return x < 0 || x >= windowWidth || y < 0 || y >= windowHeight;
@@ -153,8 +153,7 @@ public class World extends JPanel {
     /**
      * In gaming interface, paint the panel by painting the background, all aircrafts and all interactants.
      *
-     * @param g A java.awt.Graphics object.
-     * @author 钄¤緣瀹�
+     * @author 蔡辉宇
      */
     public void paint(Graphics g) {
         synchronized (this) {
@@ -193,7 +192,7 @@ public class World extends JPanel {
     /**
      * Remove components when pageStatus changes
      * 
-     * @author 鏉ㄨ姵婧�
+     * @author 杨芳源
      */
     void clean(PageStatus flag) {
     	switch (flag) {
@@ -228,7 +227,7 @@ public class World extends JPanel {
     /**
      * Run the handler program for the next page.
      * 
-     * @author 鏉ㄨ姵婧�
+     * @author 杨芳源
      * @throws InterruptedException 
      */
     void runPageHandler(PageStatus flag) throws InterruptedException {
@@ -266,7 +265,7 @@ public class World extends JPanel {
      * Run the game from main page.
      * 
      * @throws InterruptedException
-     * @author 鏉ㄨ姵婧�
+     * @author 杨芳源
      */
     public void run() throws InterruptedException{
     	pageStatus = MAIN;

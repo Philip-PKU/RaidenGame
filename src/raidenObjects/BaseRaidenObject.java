@@ -48,6 +48,10 @@ public abstract class BaseRaidenObject{
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * Returns X image size of current object. Img size is the size of the image of the object.
      * @return imgSizeX
@@ -159,7 +163,7 @@ public abstract class BaseRaidenObject{
         this.alive = false;
     }
 
-    public void getOffScreen() {
+    public void becomeInvisible() {
         this.invisible = true;
     }
 

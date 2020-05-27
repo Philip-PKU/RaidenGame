@@ -24,39 +24,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="slight improvements: game scheduler, generics, etc">
+    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BaseAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BaseAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BlackHoleAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BlackHoleAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BumpingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BumpingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/motionControllers/ConstAccelerationTargetTrackingMotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/motionControllers/ConstAccelerationTargetTrackingMotionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BaseShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BaseShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BarbetteBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BarbetteBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BigBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BigBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/SmallBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/SmallBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BigPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BigPlayerBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/StandardPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/StandardPlayerBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/TrackingPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/TrackingPlayerBullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/world/GameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/GameScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/World.java" afterDir="false" />
-    </list>
-    <list id="8f4d1075-392a-440b-8f4b-c52de625ff2c" name="slight improvements: game scheduler, generics, etc" comment="">
-      <change afterPath="$PROJECT_DIR$/data/images/SuperPowerBonusSmall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/launchControllers/ConstAccelerationLaunchEventScheduler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/launchControllers/PeriodicStochasticLaunchEventScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launchControllers/KeyboardSuperpowerLaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/KeyboardSuperpowerLaunchEventScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launchControllers/KeyboardWeaponLaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/KeyboardWeaponLaunchEventScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launchControllers/LaunchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/LaunchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launchControllers/LaunchControllerWithLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/LaunchControllerWithLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launchControllers/LaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/LaunchEventScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launchControllers/PeriodicLaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/PeriodicLaunchEventScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/bonus/CoinBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/bonus/CoinBonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/world/DoublePlayerGameScheduler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/world/SinglePlayerGameScheduler.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,8 +48,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -85,16 +62,6 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java">
-      <ranges>
-        <range start1="12" end1="12" start2="12" end2="13" changelist="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" />
-        <range start1="13" end1="15" start2="14" end2="16" changelist="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" />
-        <range start1="23" end1="24" start2="24" end2="25" changelist="8f4d1075-392a-440b-8f4b-c52de625ff2c" />
-        <range start1="48" end1="48" start2="49" end2="57" changelist="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="1X3txiR8neNl7HlKtkeuc8xj5Mt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -111,11 +78,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/jl1.0.1.jar!/" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -140,7 +107,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="" />
-      <changelist id="8f4d1075-392a-440b-8f4b-c52de625ff2c" name="slight improvements: game scheduler, generics, etc" comment="" />
       <created>1580017794783</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -156,7 +122,11 @@
       <workItem from="1590301907215" duration="2274000" />
       <workItem from="1590466837263" duration="49751000" />
       <workItem from="1590528570280" duration="322000" />
-      <workItem from="1590529137373" duration="3037000" />
+      <workItem from="1590529137373" duration="3497000" />
+      <workItem from="1590570285793" duration="1947000" />
+      <workItem from="1590577977116" duration="596000" />
+      <workItem from="1590580030618" duration="11271000" />
+      <workItem from="1590594904180" duration="2354000" />
     </task>
     <task id="LOCAL-00001" summary="add readme">
       <created>1580021981762</created>
@@ -277,7 +247,28 @@
       <option name="project" value="LOCAL" />
       <updated>1590528603560</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="enemy aircraft will now increase their maxHp (see &quot;GameScheduler&quot;)">
+      <created>1590569077651</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1590569077651</updated>
+    </task>
+    <task id="LOCAL-00019" summary="repair">
+      <created>1590570336378</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1590570336378</updated>
+    </task>
+    <task id="LOCAL-00020" summary="weapon bonus can now change periodically; add beam weapon for PlayerAircraft; modified WeaponSingle for PlayerAircraft">
+      <created>1590592232025</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1590592232025</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +305,10 @@
     <MESSAGE value="1. Add manual superpower fire and created visual effects; 2. Add Tracking Bullet and respective upgrade Bonus; 3. Add leveled weapon system; 4. Moved all player-specific functions to class PlayerAircraft" />
     <MESSAGE value="Aircraft now might give bonus when shot by player" />
     <MESSAGE value="slight improvements: game scheduler, generics, etc" />
-    <option name="LAST_COMMIT_MESSAGE" value="slight improvements: game scheduler, generics, etc" />
+    <MESSAGE value="enemy aircraft will now increase their maxHp (see &quot;GameScheduler&quot;)" />
+    <MESSAGE value="repair" />
+    <MESSAGE value="weapon bonus can now change periodically; add beam weapon for PlayerAircraft; modified WeaponSingle for PlayerAircraft" />
+    <option name="LAST_COMMIT_MESSAGE" value="weapon bonus can now change periodically; add beam weapon for PlayerAircraft; modified WeaponSingle for PlayerAircraft" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -322,82 +316,82 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="842" y="382" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1590528396281" />
-    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1590567424980">
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1590590643698">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590567424980" />
-    <state x="690" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1589695174802">
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590590643698" />
+    <state x="690" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1590570682410">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589695174802" />
+    <state x="690" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590570682410" />
     <state x="736" y="413" width="447" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1590487725829">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="736" y="413" width="447" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1590487725829" />
-    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590525362116">
+    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590586373892">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590525362116" />
+    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590586373892" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590478689316">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590478689316" />
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1590528601790">
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1590592228399">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590528601790" />
-    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog" timestamp="1590521634738">
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590592228399" />
+    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog" timestamp="1590586558534">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590521634738" />
+    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590586558534" />
     <state x="634" y="261" key="FileChooserDialogImpl" timestamp="1589554143232">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="634" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589554143232" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590568610077">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590597035770">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590568610077">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590597035770">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590568610077">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590597035770">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590568610077">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590597035770">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1590528412788">
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1590593297709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
-    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1590528412788">
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590593297709" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1590593297709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
-    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1590528412788">
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590593297709" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1590593297709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
-    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1590528412788">
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590593297709" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1590593297709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
-    <state x="440" y="95" key="SettingsEditor" timestamp="1590529270624">
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590593297709" />
+    <state x="440" y="95" key="SettingsEditor" timestamp="1590589487123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590529270624" />
+    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590589487123" />
     <state x="806" y="433" key="VCS.ChangelistChooser" timestamp="1590528409387">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="806" y="433" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590528409387" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590529666504">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590592234264">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590529666504" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590592234264" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589555180285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -406,10 +400,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584337574479" />
-    <state x="753" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590466972903">
+    <state x="753" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590590712989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="753" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590466972903" />
+    <state x="753" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590590712989" />
     <state x="742" y="419" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1590527817713">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

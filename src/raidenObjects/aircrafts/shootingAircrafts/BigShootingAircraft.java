@@ -37,8 +37,13 @@ public final class BigShootingAircraft extends BaseShootingAircraft{
         probCoin2 = 0.1f;
         probCure = 0.1f;
         probInvincible = 0.1f;
-        probWeaponUpgrade = 0.03f;
-        probMagnet = 0.07f;
+        probWeaponUpgrade = 0.05f;
+        probMagnet = 0.05f;
+    }
+
+    @Override
+    public float getHitTopLeftY() {
+        return getY() - 10;
     }
 
     public static int getStaticMaxHp() {

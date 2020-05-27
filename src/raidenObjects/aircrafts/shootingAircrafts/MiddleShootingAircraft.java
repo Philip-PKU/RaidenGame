@@ -15,9 +15,10 @@ public final class MiddleShootingAircraft extends BaseShootingAircraft {
         super("MiddleShootingAircraft", x, y, 60, 40, Faction.ENEMY,
                 200, 13, 150, 120);
         YAwareMotionController stageOneController = new ConstSpeedYMotionController(5);
-        MotionController stageTwoXController = new HoveringXMotionController(0.3f, getImgSizeX() / 2f, windowWidth - getImgSizeX() / 2f);
+        MotionController stageTwoXController = new HoveringXMotionController(0.3f,
+                getImgSizeX() / 2f, windowWidth - getImgSizeX() / 2f);
         MotionController stageTwoController = XYMotionController.createFromXController(
-                stageTwoXController, 0.8f);
+                stageTwoXController, 1f);
         this.registerMotionController(new TwoStagedMotionController(stageOneController, stageTwoController,
                 () -> getY() > 80,
                 () -> getWeaponLaunchController().activate()));
@@ -33,6 +34,11 @@ public final class MiddleShootingAircraft extends BaseShootingAircraft {
                             closestPlayer.getY() + rand.nextFloat() * 30 - 15));
                 })
         );
+    }
+
+    @Override
+    public float getHitTopLeftY() {
+        return getY() - 51;
     }
 
     public static int getStaticMaxHp() {

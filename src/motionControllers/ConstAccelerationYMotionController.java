@@ -4,7 +4,7 @@ import static world.World.gameStep;
 
 public class ConstAccelerationYMotionController extends BaseMotionController implements YAwareMotionController {
     float acceleration, maxSpeedY, initSpeedY;
-    boolean isAccelerating = false, reverseSpeedDirection;
+    boolean isAccelerating = false;
     int gameStepWhenAccelerationStarted;
 
     public ConstAccelerationYMotionController(float initSpeedY, float acceleration, float maxSpeedY) {

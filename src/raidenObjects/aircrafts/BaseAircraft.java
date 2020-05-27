@@ -116,7 +116,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
             }
             return Paths.get("data", "images", filename + ".png").toFile();
         } else {
-            getOffScreen();
+            becomeInvisible();
             return null;
         }
     }
