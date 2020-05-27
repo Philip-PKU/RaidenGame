@@ -47,7 +47,6 @@ public class BaseRaidenKeyAdapter extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.print("@");
         if (keyCode == leftKey)
             motionState |= LEFT;
         else if (keyCode == rightKey)
