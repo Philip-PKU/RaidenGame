@@ -16,4 +16,12 @@ public class RanklistPage {
 	static public void paint(Graphics g) {
 		
 	}
+	/**
+	 * @param world 
+	 * 
+	 */
+	public static void clean(World world) {
+		// TODO Auto-generated method stub
+		
+	}
 }

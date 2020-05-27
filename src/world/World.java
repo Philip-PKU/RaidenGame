@@ -11,6 +11,7 @@ import utils.keyAdapters.RaidenKeyAdapter1;
 import utils.keyAdapters.RaidenKeyAdapter2;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,12 +22,10 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
-import static utils.GameLevel.LEVEL_NORMAL;
-import static utils.GameMode.SURVIVAL;
-import static utils.PageStatus.CLOSE;
-import static utils.PageStatus.GAMING;
-import static utils.PlayerNumber.ONE;
-import static utils.PlayerNumber.TWO;
+import static utils.GameLevel.*;
+import static utils.GameMode.*;
+import static utils.PageStatus.*;
+import static utils.PlayerNumber.*;
 
 /**
  * The game panel added to JFrame in App (the main class).
@@ -73,6 +72,9 @@ public class World extends JPanel {
     public void init() {
         // The background image
         background = new Background();
+        
+        setLayout(null);
+        setVisible(true);
 
         // The background music
         // TODO: change the bgm in different scenarios
@@ -213,30 +215,35 @@ public class World extends JPanel {
      * @author 蔡辉宇
      */
     public void paint(Graphics g) {
-        background.paint(g);
-        switch (pageStatus) {
-            case MAIN:
-                MainPage.paint(g);
-                break;
-            case HELP:
-                HelpPage.paint(g);
-                break;
-            case RANKLIST:
-                RanklistPage.paint(g);
-                break;
-            case MODECHOSE:
-                ModeChosePage.paint(g);
-                // TODO: 这里是不是该有个break？
-            case GAMING:
-                paintGame(g);
-                break;
-            case VICTORY:
-                VictoryPage.paint(g);
-                break;
-            case END:
-                EndPage.paint(g);
-                break;
-            default:
+        synchronized (this) {
+            background.paint(g);
+            switch (pageStatus){
+            	case MAIN:
+					MainPage.paint(g, this);
+            		break;
+            	case HELP:
+            		HelpPage.paint(g);
+            		break;
+            	case RANKLIST:
+            		RanklistPage.paint(g);
+            		break;
+            	case MODECHOSE:
+            		ModeChosePage.paint(g);
+            		break;
+            	case PLAYERCHOSE:
+            		PlayerChosePage.paint(g, this);
+            		break;
+            	case GAMING:
+            		paintGame(g);
+            		break;
+            	case VICTORY:
+            		VictoryPage.paint(g);
+            		break;
+            	case END:
+            		EndPage.paint(g);
+            		break;
+            	default:
+            }
         }
     }
 
@@ -298,37 +305,75 @@ public class World extends JPanel {
 
     /**
      * Run the game from main page.
-     *
+     * 
      * @throws InterruptedException
      * @author 杨芳源
      */
-    public void run() throws InterruptedException {
-        //**********
-        pageStatus = GAMING;
-        while (pageStatus != CLOSE) {
-            repaint();
-            sleep(msToSleepAtEachGameStep);
-            gameStep.increment();
-            switch (pageStatus) {
-                case MAIN:
-                    MainPage.run();
-                    break;
-                case HELP:
-                    HelpPage.run();
-                    break;
-                case RANKLIST:
-                    RanklistPage.run();
-                    break;
-                case GAMING:
-                    runGame();
-                    break;
-                case VICTORY:
-                    VictoryPage.run();
-                case END:
-                    EndPage.run();
-                    break;
-                default:
-            }
-        }
+    public void run() throws InterruptedException{
+    	pageStatus = PLAYERCHOSE;
+    	PageStatus flag = MAIN;
+    	while (pageStatus != CLOSE) {
+    		while (pageStatus == flag) {
+    			sleep(msToSleepAtEachGameStep);
+        		gameStep.increment();
+    		}
+    		System.out.print(flag);
+    		System.out.println(pageStatus);
+    		switch (flag) {
+    		case MAIN:
+        		MainPage.clean(this);
+        		break;
+        	case HELP:
+        		HelpPage.clean(this);
+        		break;
+        	case RANKLIST:
+        		RanklistPage.clean(this);
+        		break;
+        	case PLAYERCHOSE:
+        		PlayerChosePage.clean(this);
+        		break;
+        	case MODECHOSE:
+        		//ModeChosePage.clean(this);
+        		break;
+        	case VICTORY:
+        		VictoryPage.clean(this);
+        		break;
+        	case END:
+        		EndPage.clean(this);
+        		break;
+        	default:
+    		}
+    		flag = pageStatus;
+    		repaint();
+    		switch (pageStatus){
+        	case MAIN:
+        		MainPage.run();
+        		break;
+        	case HELP:
+        		HelpPage.run();
+        		break;
+        	case RANKLIST:
+        		RanklistPage.run();
+        		break;
+        	case PLAYERCHOSE:
+        		PlayerChosePage.run();
+        		break;
+        	case MODECHOSE:
+        		ModeChosePage.run();
+        		break;
+        	case GAMING:
+        		//System.out.println("((((((((((((");
+        		runGame();
+        		//System.out.println("))))))))))))");
+        		break;
+        	case VICTORY:
+        		VictoryPage.run();
+        		break;
+        	case END:
+        		EndPage.run();
+        		break;
+        	default: return;
+    		}
+    	}
     }
 }

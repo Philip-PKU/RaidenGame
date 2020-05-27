@@ -19,12 +19,12 @@ public class App {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);  // make the window visible, and call the paint function
 
-        // make mouse invisible
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Image img = tk.getImage("");
-        Cursor cu = tk.createCustomCursor(img, new Point(10, 10), "stick");
-        frame.setCursor(cu);
-
+//         make mouse invisible
+//        Toolkit tk = Toolkit.getDefaultToolkit();
+//        Image img = tk.getImage("");
+//        Cursor cu = tk.createCustomCursor(img, new Point(10, 10), "stick");
+//        frame.setCursor(cu);
+        
         try {
             world.run();
         } catch (Exception e) {
