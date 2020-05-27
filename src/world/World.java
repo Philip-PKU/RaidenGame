@@ -36,7 +36,7 @@ import static utils.PlayerNumber.TWO;
  * by other classes, and classes in the default package cannot be imported.
  */
 public class World extends JPanel {
-    private static Background background;
+    public static Background background;
 
     // These public static variables can be referenced by any class in the game.
     public static PlayerAircraft player1, player2;
