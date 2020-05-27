@@ -31,6 +31,7 @@ public class App {
             e.printStackTrace();
         }
 
-        // exit(0);
+        //System.out.println("!!!");
+        System.exit(0);
     }
 }

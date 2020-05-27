@@ -83,7 +83,6 @@ public class GamingPage {
      * @author ²Ì»ÔÓî
      */
     public static void paint(Graphics g, World world) {
-    	System.out.print(",");
         aircraftList.forEach(aircraft -> {
             if (aircraft != null)
                 aircraft.paint(g);

@@ -29,7 +29,7 @@ public class MyButton extends JButton {
 	 * @param pageStatus: Change of pageStatus when the button is pressed.
 	 * @param path: A Path object to get the pictures.
 	 */
-	public MyButton(int x, int y, int width, int height, PageStatus pageStatus, Path path){
+	public MyButton(int x, int y, int width, int height, Path path, ActionListener listener){
 		
 		setBounds(x, y, width, height);
 		
@@ -45,12 +45,6 @@ public class MyButton extends JButton {
 		ii = new ImageIcon(temp);  
 		setIcon(ii);
 		
-		addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				World.pageStatus = pageStatus;
-				System.out.println(pageStatus);
-			}
-		});
+		addActionListener(listener);
 	}
 }

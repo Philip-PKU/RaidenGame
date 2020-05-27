@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * A key adapter that logs key activity and returns current key state.
- * @author 蔡辉宇
+ * @author 钄¤緣瀹�
  */
 public class BaseRaidenKeyAdapter extends KeyAdapter {
     public final int LEFT = 1, RIGHT = 2, UP = 4, DOWN = 8;
@@ -47,6 +47,7 @@ public class BaseRaidenKeyAdapter extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
+        System.out.print("@");
         if (keyCode == leftKey)
             motionState |= LEFT;
         else if (keyCode == rightKey)

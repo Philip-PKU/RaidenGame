@@ -1,6 +1,7 @@
 package world;
 
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 import java.nio.file.Paths;
 
 import utils.MyButton;
@@ -14,7 +15,7 @@ import static raidenObjects.BaseRaidenObject.loadImage;
  * @author �Դ
  */
 public class MainPage {
-	static MyButton ButtonStart, ButtonRanklist, ButtonHelp, ButtonExit;
+	static MyButton buttonStart, buttonRanklist, buttonHelp, buttonExit;
 	
 	static public void run() {
 	}
@@ -31,25 +32,29 @@ public class MainPage {
 		g.drawImage(loadImage(Paths.get("data", "images", "startexit.png").toFile()), 
 					130, 530, 220, 80, null);
 		
-		ButtonStart = new MyButton(130, 230, 220, 80, PLAYERCHOSE, Paths.get("data", "images", "start.png"));
-		ButtonRanklist = new MyButton(130, 330, 220, 80, RANKLIST , Paths.get("data", "images", "ranklist.png"));
-		ButtonHelp = new MyButton(130, 430, 220, 80, HELP, Paths.get("data", "images", "help.png"));
-		ButtonExit = new MyButton(130, 530, 220, 80, CLOSE, Paths.get("data", "images", "startexit.png"));
-		world.add(ButtonStart);
-		world.add(ButtonRanklist);
-		world.add(ButtonHelp);
-		world.add(ButtonExit);
+		ActionListener listener1 = (e)->{World.pageStatus = PLAYERCHOSE;};
+		ActionListener listener2 = (e)->{World.pageStatus = RANKLIST;};
+		ActionListener listener3 = (e)->{World.pageStatus = HELP;};
+		ActionListener listener4 = (e)->{World.pageStatus = CLOSE;};
+		buttonStart = new MyButton(130, 230, 220, 80, Paths.get("data", "images", "start.png"), listener1);
+		buttonRanklist = new MyButton(130, 330, 220, 80, Paths.get("data", "images", "ranklist.png"), listener2);
+		buttonHelp = new MyButton(130, 430, 220, 80, Paths.get("data", "images", "help.png"), listener3);
+		buttonExit = new MyButton(130, 530, 220, 80, Paths.get("data", "images", "startexit.png"), listener4);
+		world.add(buttonStart);
+		world.add(buttonRanklist);
+		world.add(buttonHelp);
+		world.add(buttonExit);
 	}
 	
 	public static void clean(World world) {
-		if (ButtonExit!=null)
-			world.remove(ButtonExit);
-		if (ButtonHelp!=null)
-			world.remove(ButtonHelp);
-		if (ButtonRanklist!=null)
-			world.remove(ButtonRanklist);
-		if (ButtonStart!=null)
-			world.remove(ButtonStart);
+		if (buttonExit!=null)
+			world.remove(buttonExit);
+		if (buttonHelp!=null)
+			world.remove(buttonHelp);
+		if (buttonRanklist!=null)
+			world.remove(buttonRanklist);
+		if (buttonStart!=null)
+			world.remove(buttonStart);
 	}
 	
 }

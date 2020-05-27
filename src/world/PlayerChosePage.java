@@ -2,9 +2,11 @@ package world;
 
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.PageStatus.*;
+import static utils.PlayerNumber.*;
 
 import java.awt.Button;
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 import java.nio.file.Paths;
 
 import utils.MyButton;
@@ -15,7 +17,7 @@ import utils.MyButton;
  * @author �Դ
  */
 public class PlayerChosePage {
-	static MyButton ButtonOne, ButtonTwo;
+	static MyButton buttonOne, buttonTwo;
 	
 	static public void run() {
 	}
@@ -26,16 +28,18 @@ public class PlayerChosePage {
 		g.drawImage(loadImage(Paths.get("data", "images", "twoplayer.png").toFile()), 
 					120, 360, 240, 90, null);
 		
-		ButtonOne = new MyButton(120, 180, 240, 90, MODECHOSE, Paths.get("data", "images", "oneplayer.png"));
-		ButtonTwo = new MyButton(120, 360, 240, 90, MODECHOSE, Paths.get("data", "images", "twoplayer.png"));
-		world.add(ButtonOne);
-		world.add(ButtonTwo);
+		ActionListener listener1 = (e)->{World.pageStatus = MODECHOSE; World.playerNumber = ONE;};
+		ActionListener listener2 = (e)->{World.pageStatus = MODECHOSE; World.playerNumber = TWO;};
+		buttonOne = new MyButton(120, 180, 240, 90, Paths.get("data", "images", "oneplayer.png"), listener1);
+		buttonTwo = new MyButton(120, 360, 240, 90, Paths.get("data", "images", "twoplayer.png"), listener2);
+		world.add(buttonOne,false);
+		world.add(buttonTwo,false);
 	}
 
 	public static void clean(World world) {
-		if (ButtonOne!=null)
-			world.remove(ButtonOne);
-		if (ButtonTwo!=null)
-			world.remove(ButtonTwo);
+		if (buttonOne!=null)
+			world.remove(buttonOne);
+		if (buttonTwo!=null)
+			world.remove(buttonTwo);
 	}
 }

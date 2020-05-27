@@ -143,6 +143,7 @@ public abstract class BaseRaidenObject{
      */
     public void registerMotionController(MotionController motionController){
         this.motionController = motionController;
+        //System.out.println(motionController);
         motionController.registerParent(this);
     }
 

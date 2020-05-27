@@ -26,6 +26,8 @@ import static utils.GameLevel.*;
 import static utils.GameMode.*;
 import static utils.PageStatus.*;
 import static utils.PlayerNumber.*;
+import static world.World.keyAdapter1;
+import static world.World.keyAdapter2;
 
 /**
  * The game panel added to JFrame in App (the main class).
@@ -56,9 +58,9 @@ public class World extends JPanel {
     public static Timer gameSpeedAdjusterTimer;
     public static GameMode gameMode = SURVIVAL;
     public static int survivalModeSeconds = 222;
-    public static PageStatus pageStatus = GAMING;
+    public static PageStatus pageStatus;
     public static PlayerNumber playerNumber = ONE;
-    public static GameScheduler gameScheduler = new GameScheduler(LEVEL_NORMAL, playerNumber);
+    public static GameScheduler gameScheduler;
 
     public World() {
         init();
@@ -67,7 +69,7 @@ public class World extends JPanel {
     /**
      * Initialize the game.
      *
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public void init() {
         // The background image
@@ -75,6 +77,7 @@ public class World extends JPanel {
         
         setLayout(null);
         setVisible(true);
+        requestFocus();
 
         // The background music
         // TODO: change the bgm in different scenarios
@@ -83,23 +86,7 @@ public class World extends JPanel {
         // Instead, use {@Code VolumeController} in package utils.
         VolumeController.setVolume(0.1f);
 
-        // Clear aircraft and interactant lists.
-        aircraftList.clear();
-        interactantList.clear();
-
-        // Set game scheduler and initialize
-        if (playerNumber == TWO) {
-            player1 = new PlayerAircraft(windowWidth * .75f, windowHeight - 150,
-                    Faction.PLAYER1, PlayerController.KEYBOARD1);
-            aircraftList.add(player1);
-            player2 = new PlayerAircraft(windowWidth * .25f, windowHeight - 150,
-                    Faction.PLAYER2, PlayerController.KEYBOARD2);
-            aircraftList.add(player2);
-        } else {
-            player1 = new PlayerAircraft(windowWidth * .5f, windowHeight - 150,
-                    Faction.PLAYER1, PlayerController.KEYBOARD1);
-            aircraftList.add(player1);
-        }
+        
 
         // Reset game step to zero.
         gameStep.setValue(0);
@@ -122,6 +109,34 @@ public class World extends JPanel {
         });
         gameSpeedAdjusterTimer.setRepeats(true);
     }
+    
+    public void initGame() {
+    	System.out.println(playerNumber);
+    	addKeyListener(keyAdapter1);  // monitor the keyboard
+        addKeyListener(keyAdapter2);  // monitor the keyboard
+    	requestFocus();
+    	//keyAdapter1 = new RaidenKeyAdapter1();
+    	//keyAdapter2 = new RaidenKeyAdapter2();
+    	gameScheduler = new GameScheduler(LEVEL_NORMAL, playerNumber);
+    	
+    	// Clear aircraft and interactant lists.
+        aircraftList.clear();
+        interactantList.clear();
+
+        // Set game scheduler and initialize
+        if (playerNumber == TWO) {
+            player1 = new PlayerAircraft(windowWidth * .75f, windowHeight - 150,
+                    Faction.PLAYER1, PlayerController.KEYBOARD1);
+            aircraftList.add(player1);
+            player2 = new PlayerAircraft(windowWidth * .25f, windowHeight - 150,
+                    Faction.PLAYER2, PlayerController.KEYBOARD2);
+            aircraftList.add(player2);
+        } else {
+            player1 = new PlayerAircraft(windowWidth * .5f, windowHeight - 150,
+                    Faction.PLAYER1, PlayerController.KEYBOARD1);
+            aircraftList.add(player1);
+        }
+    }
 
     /**
      * Convenience function checking if a given point if out of the game panel.
@@ -129,7 +144,7 @@ public class World extends JPanel {
      * @param x The x coordinate of the point.
      * @param y The y coordinate of the point.
      * @return true iff (x, y) is out of the window, and false otherwise.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public static boolean isOutOfWindow(float x, float y) {
         return x < 0 || x >= windowWidth || y < 0 || y >= windowHeight;
@@ -139,7 +154,7 @@ public class World extends JPanel {
      * In gaming interface, paint the panel by painting the background, all aircrafts and all interactants.
      *
      * @param g A java.awt.Graphics object.
-     * @author 蔡辉宇
+     * @author 钄¤緣瀹�
      */
     public void paint(Graphics g) {
         synchronized (this) {
@@ -178,7 +193,7 @@ public class World extends JPanel {
     /**
      * Remove components when pageStatus changes
      * 
-     * @author 杨芳源
+     * @author 鏉ㄨ姵婧�
      */
     void clean(PageStatus flag) {
     	switch (flag) {
@@ -213,7 +228,7 @@ public class World extends JPanel {
     /**
      * Run the handler program for the next page.
      * 
-     * @author 杨芳源
+     * @author 鏉ㄨ姵婧�
      * @throws InterruptedException 
      */
     void runPageHandler(PageStatus flag) throws InterruptedException {
@@ -234,6 +249,7 @@ public class World extends JPanel {
     		ModeChosePage.run();
     		break;
     	case GAMING:
+    		initGame();
     		GamingPage.run(this);
     		break;
     	case VICTORY:
@@ -250,10 +266,10 @@ public class World extends JPanel {
      * Run the game from main page.
      * 
      * @throws InterruptedException
-     * @author 杨芳源
+     * @author 鏉ㄨ姵婧�
      */
     public void run() throws InterruptedException{
-    	pageStatus = GAMING;
+    	pageStatus = MAIN;
     	PageStatus flag = MAIN;
     	while (pageStatus != CLOSE) {
     		while (pageStatus == flag) {
@@ -272,3 +288,4 @@ public class World extends JPanel {
     	}
     }
 }
+
