@@ -16,9 +16,17 @@ public class VictoryPage {
 
 	}
 
-	static void paint(Graphics g) {
+	static void paint(Graphics g, World world) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * @param world
+	 */
+	public static void clean(World world) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

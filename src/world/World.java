@@ -147,10 +147,10 @@ public class World extends JPanel {
 					MainPage.paint(g, this);
             		break;
             	case HELP:
-            		HelpPage.paint(g);
+            		HelpPage.paint(g,this);
             		break;
             	case RANKLIST:
-            		RanklistPage.paint(g);
+            		RanklistPage.paint(g, this);
             		break;
             	case MODECHOSE:
             		ModeChosePage.paint(g, this);
@@ -162,10 +162,10 @@ public class World extends JPanel {
             		paintGame(g);
             		break;
             	case VICTORY:
-            		VictoryPage.paint(g);
+            		VictoryPage.paint(g, this);
             		break;
             	case END:
-            		EndPage.paint(g);
+            		EndPage.paint(g, this);
             		break;
             	default:
             }
