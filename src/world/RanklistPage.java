@@ -23,4 +23,5 @@ public class RanklistPage {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }

@@ -17,7 +17,7 @@ public class TargetAwareConstSpeedXYMotionController extends ConstSpeedXYMotionC
         return maxSpeed;
     }
 
-    public static TargetAwareConstSpeedXYMotionController fromTargetXY(float initX, float initY,
+    public static TargetAwareConstSpeedXYMotionController createFromXY(float initX, float initY,
                                                                        float targetX, float targetY, float maxSpeed) {
         float targetDX = targetX - initX;
         float targetDY = targetY - initY;

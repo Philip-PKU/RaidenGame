@@ -1,6 +1,6 @@
 package motionControllers;
 
-import utils.BaseRaidenKeyAdapter;
+import utils.keyAdapters.BaseRaidenKeyAdapter;
 
 import static world.World.isOutOfWindow;
 

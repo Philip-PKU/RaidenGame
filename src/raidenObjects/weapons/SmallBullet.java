@@ -1,15 +1,14 @@
-package raidenObjects.weapons.bullets;
+package raidenObjects.weapons;
 
 import motionControllers.TargetAwareConstSpeedXYMotionController;
-import raidenObjects.weapons.BaseWeapon;
 import utils.Faction;
 
 public final class SmallBullet extends BaseWeapon {
 
     public SmallBullet(float x, float y, float targetX, float targetY) {
         super("SmallBullet", x, y, 5, 5,
-                Faction.ENEMY, 5);
-        this.registerMotionController(TargetAwareConstSpeedXYMotionController.fromTargetXY(
+                Faction.ENEMY, 10);
+        this.registerMotionController(TargetAwareConstSpeedXYMotionController.createFromXY(
                 x, y, targetX, targetY, 5));
     }
 }

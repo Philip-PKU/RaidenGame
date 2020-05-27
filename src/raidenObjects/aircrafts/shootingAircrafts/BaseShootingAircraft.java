@@ -1,15 +1,12 @@
 package raidenObjects.aircrafts.shootingAircrafts;
 
-import launchControllers.KeyboardLaunchController;
 import launchControllers.LaunchController;
-import motionControllers.KeyboardMotionController;
+import launchControllers.LaunchEventScheduler;
 import raidenObjects.aircrafts.BaseAircraft;
-import raidenObjects.weapons.bullets.BigPlayerBullet;
-import raidenObjects.weapons.bullets.StandardPlayerBullet;
-import utils.BaseRaidenKeyAdapter;
+import raidenObjects.bonus.*;
 import utils.Faction;
 
-import static world.World.interactantList;
+import static world.World.*;
 
 /**
  * Subclass of BaseAircraft, base class of all shooting air crafts in the game,
@@ -19,72 +16,61 @@ import static world.World.interactantList;
  * - has weapon (registered in constructor)
  */
 public abstract class BaseShootingAircraft extends BaseAircraft {
-    protected LaunchController weaponLaunchController;
-    public final int bombCost = 200;
+    protected LaunchController<? extends LaunchEventScheduler> weaponLaunchController;
+    protected float probCoin0, probCoin1, probCoin2, probInvincible, probMagnet, probSuperpower, probWeaponUpgrade, probCure;
+
     public BaseShootingAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
                                 int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
         super(name, x, y, sizeX, sizeY, owner,
                 maxHp, maxStepsAfterDeath, crashDamage, score);
     }
 
-    public void registerWeaponLaunchController(LaunchController weaponLaunchController) {
+    public void registerWeaponLaunchController(LaunchController<? extends LaunchEventScheduler> weaponLaunchController) {
+        registerWeaponLaunchController(weaponLaunchController, false);
+    }
+
+    public void registerWeaponLaunchController(LaunchController<? extends LaunchEventScheduler> weaponLaunchController, boolean activateNow) {
         this.weaponLaunchController = weaponLaunchController;
+        if (activateNow)
+            weaponLaunchController.activate();
+    }
+
+    public LaunchController<? extends LaunchEventScheduler> getWeaponLaunchController() {
+        return weaponLaunchController;
     }
 
     @Override
     public void step() {
         super.step();
         if (isAlive()) {
-        	this.setWeaponTime(this.getWeaponTime()-1);
-            if (this.getWeaponType() > 0 || this.getWeaponTime() == 0) {
-                updateWeapon();
-            }
-            if (this.GetKeyAdapter() != null) {
-            	if (this.getPowerUse() == 0 && this.GetKeyAdapter().getBombState() != 0 && this.getCoin() >= bombCost) {
-            		this.setPowerUse(1);
-            		this.setSuperPower(1);
-            		this.receiveCoin(-bombCost);
-            	}
-            	if (this.GetKeyAdapter().getBombState() == 0)
-            		this.setPowerUse(0);
-            }
-            if (this.getSuperPower() > 0) {
-                useSuperPower();
-            }
-            weaponLaunchController.launchIfPossible();
+            getWeaponLaunchController().launchIfPossible();
         }
     }
 
-    private void updateWeapon() {
-    	BaseRaidenKeyAdapter keyAdapter = this.GetKeyAdapter();
-   	 	this.registerMotionController(new KeyboardMotionController(keyAdapter, 5));
-        if (this.getWeaponType() == 1) {
-             this.registerWeaponLaunchController(new KeyboardLaunchController(
-                     2, keyAdapter,  () -> {
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), 0));
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), 4));
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), -4));
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), 8));
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), -8));
-             }));
-            this.setWeaponTime(1000);
-        } else if (this.getWeaponType() == 2) {
-             this.registerWeaponLaunchController(new KeyboardLaunchController(
-                     2, keyAdapter,  () -> {
-                 interactantList.add(new BigPlayerBullet(getX(), getMinY(), getOwner(), 0));
-             }));
-            this.setWeaponTime(1000);
+    @Override
+    public void afterKilledByPlayer() {
+        if ((player1 != null && player1.getHp() <= player1.getMaxHp() * 0.4) ||
+                (player2 != null && player2.getHp() <= player2.getMaxHp() * 0.4)) {
+            probInvincible *= 1.5;
+            probCure *= 1.5;
+            probWeaponUpgrade *= 1.5;
         }
-        else {
-             this.registerWeaponLaunchController(new KeyboardLaunchController(
-                     2, keyAdapter,  () -> {
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), 0));
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), 8));
-                 interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getOwner(), -8));
-             }));
-            this.setWeaponTime(99999999);
-        }
-        this.weaponLaunchController.activate();
-        this.setWeaponType(0);
+        float randomFloat = rand.nextFloat();
+        if ((randomFloat -= probCure) <= 0)
+            interactantList.add(new CureBonus(getX(), getY()));
+        else if ((randomFloat -= probInvincible) <= 0)
+            interactantList.add(new InvincibleBonus(getX(), getY()));
+        else if ((randomFloat -= probWeaponUpgrade) <= 0)
+            interactantList.add(new WeaponUpgradeBonus(getX(), getY()));
+        else if ((randomFloat -= probCoin0) <= 0)
+            interactantList.add(new CoinBonus(getX(), getY(), 0));
+        else if ((randomFloat -= probCoin1) <= 0)
+            interactantList.add(new CoinBonus(getX(), getY(), 1));
+        else if ((randomFloat -= probCoin2) <= 0)
+            interactantList.add(new CoinBonus(getX(), getY(), 2));
+        else if ((randomFloat -= probMagnet) <= 0)
+            interactantList.add(new MagnetBonus(getX(), getY()));
+        else if ((randomFloat -= probSuperpower) <= 0)
+            interactantList.add(new SuperPowerBonus(getX(), getY()));
     }
 }

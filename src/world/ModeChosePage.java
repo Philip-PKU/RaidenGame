@@ -6,7 +6,7 @@ package world;
 import java.awt.Graphics;
 
 /**
- * @author �Դ
+ * @author �Դ
  *
  */
 public class ModeChosePage {

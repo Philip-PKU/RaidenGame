@@ -22,7 +22,8 @@ public class VictoryPage {
 	}
 
 	/**
-	 * @param world
+	 * @param world 
+	 * 
 	 */
 	public static void clean(World world) {
 		// TODO Auto-generated method stub

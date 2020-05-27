@@ -4,6 +4,7 @@ import raidenObjects.BaseRaidenObject;
 
 public abstract class BaseMotionController implements MotionController {
     protected BaseRaidenObject raidenObject;
+    protected boolean activated = false;
 
     public void registerParent(BaseRaidenObject raidenObject) {
         this.raidenObject = raidenObject;
@@ -14,4 +15,5 @@ public abstract class BaseMotionController implements MotionController {
         raidenObject.setSpeedX(0);
         raidenObject.setSpeedY(0);
     }
+
 }
