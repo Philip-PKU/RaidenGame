@@ -143,7 +143,7 @@ public class GameScheduler {
                         () -> interactantList.add(new CoinBonus(rand.nextInt(windowWidth), 0, COIN_BIG))
                 ),
                 new LaunchController<>(
-                        new PeriodicStochasticLaunchEventScheduler(1000, 400, 0.25f),
+                        new PeriodicStochasticLaunchEventScheduler(1000, 450, 0.35f),
                         () -> interactantList.add(new InvincibleBonus(rand.nextInt(windowWidth), 0))
                 ),
                 new LaunchController<>(
@@ -155,7 +155,7 @@ public class GameScheduler {
                         () -> interactantList.add(new MagnetBonus(rand.nextInt(windowWidth), 0))
                 ),
                 new LaunchController<>(
-                        new PeriodicStochasticLaunchEventScheduler(2500, 600, 0.45f),
+                        new PeriodicStochasticLaunchEventScheduler(3500, 600, 1f),
                         () -> interactantList.add(new WeaponUpgradeBonus(rand.nextInt(windowWidth), 0))
                 )
         );

@@ -34,12 +34,12 @@ public final class BarbetteAircraft extends BaseShootingAircraft{
 							closestPlayer.getY() + rand.nextFloat() * 30 - 15));
 				})
 		 );
-		 probCoin1 = 0.2f;
+		 probCoin1 = 0.15f;
 		 probCoin2 = 0.4f;
 		 probMagnet = 0.1f;
 		 probInvincible = 0.05f;
 		 probCure = 0.05f;
-		 probWeaponUpgrade = 0.15f;
+		 probWeaponUpgrade = 0.2f;
 		 probSuperpower = 0.02f;
 	}
 

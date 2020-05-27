@@ -59,6 +59,8 @@ public final class PlayerAircraft extends BaseShootingAircraft {
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -5));
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 10));
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -10));
+                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 20));
+                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -20));
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 35));
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -35));
                 });

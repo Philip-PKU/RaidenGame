@@ -81,7 +81,7 @@ public class World extends JPanel {
         musicPlayer.setSourceLocation(Paths.get("data", "bgm", "05. Unknown Pollution.mp3").toString());
         // The volume control functions in class {@code Player} does not appear to work. DO NOT USE IT.
         // Instead, use {@Code VolumeController} in package utils.
-        VolumeController.setVolume(0.1f);
+        VolumeController.setVolume(0.02f);
 
         // Clear aircraft and interactant lists.
         aircraftList.clear();

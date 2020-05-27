@@ -10,7 +10,7 @@ import static world.World.windowWidth;
 
 
 public final class InvincibleBonus extends BaseBonus{
-	static int effectiveGameSteps = 200;
+	static int effectiveGameSteps = 250;
 
 	public InvincibleBonus(float x, float y) {
 		super("InvincibleBonus", x, y, 20, 20, Faction.BONUS);

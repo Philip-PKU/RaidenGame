@@ -26,14 +26,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/motionControllers/ConstAccelerationTargetTrackingMotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/motionControllers/ConstAccelerationTargetTrackingMotionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BarbetteBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BarbetteBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BigPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BigPlayerBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/StandardPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/StandardPlayerBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/TrackingPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/TrackingPlayerBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/bonus/InvincibleBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/bonus/InvincibleBonus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/world/GameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/GameScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +123,7 @@
       <workItem from="1590570285793" duration="1947000" />
       <workItem from="1590577977116" duration="596000" />
       <workItem from="1590580030618" duration="11271000" />
-      <workItem from="1590594904180" duration="2354000" />
+      <workItem from="1590594904180" duration="5256000" />
     </task>
     <task id="LOCAL-00001" summary="add readme">
       <created>1580021981762</created>
@@ -268,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590592232025</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="give ConstAccelerationTargetTrackingMotionController init speed; changed GameScheduler">
+      <created>1590597389534</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1590597389534</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +312,8 @@
     <MESSAGE value="enemy aircraft will now increase their maxHp (see &quot;GameScheduler&quot;)" />
     <MESSAGE value="repair" />
     <MESSAGE value="weapon bonus can now change periodically; add beam weapon for PlayerAircraft; modified WeaponSingle for PlayerAircraft" />
-    <option name="LAST_COMMIT_MESSAGE" value="weapon bonus can now change periodically; add beam weapon for PlayerAircraft; modified WeaponSingle for PlayerAircraft" />
+    <MESSAGE value="give ConstAccelerationTargetTrackingMotionController init speed; changed GameScheduler" />
+    <option name="LAST_COMMIT_MESSAGE" value="give ConstAccelerationTargetTrackingMotionController init speed; changed GameScheduler" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -336,10 +341,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590478689316" />
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1590592228399">
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1590597385313">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590592228399" />
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590597385313" />
     <state x="71" y="283" width="1736" height="856" key="DiffContextDialog" timestamp="1590586558534">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -348,22 +353,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="634" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589554143232" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590597035770">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590599437207">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590597035770">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590599437207" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590599437207">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590597035770">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590599437207" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590599437207">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590597035770">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590599437207" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590599437207">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590597035770" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590599437207" />
     <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1590593297709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -388,10 +393,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="806" y="433" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590528409387" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590592234264">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590597392052">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590592234264" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590597392052" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589555180285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
