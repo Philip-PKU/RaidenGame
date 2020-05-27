@@ -1,14 +1,14 @@
 package launchControllers;
 
-public class LaunchControllerWithLevel extends LaunchController {
-    public final int weaponLevel;
+public class LaunchControllerWithLevel <T extends LaunchEventScheduler> extends LaunchController<T> {
+    public final int level;
 
-    public LaunchControllerWithLevel(int weaponLevel) {
+    public LaunchControllerWithLevel(int level) {
         super();
-        this.weaponLevel = weaponLevel;
+        this.level = level;
     }
 
-    public int getWeaponLevel() {
-        return weaponLevel;
+    public int getLevel() {
+        return level;
     }
 }

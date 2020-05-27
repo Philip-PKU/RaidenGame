@@ -11,7 +11,7 @@ public class KeyboardWeaponLaunchEventScheduler extends PeriodicLaunchEventSched
     }
 
     @Override
-    public boolean shouldLaunch() {
-        return super.shouldLaunch() && (keyAdapter.getWeaponState() & keyAdapter.SHOOT) != 0;
+    public boolean shouldLaunchNow() {
+        return super.shouldLaunchNow() && (keyAdapter.getWeaponState() & keyAdapter.SHOOT) != 0;
     }
 }

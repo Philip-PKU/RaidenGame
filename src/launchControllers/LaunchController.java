@@ -1,11 +1,11 @@
 package launchControllers;
 
-public class LaunchController {
-    LaunchEventScheduler launchEventScheduler;
+public class LaunchController <T extends LaunchEventScheduler> {
+    T launchEventScheduler;
     Launchable launchable;
     boolean activated = false;
 
-    public LaunchController(LaunchEventScheduler launchEventScheduler,
+    public LaunchController(T launchEventScheduler,
                             Launchable launchable) {
         this.launchEventScheduler = launchEventScheduler;
         this.launchable = launchable;
@@ -14,7 +14,15 @@ public class LaunchController {
     public LaunchController() {
     }
 
-    public void setLaunchEventScheduler(LaunchEventScheduler launchEventScheduler) {
+    public T getLaunchEventScheduler() {
+        return launchEventScheduler;
+    }
+
+    public Launchable getLaunchable() {
+        return getLaunchable();
+    }
+
+    public void setLaunchEventScheduler(T launchEventScheduler) {
         this.launchEventScheduler = launchEventScheduler;
     }
 
@@ -23,7 +31,7 @@ public class LaunchController {
     }
 
     public void launchIfPossible() {
-        if (activated && launchEventScheduler.shouldLaunch()) {
+        if (activated && launchEventScheduler.shouldLaunchNow()) {
             launchable.issueLaunchEvent();
         }
     }

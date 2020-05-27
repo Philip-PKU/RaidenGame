@@ -22,7 +22,7 @@ public final class BarbetteAircraft extends BaseShootingAircraft{
 	                () -> getY() > 80,
 	                () -> getWeaponLaunchController().activate()));
 		 
-		 this.registerWeaponLaunchController(new LaunchController(
+		 this.registerWeaponLaunchController(new LaunchController<>(
 		 		new PeriodicLaunchEventScheduler(250, 50, 18, 6),
 				() -> {
 					PlayerAircraft closestPlayer = getClosestPlayer();

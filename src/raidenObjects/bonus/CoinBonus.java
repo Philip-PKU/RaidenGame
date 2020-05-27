@@ -10,6 +10,7 @@ import static world.World.rand;
 import static world.World.windowWidth;
 
 public final class CoinBonus extends BaseBonus {
+	public static int COIN_SMALL = 0, COIN_MEDIUM = 1, COIN_BIG = 2;
 	public static int [] coins = {10, 20, 40};
 	public static int [] sizes = {10, 18, 25};
 	int coin;

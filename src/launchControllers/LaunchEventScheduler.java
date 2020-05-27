@@ -1,5 +1,5 @@
 package launchControllers;
 
 public interface LaunchEventScheduler {
-    boolean shouldLaunch();
+    boolean shouldLaunchNow();
 }

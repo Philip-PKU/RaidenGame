@@ -18,13 +18,13 @@ public class KeyboardSuperpowerLaunchEventScheduler implements LaunchEventSchedu
     }
 
     @Override
-    public boolean shouldLaunch() {
+    public boolean shouldLaunchNow() {
         // It is imperative to check the bomb state first. Otherwise the bomb state won't be able to reset,
         // and once the additional constraint is satisfied, a bomb will be launched, even though the player tried
         // to launch it a long time ago and doesn't necessarily wants to launch it now.
         boolean pressedBombKey = (keyAdapter.getAndResetBombState() & keyAdapter.BOMB) != 0;
         boolean passedCooldown = gameStep.intValue() - lastLaunch >= coolDown;
-        boolean satisfiedConstraint = launchEventScheduler.shouldLaunch();
+        boolean satisfiedConstraint = launchEventScheduler.shouldLaunchNow();
         if (pressedBombKey && passedCooldown && satisfiedConstraint) {
             lastLaunch = gameStep.intValue();
             return true;
