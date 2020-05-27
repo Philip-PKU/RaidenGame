@@ -1,8 +1,9 @@
 package utils;
 
 /**
- * @author 杨芳源
- *
+ * Player number definition
+ * 
+ * @author �Դ
  */
 public enum PlayerNumber{
 	ONE,

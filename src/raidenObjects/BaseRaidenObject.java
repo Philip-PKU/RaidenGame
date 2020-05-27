@@ -51,7 +51,7 @@ public abstract class BaseRaidenObject{
     /**
      * Returns X image size of current object. Img size is the size of the image of the object.
      * @return imgSizeX
-     * @author è”¡è¾‰å®‡
+     * @author ²Ì»ÔÓî
      */
     public int getImgSizeX() {
         return imgSizeX;
@@ -82,7 +82,7 @@ public abstract class BaseRaidenObject{
      * that is used to judge if two objects (e.g. plane/plane and plane/weapon) have hit each other.
      * In default, this is just {@code imgSizeX}, but subclasses can override this behavior.
      * @return hitSizeX, which defaults to imgSizeX.
-     * @author è”¡è¾‰å®‡
+     * @author ²Ì»ÔÓî
      */
     public int getHitSizeX() {
         return imgSizeX;
@@ -139,7 +139,7 @@ public abstract class BaseRaidenObject{
     /**
      * Set MotionController for the current object, and set parent of motionController to the current object.
      * @param motionController A motionController object that will control the movement of the current object.
-     * @author è”¡è¾‰å®‡
+     * @author ²Ì»ÔÓî
      */
     public void registerMotionController(MotionController motionController){
         this.motionController = motionController;
@@ -267,7 +267,7 @@ public abstract class BaseRaidenObject{
     /**
      * Return a random player.
      * @return A random PlayerAircraft
-     * @author è”¡è¾‰å®‡
+     * @author ²Ì»ÔÓî
      */
     public PlayerAircraft getRandomPlayer() {
         if (player1 == null) {
@@ -292,7 +292,7 @@ public abstract class BaseRaidenObject{
     /**
      * Return the closest player.
      * @return The closest PlayerAircraft
-     * @author è”¡è¾‰å®‡
+     * @author ²Ì»ÔÓî
      */
     public PlayerAircraft getClosestPlayer() {
         float dist1 = Float.POSITIVE_INFINITY, dist2 = Float.POSITIVE_INFINITY;
@@ -309,7 +309,7 @@ public abstract class BaseRaidenObject{
 
     /**
      * Move according to the scheduled speed, and mark as dead if the current object is out of bound after moving.
-     * @author è”¡è¾‰å®‡
+     * @author ²Ì»ÔÓî
      */
     protected void move() {
         setX(getX() + getSpeedX());
@@ -319,7 +319,7 @@ public abstract class BaseRaidenObject{
     /**
      * Rotate this object to face the given target aircraft.
      * @param target The target to face by this object.
-     * @author è”¡è¾‰å®‡
+     * @author ²Ì»ÔÓî
      */
     public void rotateToFaceTargetAircraft(BaseAircraft target) {
         if (target == null)
