@@ -153,10 +153,10 @@ public class World extends JPanel {
             		RanklistPage.paint(g);
             		break;
             	case MODECHOSE:
-            		ModeChosePage.paint(g);
+            		ModeChosePage.paint(g, this);
             		break;
             	case PLAYERCHOSE:
-            		PlayerChosePage.paint(g);
+            		PlayerChosePage.paint(g, this);
             		break;
             	case GAMING:
             		paintGame(g);
@@ -227,12 +227,38 @@ public class World extends JPanel {
      * @author 杨芳源
      */
     public void run() throws InterruptedException{
-    	pageStatus = GAMING;
+    	pageStatus = PLAYERCHOSE;
     	PageStatus flag = MAIN;
     	while (pageStatus != CLOSE) {
     		while (pageStatus == flag) {
     			sleep(msToSleepAtEachGameStep);
         		gameStep.increment();
+    		}
+    		System.out.print(flag);
+    		System.out.println(pageStatus);
+    		switch (flag) {
+    		case MAIN:
+        		MainPage.clean(this);
+        		break;
+        	case HELP:
+        		HelpPage.clean(this);
+        		break;
+        	case RANKLIST:
+        		RanklistPage.clean(this);
+        		break;
+        	case PLAYERCHOSE:
+        		PlayerChosePage.clean(this);
+        		break;
+        	case MODECHOSE:
+        		ModeChosePage.clean(this);
+        		break;
+        	case VICTORY:
+        		VictoryPage.clean(this);
+        		break;
+        	case END:
+        		EndPage.clean(this);
+        		break;
+        	default:
     		}
     		flag = pageStatus;
     		repaint();
@@ -250,12 +276,12 @@ public class World extends JPanel {
         		PlayerChosePage.run();
         		break;
         	case MODECHOSE:
-        		PlayerChosePage.run();
+        		ModeChosePage.run();
         		break;
         	case GAMING:
-        		System.out.println("((((((((((((");
+        		//System.out.println("((((((((((((");
         		runGame();
-        		System.out.println("))))))))))))");
+        		//System.out.println("))))))))))))");
         		break;
         	case VICTORY:
         		VictoryPage.run();

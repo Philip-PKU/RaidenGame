@@ -48,7 +48,8 @@ public class MyButton extends JButton {
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				World.pageStatus = GAMING;
+				World.pageStatus = pageStatus;
+				System.out.println(pageStatus);
 			}
 		});
 	}
