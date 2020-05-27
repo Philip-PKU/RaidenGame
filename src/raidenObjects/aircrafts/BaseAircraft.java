@@ -22,15 +22,14 @@ import static world.World.*;
  * - cause bonus, i.e. if it hits the players, it will add buff to them
  */
 public abstract class BaseAircraft extends BaseRaidenObject {
-    protected int hp, stepsAfterDeath = 0;
-    protected int maxHp, maxStepsAfterDeath, crashDamage;
+    protected int hp, maxHp, stepsAfterDeath = 0;
+    protected int maxStepsAfterDeath, crashDamage;
     protected int score;
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
                            int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
         super(name, x, y, sizeX, sizeY, owner);
-        this.maxHp = maxHp;
-        this.hp = maxHp;
+        this.hp = this.maxHp = maxHp;
         this.maxStepsAfterDeath = maxStepsAfterDeath;
         this.crashDamage = crashDamage;
         this.score = score;
@@ -58,10 +57,6 @@ public abstract class BaseAircraft extends BaseRaidenObject {
 
     public int getCrashDamage() {
         return crashDamage;
-    }
-
-    protected void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
     }
 
     public int getMaxStepsAfterDeath() {

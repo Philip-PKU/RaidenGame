@@ -16,16 +16,42 @@ import utils.PlayerNumber;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.lang.Math.min;
 import static raidenObjects.bonus.CoinBonus.*;
 import static world.World.*;
 
 public class GameScheduler {
     int gameLevel;
+    List<LaunchController<PeriodicStochasticLaunchEventScheduler>> aircraftHpControllers;
     List<LaunchController<ConstAccelerationLaunchEventScheduler>> aircraftLaunchControllers;
     List<LaunchController<PeriodicStochasticLaunchEventScheduler>> bonusLaunchControllers;
 
     public GameScheduler(GameLevel gameLevel, PlayerNumber playerNumber) {
         this.gameLevel = gameLevel.ordinal() + playerNumber.ordinal();
+
+        aircraftHpControllers = Arrays.asList(
+                new LaunchController<>(
+                        new PeriodicStochasticLaunchEventScheduler(2000, 1000, 0.5f),
+                        () -> SmallShootingAircraft.setStaticMaxHp(min(200, (int) (SmallShootingAircraft.getStaticMaxHp() * 1.2f)))
+                ),
+                new LaunchController<>(
+                        new PeriodicStochasticLaunchEventScheduler(2000, 1500, 0.4f),
+                        () -> MiddleShootingAircraft.setStaticMaxHp(min(400, (int) (MiddleShootingAircraft.getStaticMaxHp() * 1.2f)))
+                ),
+                new LaunchController<>(
+                        new PeriodicStochasticLaunchEventScheduler(2000, 1800, 0.6f),
+                        () -> BigShootingAircraft.setStaticMaxHp(min(1200, (int) (BigShootingAircraft.getStaticMaxHp() * 1.2f)))
+                ),
+                new LaunchController<>(
+                        new PeriodicStochasticLaunchEventScheduler(2000, 1400, 0.7f),
+                        () -> BarbetteAircraft.setStaticMaxHp(min(1500, (int) (BarbetteAircraft.getStaticMaxHp() * 1.2f)))
+                )
+        );
+        aircraftHpControllers.forEach(hpController -> {
+            hpController.getLaunchEventScheduler().scaleByGameLevel(gameLevel);
+            hpController.activate();
+        });
+
         aircraftLaunchControllers = Arrays.asList(
                 new LaunchController<>(
                         new ConstAccelerationLaunchEventScheduler(400, 300,
@@ -73,7 +99,7 @@ public class GameScheduler {
                         }
                 ),
                 new LaunchController<>(
-                        new ConstAccelerationLaunchEventScheduler(5000, 3500,
+                        new ConstAccelerationLaunchEventScheduler(5000, 3000,
                                 0.02f, 0.02f, 0.15f),
                         () -> {
                             aircraftList.add(new SmallShootingAircraft(rand.nextInt(windowWidth / 2), 0));
@@ -84,7 +110,7 @@ public class GameScheduler {
                         }
                 ),
                 new LaunchController<>(
-                        new ConstAccelerationLaunchEventScheduler(10000, 5000,
+                        new ConstAccelerationLaunchEventScheduler(9000, 4000,
                                 0.02f, 0.02f, 0.1f),
                         () -> {
                             aircraftList.add(new BlackHoleAircraft(rand.nextInt(windowWidth), 0));
@@ -140,6 +166,7 @@ public class GameScheduler {
     }
 
     void scheduleObjectInserts() {
+        aircraftHpControllers.forEach(LaunchController::launchIfPossible);
         aircraftLaunchControllers.forEach(LaunchController::launchIfPossible);
         bonusLaunchControllers.forEach(LaunchController::launchIfPossible);
     }

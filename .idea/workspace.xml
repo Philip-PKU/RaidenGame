@@ -24,23 +24,39 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="">
+    <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="slight improvements: game scheduler, generics, etc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BaseAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BaseAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BlackHoleAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BlackHoleAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BumpingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/BumpingAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BaseShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BaseShootingAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/bonus/BaseBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/bonus/BaseBonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/bonus/CoinBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/bonus/CoinBonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/bonus/WeaponUpgradeBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/bonus/WeaponUpgradeBonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BaseWeapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BaseWeapon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BigPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BigPlayerBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/EffectCountdown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/EffectCountdown.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/world/DoublePlayerGameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/DoublePlayerGameScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/world/SinglePlayerGameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/SinglePlayerGameScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BarbetteBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BarbetteBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/BigBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/BigBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/weapons/SmallBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/weapons/SmallBullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world/GameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/GameScheduler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/world/World.java" afterDir="false" />
+    </list>
+    <list id="8f4d1075-392a-440b-8f4b-c52de625ff2c" name="slight improvements: game scheduler, generics, etc" comment="">
+      <change afterPath="$PROJECT_DIR$/data/images/SuperPowerBonusSmall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/launchControllers/ConstAccelerationLaunchEventScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/launchControllers/PeriodicStochasticLaunchEventScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/1998c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launchControllers/KeyboardSuperpowerLaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/KeyboardSuperpowerLaunchEventScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launchControllers/KeyboardWeaponLaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/KeyboardWeaponLaunchEventScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launchControllers/LaunchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/LaunchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launchControllers/LaunchControllerWithLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/LaunchControllerWithLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launchControllers/LaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/LaunchEventScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launchControllers/PeriodicLaunchEventScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchControllers/PeriodicLaunchEventScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/raidenObjects/bonus/CoinBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/raidenObjects/bonus/CoinBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world/DoublePlayerGameScheduler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/world/SinglePlayerGameScheduler.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,12 +79,22 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="hui2000ji &lt;32122441+hui2000ji@users.noreply.github.com&gt;" />
         <option value="hui2000ji &lt;391085296@qq.com&gt;" />
         <option value="3" />
-        <option value="hui2000ji &lt;32122441+hui2000ji@users.noreply.github.com&gt;" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/raidenObjects/aircrafts/shootingAircrafts/BarbetteAircraft.java">
+      <ranges>
+        <range start1="12" end1="12" start2="12" end2="13" changelist="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" />
+        <range start1="13" end1="15" start2="14" end2="16" changelist="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" />
+        <range start1="23" end1="24" start2="24" end2="25" changelist="8f4d1075-392a-440b-8f4b-c52de625ff2c" />
+        <range start1="48" end1="48" start2="49" end2="57" changelist="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectId" id="1X3txiR8neNl7HlKtkeuc8xj5Mt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -89,7 +115,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -109,11 +135,12 @@
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\1998c\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="" />
+      <changelist id="8f4d1075-392a-440b-8f4b-c52de625ff2c" name="slight improvements: game scheduler, generics, etc" comment="" />
       <created>1580017794783</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -127,7 +154,9 @@
       <workItem from="1589693381730" duration="864000" />
       <workItem from="1590288424238" duration="11802000" />
       <workItem from="1590301907215" duration="2274000" />
-      <workItem from="1590466837263" duration="39677000" />
+      <workItem from="1590466837263" duration="49751000" />
+      <workItem from="1590528570280" duration="322000" />
+      <workItem from="1590529137373" duration="3037000" />
     </task>
     <task id="LOCAL-00001" summary="add readme">
       <created>1580021981762</created>
@@ -220,7 +249,35 @@
       <option name="project" value="LOCAL" />
       <updated>1590502396362</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Aircraft now might give bonus when shot by player">
+      <created>1590508370598</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1590508370598</updated>
+    </task>
+    <task id="LOCAL-00015" summary="slight improvements: game scheduler, generics, etc">
+      <created>1590527763541</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1590527763541</updated>
+    </task>
+    <task id="LOCAL-00016" summary="slight improvements: game scheduler, generics, etc">
+      <created>1590528379442</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1590528379442</updated>
+    </task>
+    <task id="LOCAL-00017" summary="slight improvements: game scheduler, generics, etc">
+      <created>1590528603560</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1590528603560</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,14 +312,20 @@
     <MESSAGE value="rearranged class structure (bonus no longer belongs to aircraft); add two player mode" />
     <MESSAGE value="add survival mode; player can now manually control weapon launch (via 'Z' and '/' key)" />
     <MESSAGE value="1. Add manual superpower fire and created visual effects; 2. Add Tracking Bullet and respective upgrade Bonus; 3. Add leveled weapon system; 4. Moved all player-specific functions to class PlayerAircraft" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. Add manual superpower fire and created visual effects; 2. Add Tracking Bullet and respective upgrade Bonus; 3. Add leveled weapon system; 4. Moved all player-specific functions to class PlayerAircraft" />
+    <MESSAGE value="Aircraft now might give bonus when shot by player" />
+    <MESSAGE value="slight improvements: game scheduler, generics, etc" />
+    <option name="LAST_COMMIT_MESSAGE" value="slight improvements: game scheduler, generics, etc" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1590505237075">
+    <state x="842" y="382" key="#Notifications" timestamp="1590528396281">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590505237075" />
+    <state x="842" y="382" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1590528396281" />
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1590567424980">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590567424980" />
     <state x="690" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1589695174802">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -271,70 +334,70 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="736" y="413" width="447" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1590487725829" />
-    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590491264906">
+    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590525362116">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590491264906" />
+    <state x="616" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590525362116" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590478689316">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590478689316" />
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1590502390360">
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1590528601790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590502390360" />
-    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog" timestamp="1589559645729">
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590528601790" />
+    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog" timestamp="1590521634738">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589559645729" />
+    <state x="71" y="283" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590521634738" />
     <state x="634" y="261" key="FileChooserDialogImpl" timestamp="1589554143232">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="634" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589554143232" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590508219739">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1590568610077">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590508219739" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590508219738">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1590568610077">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590508219738" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590508219738">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1590568610077">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590508219738" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590508219739">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1590568610077">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590508219739" />
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1590489664550">
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590568610077" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1590528412788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590489664550" />
-    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1590489664550">
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1590528412788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590489664550" />
-    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1590489664550">
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1590528412788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590489664550" />
-    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1590489664550">
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1590528412788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590489664550" />
-    <state x="440" y="95" key="SettingsEditor" timestamp="1589695202048">
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590528412788" />
+    <state x="440" y="95" key="SettingsEditor" timestamp="1590529270624">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589695202048" />
-    <state x="806" y="433" key="VCS.ChangelistChooser" timestamp="1589555236580">
+    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590529270624" />
+    <state x="806" y="433" key="VCS.ChangelistChooser" timestamp="1590528409387">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="806" y="433" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1589555236580" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590502398641">
+    <state x="806" y="433" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590528409387" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590529666504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590502398641" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590529666504" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589555180285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -347,6 +410,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="753" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590466972903" />
+    <state x="742" y="419" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1590527817713">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="742" y="419" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590527817713" />
     <state x="334" y="130" key="new project wizard" timestamp="1582632778780">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -359,9 +426,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590474023239" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590483499027">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590521753261">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590483499027" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590521753261" />
   </component>
 </project>

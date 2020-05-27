@@ -9,6 +9,7 @@ import utils.Faction;
 import static world.World.*;
 
 public final class MiddleShootingAircraft extends BaseShootingAircraft {
+    private static int staticMaxHp = 200;
 
     public MiddleShootingAircraft(float x, float y) {
         super("MiddleShootingAircraft", x, y, 60, 40, Faction.ENEMY,
@@ -32,6 +33,14 @@ public final class MiddleShootingAircraft extends BaseShootingAircraft {
                             closestPlayer.getY() + rand.nextFloat() * 30 - 15));
                 })
         );
+    }
+
+    public static int getStaticMaxHp() {
+        return staticMaxHp;
+    }
+
+    public static void setStaticMaxHp(int staticMaxHp) {
+        MiddleShootingAircraft.staticMaxHp = staticMaxHp;
     }
 
     @Override

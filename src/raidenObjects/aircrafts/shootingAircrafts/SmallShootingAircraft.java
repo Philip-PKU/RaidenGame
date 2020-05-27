@@ -13,10 +13,11 @@ import static java.lang.Math.min;
 import static world.World.*;
 
 public final class SmallShootingAircraft extends BaseShootingAircraft {
+    private static int staticMaxHp = 100;
 
     public SmallShootingAircraft(float x, float y) {
         super("SmallShootingAircraft", x, y, 35, 21, Faction.ENEMY,
-                100, 13, 50, 50);
+                staticMaxHp, 13, 50, 50);
         PlayerAircraft target = getClosestPlayer();
         TargetAwareConstSpeedXYMotionController stageOneController = TargetAwareConstSpeedXYMotionController.createFromXY(
                 x,
@@ -34,6 +35,14 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
                 new PeriodicLaunchEventScheduler(126, 60),
                 () -> interactantList.add(new SmallBullet(getX(), getMaxY(), target.getX(), target.getY()))
         ));
+    }
+
+    public static int getStaticMaxHp() {
+        return staticMaxHp;
+    }
+
+    public static void setStaticMaxHp(int staticMaxHp) {
+        SmallShootingAircraft.staticMaxHp = staticMaxHp;
     }
 
     @Override

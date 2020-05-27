@@ -10,9 +10,10 @@ import static world.World.*;
 
 public final class BarbetteAircraft extends BaseShootingAircraft{
 	private static final float hitSizeY = 140f;
+	private static int staticMaxHp = 600;
 	public BarbetteAircraft(float x, float y) {
-		super("BarbetteAircraft", x, y, 75, 160, Faction.ENEMY, 
-				600, 13, 300, 200);
+		super("BarbetteAircraft", x, y, 75, 160, Faction.ENEMY,
+				staticMaxHp, 13, 300, 200);
 		YAwareMotionController stageOneController = new ConstSpeedYMotionController(2.5f);
 		MotionController stageTwoXController = new HoveringXMotionController(0, 0, windowWidth);
 		MotionController stageTwoController = XYMotionController.createFromXController(
@@ -45,5 +46,13 @@ public final class BarbetteAircraft extends BaseShootingAircraft{
 	@Override
 	public float getHitBottomRightY() {
 		return getY() + hitSizeY / 2f;
+	}
+
+	public static int getStaticMaxHp() {
+		return staticMaxHp;
+	}
+
+	public static void setStaticMaxHp(int staticMaxHp) {
+		BarbetteAircraft.staticMaxHp = staticMaxHp;
 	}
 }

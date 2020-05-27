@@ -22,6 +22,7 @@ import static world.World.*;
 public final class PlayerAircraft extends BaseShootingAircraft {
     private static int hitSizeX = 25, hitSizeY = 20;
     private final int superpowerCost = 200, coinScore = 10;
+    private static int staticMaxHp = 200;
 
     public static int UPDATE_WEAPON_NONE = 0, UPDATE_WEAPON_MULTI = 1, UPDATE_WEAPON_SINGLE = 2, UPDATE_WEAPON_TRACKING = 3;
     protected int coin = 0;
@@ -127,7 +128,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
 
     public PlayerAircraft(float x, float y, Faction owner, PlayerController playerController) {
         super("Player0", x, y, 50, 40, owner,
-                100, 0, 100, 0);
+                staticMaxHp, 0, 100, 0);
         if (!owner.isPlayer())
             throw new RuntimeException("Invalid owner: player must be owned by either Player1 or Player2.");
         if (playerController == PlayerController.KEYBOARD1)
@@ -206,6 +207,14 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     @Override
     public int getHitSizeY() {
         return hitSizeY;
+    }
+
+    public static int getStaticMaxHp() {
+        return staticMaxHp;
+    }
+
+    public static void setStaticMaxHp(int staticMaxHp) {
+        PlayerAircraft.staticMaxHp = staticMaxHp;
     }
 
     @Override

@@ -247,7 +247,6 @@ public class World extends JPanel {
      * @author 蔡辉宇
      */
     public void runGame() throws InterruptedException {
-        sleep(3000);
         musicPlayer.play();
         gameSpeedAdjusterTimer.start();
         while (player1 != null || player2 != null) {

@@ -11,10 +11,11 @@ import static java.lang.Math.min;
 import static world.World.*;
 
 public final class BigShootingAircraft extends BaseShootingAircraft{
+    private static int staticMaxHp = 500;
 
     public BigShootingAircraft(float x, float y) {
         super("BigShootingAircraft", x, y, 100, 65, Faction.ENEMY,
-                500, 13, 300, 180);
+                staticMaxHp, 13, 300, 180);
         YAwareMotionController stageOneController = new ConstSpeedYMotionController(5);
         MotionController stageTwoXController = new HoveringXMotionController(1, max(0, x - 60f), min(x + 60f, windowWidth));
         MotionController stageTwoController = XYMotionController.createFromXController(
@@ -38,5 +39,13 @@ public final class BigShootingAircraft extends BaseShootingAircraft{
         probInvincible = 0.1f;
         probWeaponUpgrade = 0.03f;
         probMagnet = 0.07f;
+    }
+
+    public static int getStaticMaxHp() {
+        return staticMaxHp;
+    }
+
+    public static void setStaticMaxHp(int staticMaxHp) {
+        BigShootingAircraft.staticMaxHp = staticMaxHp;
     }
 }
