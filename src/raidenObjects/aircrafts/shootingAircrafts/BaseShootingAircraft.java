@@ -10,14 +10,28 @@ import utils.Faction;
  * <p>
  * Difference to BaseAircraft:
  * - has weapon (registered in constructor)
+ * </p>
+ * @author 蔡辉宇
  */
 public abstract class BaseShootingAircraft extends BaseAircraft {
     protected LaunchController weaponLaunchController;
 
-    public BaseShootingAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
-                                int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
-        super(name, x, y, sizeX, sizeY, owner,
-                maxHp, maxStepsAfterDeath, crashDamage, score);
+    /**
+     * Constructor.
+     *
+     * @param name Name of the shooting aircraft.
+     * @param imgSizeX Image width.
+     * @param imgSizeY Image height.
+     * @param faction Faction of the object.
+     * @param maxHp Maximum HP of the aircraft.
+     * @param numOfDeathEffectImages Number of images for death effect.
+     * @param crashDamage Damage damage to the other aircraft at crashing.
+     * @param score Score to {@link PlayerAircraft} when being shot by the player.
+     */
+    public BaseShootingAircraft(String name, int imgSizeX, int imgSizeY, Faction faction,
+                                int maxHp, int numOfDeathEffectImages, int crashDamage, int score) {
+        super(name, imgSizeX, imgSizeY, faction,
+                maxHp, numOfDeathEffectImages, crashDamage, score);
     }
 
     public void registerWeaponLaunchController(LaunchController weaponLaunchController) {

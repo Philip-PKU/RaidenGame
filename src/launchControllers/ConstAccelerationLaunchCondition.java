@@ -6,11 +6,28 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static world.World.rand;
 
+/**
+ * Issue launch faster and faster, with a constant acceleration.
+ *
+ * @author 蔡辉宇
+ */
 public class ConstAccelerationLaunchCondition implements LaunchCondition {
     int eventInterval, count, remainingEvents, timeOfNextEvent;
     float curDoubleProb, probAcceleration, maxDoubleProb, cooldownDeceleration, minCooldown, curCooldown;
     boolean launching;
 
+    /**
+     * Constructor.
+     *
+     * @param maxCooldown Maximum cooldown.
+     * @param cooldownDeceleration Decrement of cooldown after each launch.
+     * @param minCooldown Minimum cooldown.
+     * @param initCooldown Initial cooldown.
+     * @param eventInterval Number of steps between two launch events in one launch.
+     * @param minDoubleProb Minimum probability of issuing two launch events in one launch.
+     * @param probAcceleration Increment of doubleProb after each launch.
+     * @param maxDoubleProb Maximum probability of issuing two launch events in one launch.
+     */
     public ConstAccelerationLaunchCondition(float maxCooldown, float cooldownDeceleration, float minCooldown,
                                             int initCooldown, int eventInterval,
                                             float minDoubleProb, float probAcceleration, float maxDoubleProb) {

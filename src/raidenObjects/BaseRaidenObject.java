@@ -5,6 +5,7 @@ import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Bivector;
 import utils.Faction;
+import utils.InitLocation;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,6 +21,8 @@ import static world.World.*;
 
 /**
  * Base class of all flying objects in the game, including planes and interactants.
+ *
+ * @author 蔡辉宇
  */
 public abstract class BaseRaidenObject {
     protected String name;
@@ -32,16 +35,37 @@ public abstract class BaseRaidenObject {
     boolean alive, invisible;  // states
     static TreeMap<File, BufferedImage> file2image = new TreeMap<>();
 
-    protected BaseRaidenObject(String name, float x, float y, int imgSizeX, int imgSizeY,
-                               Faction faction) {
+    /**
+     * Constructor.
+     *
+     * @param name Name of the object (used to fetch image of the object).
+     * @param imgSizeX Image width.
+     * @param imgSizeY Image height.
+     * @param faction Faction of the object.
+     */
+    protected BaseRaidenObject(String name, int imgSizeX, int imgSizeY, Faction faction) {
         this.name = name;
-        this.x = x;
-        this.y = y;
         this.imgSizeX = imgSizeX;
         this.imgSizeY = imgSizeY;
         this.faction = faction;
         this.alive = true;
         this.invisible = false;
+    }
+
+    /**
+     * Initialize X location from given hint.
+     *
+     * @param initLocation A hint for initializing X location.
+     */
+    public void initXFromLocation(InitLocation initLocation) {
+        int halfImgSizeX = imgSizeX / 2;
+        if (initLocation.equals(InitLocation.LOC_LEFT)) {
+            setX(rand.nextInt(windowWidth / 2 - halfImgSizeX) + halfImgSizeX);
+        } else if (initLocation.equals(InitLocation.LOC_RANDOM)) {
+            setX(rand.nextInt(windowWidth - imgSizeX) + halfImgSizeX);
+        } else if (initLocation.equals(InitLocation.LOC_RIGHT)) {
+            setX(rand.nextInt(windowWidth / 2 - halfImgSizeX) + windowWidth);
+        }
     }
 
     public String getName() {
@@ -56,7 +80,6 @@ public abstract class BaseRaidenObject {
      * Returns X image size of current object. Img size is the size of the image of the object.
      *
      * @return imgSizeX
-     * @author 蔡辉宇
      */
     public int getImgSizeX() {
         return imgSizeX;
@@ -88,7 +111,6 @@ public abstract class BaseRaidenObject {
      * In default, this is just {@code imgSizeX}, but subclasses can override this behavior.
      *
      * @return hitSizeX, which defaults to imgSizeX.
-     * @author 蔡辉宇
      */
     public int getHitSizeX() {
         return imgSizeX;
@@ -146,7 +168,6 @@ public abstract class BaseRaidenObject {
      * Set MotionController for the current object, and set parent of motionController to the current object.
      *
      * @param motionController A motionController object that will control the movement of the current object.
-     * @author 蔡辉宇
      */
     public void registerMotionController(MotionController motionController) {
         this.motionController = motionController;
@@ -225,6 +246,10 @@ public abstract class BaseRaidenObject {
         return x < 0 || x >= windowWidth || y >= windowHeight;
     }
 
+    /**
+     * Paints the object.
+     * @param g A {@link Graphics} object.
+     */
     public void paint(Graphics g) {
         if (rotation != 0) {
             Graphics2D g2d = (Graphics2D) g;
@@ -276,7 +301,6 @@ public abstract class BaseRaidenObject {
      * Return a random player.
      *
      * @return A random PlayerAircraft
-     * @author 蔡辉宇
      */
     public PlayerAircraft getRandomPlayer() {
         if (player1 == null) {
@@ -299,7 +323,6 @@ public abstract class BaseRaidenObject {
      * Return the closest player.
      *
      * @return The closest PlayerAircraft
-     * @author 蔡辉宇
      */
     public PlayerAircraft getClosestPlayer() {
         float dist1 = Float.POSITIVE_INFINITY, dist2 = Float.POSITIVE_INFINITY;
@@ -316,8 +339,6 @@ public abstract class BaseRaidenObject {
 
     /**
      * Move according to the scheduled speed, and mark as dead if the current object is out of bound after moving.
-     *
-     * @author 蔡辉宇
      */
     protected void move() {
         setX(getX() + getSpeedX());
@@ -328,7 +349,6 @@ public abstract class BaseRaidenObject {
      * Rotate this object to face the given target aircraft.
      *
      * @param target The target to face by this object.
-     * @author 蔡辉宇
      */
     public void rotateToFaceTargetAircraft(BaseAircraft target) {
         if (target == null)

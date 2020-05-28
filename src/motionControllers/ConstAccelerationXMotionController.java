@@ -2,11 +2,23 @@ package motionControllers;
 
 import static world.World.gameStep;
 
-public class ConstAccelerationXMotionController extends BaseMotionController implements XAwareMotionController {
+/**
+ * A motion controller with constant acceleration in the X direction.
+ *
+ * @author 蔡辉宇
+ */
+public class ConstAccelerationXMotionController extends BaseMotionController {
     float acceleration, maxSpeedX, initSpeedX;
     boolean isAccelerating = false;
     int gameStepWhenAccelerationStarted;
 
+    /**
+     * Constructor.
+     *
+     * @param initSpeedX Initial speedX.
+     * @param acceleration Acceleration in speedX (per game step).
+     * @param maxSpeedX Maximum speedX.
+     */
     public ConstAccelerationXMotionController(float initSpeedX, float acceleration, float maxSpeedX) {
         this.acceleration = acceleration;
         this.initSpeedX = initSpeedX;
@@ -17,7 +29,6 @@ public class ConstAccelerationXMotionController extends BaseMotionController imp
         this(initSpeedX, acceleration, Float.MAX_VALUE);
     }
 
-    @Override
     public float getX() {
         return raidenObject.getX();
     }

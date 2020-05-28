@@ -5,18 +5,29 @@ import motionControllers.MotionController;
 import motionControllers.XYMotionController;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Faction;
+import utils.InitLocation;
 
 import static world.World.rand;
 import static world.World.windowWidth;
 
+/**
+ * Bonus that gives player coins.
+ * There are 3 types of {@link CoinBonus}, providing 10, 20 and 40 coins, respectively.
+ *
+ * @author 张哲瑞
+ */
 public final class CoinBonus extends BaseBonus {
+    /**
+     * The indices of current coin in the type list.
+     * Can be referenced by other classes when calling the {@link CoinBonus} constructor.
+     */
     public static int COIN_SMALL = 0, COIN_MEDIUM = 1, COIN_BIG = 2;
     public static int[] coins = {10, 20, 40};
     public static int[] sizes = {10, 18, 25};
     int coin;
 
-    public CoinBonus(float x, float y, int coinIndex) {
-        super("CoinBonus" + coins[coinIndex], x, y, sizes[coinIndex], sizes[coinIndex], Faction.BONUS);
+    public CoinBonus(int coinIndex) {
+        super("CoinBonus" + coins[coinIndex], sizes[coinIndex], sizes[coinIndex], Faction.BONUS);
         this.coin = coins[coinIndex];
         MotionController XController = new HoveringXMotionController(0.5f, 20, windowWidth - 20);
         MotionController XYController = XYMotionController.createFromXController(
@@ -24,8 +35,19 @@ public final class CoinBonus extends BaseBonus {
         this.registerMotionController(XYController);
     }
 
-    public CoinBonus(float x, float y) {
-        this(x, y, rand.nextInt(coins.length));
+    public CoinBonus(InitLocation initLocation, int coinIndex) {
+        this(coinIndex);
+        initXFromLocation(initLocation);
+    }
+
+    public CoinBonus(float x, float y, int coinIndex) {
+        this(coinIndex);
+        setX(x);
+        setY(y);
+    }
+
+    public CoinBonus(InitLocation initLocation) {
+        this(initLocation, rand.nextInt(coins.length));
     }
 
     @Override

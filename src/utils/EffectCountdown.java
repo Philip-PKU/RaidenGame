@@ -1,7 +1,17 @@
 package utils;
 
+import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+
 import static world.World.desiredFPS;
 
+/**
+ * A countdown utility for {@link raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft} effects.
+ *
+ * @see PlayerAircraft#getInvincibleCountdown()
+ * @see PlayerAircraft#getMagnetCountdown()
+ *
+ * @author 蔡辉宇
+ */
 public class EffectCountdown {
     int remainingSteps;
 

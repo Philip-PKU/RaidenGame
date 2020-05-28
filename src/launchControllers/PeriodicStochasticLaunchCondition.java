@@ -4,11 +4,26 @@ import utils.GameLevel;
 
 import static world.World.rand;
 
+/**
+ * A Periodic Stochastic Launch Condition.
+ * After activation, it first waits for {@code initCooldown} steps, then commit the first launch (deterministically).
+ * From then on, each stochastic launch will have a {@link #cooldown}-step cooldown.
+ * At each stochastic launch, with probability {@link #prob} a launch event will be issued.
+ *
+ * @author 蔡辉宇
+ */
 public class PeriodicStochasticLaunchCondition implements LaunchCondition {
     int cooldown, curCooldown;
     float prob;
     boolean firstRelease = true;
 
+    /**
+     * Constructor.
+     *
+     * @param cooldown        Number of steps between each launch cycle after the first launch.
+     * @param initCooldown    Number of steps between activation and first launch.
+     * @param prob            Probability of a launch event being actually issued at each stochastic launch.
+     */
     public PeriodicStochasticLaunchCondition(int cooldown, int initCooldown, float prob) {
         this.cooldown = cooldown;
         this.curCooldown = initCooldown;

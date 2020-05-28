@@ -21,18 +21,21 @@ import static world.World.*;
  * - has isInvincible, isAttractive,  means remaining time of the state
  * - has isAttracted, true means the aircraft(bonus) is attracted by players
  * - cause bonus, i.e. if it hits the players, it will add buff to them
+ * </p>
+ *
+ * @author 蔡辉宇 张哲瑞
  */
 public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, maxHp, stepsAfterDeath = 0;
-    protected int maxStepsAfterDeath, crashDamage;
+    protected int numOfDeathEffectImages, crashDamage;
     protected int score;
     protected float probCoin0, probCoin1, probCoin2, probInvincible, probMagnet, probSuperpower, probWeaponUpgrade, probCure;
 
-    protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
-                           int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
-        super(name, x, y, sizeX, sizeY, owner);
+    protected BaseAircraft(String name, int imgSizeX, int imgSizeY, Faction faction,
+                           int maxHp, int numOfDeathEffectImages, int crashDamage, int score) {
+        super(name, imgSizeX, imgSizeY, faction);
         this.hp = this.maxHp = maxHp;
-        this.maxStepsAfterDeath = maxStepsAfterDeath;
+        this.numOfDeathEffectImages = numOfDeathEffectImages;
         this.crashDamage = crashDamage;
         this.score = score;
     }
@@ -61,8 +64,8 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         return crashDamage;
     }
 
-    public int getMaxStepsAfterDeath() {
-        return maxStepsAfterDeath;
+    public int getNumOfDeathEffectImages() {
+        return numOfDeathEffectImages;
     }
 
 
@@ -76,11 +79,19 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         }
     }
 
+    /**
+     * Interact with a {@link PlayerAircraft}.
+     * If two aircrafts crash, they both get crash damage, unless the player aircraft has shield.
+     * @param aircraft A {@link PlayerAircraft}.
+     *                 
+     * @see InvincibleBonus
+     * @see PlayerAircraft#getInvincibleCountdown()
+     * @see raidenObjects.weapons.BaseWeapon#interactWith(BaseAircraft)
+     */
     public void interactWith(PlayerAircraft aircraft) {
         if (aircraft == null || aircraft == this)
             return;
 
-        // if player hit enemy
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
                 this.getFaction().isEnemyTo(aircraft.getFaction())) {
             this.receiveDamage(aircraft.getCrashDamage(), aircraft.getFaction());
@@ -99,10 +110,9 @@ public abstract class BaseAircraft extends BaseRaidenObject {
      * Note: The image files are all stored in "data/images".
      *
      * @return A File object representing current image of this aircraft.
-     * @author 蔡辉宇
      */
     public File getImageFile() {
-        if (stepsAfterDeath <= getMaxStepsAfterDeath()) {
+        if (stepsAfterDeath <= getNumOfDeathEffectImages()) {
             String filename = getName() + stepsAfterDeath;
             // Trick: slow down the visual effect so that aircrafts will not vanish too quickly
             if (!isAlive() && gameStep.intValue() % 2 == 0) {
@@ -118,8 +128,6 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     /**
      * This function combines all control logic for this aircraft.
      * Note: It can be overridden by children if additional logic is needed.
-     *
-     * @author 蔡辉宇
      */
     public void step() {
         if (isAlive()) {

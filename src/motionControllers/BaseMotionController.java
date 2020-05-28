@@ -2,15 +2,19 @@ package motionControllers;
 
 import raidenObjects.BaseRaidenObject;
 
+/**
+ * Base class for all {@link MotionController}s.
+ *
+ * @author 蔡辉宇
+ */
 public abstract class BaseMotionController implements MotionController {
     protected BaseRaidenObject raidenObject;
-    protected boolean activated = false;
 
     public void registerParent(BaseRaidenObject raidenObject) {
         this.raidenObject = raidenObject;
     }
 
-    public BaseRaidenObject getRaidenObject() {
+    public BaseRaidenObject getParent() {
         return raidenObject;
     }
 }

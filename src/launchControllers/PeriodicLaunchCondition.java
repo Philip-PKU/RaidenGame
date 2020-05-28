@@ -1,22 +1,26 @@
 package launchControllers;
 
+/**
+ * A periodic launch condition.
+ * After activation, it first waits for {@code initCooldown} steps, then commit the first launch.
+ * From then on, each launch will have a {@link #cooldown}-step cooldown.
+ * Each launch consists of {@link #eventsPerLaunch} launch events, which happens one after another with
+ * {@link #eventInterval} steps of interval.
+ *
+ * @author 蔡辉宇
+ */
 public class PeriodicLaunchCondition implements LaunchCondition {
     protected int cooldown, curCooldown, eventInterval, eventsPerLaunch, remainingEvents, timeOfNextEvent;
     protected boolean launching = false;
 
     /**
-     * A periodic launch condition.
-     * After activation, it first waits for {@code initCooldown} steps, then commit the first launch.
-     * After that, each launch will have a {@code cooldown}-step cooldown.
-     * Each launch consists of {@code eventsPerPeriod} launch events, which happens one after another with
-     * {@code eventInterval} steps of interval.
+     * Constructor.
      *
      * @param cooldown        Number of steps between each launch cycle after the first launch. This must be greater than
-     *                        {@code eventInterval * (eventsPerPeriod - 1)}.
+     *                        {@link #eventInterval} * ({@link #eventsPerLaunch} - 1).
      * @param initCooldown    Number of steps between activation and first launch.
      * @param eventInterval   Number of steps between two launch events in one launch.
      * @param eventsPerLaunch Number of launch events in one launch.
-     * @author 蔡辉宇
      */
     public PeriodicLaunchCondition(int cooldown, int initCooldown, int eventInterval, int eventsPerLaunch) {
         if (cooldown < 0 || initCooldown < 0 || eventInterval < 0 || eventsPerLaunch < 0) {

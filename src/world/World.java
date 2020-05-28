@@ -35,6 +35,8 @@ import static utils.PlayerNumber.TWO;
  *
  * Note: This class must stay inside a non-default package because it will be referenced
  * by other classes, and classes in the default package cannot be imported.
+ *
+ * @author 蔡辉宇 杨芳源 张哲瑞 唐宇豪
  */
 public class World extends JPanel {
     public static Background background;

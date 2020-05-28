@@ -2,11 +2,23 @@ package motionControllers;
 
 import static world.World.gameStep;
 
-public class ConstAccelerationYMotionController extends BaseMotionController implements YAwareMotionController {
+/**
+ * A motion controller with constant acceleration in the Y direction.
+ *
+ * @author 蔡辉宇
+ */
+public class ConstAccelerationYMotionController extends BaseMotionController {
     float acceleration, maxSpeedY, initSpeedY;
     boolean isAccelerating = false;
     int gameStepWhenAccelerationStarted;
 
+    /**
+     * Constructor.
+     *
+     * @param initSpeedY Initial speedY.
+     * @param acceleration Acceleration in speedY (per game step).
+     * @param maxSpeedY Maximum speedY.
+     */
     public ConstAccelerationYMotionController(float initSpeedY, float acceleration, float maxSpeedY) {
         this.acceleration = acceleration;
         this.initSpeedY = initSpeedY;
@@ -17,7 +29,6 @@ public class ConstAccelerationYMotionController extends BaseMotionController imp
         this(initSpeedY, acceleration, Float.MAX_VALUE);
     }
 
-    @Override
     public float getY() {
         return raidenObject.getY();
     }

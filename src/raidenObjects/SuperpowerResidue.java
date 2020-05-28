@@ -7,12 +7,26 @@ import java.nio.file.Paths;
 
 import static world.World.gameStep;
 
+/**
+ * An object whose sole purpose is to display the residue of superpower firing.
+ *
+ * @author 蔡辉宇
+ */
 public class SuperpowerResidue extends BaseRaidenObject {
     int stepsAfterBombing;
     static final int maxStepsAfterBombing = 12;
 
+    /**
+     * Constructor.
+     *
+     * @param x       Initial X coordinate.
+     * @param y       Initial Y coordinate.
+     * @param faction Factor of this object.
+     */
     public SuperpowerResidue(float x, float y, Faction faction) {
-        super("Bomb", x, y, 400, 400, faction);
+        super("Bomb", 400, 400, faction);
+        setX(x);
+        setY(y);
         markAsDead();
     }
 
@@ -27,7 +41,6 @@ public class SuperpowerResidue extends BaseRaidenObject {
      * Note: The image files are all stored in "data/images".
      *
      * @return A File object representing current image of this superpower residue.
-     * @author 蔡辉宇
      */
     public File getImageFile() {
         if (stepsAfterBombing <= maxStepsAfterBombing) {

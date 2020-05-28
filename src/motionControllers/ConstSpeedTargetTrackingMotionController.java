@@ -6,12 +6,25 @@ import utils.Bivector;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
-public class ConstSpeedTargetTrackingMotionController extends BaseMotionController implements TargetAwareMotionController {
+/**
+ * A target tracking motion controller with constant speed.
+ *
+ * @author 蔡辉宇
+ */
+public class ConstSpeedTargetTrackingMotionController extends BaseMotionController implements TargetTrackingMotionController {
     BaseRaidenObject target;
     float acceleration, constSpeed, fallbackAngle;
     Bivector currentSpeed;
     boolean firstSpeedUpdate = true;
 
+    /**
+     * Constructor.
+     *
+     * @param target The tracked target. A {@link BaseRaidenObject}.
+     * @param acceleration Multiplication constant for speed updates.
+     * @param constSpeed Constant speed of movement.
+     * @param fallbackAngle Fallback initial motion angle when the target is dead.
+     */
     public ConstSpeedTargetTrackingMotionController(BaseRaidenObject target, float acceleration, float constSpeed,
                                                     float fallbackAngle) {
         this.target = target;
@@ -22,12 +35,6 @@ public class ConstSpeedTargetTrackingMotionController extends BaseMotionControll
 
     public ConstSpeedTargetTrackingMotionController(BaseRaidenObject target, float acceleration, float constSpeed) {
         this(target, acceleration, constSpeed, (float) Math.PI);
-    }
-
-    private Bivector getSpeedUpdate() {
-        float targetDX = target.getX() - raidenObject.getX();
-        float targetDY = target.getY() - raidenObject.getY();
-        return new Bivector(targetDX, targetDY).normalize(constSpeed);
     }
 
     @Override
@@ -43,15 +50,16 @@ public class ConstSpeedTargetTrackingMotionController extends BaseMotionControll
         }
         if (firstSpeedUpdate) {
             firstSpeedUpdate = false;
-            currentSpeed = getSpeedUpdate();
+            currentSpeed = getUnnormalizedSpeedUpdate().normalize(constSpeed);
         } else
-            currentSpeed = currentSpeed.add(getSpeedUpdate().multiply(acceleration)).normalize(constSpeed);
+            currentSpeed = currentSpeed.add(getUnnormalizedSpeedUpdate().normalize(constSpeed).multiply(acceleration))
+                    .normalize(constSpeed);
         raidenObject.setSpeedX(currentSpeed.X);
         raidenObject.setSpeedY(currentSpeed.Y);
     }
 
     @Override
-    public float distToTarget() {
-        return new Bivector(raidenObject.getX() - target.getX(), raidenObject.getY() - target.getY()).getNorm();
+    public BaseRaidenObject getTarget() {
+        return target;
     }
 }

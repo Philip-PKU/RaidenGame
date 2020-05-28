@@ -2,9 +2,9 @@ package utils;
 
 /**
  * An enum for the controller of the player.
- * Used in constructor of {@code PlayerAircraft} for selcting motion controller.
+ * Used in constructor of {@link raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft} for selecting motion controller.
  *
- * @author �̻���
+ * @author 蔡辉宇
  */
 public enum PlayerController {
     KEYBOARD1, KEYBOARD2, NETWORK;

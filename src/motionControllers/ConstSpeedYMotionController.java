@@ -1,8 +1,17 @@
 package motionControllers;
 
-public class ConstSpeedYMotionController extends BaseMotionController implements YAwareMotionController {
+/**
+ * A motion controller with constant speed Y.
+ *
+ * @author 蔡辉宇
+ */
+public class ConstSpeedYMotionController extends BaseMotionController {
     float speedY;
 
+    /**
+     * Constructor.
+     * @param speedY Constant speedY.
+     */
     public ConstSpeedYMotionController(float speedY) {
         this.speedY = speedY;
     }
@@ -11,7 +20,6 @@ public class ConstSpeedYMotionController extends BaseMotionController implements
         raidenObject.setSpeedY(speedY);
     }
 
-    @Override
     public float getY() {
         return raidenObject.getY();
     }

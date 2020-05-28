@@ -5,21 +5,32 @@ import launchControllers.SimpleLaunchController;
 import motionControllers.*;
 import raidenObjects.weapons.BigBullet;
 import utils.Faction;
+import utils.InitLocation;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static world.World.*;
 
+/**
+ * BigShootingAircraft. A big, heavily-armed aircraft that ruthlessly bombard everything beneath it.
+ * Its weapon ({@link BigBullet}) is aimed at the a random location below and then shot.
+ * The weapon does not change its course and speed during its life cycle.
+ * Its motion is controlled by a {@link TwoStagedMotionController}: the first takes it into the map, and the second
+ * (a {@link XYMotionController} created from {@link HoveringXMotionController}) makes it hover around its initial
+ * X position.
+ *
+ * @author 蔡辉宇
+ */
 public final class BigShootingAircraft extends BaseShootingAircraft {
-    private static int staticMaxHp = 500;
+    private static int defaultMaxHp = 500, staticMaxHp = defaultMaxHp;
 
-    public BigShootingAircraft(float x, float y) {
-        super("BigShootingAircraft", x, y, 100, 65, Faction.ENEMY,
+    public BigShootingAircraft() {
+        super("BigShootingAircraft",100, 65, Faction.ENEMY,
                 staticMaxHp, 13, 300, 180);
-        YAwareMotionController stageOneController = new ConstSpeedYMotionController(5);
+        ConstSpeedYMotionController stageOneController = new ConstSpeedYMotionController(5);
         MotionController stageTwoXController = new HoveringXMotionController(1, max(0, x - 60f), min(x + 60f, windowWidth));
         MotionController stageTwoController = XYMotionController.createFromXController(
-                stageTwoXController, 0.5f);
+                stageTwoXController, 0.9f);
         this.registerMotionController(new TwoStagedMotionController(stageOneController, stageTwoController,
                 () -> getY() > 80,
                 () -> getWeaponLaunchController().activate()));
@@ -42,9 +53,24 @@ public final class BigShootingAircraft extends BaseShootingAircraft {
         probMagnet = 0.05f;
     }
 
+    public BigShootingAircraft(float x, float y) {
+        this();
+        setX(x);
+        setY(y);
+    }
+
+    public BigShootingAircraft(InitLocation initLocation) {
+        this();
+        initXFromLocation(initLocation);
+    }
+
     @Override
     public float getHitTopLeftY() {
         return getY() - 10;
+    }
+
+    public static int getDefaultMaxHp() {
+        return defaultMaxHp;
     }
 
     public static int getStaticMaxHp() {

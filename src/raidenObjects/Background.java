@@ -7,12 +7,18 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Paths;
 
+/**
+ * Background of the {@link utils.PageStatus#GAMING} state.
+ * It consists of two identical image objects which can concatenate to form a smooth image.
+ *
+ * @author 蔡辉宇
+ */
 public class Background extends BaseRaidenObject {
     private float y2;
     private float maxSpeed = 1;
 
     public Background() {
-        super("Background4", 0, 0, 640, 1260, Faction.BONUS);
+        super("Background4", 640, 1260, Faction.BONUS);
         y2 = -imgSizeY;
     }
 

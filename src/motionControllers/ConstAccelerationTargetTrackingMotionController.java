@@ -3,12 +3,28 @@ package motionControllers;
 import raidenObjects.BaseRaidenObject;
 import utils.Bivector;
 
-public class ConstAccelerationTargetTrackingMotionController extends BaseMotionController implements TargetAwareMotionController {
+/**
+ * A target tracking MotionController with constant acceleration.
+ * Given a target, it initializes its speed by (0, {@link #initSpeed}.
+ * Then, in each step, it adjusts its speed by {@link #acceleration}, in the direction of the tracked {@link #target}.
+ * When it reaches {@link #maxSpeed}, it stops accelerating.
+ *
+ * @author 蔡辉宇
+ */
+public class ConstAccelerationTargetTrackingMotionController extends BaseMotionController implements TargetTrackingMotionController {
     BaseRaidenObject target;
     float acceleration, initSpeed, maxSpeed;
     Bivector currentSpeed;
     boolean firstSpeedUpdate = true, maxSpeedReached = false;
 
+    /**
+     * Constructor.
+     *
+     * @param target The target being tracked.
+     * @param acceleration Normalization constant for speed updates.
+     * @param initSpeed Initial speedY.
+     * @param maxSpeed Maximum speed. Once reached, the controller no longer takes speed updates.
+     */
     public ConstAccelerationTargetTrackingMotionController(BaseRaidenObject target, float acceleration, float initSpeed, float maxSpeed) {
         this.target = target;
         this.acceleration = acceleration;
@@ -16,10 +32,8 @@ public class ConstAccelerationTargetTrackingMotionController extends BaseMotionC
         this.maxSpeed = maxSpeed;
     }
 
-    private Bivector getUnnormalizedSpeedUpdate() {
-        float targetDX = target.getX() - raidenObject.getX();
-        float targetDY = target.getY() - raidenObject.getY();
-        return new Bivector(targetDX, targetDY);
+    public BaseRaidenObject getTarget() {
+        return target;
     }
 
     @Override
@@ -38,10 +52,5 @@ public class ConstAccelerationTargetTrackingMotionController extends BaseMotionC
         }
         raidenObject.setSpeedX(currentSpeed.X);
         raidenObject.setSpeedY(currentSpeed.Y);
-    }
-
-    @Override
-    public float distToTarget() {
-        return new Bivector(raidenObject.getX() - target.getX(), raidenObject.getY() - target.getY()).getNorm();
     }
 }

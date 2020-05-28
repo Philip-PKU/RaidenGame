@@ -1,5 +1,12 @@
 package utils;
 
+/**
+ * A utility for keeping track of the game step.
+ *
+ * @see world.World#gameStep
+ *
+ * @author 蔡辉宇
+ */
 public class MutableInt {
     int value;
 

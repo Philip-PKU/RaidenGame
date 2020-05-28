@@ -2,6 +2,7 @@ package raidenObjects.aircrafts.shootingAircrafts;
 
 import launchControllers.*;
 import motionControllers.KeyboardMotionController;
+import raidenObjects.BaseRaidenObject;
 import raidenObjects.SuperpowerResidue;
 import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.BlackholeAircraft;
@@ -12,6 +13,7 @@ import raidenObjects.weapons.StandardPlayerBullet;
 import raidenObjects.weapons.TrackingPlayerBullet;
 import utils.EffectCountdown;
 import utils.Faction;
+import utils.InitLocation;
 import utils.PlayerController;
 import utils.keyAdapters.BaseRaidenKeyAdapter;
 
@@ -19,30 +21,70 @@ import java.io.File;
 import java.nio.file.Paths;
 
 import static java.lang.Math.*;
+import static raidenObjects.bonus.WeaponUpgradeBonus.*;
 import static world.World.*;
 
+/**
+ * PlayerAircraft. A mobile, versatile aircraft with little strength but great potential.
+ *
+ * @author 蔡辉宇 张哲瑞 唐宇豪
+ */
 public final class PlayerAircraft extends BaseShootingAircraft {
-    private static int hitSizeX = 25, hitSizeY = 20;
+    /**
+     * X hitSize of the {@link PlayerAircraft}.
+     * It is smaller that the aircraft's {@link BaseRaidenObject#imgSizeX} to reduce unwanted collision,
+     * which is judged by rectangle-based algorithms.
+     * @see raidenObjects.BaseRaidenObject#hasHit(BaseRaidenObject)
+     */
+    private static int hitSizeX = 25;
+    /**
+     * Y hitSize of the {@link PlayerAircraft}.
+     * It is smaller that the aircraft's {@link BaseRaidenObject#imgSizeY} to reduce unwanted collision,
+     * which is judged by rectangle-based algorithms.
+     * @see raidenObjects.BaseRaidenObject#hasHit(BaseRaidenObject)
+     */
+    private static int hitSizeY = 20;
     private final int superpowerCost = 200, coinScore = 10, highestWeaponLevel = 3;
-    private static int staticMaxHp = 200;
+    private static int defaultMaxHp = 200, staticMaxHp = defaultMaxHp;
 
-    public static int UPDATE_WEAPON_NONE = 0, UPDATE_WEAPON_MULTI = 1, UPDATE_WEAPON_SINGLE = 2, UPDATE_WEAPON_TRACKING = 3;
     protected int coin = 0;
     protected int availableSuperpowers;
     protected BaseRaidenKeyAdapter keyAdapter;
     protected SimpleLaunchController<KeyboardSuperpowerLaunchCondition> superpowerLaunchController;
     protected SimpleLaunchControllerWithLevel<? extends LaunchCondition> trackingBulletLaunchController;
     protected SimpleLaunchController<? extends LaunchCondition> beamLaunchController;
-    protected EffectCountdown invincibleCountdown = new EffectCountdown(), magnetCountdown = new EffectCountdown();
+    /**
+     * An {@link EffectCountdown} object controlling the invincible effect.
+     * This effect protects the {@link PlayerAircraft} from all weapon damages for several seconds.
+     * If the player bumps into an enemy aircraft, the shield would weaken and become ineffective
+     * in a short period of time.
+     */
+    protected EffectCountdown invincibleCountdown = new EffectCountdown();
+    /**
+     * An {@link EffectCountdown} object controlling the magnet effect.
+     * This effect attracts all bonuses except {@link raidenObjects.bonus.WeaponUpgradeBonus} to this aircraft.
+     * The effect will disable automatically in a few seconds.
+     */
+    protected EffectCountdown magnetCountdown = new EffectCountdown();
 
-    class WeaponMultiLaunchController extends SimpleLaunchControllerWithLevel<LaunchCondition> {
-        public WeaponMultiLaunchController(int weaponLevel) {
+    /**
+     * Launch Controller of {@link StandardPlayerBullet}.
+     * <p>
+     * Level 0: Launches 3 {@link StandardPlayerBullet}s each time, covering 16 degrees.
+     * Level 1: Launches 5 {@link StandardPlayerBullet}s each time, covering 20 degrees.
+     * Level 2: Launches 7 {@link StandardPlayerBullet}s each time, covering 70 degrees.
+     * Level 3: Everything in level 2 plus an extra {@link PlayerBeam} that penetrates everything ahead. The beam yields
+     *          double damage in the first few seconds.
+     * </p>
+     *
+     * @see StandardPlayerBullet
+     *
+     * @author 唐宇豪 蔡辉宇
+     */
+    public class StandardBulletLaunchScheduler extends SimpleLaunchControllerWithLevel<LaunchCondition> {
+        public StandardBulletLaunchScheduler(int weaponLevel) {
             super("PlayerAircraft shoots StandardPlayerBullet", weaponLevel);
-            if (weaponLevel >= highestWeaponLevel) {
-                setLaunchCondition(KeyboardWeaponLaunchConditionWrapper.createFromTwoStagedPeriodicLaunchCondition(1, 2, 200, keyAdapter));
-            } else {
-                setLaunchCondition(KeyboardWeaponLaunchConditionWrapper.createFromPeriodicLaunchCondition(2, keyAdapter));
-            }
+            setLaunchCondition(KeyboardWeaponLaunchCondition.createFromPeriodicLaunchCondition(2, keyAdapter));
             if (weaponLevel == 0) {
                 this.setLaunchable(() -> {
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 0));
@@ -76,27 +118,41 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         }
     }
 
-
-    class WeaponSingleLaunchController extends SimpleLaunchControllerWithLevel<LaunchCondition> {
-        public WeaponSingleLaunchController(int weaponLevel) {
+    /**
+     * Launch Controller for {@link BigPlayerBullet}.
+     * <p>
+     * Level 0: Launches 1 {@link BigPlayerBullet} each time.
+     * Level 1: Launches 2 {@link BigPlayerBullet} each time. The bullets have 80% strength of that in Level 0.
+     * Level 2: Launches 4 {@link BigPlayerBullet} each time. The bullets have 60% strength of that in Level 0.
+     * Level 3: Everything in level 2 plus an extended {@link InvincibleBonus} that allows player to yield insane damage
+     *          while avoid being harmed.
+     * </p>
+     *
+     * @see BigPlayerBullet
+     *
+     * @author 唐宇豪 蔡辉宇
+     */
+    public class BigBulletLaunchController extends SimpleLaunchControllerWithLevel<LaunchCondition> {
+        public BigBulletLaunchController(int weaponLevel) {
             super("PlayerAircraft shoots BigPlayerBullet", weaponLevel);
             if (weaponLevel >= highestWeaponLevel) {
                 getInvincibleCountdown().extendDurationBy(InvincibleBonus.getEffectiveGameSteps() * 2);
             }
-            setLaunchCondition(KeyboardWeaponLaunchConditionWrapper.createFromPeriodicLaunchCondition(3, keyAdapter));
+            setLaunchCondition(KeyboardWeaponLaunchCondition.createFromPeriodicLaunchCondition(3, keyAdapter));
 
             if (weaponLevel == 0) {
+                BigPlayerBullet.setStaticDamage(BigPlayerBullet.getDefaultDamage());
                 this.setLaunchable(() -> {
                     interactantList.add(new BigPlayerBullet(getX(), getMinY(), getFaction(), signum(getSpeedX())));
                 });
             } else if (weaponLevel == 1) {
-                BigPlayerBullet.setStaticDamage(BigPlayerBullet.getStaticDamage() * 4 / 5);
+                BigPlayerBullet.setStaticDamage(BigPlayerBullet.getDefaultDamage() * 4 / 5);
                 this.setLaunchable(() -> {
                     interactantList.add(new BigPlayerBullet(getX() - 10, getMinY(), getFaction(), signum(getSpeedX())));
                     interactantList.add(new BigPlayerBullet(getX() + 10, getMinY(), getFaction(), signum(getSpeedX())));
                 });
             } else if (weaponLevel >= 2) {
-                BigPlayerBullet.setStaticDamage(BigPlayerBullet.getStaticDamage() * 3 / 4);
+                BigPlayerBullet.setStaticDamage(BigPlayerBullet.getDefaultDamage() * 3 / 4);
                 this.setLaunchable(() -> {
                     interactantList.add(new BigPlayerBullet(getX() - 10, getMinY(), getFaction(), signum(getSpeedX())));
                     interactantList.add(new BigPlayerBullet(getX() - 5, getMinY(), getFaction(), signum(getSpeedX())));
@@ -110,17 +166,34 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         }
     }
 
-    class BeamLaunchController extends SimpleLaunchController<LaunchCondition> {
+    /**
+     * Launch Controller of {@link PlayerBeam}.
+     *
+     * @see PlayerBeam
+     *
+     * @author 蔡辉宇
+     */
+    public class BeamLaunchController extends SimpleLaunchController<LaunchCondition> {
         public BeamLaunchController() {
             super("PlayerAircraft fires PlayerBeam");
-            setLaunchCondition(KeyboardWeaponLaunchConditionWrapper.createFromPeriodicLaunchCondition(1, keyAdapter));
+            PlayerBeam.setStaticDamage(PlayerBeam.getStaticDamage() * 2);
+            setLaunchCondition(KeyboardWeaponLaunchCondition.createFromTwoStagedPeriodicLaunchCondition(1, 1, 150, keyAdapter,
+                    () -> PlayerBeam.setStaticDamage(PlayerBeam.getStaticDamage() / 2)));
             setLaunchable(() -> {
                 interactantList.add(new PlayerBeam(getX(), getMinY() + 10, getFaction()));
             });
         }
     }
 
-    class SuperpowerLaunchController extends SimpleLaunchController<KeyboardSuperpowerLaunchCondition> {
+    /**
+     * Launch Controller of {@link PlayerAircraft}'s superpower. The ultimate weapon that brings annihilation
+     * to the enemy.
+     *
+     * @see TrackingPlayerBullet
+     *
+     * @author 唐宇豪 蔡辉宇
+     */
+    public class SuperpowerLaunchController extends SimpleLaunchController<KeyboardSuperpowerLaunchCondition> {
         public SuperpowerLaunchController(int cooldown) {
             super("PlayerAircraft uses superpower");
             setLaunchCondition(new KeyboardSuperpowerLaunchCondition(cooldown, keyAdapter,
@@ -138,7 +211,16 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         }
     }
 
-    class TrackingBulletLaunchController extends SimpleLaunchControllerWithLevel<LaunchCondition> {
+    /**
+     * Launch Controller for {@link TrackingPlayerBullet}.
+     * <p>
+     * Level 0: Launches 1 {@link TrackingPlayerBullet} each time.
+     * Level 1: Launches 2 {@link TrackingPlayerBullet}s each time.
+     * Level 2: Launches 3 {@link TrackingPlayerBullet}s each time.
+     * Level 3: Everything in level 2 plus extra 70 swiftly-fired {@link TrackingPlayerBullet}s.
+     * </p>
+     */
+    public class TrackingBulletLaunchController extends SimpleLaunchControllerWithLevel<LaunchCondition> {
         public TrackingBulletLaunchController(int weaponLevel) {
             super("PlayerAircraft shoots TrackingBullet", weaponLevel);
             setLaunchable(() -> {
@@ -160,8 +242,14 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         }
     }
 
-    public PlayerAircraft(float x, float y, Faction owner, PlayerController playerController) {
-        super("Player0", x, y, 50, 40, owner,
+    /**
+     * Constructor.
+     *
+     * @param owner            Owner of this aircraft.
+     * @param playerController Controller of this aircraft. Used to determine motion & weapon controllers.
+     */
+    public PlayerAircraft(Faction owner, PlayerController playerController) {
+        super("Player0",50, 40, owner,
                 staticMaxHp, 0, 100, 0);
         if (!owner.isPlayer())
             throw new RuntimeException("Invalid owner: player must be owned by either Player1 or Player2.");
@@ -170,9 +258,20 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         else if (playerController == PlayerController.KEYBOARD2)
             keyAdapter = keyAdapter2;
         this.registerMotionController(new KeyboardMotionController(keyAdapter, 5));
-        this.registerWeaponLaunchController(new WeaponMultiLaunchController(0), true);
+        this.registerWeaponLaunchController(new StandardBulletLaunchScheduler(0), true);
         // this.registerWeaponLaunchController(new WeaponSingleLaunchController(0), true);
         this.registerSuperpowerLaunchController(new SuperpowerLaunchController(10), true);
+    }
+
+    public PlayerAircraft(float x, float y, Faction owner, PlayerController playerController) {
+        this(owner, playerController);
+        setX(x);
+        setY(y);
+    }
+
+    public PlayerAircraft(InitLocation initLocation, Faction owner, PlayerController playerController) {
+        this(owner, playerController);
+        initXFromLocation(initLocation);
     }
 
     public EffectCountdown getInvincibleCountdown() {
@@ -213,6 +312,14 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             beamLaunchController.activate();
     }
 
+    /**
+     * Calculate score of the aircraft by the equation
+     * {@link #score}
+     *     + {@link #coin} * {@link #coinScore}
+     *     + {@link #availableSuperpowers} * {@link #superpowerCost} * {@link #coinScore}.
+     *
+     * @return Current score of the aircraft.
+     */
     public int calculateScore() {
         return score + coin * coinScore + availableSuperpowers * superpowerCost * coinScore;
     }
@@ -221,6 +328,11 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         return coin;
     }
 
+    /**
+     * Receive {@code coin} coins. If current coin number exceeds {@link #superpowerCost}, clear them and add an
+     * available superpower to the aircraft.
+     * @param coin Number of coins to be received.
+     */
     public void receiveCoin(int coin) {
         this.coin += coin;
         if (this.coin >= superpowerCost) {
@@ -254,6 +366,10 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         return hitSizeY;
     }
 
+    public static int getDefaultMaxHp() {
+        return defaultMaxHp;
+    }
+
     public static int getStaticMaxHp() {
         return staticMaxHp;
     }
@@ -262,6 +378,10 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         PlayerAircraft.staticMaxHp = staticMaxHp;
     }
 
+    /**
+     * Return the image file.
+     * @return A File object representing current image of this aircraft.
+     */
     @Override
     public File getImageFile() {
         if (!isAlive())
@@ -277,27 +397,36 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         return Paths.get("data", "images", prefix + ".png").toFile();
     }
 
+    /**
+     * Mark this aircraft as dead.
+     * Unfortunately we don't have visual effect for {@link PlayerAircraft},
+     * so we make it disappear from the screen immediately.
+     */
     @Override
     public void markAsDead() {
         super.markAsDead();
         becomeInvisible();
     }
 
+    /**
+     * Update the aircraft's weapon system after it has received a weapon bonus.
+     * @param updateWeaponType Type of received weapon bonus.
+     */
     public void updateWeapon(int updateWeaponType) {
         if (updateWeaponType == UPDATE_WEAPON_NONE)
             return;  // No weapon updates to commit
 
         SimpleLaunchControllerWithLevel<? extends LaunchCondition> currentWeaponLaunchController = (SimpleLaunchControllerWithLevel<? extends LaunchCondition>) getWeaponLaunchController();
-        if (updateWeaponType == UPDATE_WEAPON_MULTI) {
+        if (updateWeaponType == UPDATE_WEAPON_STANDARD) {
             this.registerWeaponLaunchController(
-                    new WeaponMultiLaunchController(
-                            currentWeaponLaunchController instanceof WeaponMultiLaunchController ?
+                    new StandardBulletLaunchScheduler(
+                            currentWeaponLaunchController instanceof StandardBulletLaunchScheduler ?
                                     currentWeaponLaunchController.getLevel() + 1 : 0),
                     true);
-        } else if (updateWeaponType == UPDATE_WEAPON_SINGLE) {
+        } else if (updateWeaponType == UPDATE_WEAPON_BIG) {
             this.registerWeaponLaunchController(
-                    new WeaponSingleLaunchController(
-                            currentWeaponLaunchController instanceof WeaponSingleLaunchController ?
+                    new BigBulletLaunchController(
+                            currentWeaponLaunchController instanceof BigBulletLaunchController ?
                                     currentWeaponLaunchController.getLevel() + 1 : 0),
                     true);
         } else if (updateWeaponType == UPDATE_WEAPON_TRACKING) {
@@ -327,6 +456,11 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         }
     }
 
+    /**
+     * Get the enemy to track down using an evaluation function.
+     * @param left Should we find the enemy to the left or right of this aircraft?
+     * @return The enemy chosen (according to the evaluation function) which will be tracked down by a {@link TrackingPlayerBullet}.
+     */
     public BaseAircraft getEnemyToTrack(boolean left) {
         BaseAircraft result = null;
         float maxScore = Float.MIN_VALUE;

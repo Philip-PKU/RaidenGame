@@ -4,12 +4,20 @@ import motionControllers.ConstAccelerationYMotionController;
 import motionControllers.ConstSpeedYMotionController;
 import motionControllers.TwoStagedMotionController;
 import utils.Faction;
+import utils.InitLocation;
 
+/**
+ * BumpingAircraft. A light-weighted aircraft so hostile to the players that it is willing to sacrifice itself to kill
+ * them.
+ * Its motion is controller by a {@link ConstAccelerationYMotionController} which makes it rush straight south.
+ *
+ * @author 蔡辉宇
+ */
 public final class BumpingAircraft extends BaseAircraft {
-    private static int staticMaxHp = 50;
+    private static int defaultMaxHp = 50, staticMaxHp = defaultMaxHp;
 
-    public BumpingAircraft(float x, float y) {
-        super("BumpingAircraft", x, y, 30, 23, Faction.ENEMY,
+    public BumpingAircraft() {
+        super("BumpingAircraft",30, 23, Faction.ENEMY,
                 staticMaxHp, 13, 49, 50);
         ConstSpeedYMotionController stageOneMotionController = new ConstSpeedYMotionController(2);
         ConstAccelerationYMotionController stageTwoMotionController = new ConstAccelerationYMotionController(4, 0.05f, 14);
@@ -19,6 +27,21 @@ public final class BumpingAircraft extends BaseAircraft {
         probCoin0 = 0.1f;
         probCoin1 = 0.2f;
         probCoin2 = 0.1f;
+    }
+
+    public BumpingAircraft(float x, float y) {
+        this();
+        setX(x);
+        setY(y);
+    }
+
+    public BumpingAircraft(InitLocation initLocation) {
+        this();
+        initXFromLocation(initLocation);
+    }
+
+    public static int getDefaultMaxHp() {
+        return defaultMaxHp;
     }
 
     public static int getStaticMaxHp() {

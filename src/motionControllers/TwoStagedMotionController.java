@@ -1,16 +1,30 @@
 package motionControllers;
 
 import raidenObjects.BaseRaidenObject;
+import utils.Callback;
 import utils.Condition;
 
+/**
+ * A two staged motion controller that uses {@link #stageTransitionCondition} to schedule stage transitions.
+ *
+ * @author 蔡辉宇
+ */
 public class TwoStagedMotionController implements MotionController {
     MotionController stageOneScheduler, stageTwoScheduler, currentScheduler;
     Condition stageTransitionCondition;
-    StateTransitionCallback stageTransitionCallback;
+    Callback stageTransitionCallback;
 
+    /**
+     * Constructor.
+     *
+     * @param stageOneScheduler MotionController in stage one.
+     * @param stageTwoScheduler MotionController in stage two.
+     * @param stageTransitionCondition A {@link Condition} object specifying state transition conditions.
+     * @param stageTransitionCallback A {@link Callback} object containing logic when stage transition occurs.
+     */
     public TwoStagedMotionController(MotionController stageOneScheduler, MotionController stageTwoScheduler,
                                      Condition stageTransitionCondition,
-                                     StateTransitionCallback stageTransitionCallback) {
+                                     Callback stageTransitionCallback) {
         this.currentScheduler = this.stageOneScheduler = stageOneScheduler;
         this.stageTwoScheduler = stageTwoScheduler;
         this.stageTransitionCondition = stageTransitionCondition;
@@ -21,7 +35,7 @@ public class TwoStagedMotionController implements MotionController {
         this(stageOneScheduler, stageTwoScheduler, stageTransitionCondition, null);
     }
 
-    public void setStageTransitionCallback(StateTransitionCallback stageTransitionCallback) {
+    public void setStageTransitionCallback(Callback stageTransitionCallback) {
         this.stageTransitionCallback = stageTransitionCallback;
     }
 
@@ -32,8 +46,8 @@ public class TwoStagedMotionController implements MotionController {
     }
 
     @Override
-    public BaseRaidenObject getRaidenObject() {
-        return currentScheduler.getRaidenObject();
+    public BaseRaidenObject getParent() {
+        return currentScheduler.getParent();
     }
 
     public void scheduleSpeed() {
@@ -41,7 +55,7 @@ public class TwoStagedMotionController implements MotionController {
             currentScheduler = stageTwoScheduler;
             resetSpeed();
             if (stageTransitionCallback != null)
-                stageTransitionCallback.stageOneFinished();
+                stageTransitionCallback.callback();
         }
         currentScheduler.scheduleSpeed();
     }

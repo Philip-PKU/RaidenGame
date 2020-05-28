@@ -1,14 +1,29 @@
 package launchControllers;
 
+import utils.Launchable;
+
+/**
+ * A simple implementation of {@link LaunchController}.
+ * @param <T> Type of {@link #launchCondition}.
+ *
+ * @author 蔡辉宇
+ */
 public class SimpleLaunchController<T extends LaunchCondition> implements LaunchController {
     String name;
-    T LaunchCondition;
+    T launchCondition;
     Launchable launchable;
     boolean activated = false;
 
-    public SimpleLaunchController(String name, T LaunchCondition, Launchable launchable) {
+    /**
+     * Constructor.
+     *
+     * @param name Name (description) of the launch controller, for logging purposes.
+     * @param launchCondition A {@link LaunchCondition} object judging when to launch.
+     * @param launchable A {@link Launchable} object implementing the launch.
+     */
+    public SimpleLaunchController(String name, T launchCondition, Launchable launchable) {
         this.name = name;
-        this.LaunchCondition = LaunchCondition;
+        this.launchCondition = launchCondition;
         this.launchable = launchable;
     }
 
@@ -17,7 +32,7 @@ public class SimpleLaunchController<T extends LaunchCondition> implements Launch
     }
 
     public T getLaunchCondition() {
-        return LaunchCondition;
+        return launchCondition;
     }
 
     @Override
@@ -30,7 +45,7 @@ public class SimpleLaunchController<T extends LaunchCondition> implements Launch
     }
 
     public void setLaunchCondition(T launchCondition) {
-        this.LaunchCondition = launchCondition;
+        this.launchCondition = launchCondition;
     }
 
     public void setLaunchable(Launchable launchable) {
@@ -39,7 +54,7 @@ public class SimpleLaunchController<T extends LaunchCondition> implements Launch
 
     @Override
     public void launchIfPossible() {
-        if (activated && LaunchCondition.shouldLaunchNow()) {
+        if (activated && launchCondition.shouldLaunchNow()) {
             launchable.issueLaunchEvent();
         }
     }

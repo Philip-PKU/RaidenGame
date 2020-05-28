@@ -2,22 +2,33 @@ package raidenObjects.aircrafts;
 
 import motionControllers.ConstSpeedYMotionController;
 import utils.Faction;
+import utils.InitLocation;
 
+/**
+ * BlackholeAircraft. The nightmare of all {@link raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft}s.
+ * Not only can it suck in any player without a shield who dare to step in the event horizon,
+ * it also sucks in the player's bullets, blocking them from reaching the enemy. The only player's weapon
+ * that comes through the black hole is the {@link raidenObjects.weapons.PlayerBeam}.
+ * Its motion is controller by a {@link ConstSpeedYMotionController} which makes it go straight south.
+ *
+ * @author 张哲瑞
+ */
 public final class BlackholeAircraft extends BaseAircraft {
-    private static int staticMaxHp = Integer.MAX_VALUE;
-
-    public BlackholeAircraft(float x, float y) {
-        super("BlackHoleAircraft", x, y, 65, 65, Faction.ENEMY,
-                staticMaxHp, 0, Integer.MAX_VALUE, 0);
+    public BlackholeAircraft() {
+        super("BlackHoleAircraft", 65, 65, Faction.ENEMY,
+                Integer.MAX_VALUE, 0, Integer.MAX_VALUE, 0);
         this.registerMotionController(new ConstSpeedYMotionController(0.5f));
     }
 
-    public static int getStaticMaxHp() {
-        return staticMaxHp;
+    public BlackholeAircraft(float x, float y) {
+        this();
+        setX(x);
+        setY(y);
     }
 
-    public static void setStaticMaxHp(int staticMaxHp) {
-        BlackholeAircraft.staticMaxHp = staticMaxHp;
+    public BlackholeAircraft(InitLocation initLocation) {
+        this();
+        initXFromLocation(initLocation);
     }
 
     /**

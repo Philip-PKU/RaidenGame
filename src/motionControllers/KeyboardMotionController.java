@@ -4,13 +4,23 @@ import utils.keyAdapters.BaseRaidenKeyAdapter;
 
 import static world.World.isOutOfWindow;
 
+/**
+ * A motion controller that set speed according to keyboard inputs.
+ * The controller does coordinate check to ensure the parent does not goes of screen.
+ */
 public class KeyboardMotionController extends BaseMotionController implements MotionController {
     BaseRaidenKeyAdapter keyAdapter;
-    float maxSpeed;
+    float constSpeed;
 
-    public KeyboardMotionController(BaseRaidenKeyAdapter keyAdapter, float maxSpeed) {
+    /**
+     * Constructor.
+     *
+     * @param keyAdapter A {@link BaseRaidenKeyAdapter} controlling this MotionController.
+     * @param constSpeed Constant speed of motion.
+     */
+    public KeyboardMotionController(BaseRaidenKeyAdapter keyAdapter, float constSpeed) {
         this.keyAdapter = keyAdapter;
-        this.maxSpeed = maxSpeed;
+        this.constSpeed = constSpeed;
     }
 
     @Override
@@ -19,20 +29,20 @@ public class KeyboardMotionController extends BaseMotionController implements Mo
         raidenObject.setSpeedX(0);
         raidenObject.setSpeedY(0);
         if ((arrowState & keyAdapter.LEFT) != 0 &&
-                !isOutOfWindow(raidenObject.getMinX() - maxSpeed, raidenObject.getMinY()) &&
-                !isOutOfWindow(raidenObject.getMinX() - maxSpeed, raidenObject.getMaxY()))
-            raidenObject.setSpeedX(-maxSpeed);
+                !isOutOfWindow(raidenObject.getMinX() - constSpeed, raidenObject.getMinY()) &&
+                !isOutOfWindow(raidenObject.getMinX() - constSpeed, raidenObject.getMaxY()))
+            raidenObject.setSpeedX(-constSpeed);
         if ((arrowState & keyAdapter.RIGHT) != 0 &&
-                !isOutOfWindow(raidenObject.getMaxX() + maxSpeed, raidenObject.getMinY()) &&
-                !isOutOfWindow(raidenObject.getMaxX() + maxSpeed, raidenObject.getMaxY()))
-            raidenObject.setSpeedX(maxSpeed);
+                !isOutOfWindow(raidenObject.getMaxX() + constSpeed, raidenObject.getMinY()) &&
+                !isOutOfWindow(raidenObject.getMaxX() + constSpeed, raidenObject.getMaxY()))
+            raidenObject.setSpeedX(constSpeed);
         if ((arrowState & keyAdapter.UP) != 0 &&
-                !isOutOfWindow(raidenObject.getMinX(), raidenObject.getMinY() - maxSpeed) &&
-                !isOutOfWindow(raidenObject.getMaxX(), raidenObject.getMinY() - maxSpeed))
-            raidenObject.setSpeedY(-maxSpeed);
+                !isOutOfWindow(raidenObject.getMinX(), raidenObject.getMinY() - constSpeed) &&
+                !isOutOfWindow(raidenObject.getMaxX(), raidenObject.getMinY() - constSpeed))
+            raidenObject.setSpeedY(-constSpeed);
         if ((arrowState & keyAdapter.DOWN) != 0 &&
-                !isOutOfWindow(raidenObject.getMinX(), raidenObject.getMaxY() + maxSpeed) &&
-                !isOutOfWindow(raidenObject.getMaxX(), raidenObject.getMaxY() + maxSpeed))
-            raidenObject.setSpeedY(maxSpeed);
+                !isOutOfWindow(raidenObject.getMinX(), raidenObject.getMaxY() + constSpeed) &&
+                !isOutOfWindow(raidenObject.getMaxX(), raidenObject.getMaxY() + constSpeed))
+            raidenObject.setSpeedY(constSpeed);
     }
 }
