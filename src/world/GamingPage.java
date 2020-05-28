@@ -145,7 +145,7 @@ public class GamingPage {
         System.out.println("Game over");
         musicPlayer.stop();
         gameSpeedAdjusterTimer.stop();
-        //pageStatus = END;
+        pageStatus = END;
 	}
 
 	/**
