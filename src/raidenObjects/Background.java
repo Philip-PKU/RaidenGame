@@ -1,6 +1,7 @@
 package raidenObjects;
 
 import utils.Faction;
+import world.World;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -42,7 +43,7 @@ public class Background extends BaseRaidenObject {
     @Override
     public void paint(Graphics g) {
         BufferedImage bufferedImage = loadImage(getImageFile());
-        g.drawImage(bufferedImage, 0, (int) getY(), null);
+        g.drawImage(bufferedImage, 0, (int) getY(), World.windowWidth, World.windowHeight, null);
         g.drawImage(bufferedImage, 0, (int) getY2(), null);
     }
 

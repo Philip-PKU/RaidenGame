@@ -1,6 +1,3 @@
-/**
- *
- */
 package utils;
 
 /**
@@ -8,13 +5,14 @@ package utils;
  *
  * @author 杨芳源
  */
-public enum PageStatus {
-    MAIN,
-    RANKLIST,
-    HELP,
-    MODECHOSE,
-    GAMING,
-    VICTORY,
-    END,
-    CLOSE
+public enum PageStatus{
+	MAIN,
+	RANKLIST,
+	HELP,
+	MODECHOSE,
+	PLAYERCHOSE,
+	GAMING,
+	VICTORY,
+	END,
+	CLOSE
 }

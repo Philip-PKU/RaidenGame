@@ -253,8 +253,9 @@ public final class PlayerAircraft extends BaseShootingAircraft {
                 staticMaxHp, 0, 100, 0);
         if (!owner.isPlayer())
             throw new RuntimeException("Invalid owner: player must be owned by either Player1 or Player2.");
-        if (playerController == PlayerController.KEYBOARD1)
+        if (playerController == PlayerController.KEYBOARD1) {
             keyAdapter = keyAdapter1;
+    	}
         else if (playerController == PlayerController.KEYBOARD2)
             keyAdapter = keyAdapter2;
         this.registerMotionController(new KeyboardMotionController(keyAdapter, 5));

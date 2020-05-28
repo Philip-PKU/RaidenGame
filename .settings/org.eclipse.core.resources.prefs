@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/raidenObjects/aircrafts/BaseAircraft.java=UTF-8
 encoding//src/utils/BaseRaidenKeyAdapter.java=UTF-8
 encoding//src/utils/Faction.java=UTF-8
+encoding//src/utils/keyAdapters/BaseRaidenKeyAdapter.java=UTF-8
 encoding//src/world/World.java=UTF-8
