@@ -4,6 +4,7 @@ import static java.lang.Math.sqrt;
 
 /**
  * Two-element vector. A simple utility class.
+ *
  * @author 蔡辉宇
  */
 public class Bivector {
@@ -15,7 +16,7 @@ public class Bivector {
     }
 
     public float getNorm() {
-        return (float) sqrt(X*X + Y*Y);
+        return (float) sqrt(X * X + Y * Y);
     }
 
     public Bivector normalize(float maxNorm) {

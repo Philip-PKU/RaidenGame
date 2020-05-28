@@ -1,7 +1,7 @@
 package raidenObjects.aircrafts.shootingAircrafts;
 
-import launchControllers.LaunchController;
-import launchControllers.PeriodicLaunchEventScheduler;
+import launchControllers.PeriodicLaunchCondition;
+import launchControllers.SimpleLaunchController;
 import motionControllers.*;
 import raidenObjects.weapons.SmallBullet;
 import utils.Faction;
@@ -22,8 +22,9 @@ public final class MiddleShootingAircraft extends BaseShootingAircraft {
         this.registerMotionController(new TwoStagedMotionController(stageOneController, stageTwoController,
                 () -> getY() > 80,
                 () -> getWeaponLaunchController().activate()));
-        this.registerWeaponLaunchController(new LaunchController<>(
-                new PeriodicLaunchEventScheduler(192, 14, 6, 3),
+        this.registerWeaponLaunchController(new SimpleLaunchController<>(
+                "MiddleShootingAircraft shoots SmallBullet",
+                new PeriodicLaunchCondition(192, 60, 6, 3),
                 () -> {
                     PlayerAircraft closestPlayer = getClosestPlayer();
                     interactantList.add(new SmallBullet(getX() - 10, getMaxY(),

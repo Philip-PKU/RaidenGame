@@ -44,8 +44,7 @@ public class ConstSpeedTargetTrackingMotionController extends BaseMotionControll
         if (firstSpeedUpdate) {
             firstSpeedUpdate = false;
             currentSpeed = getSpeedUpdate();
-        }
-        else
+        } else
             currentSpeed = currentSpeed.add(getSpeedUpdate().multiply(acceleration)).normalize(constSpeed);
         raidenObject.setSpeedX(currentSpeed.X);
         raidenObject.setSpeedY(currentSpeed.Y);

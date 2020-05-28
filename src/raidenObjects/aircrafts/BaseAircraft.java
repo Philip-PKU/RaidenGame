@@ -2,6 +2,7 @@ package raidenObjects.aircrafts;
 
 import raidenObjects.BaseRaidenObject;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+import raidenObjects.bonus.*;
 import utils.Faction;
 
 import java.io.File;
@@ -25,6 +26,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     protected int hp, maxHp, stepsAfterDeath = 0;
     protected int maxStepsAfterDeath, crashDamage;
     protected int score;
+    protected float probCoin0, probCoin1, probCoin2, probInvincible, probMagnet, probSuperpower, probWeaponUpgrade, probCure;
 
     protected BaseAircraft(String name, float x, float y, int sizeX, int sizeY, Faction owner,
                            int maxHp, int maxStepsAfterDeath, int crashDamage, int score) {
@@ -44,11 +46,11 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     }
 
     public int getScore() {
-    	return score;
+        return score;
     }
 
     public void addScore(int score) {
-    	this.score += score;
+        this.score += score;
     }
 
     public int getMaxHp() {
@@ -64,18 +66,14 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     }
 
 
-    public void receiveDamage(int damage) {
+    public void receiveDamage(int damage, Faction source) {
         hp -= damage;
         if (getFaction().isPlayer())
             System.out.println("hp: " + hp);
         if (hp <= 0) {
             markAsDead();
-            afterKilledByPlayer();
+            afterKilledByPlayer(source);
         }
-    }
-
-    public void afterKilledByPlayer() {
-
     }
 
     public void interactWith(PlayerAircraft aircraft) {
@@ -85,13 +83,9 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         // if player hit enemy
         if (this.isAlive() && aircraft.isAlive() && this.hasHit(aircraft) &&
                 this.getFaction().isEnemyTo(aircraft.getFaction())) {
-            this.receiveDamage(aircraft.getCrashDamage());
-        	// if the player kill this aircraft, he gets score.
-            if (!this.isAlive()) {
-                aircraft.addScore(this.getScore());
-            }
+            this.receiveDamage(aircraft.getCrashDamage(), aircraft.getFaction());
             if (!aircraft.getInvincibleCountdown().isEffective()) {
-                aircraft.receiveDamage(this.getCrashDamage());
+                aircraft.receiveDamage(this.getCrashDamage(), this.getFaction());
             } else {
                 aircraft.getInvincibleCountdown().reset();
             }
@@ -136,5 +130,36 @@ public abstract class BaseAircraft extends BaseRaidenObject {
             interactWith(player1);
             interactWith(player2);
         }
+    }
+
+    public void afterKilledByPlayer(Faction source) {
+        if (source.isPlayer1() && player1 != null)
+            player1.addScore(getScore());
+        if (source.isPlayer2() && player2 != null)
+            player2.addScore(getScore());
+
+        if ((player1 != null && player1.getHp() <= player1.getMaxHp() * 0.4) ||
+                (player2 != null && player2.getHp() <= player2.getMaxHp() * 0.4)) {
+            probInvincible *= 1.5;
+            probCure *= 1.5;
+            probWeaponUpgrade *= 1.5;
+        }
+        float randomFloat = rand.nextFloat();
+        if ((randomFloat -= probCure) <= 0)
+            interactantList.add(new CureBonus(getX(), getY()));
+        else if ((randomFloat -= probInvincible) <= 0)
+            interactantList.add(new InvincibleBonus(getX(), getY()));
+        else if ((randomFloat -= probWeaponUpgrade) <= 0)
+            interactantList.add(new WeaponUpgradeBonus(getX(), getY()));
+        else if ((randomFloat -= probCoin0) <= 0)
+            interactantList.add(new CoinBonus(getX(), getY(), 0));
+        else if ((randomFloat -= probCoin1) <= 0)
+            interactantList.add(new CoinBonus(getX(), getY(), 1));
+        else if ((randomFloat -= probCoin2) <= 0)
+            interactantList.add(new CoinBonus(getX(), getY(), 2));
+        else if ((randomFloat -= probMagnet) <= 0)
+            interactantList.add(new MagnetBonus(getX(), getY()));
+        else if ((randomFloat -= probSuperpower) <= 0)
+            interactantList.add(new SuperPowerBonus(getX(), getY()));
     }
 }

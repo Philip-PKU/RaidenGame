@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 /**
  * A key adapter that logs key activity and returns current key state.
+ *
  * @author 蔡辉宇
  */
 public class BaseRaidenKeyAdapter extends KeyAdapter {

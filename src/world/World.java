@@ -32,7 +32,7 @@ import static utils.PlayerNumber.TWO;
 /**
  * The game panel added to JFrame in App (the main class).
  * Functions include initializing the game (in {@code init}) and running the game (in {@code run}).
- * <p>
+ *
  * Note: This class must stay inside a non-default package because it will be referenced
  * by other classes, and classes in the default package cannot be imported.
  */
@@ -81,7 +81,7 @@ public class World extends JPanel {
         musicPlayer.setSourceLocation(Paths.get("data", "bgm", "05. Unknown Pollution.mp3").toString());
         // The volume control functions in class {@code Player} does not appear to work. DO NOT USE IT.
         // Instead, use {@Code VolumeController} in package utils.
-        VolumeController.setVolume(0.02f);
+        VolumeController.setVolume(0.08f);
 
         // Clear aircraft and interactant lists.
         aircraftList.clear();

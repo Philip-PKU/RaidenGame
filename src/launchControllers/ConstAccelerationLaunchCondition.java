@@ -6,14 +6,14 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static world.World.rand;
 
-public class ConstAccelerationLaunchEventScheduler implements LaunchEventScheduler {
+public class ConstAccelerationLaunchCondition implements LaunchCondition {
     int eventInterval, count, remainingEvents, timeOfNextEvent;
     float curDoubleProb, probAcceleration, maxDoubleProb, cooldownDeceleration, minCooldown, curCooldown;
     boolean launching;
 
-    public ConstAccelerationLaunchEventScheduler(float maxCooldown, float cooldownDeceleration, float minCooldown,
-                                                 int initCooldown, int eventInterval,
-                                                 float minDoubleProb, float probAcceleration, float maxDoubleProb) {
+    public ConstAccelerationLaunchCondition(float maxCooldown, float cooldownDeceleration, float minCooldown,
+                                            int initCooldown, int eventInterval,
+                                            float minDoubleProb, float probAcceleration, float maxDoubleProb) {
         this.cooldownDeceleration = cooldownDeceleration;
         this.minCooldown = minCooldown;
         this.curCooldown = maxCooldown;
@@ -24,8 +24,8 @@ public class ConstAccelerationLaunchEventScheduler implements LaunchEventSchedul
         this.maxDoubleProb = maxDoubleProb;
     }
 
-    public ConstAccelerationLaunchEventScheduler(float maxCooldown, int initCooldown, float minDoubleProb,
-                                                 float probAcceleration, float maxDoubleProb) {
+    public ConstAccelerationLaunchCondition(float maxCooldown, int initCooldown, float minDoubleProb,
+                                            float probAcceleration, float maxDoubleProb) {
         this(maxCooldown, maxCooldown / 36f, maxCooldown / 2f,
                 initCooldown, (int) (maxCooldown / 3f),
                 minDoubleProb, probAcceleration, maxDoubleProb);

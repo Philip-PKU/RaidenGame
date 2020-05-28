@@ -1,49 +1,48 @@
 package motionControllers;
 
 import raidenObjects.BaseRaidenObject;
+import utils.Condition;
 
-public class TwoStagedMotionController extends BaseMotionController implements MotionController {
-    MotionController stageOneScheduler, stageTwoScheduler;
-    StateTransitionJudge stateTransitionJudge;
-    StateTransitionCallback stateTransitionCallback;
-    boolean isInStageTwo = false;
+public class TwoStagedMotionController implements MotionController {
+    MotionController stageOneScheduler, stageTwoScheduler, currentScheduler;
+    Condition stageTransitionCondition;
+    StateTransitionCallback stageTransitionCallback;
 
     public TwoStagedMotionController(MotionController stageOneScheduler, MotionController stageTwoScheduler,
-                                  StateTransitionJudge stateTransitionJudge,
-                                  StateTransitionCallback stateTransitionCallback) {
-        this.stageOneScheduler = stageOneScheduler;
+                                     Condition stageTransitionCondition,
+                                     StateTransitionCallback stageTransitionCallback) {
+        this.currentScheduler = this.stageOneScheduler = stageOneScheduler;
         this.stageTwoScheduler = stageTwoScheduler;
-        this.stateTransitionJudge = stateTransitionJudge;
-        this.stateTransitionCallback = stateTransitionCallback;
+        this.stageTransitionCondition = stageTransitionCondition;
+        this.stageTransitionCallback = stageTransitionCallback;
     }
 
-    public TwoStagedMotionController(MotionController stageOneScheduler, MotionController stageTwoScheduler, StateTransitionJudge stateTransitionJudge) {
-        this(stageOneScheduler, stageTwoScheduler, stateTransitionJudge, null);
+    public TwoStagedMotionController(MotionController stageOneScheduler, MotionController stageTwoScheduler, Condition stageTransitionCondition) {
+        this(stageOneScheduler, stageTwoScheduler, stageTransitionCondition, null);
     }
 
-    public void setStateTransitionCallback(StateTransitionCallback stateTransitionCallback) {
-        this.stateTransitionCallback = stateTransitionCallback;
+    public void setStageTransitionCallback(StateTransitionCallback stageTransitionCallback) {
+        this.stageTransitionCallback = stageTransitionCallback;
     }
 
     @Override
     public void registerParent(BaseRaidenObject raidenObject) {
-        super.registerParent(raidenObject);
         stageOneScheduler.registerParent(raidenObject);
         stageTwoScheduler.registerParent(raidenObject);
     }
 
+    @Override
+    public BaseRaidenObject getRaidenObject() {
+        return currentScheduler.getRaidenObject();
+    }
+
     public void scheduleSpeed() {
-        if (!isInStageTwo) {
-            if (stateTransitionJudge.conditionSatisfied()) {
-                isInStageTwo = true;
-                resetSpeed();
-                if (stateTransitionCallback != null)
-                    stateTransitionCallback.stageOneFinished();
-            }
-            else
-                stageOneScheduler.scheduleSpeed();
+        if (stageTransitionCondition.conditionSatisfied()) {
+            currentScheduler = stageTwoScheduler;
+            resetSpeed();
+            if (stageTransitionCallback != null)
+                stageTransitionCallback.stageOneFinished();
         }
-        if (isInStageTwo)
-            stageTwoScheduler.scheduleSpeed();
+        currentScheduler.scheduleSpeed();
     }
 }

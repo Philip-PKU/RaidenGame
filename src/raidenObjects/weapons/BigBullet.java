@@ -5,6 +5,7 @@ import utils.Faction;
 
 public final class BigBullet extends BaseWeapon {
     private static int staticDamage = 49;
+
     public BigBullet(float x, float y, float targetX, float targetY) {
         super("BigBullet", x, y, 10, 10,
                 Faction.ENEMY, staticDamage);

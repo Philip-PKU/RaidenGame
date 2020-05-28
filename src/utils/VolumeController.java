@@ -6,6 +6,7 @@ import static javax.sound.sampled.Port.Info.*;
 
 /**
  * A convenience class for music volume control. The setVolume function in maryb.player.Player seems to have broken.
+ *
  * @author 蔡辉宇
  */
 public class VolumeController {

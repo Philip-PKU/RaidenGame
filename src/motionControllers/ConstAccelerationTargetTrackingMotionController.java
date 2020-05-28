@@ -30,8 +30,7 @@ public class ConstAccelerationTargetTrackingMotionController extends BaseMotionC
         if (firstSpeedUpdate) {
             firstSpeedUpdate = false;
             currentSpeed = new Bivector(0, initSpeed);
-        }
-        else if (!maxSpeedReached) {
+        } else if (!maxSpeedReached) {
             currentSpeed = currentSpeed.add(getUnnormalizedSpeedUpdate().normalize(acceleration)).normalize(maxSpeed);
             if (currentSpeed.getNorm() >= maxSpeed) {
                 maxSpeedReached = true;

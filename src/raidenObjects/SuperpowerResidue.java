@@ -10,13 +10,15 @@ import static world.World.gameStep;
 public class SuperpowerResidue extends BaseRaidenObject {
     int stepsAfterBombing;
     static final int maxStepsAfterBombing = 12;
+
     public SuperpowerResidue(float x, float y, Faction faction) {
         super("Bomb", x, y, 400, 400, faction);
         markAsDead();
     }
 
     @Override
-    public void step() {}
+    public void step() {
+    }
 
     /**
      * Return the image file.

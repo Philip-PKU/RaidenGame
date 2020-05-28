@@ -1,24 +1,24 @@
 /**
- * 
+ *
  */
 package world;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
- * @author �Դ
+ * @author �Դ
  *
  */
 public class VictoryPage {
 
-	static void run() {
-		// TODO Auto-generated method stub
+    static void run() {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	static void paint(Graphics g) {
-		// TODO Auto-generated method stub
+    static void paint(Graphics g) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
 }

@@ -8,7 +8,7 @@ import utils.Faction;
 import java.io.File;
 import java.nio.file.Paths;
 
-import static world.World.*;
+import static world.World.aircraftList;
 
 /**
  * Subclass of BaseRaidenObject, base class for all weapons in the game.
@@ -41,13 +41,7 @@ public abstract class BaseWeapon extends BaseRaidenObject {
             }
             // if this bullet kill the aircraft, then the score will transform from the aircraft
             // to the player
-            aircraft.receiveDamage(getDamage());
-            if (!aircraft.isAlive()) {
-                if (this.getFaction().isPlayer1())
-                    player1.addScore(aircraft.getScore());
-                if (this.getFaction().isPlayer2())
-                    player2.addScore(aircraft.getScore());
-            }
+            aircraft.receiveDamage(getDamage(), getFaction());
             this.markAsDead();
         }
     }

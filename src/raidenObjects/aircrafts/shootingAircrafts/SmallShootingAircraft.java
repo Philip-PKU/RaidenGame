@@ -1,7 +1,7 @@
 package raidenObjects.aircrafts.shootingAircrafts;
 
-import launchControllers.LaunchController;
-import launchControllers.PeriodicLaunchEventScheduler;
+import launchControllers.PeriodicLaunchCondition;
+import launchControllers.SimpleLaunchController;
 import motionControllers.ConstSpeedYMotionController;
 import motionControllers.TargetAwareConstSpeedXYMotionController;
 import motionControllers.TwoStagedMotionController;
@@ -27,14 +27,18 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
                 7);
         this.registerMotionController(new TwoStagedMotionController(
                 stageOneController,
-                new ConstSpeedYMotionController(0.4f),
+                new ConstSpeedYMotionController(0.7f),
                 () -> stageOneController.distToTarget() < stageOneController.getMaxSpeed() || distTo(getClosestPlayer()) < 150,
                 () -> getWeaponLaunchController().activate()
         ));
-        this.registerWeaponLaunchController(new LaunchController<>(
-                new PeriodicLaunchEventScheduler(126, 60),
+        this.registerWeaponLaunchController(new SimpleLaunchController<>(
+                "SmallShootingAircraft shoots SmallBullet",
+                new PeriodicLaunchCondition(126, 60),
                 () -> interactantList.add(new SmallBullet(getX(), getMaxY(), target.getX(), target.getY()))
         ));
+        probCoin0 = 0.05f;
+        probCoin1 = 0.1f;
+        probCoin2 = 0.05f;
     }
 
     public static int getStaticMaxHp() {

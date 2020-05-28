@@ -1,13 +1,13 @@
 /**
- * 
+ *
  */
 package utils;
 
 /**
- * @author �Դ
+ * @author �Դ
  *
  */
-public enum GameMode{
-	TIMER,
-	SURVIVAL
+public enum GameMode {
+    TIMER,
+    SURVIVAL
 }

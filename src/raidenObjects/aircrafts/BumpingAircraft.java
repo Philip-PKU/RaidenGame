@@ -14,7 +14,11 @@ public final class BumpingAircraft extends BaseAircraft {
         ConstSpeedYMotionController stageOneMotionController = new ConstSpeedYMotionController(2);
         ConstAccelerationYMotionController stageTwoMotionController = new ConstAccelerationYMotionController(4, 0.05f, 14);
         this.registerMotionController(new TwoStagedMotionController(stageOneMotionController, stageTwoMotionController,
-                () -> getY() > 60, () -> {}));
+                () -> getY() > 60, () -> {
+        }));
+        probCoin0 = 0.1f;
+        probCoin1 = 0.2f;
+        probCoin2 = 0.1f;
     }
 
     public static int getStaticMaxHp() {

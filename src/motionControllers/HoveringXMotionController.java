@@ -17,8 +17,7 @@ public class HoveringXMotionController extends BaseMotionController implements M
             if (raidenObject.getX() - speedX - 1 > leftBoundX)
                 raidenObject.setSpeedX(-speedX);
             else movingLeft = false;
-        }
-        else {
+        } else {
             if (raidenObject.getX() + speedX + 1 < rightBoundX)
                 raidenObject.setSpeedX(speedX);
             else movingLeft = true;

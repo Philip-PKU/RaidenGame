@@ -4,17 +4,17 @@ import utils.keyAdapters.BaseRaidenKeyAdapter;
 
 import static world.World.gameStep;
 
-public class KeyboardSuperpowerLaunchEventScheduler implements LaunchEventScheduler {
+public class KeyboardSuperpowerLaunchCondition implements LaunchCondition {
     final int coolDown;  // to prevent the user from launching a bomb too frequently
     int lastLaunch = 0;
     BaseRaidenKeyAdapter keyAdapter;
-    LaunchEventScheduler launchEventScheduler;
+    LaunchCondition launchCondition;
 
-    public KeyboardSuperpowerLaunchEventScheduler(int coolDown, BaseRaidenKeyAdapter keyAdapter,
-                                                  LaunchEventScheduler additionalConstraints) {
+    public KeyboardSuperpowerLaunchCondition(int coolDown, BaseRaidenKeyAdapter keyAdapter,
+                                             LaunchCondition additionalConstraints) {
         this.coolDown = coolDown;
         this.keyAdapter = keyAdapter;
-        this.launchEventScheduler = additionalConstraints;
+        this.launchCondition = additionalConstraints;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class KeyboardSuperpowerLaunchEventScheduler implements LaunchEventSchedu
         // to launch it a long time ago and doesn't necessarily wants to launch it now.
         boolean pressedBombKey = (keyAdapter.getAndResetBombState() & keyAdapter.BOMB) != 0;
         boolean passedCooldown = gameStep.intValue() - lastLaunch >= coolDown;
-        boolean satisfiedConstraint = launchEventScheduler.shouldLaunchNow();
+        boolean satisfiedConstraint = launchCondition.shouldLaunchNow();
         if (pressedBombKey && passedCooldown && satisfiedConstraint) {
             lastLaunch = gameStep.intValue();
             return true;

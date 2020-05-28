@@ -1,19 +1,20 @@
 /**
- * 
+ *
  */
 package world;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
- * @author �Դ
+ * @author �Դ
  *
  */
 public class RanklistPage {
-	static public void run() {
-		
-	}
-	static public void paint(Graphics g) {
-		
-	}
+    static public void run() {
+
+    }
+
+    static public void paint(Graphics g) {
+
+    }
 }

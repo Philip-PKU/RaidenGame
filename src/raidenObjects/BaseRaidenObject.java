@@ -21,7 +21,7 @@ import static world.World.*;
 /**
  * Base class of all flying objects in the game, including planes and interactants.
  */
-public abstract class BaseRaidenObject{
+public abstract class BaseRaidenObject {
     protected String name;
     protected Faction faction;
     protected MotionController motionController;
@@ -54,6 +54,7 @@ public abstract class BaseRaidenObject{
 
     /**
      * Returns X image size of current object. Img size is the size of the image of the object.
+     *
      * @return imgSizeX
      * @author 蔡辉宇
      */
@@ -85,6 +86,7 @@ public abstract class BaseRaidenObject{
      * Returns X hit size of current object. Hit size is the size of the rectangle centered at (x, y)
      * that is used to judge if two objects (e.g. plane/plane and plane/weapon) have hit each other.
      * In default, this is just {@code imgSizeX}, but subclasses can override this behavior.
+     *
      * @return hitSizeX, which defaults to imgSizeX.
      * @author 蔡辉宇
      */
@@ -125,7 +127,7 @@ public abstract class BaseRaidenObject{
     }
 
     public boolean isInvisibleOrOutOfWorld() {
-        if (isOutOfWorld(getX(), getY())) {
+        if (isOutOfWorld(getX(), getMinY())) {
             markAsDead();
             return true;
         }
@@ -142,10 +144,11 @@ public abstract class BaseRaidenObject{
 
     /**
      * Set MotionController for the current object, and set parent of motionController to the current object.
+     *
      * @param motionController A motionController object that will control the movement of the current object.
      * @author 蔡辉宇
      */
-    public void registerMotionController(MotionController motionController){
+    public void registerMotionController(MotionController motionController) {
         this.motionController = motionController;
         motionController.registerParent(this);
     }
@@ -167,6 +170,7 @@ public abstract class BaseRaidenObject{
     }
 
     public abstract void step();
+
     public abstract File getImageFile();
 
     public float getMinX() {
@@ -218,7 +222,7 @@ public abstract class BaseRaidenObject{
     }
 
     public boolean isOutOfWorld(float x, float y) {
-        return isOutOfWindow(x, y);
+        return x < 0 || x >= windowWidth || y >= windowHeight;
     }
 
     public void paint(Graphics g) {
@@ -240,9 +244,9 @@ public abstract class BaseRaidenObject{
 
     public boolean hasHit(BaseRaidenObject other) {
         return getHitTopLeftX() < other.getHitBottomRightX() &&
-               getHitTopLeftY() < other.getHitBottomRightY() &&
-               other.getHitTopLeftX() < getHitBottomRightX() &&
-               other.getHitTopLeftY() < getHitBottomRightY();
+                getHitTopLeftY() < other.getHitBottomRightY() &&
+                other.getHitTopLeftX() < getHitBottomRightX() &&
+                other.getHitTopLeftY() < getHitBottomRightY();
     }
 
     public float distTo(BaseRaidenObject other) {
@@ -270,6 +274,7 @@ public abstract class BaseRaidenObject{
 
     /**
      * Return a random player.
+     *
      * @return A random PlayerAircraft
      * @author 蔡辉宇
      */
@@ -277,17 +282,14 @@ public abstract class BaseRaidenObject{
         if (player1 == null) {
             if (player2 == null) {
                 throw new RuntimeException("No player exists.");
-            }
-            else {
+            } else {
                 return player2;
             }
-        }
-        else {
+        } else {
             if (player2 != null) {
                 boolean returnPlayer1 = rand.nextBoolean();
                 return returnPlayer1 ? player1 : player2;
-            }
-            else {
+            } else {
                 return player1;
             }
         }
@@ -295,6 +297,7 @@ public abstract class BaseRaidenObject{
 
     /**
      * Return the closest player.
+     *
      * @return The closest PlayerAircraft
      * @author 蔡辉宇
      */
@@ -313,6 +316,7 @@ public abstract class BaseRaidenObject{
 
     /**
      * Move according to the scheduled speed, and mark as dead if the current object is out of bound after moving.
+     *
      * @author 蔡辉宇
      */
     protected void move() {
@@ -322,6 +326,7 @@ public abstract class BaseRaidenObject{
 
     /**
      * Rotate this object to face the given target aircraft.
+     *
      * @param target The target to face by this object.
      * @author 蔡辉宇
      */
@@ -334,11 +339,11 @@ public abstract class BaseRaidenObject{
         //use the image's center x and y coordinates for rx and ry.
         float dx = target.getX() - getX(), dy = target.getY() - getY(), theta;
         if (dy == 0) {
-            theta = dx > 0 ? -(float)PI/2f : (float)PI/2f;
+            theta = dx > 0 ? -(float) PI / 2f : (float) PI / 2f;
         } else {
             theta = (float) -atan(dx / dy);
             if (dy < 0)
-                theta += (float)PI;
+                theta += (float) PI;
         }
         setRotation(theta);
     }

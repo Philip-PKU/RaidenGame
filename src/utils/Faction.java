@@ -3,6 +3,7 @@ package utils;
 /**
  * An enum for the faction (side) of raiden objects.
  * Awards should be neutral, enemy aircrafts and bullets are the enemy, players(1/2) and their bullets are player(1/2).
+ *
  * @author 蔡辉宇
  */
 public enum Faction {
@@ -23,13 +24,13 @@ public enum Faction {
     public boolean isEnemy() {
         return this.equals(ENEMY);
     }
-    
+
     public boolean isBonus() {
-    	return this.equals(BONUS);
+        return this.equals(BONUS);
     }
-    
+
     public boolean isEnemyTo(Faction other) {
-        switch(this) {
+        switch (this) {
             case ENEMY:
                 return other.isPlayer();
             case PLAYER1:
@@ -37,8 +38,8 @@ public enum Faction {
                 return other.isEnemy();
             case BONUS:
                 return false;
-		default:
-			break;
+            default:
+                break;
         }
         return false;
     }

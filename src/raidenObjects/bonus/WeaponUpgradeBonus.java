@@ -1,7 +1,7 @@
 package raidenObjects.bonus;
 
-import launchControllers.LaunchController;
-import launchControllers.PeriodicLaunchEventScheduler;
+import launchControllers.PeriodicLaunchCondition;
+import launchControllers.SimpleLaunchController;
 import motionControllers.HoveringXMotionController;
 import motionControllers.MotionController;
 import motionControllers.XYMotionController;
@@ -16,7 +16,7 @@ import static world.World.*;
 
 public final class WeaponUpgradeBonus extends BaseBonus {
     public static int[] weapons = {UPDATE_WEAPON_MULTI, UPDATE_WEAPON_SINGLE, UPDATE_WEAPON_TRACKING};
-    LaunchController<PeriodicLaunchEventScheduler> updateTypeController;
+    SimpleLaunchController<PeriodicLaunchCondition> updateTypeController;
     int weapon, idx;
 
     public WeaponUpgradeBonus(float x, float y, int type) {
@@ -27,8 +27,9 @@ public final class WeaponUpgradeBonus extends BaseBonus {
         MotionController XYController = XYMotionController.createFromXController(
                 XController, 1f);
         this.registerMotionController(XYController);
-        this.registerUpdateTypeController(new LaunchController<>(
-                new PeriodicLaunchEventScheduler(200, 200),
+        this.registerUpdateTypeController(new SimpleLaunchController<>(
+                "WeaponUpgradeBonus changes type",
+                new PeriodicLaunchCondition(200, 200),
                 () -> {
                     ++idx;
                     if (idx == weapons.length)
@@ -39,17 +40,17 @@ public final class WeaponUpgradeBonus extends BaseBonus {
 
     @Override
     public File getImageFile() {
-        int curCooldown = getUpdateTypeController().getLaunchEventScheduler().getCurCooldown();
-        if (curCooldown <= desiredFPS && (curCooldown / (desiredFPS/10)) % 2 == 0)
+        int curCooldown = getUpdateTypeController().getLaunchCondition().getCurCooldown();
+        if (curCooldown <= desiredFPS && (curCooldown / (desiredFPS / 10)) % 2 == 0)
             return null;
         return Paths.get("data", "images", getName() + weapon + ".png").toFile();
     }
 
-    public LaunchController<PeriodicLaunchEventScheduler> getUpdateTypeController() {
+    public SimpleLaunchController<PeriodicLaunchCondition> getUpdateTypeController() {
         return updateTypeController;
     }
 
-    public void registerUpdateTypeController(LaunchController<PeriodicLaunchEventScheduler> updateTypeController,
+    public void registerUpdateTypeController(SimpleLaunchController<PeriodicLaunchCondition> updateTypeController,
                                              boolean activateNow) {
         this.updateTypeController = updateTypeController;
         if (activateNow)

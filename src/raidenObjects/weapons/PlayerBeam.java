@@ -15,7 +15,7 @@ public class PlayerBeam extends BaseWeapon {
     @Override
     public void paint(Graphics g) {
         int imgSizeY = getImgSizeY();
-        for (int y = (int) getMinY() - imgSizeY/2; y >= -imgSizeY; y -= imgSizeY) {
+        for (int y = (int) getMinY() - imgSizeY / 2; y >= -imgSizeY; y -= imgSizeY) {
             g.drawImage(loadImage(getImageFile()), (int) getMinX(), y, null);
         }
         becomeInvisible();
@@ -40,7 +40,7 @@ public class PlayerBeam extends BaseWeapon {
                 this.getFaction().isEnemyTo(aircraft.getFaction())) {
             // if this bullet kill the aircraft, then the score will transform from the aircraft
             // to the player
-            aircraft.receiveDamage(getDamage());
+            aircraft.receiveDamage(getDamage(), getFaction());
             if (!aircraft.isAlive()) {
                 if (this.getFaction().isPlayer1())
                     player1.addScore(aircraft.getScore());

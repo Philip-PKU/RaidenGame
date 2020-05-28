@@ -4,12 +4,12 @@ import utils.GameLevel;
 
 import static world.World.rand;
 
-public class PeriodicStochasticLaunchEventScheduler implements LaunchEventScheduler {
+public class PeriodicStochasticLaunchCondition implements LaunchCondition {
     int cooldown, curCooldown;
     float prob;
     boolean firstRelease = true;
 
-    public PeriodicStochasticLaunchEventScheduler(int cooldown, int initCooldown, float prob) {
+    public PeriodicStochasticLaunchCondition(int cooldown, int initCooldown, float prob) {
         this.cooldown = cooldown;
         this.curCooldown = initCooldown;
         this.prob = prob;

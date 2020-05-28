@@ -10,10 +10,7 @@ public abstract class BaseMotionController implements MotionController {
         this.raidenObject = raidenObject;
     }
 
-    @Override
-    public void resetSpeed() {
-        raidenObject.setSpeedX(0);
-        raidenObject.setSpeedY(0);
+    public BaseRaidenObject getRaidenObject() {
+        return raidenObject;
     }
-
 }
