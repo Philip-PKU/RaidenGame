@@ -64,6 +64,15 @@ public class World extends JPanel {
         init();
     }
 
+    public void playBackGroundMusic(String path) {
+        if (musicPlayer != null) {
+            musicPlayer.stop();
+        }
+        musicPlayer = new Player();
+        musicPlayer.setSourceLocation(path);
+        musicPlayer.play();
+    }
+
     /**
      * Initialize the game.
      *

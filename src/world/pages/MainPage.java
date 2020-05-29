@@ -1,6 +1,7 @@
 package world.pages;
 
 import utils.MyButton;
+import utils.VolumeController;
 import world.World;
 
 import java.awt.*;
@@ -20,6 +21,11 @@ public class MainPage implements Page {
     MyButton buttonStart, buttonRankList, buttonHelp, buttonExit;
 
     public void run(World world) {
+        world.playBackGroundMusic(Paths.get("data", "bgm", "15. War Council.mp3").toString());
+        // The volume control functions in class {@code Player} does not appear to work. DO NOT USE IT.
+        // Instead, use {@Code VolumeController} in package utils.
+        VolumeController.setVolume(0.08f);
+
         ActionListener listener1 = (e) -> {
             World.pageStatus = PLAYER_CHOSE;
         };

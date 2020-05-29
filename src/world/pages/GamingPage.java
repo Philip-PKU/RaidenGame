@@ -5,7 +5,6 @@ import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Faction;
 import utils.PlayerController;
-import utils.VolumeController;
 import world.GameScheduler;
 import world.World;
 
@@ -115,11 +114,7 @@ public class GamingPage implements Page {
 
         // The background music
         // TODO: change the bgm in different scenarios
-        musicPlayer.setSourceLocation(Paths.get("data", "bgm", "05. Unknown Pollution.mp3").toString());
-        // The volume control functions in class {@code Player} does not appear to work. DO NOT USE IT.
-        // Instead, use {@Code VolumeController} in package utils.
-        VolumeController.setVolume(0.08f);
-
+        world.playBackGroundMusic(Paths.get("data", "bgm", "05. Unknown Pollution.mp3").toString());
 
         // Reset game step to zero.
         gameStep.setValue(0);
@@ -138,7 +133,6 @@ public class GamingPage implements Page {
             aircraftList.add(player1);
         }
 
-		musicPlayer.play();
         gameSpeedAdjusterTimer.start();
         while (player1 != null || player2 != null) {
             if (musicPlayer.isEndOfMediaReached()) {
