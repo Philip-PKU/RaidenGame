@@ -11,7 +11,6 @@ import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.PageStatus.MODE_CHOSE;
 import static utils.PlayerNumber.ONE;
 import static utils.PlayerNumber.TWO;
-import static world.World.background;
 
 /**
  * Player chose page handler
@@ -37,7 +36,8 @@ public class PlayerChosePage implements Page {
     }
 
     public void paint(Graphics g) {
-        background.paint(g);
+        g.drawImage(loadImage(Paths.get("data", "images", "Background.png").toFile()),
+                0,0,null);
         g.drawImage(loadImage(Paths.get("data", "images", "oneplayer.png").toFile()),
                 120, 180, 240, 90, null);
         g.drawImage(loadImage(Paths.get("data", "images", "twoplayer.png").toFile()),

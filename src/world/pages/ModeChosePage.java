@@ -11,7 +11,6 @@ import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.GameMode.SURVIVAL;
 import static utils.GameMode.TIMER;
 import static utils.PageStatus.GAMING;
-import static world.World.background;
 
 /**
  * Mode Choice Page handler.
@@ -37,7 +36,8 @@ public class ModeChosePage implements Page {
     }
 
     public void paint(Graphics g) {
-        background.paint(g);
+        g.drawImage(loadImage(Paths.get("data", "images", "Background.png").toFile()),
+                0,0,null);
         g.drawImage(loadImage(Paths.get("data", "images", "survival.png").toFile()),
                 120, 180, 240, 90, null);
         g.drawImage(loadImage(Paths.get("data", "images", "time.png").toFile()),

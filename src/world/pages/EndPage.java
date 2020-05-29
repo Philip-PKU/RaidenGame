@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.PageStatus.CLOSE;
 import static utils.PageStatus.MAIN;
-import static world.World.background;
 
 /**
  * @author 杨芳源
@@ -32,7 +31,8 @@ public class EndPage  implements Page {
     }
 
     public void paint(Graphics g) {
-        background.paint(g);
+        g.drawImage(loadImage(Paths.get("data", "images", "Background.png").toFile()),
+                0,0,null);
         g.drawImage(loadImage(Paths.get("data", "images", "gameover.png").toFile()),
                 50, 30, 380, 300, null);
         g.drawImage(loadImage(Paths.get("data", "images", "back.png").toFile()),

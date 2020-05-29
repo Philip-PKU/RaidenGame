@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.PageStatus.*;
-import static world.World.background;
 
 /**
  * Main page handler
@@ -49,7 +48,8 @@ public class MainPage implements Page {
     }
 
     public void paint(Graphics g) {
-        background.paint(g);
+        g.drawImage(loadImage(Paths.get("data", "images", "Background.png").toFile()),
+                0,0,null);
         g.drawImage(loadImage(Paths.get("data", "images", "title.png").toFile()),
                 30, 30, 420, 150, null);
         g.drawImage(loadImage(Paths.get("data", "images", "start.png").toFile()),
