@@ -1,9 +1,9 @@
 import world.World;
 
 import javax.swing.*;
-import java.awt.*;
 
-import static world.World.*;
+import static world.World.windowHeight;
+import static world.World.windowWidth;
 
 public class App {
 
@@ -12,8 +12,6 @@ public class App {
         JFrame frame = new JFrame();
         World world = new World();
         frame.add(world);
-        //frame.addKeyListener(keyAdapter1);  // monitor the keyboard
-        //frame.addKeyListener(keyAdapter2);  // monitor the keyboard
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(windowWidth, windowHeight);
         frame.setLocationRelativeTo(null);

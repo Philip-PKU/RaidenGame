@@ -29,7 +29,7 @@ public abstract class BaseRaidenObject {
     protected Faction faction;
     protected MotionController motionController;
     protected int imgSizeX, imgSizeY;  // object size
-    protected float x, y;  // coordinates of object center
+    protected float x = 0, y = 0;  // coordinates of object center
     protected float speedX, speedY;  // current speed
     protected float rotation;  // rotation angle (in radians)
     boolean alive, invisible;  // states

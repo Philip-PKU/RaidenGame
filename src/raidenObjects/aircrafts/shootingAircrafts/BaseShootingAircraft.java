@@ -7,10 +7,9 @@ import utils.Faction;
 /**
  * Subclass of BaseAircraft, base class of all shooting air crafts in the game,
  * including PlayerAircraft, SmallShootingAircraft, MiddleShootingAircraft, BigShootingAircraft.
- * <p>
- * Difference to BaseAircraft:
- * - has weapon (registered in constructor)
- * </p>
+ *
+ * Difference to BaseAircraft: has weapon (registered in constructor)
+ * 
  * @author 蔡辉宇
  */
 public abstract class BaseShootingAircraft extends BaseAircraft {

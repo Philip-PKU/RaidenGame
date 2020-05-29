@@ -246,7 +246,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
      * Constructor.
      *
      * @param owner            Owner of this aircraft.
-     * @param playerController Controller of this aircraft. Used to determine motion & weapon controllers.
+     * @param playerController Controller of this aircraft. Used to determine motion and weapon controllers.
      */
     public PlayerAircraft(Faction owner, PlayerController playerController) {
         super("Player0",50, 40, owner,

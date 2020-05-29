@@ -207,7 +207,7 @@ public class GameScheduler {
         });
     }
 
-    void scheduleObjectInserts() {
+    public void scheduleObjectInserts() {
         aircraftHpControllers.forEach(SimpleLaunchController::launchIfPossible);
         aircraftLaunchControllers.forEach(SimpleLaunchController::launchIfPossible);
         bonusLaunchControllers.forEach(SimpleLaunchController::launchIfPossible);

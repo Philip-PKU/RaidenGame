@@ -13,15 +13,15 @@ import static world.World.*;
 /**
  * Subclass of BaseRaidenObject, base class of all aircrafts in the game,
  * including shooting aircrafts and self-destruct bumping aircrafts.
- * <p>
+ *
  * Difference to BaseRaidenObject:
- * - has HP (hit points), will die if hp <= 0
- * - cause crashDamages, i.e. if it bumps into enemy aircrafts it will cause damage to them
- * - has visual effects after death (see {@code getImageFile})
- * - has isInvincible, isAttractive,  means remaining time of the state
- * - has isAttracted, true means the aircraft(bonus) is attracted by players
- * - cause bonus, i.e. if it hits the players, it will add buff to them
- * </p>
+ * <p>has HP (hit points), will die if hp &le; 0</p>
+ * <p>cause crashDamages, i.e. if it bumps into enemy aircrafts it will cause damage to them</p>
+ * <p>has visual effects after death (see {@code getImageFile})</p>
+ * <p>has isInvincible, isAttractive,  means remaining time of the state</p>
+ * <p>has isAttracted, true means the aircraft(bonus) is attracted by players</p>
+ * <p>cause bonus, i.e. if it hits the players, it will add buff to them</p>
+ *
  *
  * @author 蔡辉宇 张哲瑞
  */

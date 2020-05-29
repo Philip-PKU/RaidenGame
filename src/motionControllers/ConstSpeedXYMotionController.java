@@ -31,7 +31,7 @@ public class ConstSpeedXYMotionController extends ConstSpeedYMotionController {
      * Construct a {@link ConstSpeedXYMotionController} from given angle and constSpeed.
      * @param theta Angle of motion.
      * @param constSpeed Constant speed of motion.
-     * @return
+     * @return A new {@link ConstSpeedXYMotionController}.
      */
     public static ConstSpeedXYMotionController createFromAngle(float theta, float constSpeed) {
         float thetaInRad = (float) toRadians(theta);

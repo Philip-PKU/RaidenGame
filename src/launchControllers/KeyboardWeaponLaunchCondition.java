@@ -41,10 +41,11 @@ public class KeyboardWeaponLaunchCondition<T extends LaunchCondition> implements
     /**
      * Construct a {@link KeyboardWeaponLaunchCondition} wrapping a {@link TwoStagedPeriodicLaunchCondition}.
      *
-     * @param cooldown1             Cooldown of the {@link PeriodicLaunchCondition} in stage 1.
-     * @param cooldown2             Cooldown of the {@link PeriodicLaunchCondition} in stage 2.
-     * @param numOfStageOneLaunches Number of stage one launches before transitioning to stage 2.
-     * @param keyAdapter            A {@link BaseRaidenKeyAdapter} controlling this LaunchCondition.
+     * @param cooldown1               Cooldown of the {@link PeriodicLaunchCondition} in stage 1.
+     * @param cooldown2               Cooldown of the {@link PeriodicLaunchCondition} in stage 2.
+     * @param numOfStageOneLaunches   Number of stage one launches before transitioning to stage 2.
+     * @param keyAdapter              A {@link BaseRaidenKeyAdapter} controlling this LaunchCondition.
+     * @param stageTransitionCallback Callback when stage transition occurs.
      * @return A new {@link KeyboardWeaponLaunchCondition} object.
      *
      * @see TwoStagedPeriodicLaunchCondition

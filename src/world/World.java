@@ -14,24 +14,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.file.Paths;
 import java.util.Deque;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static java.lang.Thread.sleep;
-import static raidenObjects.BaseRaidenObject.loadImage;
-import static utils.GameLevel.*;
-import static utils.GameMode.*;
+import static utils.GameLevel.LEVEL_NORMAL;
+import static utils.GameMode.SURVIVAL;
 import static utils.PageStatus.*;
-import static utils.PlayerNumber.*;
-import static world.World.keyAdapter1;
-import static world.World.keyAdapter2;
+import static utils.PlayerNumber.ONE;
 
 /**
  * The game panel added to JFrame in App (the main class).
  * Functions include initializing the game (in {@code init}) and running the game (in {@code run}).
- *
+ * <p>
  * Note: This class must stay inside a non-default package because it will be referenced
  * by other classes, and classes in the default package cannot be imported.
  *
@@ -76,22 +72,10 @@ public class World extends JPanel {
     public void init() {
         // The background image
         background = new Background();
-        
+
         setLayout(null);
         setVisible(true);
         requestFocus();
-
-        // The background music
-        // TODO: change the bgm in different scenarios
-        musicPlayer.setSourceLocation(Paths.get("data", "bgm", "05. Unknown Pollution.mp3").toString());
-        // The volume control functions in class {@code Player} does not appear to work. DO NOT USE IT.
-        // Instead, use {@Code VolumeController} in package utils.
-        VolumeController.setVolume(0.08f);
-
-        
-
-        // Reset game step to zero.
-        gameStep.setValue(0);
 
         // Timer to adjust game speed
         gameSpeedAdjusterTimer = new Timer(1000, new ActionListener() {
@@ -110,34 +94,6 @@ public class World extends JPanel {
             }
         });
         gameSpeedAdjusterTimer.setRepeats(true);
-    }
-    
-    public void initGame() {
-    	System.out.println(playerNumber);
-    	addKeyListener(keyAdapter1);  // monitor the keyboard
-        addKeyListener(keyAdapter2);  // monitor the keyboard
-    	requestFocus();
-    	//keyAdapter1 = new RaidenKeyAdapter1();
-    	//keyAdapter2 = new RaidenKeyAdapter2();
-    	gameScheduler = new GameScheduler(LEVEL_NORMAL, playerNumber);
-    	
-    	// Clear aircraft and interactant lists.
-        aircraftList.clear();
-        interactantList.clear();
-
-        // Set game scheduler and initialize
-        if (playerNumber == TWO) {
-            player1 = new PlayerAircraft(windowWidth * .75f, windowHeight - 150,
-                    Faction.PLAYER1, PlayerController.KEYBOARD1);
-            aircraftList.add(player1);
-            player2 = new PlayerAircraft(windowWidth * .25f, windowHeight - 150,
-                    Faction.PLAYER2, PlayerController.KEYBOARD2);
-            aircraftList.add(player2);
-        } else {
-            player1 = new PlayerAircraft(windowWidth * .5f, windowHeight - 150,
-                    Faction.PLAYER1, PlayerController.KEYBOARD1);
-            aircraftList.add(player1);
-        }
     }
 
     /**
@@ -159,134 +115,63 @@ public class World extends JPanel {
      */
     public void paint(Graphics g) {
         synchronized (this) {
-            background.paint(g);
-            switch (pageStatus){
-            	case MAIN:
-					MainPage.paint(g, this);
-            		break;
-            	case HELP:
-            		HelpPage.paint(g,this);
-            		break;
-            	case RANKLIST:
-            		RanklistPage.paint(g, this);
-            		break;
-            	case MODECHOSE:
-            		ModeChosePage.paint(g, this);
-            		break;
-            	case PLAYERCHOSE:
-            		PlayerChosePage.paint(g, this);
-            		break;
-            	case GAMING:
-            		GamingPage.paint(g, this);;
-            		break;
-            	case VICTORY:
-            		VictoryPage.paint(g, this);
-            		break;
-            	case END:
-            		EndPage.paint(g, this);
-            		break;
-            	default:
+            if (pageStatus != CLOSE) {
+                pageStatus.getPage().paint(g);
             }
         }
     }
-    
-    
+
+
     /**
      * Remove components when pageStatus changes
-     * 
+     *
      * @author 杨芳源
      */
     void clean(PageStatus flag) {
-    	switch (flag) {
-		case MAIN:
-    		MainPage.clean(this);
-    		break;
-    	case HELP:
-    		HelpPage.clean(this);
-    		break;
-    	case RANKLIST:
-    		RanklistPage.clean(this);
-    		break;
-    	case PLAYERCHOSE:
-    		PlayerChosePage.clean(this);
-    		break;
-    	case MODECHOSE:
-    		ModeChosePage.clean(this);
-    		break;
-    	case GAMING:
-    		GamingPage.clean(this);
-    		break;
-    	case VICTORY:
-    		VictoryPage.clean(this);
-    		break;
-    	case END:
-    		EndPage.clean(this);
-    		break;
-    	default:
-		}
+        if (flag != CLOSE) {
+            flag.getPage().clean(this);
+        }
     }
-    
+
     /**
      * Run the handler program for the next page.
-     * 
+     *
+     * @throws InterruptedException
      * @author 杨芳源
-     * @throws InterruptedException 
      */
     void runPageHandler(PageStatus flag) throws InterruptedException {
-    	switch (flag){
-    	case MAIN:
-    		MainPage.run();
-    		break;
-    	case HELP:
-    		HelpPage.run();
-    		break;
-    	case RANKLIST:
-    		RanklistPage.run();
-    		break;
-    	case PLAYERCHOSE:
-    		PlayerChosePage.run();
-    		break;
-    	case MODECHOSE:
-    		ModeChosePage.run();
-    		break;
-    	case GAMING:
-    		initGame();
-    		GamingPage.run(this);
-    		break;
-    	case VICTORY:
-    		VictoryPage.run();
-    		break;
-    	case END:
-    		EndPage.run();
-    		break;
-    	default: return;
-		}
+        if (flag != CLOSE) {
+            flag.getPage().run(this);
+        }
     }
 
     /**
      * Run the game from main page.
-     * 
+     *
      * @throws InterruptedException
      * @author 杨芳源
      */
-    public void run() throws InterruptedException{
-    	pageStatus = MAIN;
-    	PageStatus flag = MAIN;
-    	while (pageStatus != CLOSE) {
-    		while (pageStatus == flag) {
-    			sleep(msToSleepAtEachGameStep);
-        		gameStep.increment();
-    		}
-    		System.out.print(flag);
-    		System.out.println(pageStatus);
-    		
-    		clean(flag);
-    		
-    		flag = pageStatus;
+    public void run() throws InterruptedException {
+        pageStatus = MAIN;
+        PageStatus flag = MAIN;
+        runPageHandler(pageStatus);
 
-    		repaint();
-    		runPageHandler(pageStatus);
-    	}
+        while (pageStatus != CLOSE) {
+            while (pageStatus == flag) {
+                sleep(msToSleepAtEachGameStep);
+                repaint();
+            }
+
+            System.out.print(flag + " → ");
+            System.out.println(pageStatus);
+
+            clean(flag);
+
+            flag = pageStatus;
+
+            repaint();
+            runPageHandler(pageStatus);
+        }
     }
 }
 

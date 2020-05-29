@@ -1,23 +1,16 @@
 package utils;
 
-import static utils.PageStatus.GAMING;
-
-import java.awt.Image;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-import world.World;
-
 
 /**
  * My button with pictures
- * @author �Դ
+ * @author 杨芳源
  */
 public class MyButton extends JButton {
 	/**
@@ -26,8 +19,8 @@ public class MyButton extends JButton {
 	 * @param y: Y coordinate of button.
 	 * @param width: Width of the button.
 	 * @param height: Height of the button.
-	 * @param pageStatus: Change of pageStatus when the button is pressed.
 	 * @param path: A Path object to get the pictures.
+	 * @param listener:
 	 */
 	public MyButton(int x, int y, int width, int height, Path path, ActionListener listener){
 		
@@ -40,7 +33,7 @@ public class MyButton extends JButton {
 			e.printStackTrace();
 		}
 		ImageIcon ii = new ImageIcon(url);  
-		//���ݰ�ť��С�ı�ͼƬ��С  
+		//根据按钮大小改变图片大小  
 		Image temp = ii.getImage().getScaledInstance(getWidth(), getHeight(), ii.getImage().SCALE_DEFAULT);
 		ii = new ImageIcon(temp);  
 		setIcon(ii);
