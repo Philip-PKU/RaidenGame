@@ -38,6 +38,7 @@ public final class SuperPowerBonus extends BaseBonus {
 
     @Override
     public void bonus(PlayerAircraft aircraft) {
+        super.bonus(aircraft);
         aircraft.incrAvailableSuperpowers();
     }
 }

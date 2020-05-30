@@ -3,6 +3,9 @@ package raidenObjects.aircrafts;
 import motionControllers.ConstSpeedYMotionController;
 import utils.Faction;
 import utils.InitLocation;
+import world.World;
+
+import java.nio.file.Paths;
 
 /**
  * BlackholeAircraft. The nightmare of all {@link raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft}s.
@@ -18,6 +21,7 @@ public final class BlackholeAircraft extends BaseAircraft {
         super("BlackHoleAircraft", 65, 65, Faction.ENEMY,
                 Integer.MAX_VALUE, 0, Integer.MAX_VALUE, 0);
         this.registerMotionController(new ConstSpeedYMotionController(0.5f));
+        World.playSoundEffect(Paths.get("data", "sound effects", "Blackhole.mp3").toString());
     }
 
     public BlackholeAircraft(float x, float y) {

@@ -39,6 +39,7 @@ public final class CureBonus extends BaseBonus {
 
     @Override
     public void bonus(PlayerAircraft aircraft) {
+        super.bonus(aircraft);
         aircraft.setHp(min(aircraft.getMaxHp(), aircraft.getHp() + bonusHp));
     }
 }

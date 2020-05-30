@@ -46,6 +46,7 @@ public final class InvincibleBonus extends BaseBonus {
 
     @Override
     public void bonus(PlayerAircraft aircraft) {
+        super.bonus(aircraft);
         aircraft.getInvincibleCountdown().extendDurationBy(effectiveGameSteps);
     }
 

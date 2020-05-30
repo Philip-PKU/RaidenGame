@@ -40,6 +40,7 @@ public final class MagnetBonus extends BaseBonus {
 
     @Override
     public void bonus(PlayerAircraft aircraft) {
+        super.bonus(aircraft);
         aircraft.getMagnetCountdown().extendDurationBy(effectiveGameSteps);
     }
 }

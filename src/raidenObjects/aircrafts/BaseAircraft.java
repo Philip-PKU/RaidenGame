@@ -4,6 +4,7 @@ import raidenObjects.BaseRaidenObject;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import raidenObjects.bonus.*;
 import utils.Faction;
+import world.World;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -30,6 +31,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     protected int numOfDeathEffectImages, crashDamage;
     protected int score;
     protected float probCoin0, probCoin1, probCoin2, probInvincible, probMagnet, probSuperpower, probWeaponUpgrade, probCure;
+    protected String deathSoundEffectPath;
 
     protected BaseAircraft(String name, int imgSizeX, int imgSizeY, Faction faction,
                            int maxHp, int numOfDeathEffectImages, int crashDamage, int score) {
@@ -38,6 +40,7 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         this.numOfDeathEffectImages = numOfDeathEffectImages;
         this.crashDamage = crashDamage;
         this.score = score;
+        this.deathSoundEffectPath = Paths.get("data", "sound effects", name + ".mp3").toString();
     }
 
     public int getHp() {
@@ -141,6 +144,8 @@ public abstract class BaseAircraft extends BaseRaidenObject {
     }
 
     public void afterKilledByPlayer(Faction source) {
+        World.playSoundEffect(deathSoundEffectPath);
+
         if (source.isPlayer1() && player1 != null)
             player1.addScore(getScore());
         if (source.isPlayer2() && player2 != null)

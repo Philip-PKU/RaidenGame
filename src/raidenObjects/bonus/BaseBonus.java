@@ -4,6 +4,7 @@ import motionControllers.ConstSpeedTargetTrackingMotionController;
 import raidenObjects.BaseRaidenObject;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Faction;
+import world.World;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -28,6 +29,7 @@ public abstract class BaseBonus extends BaseRaidenObject {
      * @see MagnetBonus
      */
     boolean attracted = false;
+    String soundEffectPath;
 
     /**
      * Constructor.
@@ -39,6 +41,7 @@ public abstract class BaseBonus extends BaseRaidenObject {
      */
     protected BaseBonus(String name, int imgSizeX, int imgSizeY, Faction faction) {
         super(name, imgSizeX, imgSizeY, faction);
+        this.soundEffectPath = Paths.get("data", "sound effects", name + ".mp3").toString();
     }
 
     public boolean isAttracted() {
@@ -49,11 +52,18 @@ public abstract class BaseBonus extends BaseRaidenObject {
         attracted = true;
     }
 
+
+    public String getSoundEffectPath() {
+        return soundEffectPath;
+    }
+
     /**
      * Logic for the effect of this bonus.
      * @param aircraft The aircraft receiving this bonus.
      */
-    public abstract void bonus(PlayerAircraft aircraft);
+    public void bonus(PlayerAircraft aircraft) {
+        World.playSoundEffect(getSoundEffectPath());
+    }
 
     /**
      * Interact with {code aircraft}.
