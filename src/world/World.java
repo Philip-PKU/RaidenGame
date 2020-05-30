@@ -171,6 +171,7 @@ public class World extends JPanel {
      * @author 杨芳源
      */
     public void run() throws InterruptedException {
+        // test encode
         pageStatus = MAIN;
         PageStatus flag = MAIN;
         runPageHandler(pageStatus);
