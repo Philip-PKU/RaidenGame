@@ -58,7 +58,7 @@ public class World extends JPanel {
     public static PageStatus pageStatus = GAMING;
     public static PlayerNumber playerNumber = ONE;
     public static GameScheduler gameScheduler;
-    public static GameLevel gameLevel = LEVEL_NORMAL;
+    public static GameLevel gameLevel = LEVEL_HARD;
 
     public World() {
         init();
