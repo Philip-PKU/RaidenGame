@@ -14,6 +14,7 @@ import static world.World.desiredFPS;
  */
 public class EffectCountdown {
     int remainingSteps;
+    String soundEffectPath;
 
     public EffectCountdown() {
         this(0);

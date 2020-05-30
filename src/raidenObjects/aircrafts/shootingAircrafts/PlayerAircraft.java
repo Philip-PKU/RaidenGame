@@ -7,6 +7,7 @@ import raidenObjects.SuperpowerResidue;
 import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.BlackholeAircraft;
 import raidenObjects.bonus.InvincibleBonus;
+import raidenObjects.bonus.SuperPowerBonus;
 import raidenObjects.weapons.BigPlayerBullet;
 import raidenObjects.weapons.PlayerBeam;
 import raidenObjects.weapons.StandardPlayerBullet;
@@ -16,6 +17,7 @@ import utils.Faction;
 import utils.InitLocation;
 import utils.PlayerController;
 import utils.keyAdapters.BaseRaidenKeyAdapter;
+import world.World;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -44,7 +46,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
      * @see raidenObjects.BaseRaidenObject#hasHit(BaseRaidenObject)
      */
     private static int hitSizeY = 20;
-    private final int superpowerCost = 200, coinScore = 10, highestWeaponLevel = 3;
+    private static int superpowerCost = 200, coinScore = 10, highestWeaponLevel = 3;
     private static int defaultMaxHp = 200, staticMaxHp = defaultMaxHp;
 
     protected int coin = 0;
@@ -200,6 +202,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
                     () -> getAvailableSuperpowers() > 0));
             setLaunchable(() -> {
                 decrAvailableSuperpowers();
+                World.playSoundEffect(Paths.get("data", "sound effects", "Superpower.mp3").toString());
                 interactantList.removeIf(i -> i.getFaction().isEnemyTo(getFaction()));
                 for (BaseAircraft aircraft : aircraftList) {
                     if (aircraft.getFaction().isEnemyTo(getFaction()) && !(aircraft instanceof BlackholeAircraft)) {
@@ -338,7 +341,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
         this.coin += coin;
         if (this.coin >= superpowerCost) {
             this.coin -= superpowerCost;
-            incrAvailableSuperpowers();
+            new SuperPowerBonus().bonus(this);
         } else {
             System.out.println("Coin: " + this.coin);
         }

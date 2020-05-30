@@ -73,6 +73,16 @@ public class World extends JPanel {
         musicPlayer.play();
     }
 
+    public static void playSoundEffect(String path) {
+        Thread thread = new Thread(() -> {
+            Player soundEffectPlayer = new Player();
+            soundEffectPlayer.setSourceLocation(path);
+            soundEffectPlayer.play();
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
+
     /**
      * Initialize the game.
      *

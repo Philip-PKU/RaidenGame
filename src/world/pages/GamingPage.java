@@ -13,7 +13,6 @@ import java.nio.file.Paths;
 
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
-import static utils.GameLevel.LEVEL_NORMAL;
 import static utils.GameMode.SURVIVAL;
 import static utils.PageStatus.VICTORY;
 import static utils.PlayerNumber.TWO;
@@ -106,7 +105,7 @@ public class GamingPage implements Page {
         world.addKeyListener(keyAdapter1);  // monitor the keyboard
         world.addKeyListener(keyAdapter2);  // monitor the keyboard
         world.requestFocus();
-        gameScheduler = new GameScheduler(LEVEL_NORMAL, playerNumber);
+        gameScheduler = new GameScheduler(gameLevel, playerNumber);
 
         // Clear aircraft and interactant lists.
         aircraftList.clear();
@@ -115,6 +114,7 @@ public class GamingPage implements Page {
         // The background music
         // TODO: change the bgm in different scenarios
         world.playBackGroundMusic(Paths.get("data", "bgm", "05. Unknown Pollution.mp3").toString());
+        playSoundEffect(Paths.get("data", "sound effects", "OK Lets Go.mp3").toString());
 
         // Reset game step to zero.
         gameStep.setValue(0);

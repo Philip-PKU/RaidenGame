@@ -75,6 +75,11 @@ public final class WeaponUpgradeBonus extends BaseBonus {
     }
 
     @Override
+    public String getSoundEffectPath() {
+        return Paths.get("data", "sound effects", getName() + weapon + ".mp3").toString();
+    }
+
+    @Override
     public File getImageFile() {
         int curCooldown = getUpdateTypeController().getLaunchCondition().getCurCooldown();
         if (curCooldown <= desiredFPS && (curCooldown / (desiredFPS / 10)) % 2 == 0)
@@ -96,6 +101,7 @@ public final class WeaponUpgradeBonus extends BaseBonus {
 
     @Override
     public void bonus(PlayerAircraft aircraft) {
+        super.bonus(aircraft);
         aircraft.updateWeapon(weapon);
     }
 
