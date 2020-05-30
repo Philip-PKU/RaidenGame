@@ -13,7 +13,7 @@ public class App {
         World world = new World();
         frame.add(world);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(windowWidth, windowHeight);
+        frame.setSize(windowWidth+20, windowHeight+50);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);  // make the window visible, and call the paint function
 

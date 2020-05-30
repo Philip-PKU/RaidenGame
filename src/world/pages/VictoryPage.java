@@ -12,7 +12,7 @@ import static utils.PageStatus.CLOSE;
 import static utils.PageStatus.MAIN;
 
 /**
- * @author 杨芳源
+ * @author 鏉ㄨ姵婧�
  *
  */
 public class VictoryPage implements Page {
@@ -28,10 +28,8 @@ public class VictoryPage implements Page {
 	}
 
 	public void paint(Graphics g) {
-		g.drawImage(loadImage(Paths.get("data", "images", "Background.png").toFile()),
-				0,0,null);
-		g.drawImage(loadImage(Paths.get("data", "images", "youwin.png").toFile()),
-					50, 30, 380, 300, null);
+		g.drawImage(loadImage(Paths.get("data", "images", "BackgroundWin.png").toFile()),
+					0,0,null);
 		g.drawImage(loadImage(Paths.get("data", "images", "back.png").toFile()),
 					130, 430, 220, 80, null);
 		g.drawImage(loadImage(Paths.get("data", "images", "exit.png").toFile()),

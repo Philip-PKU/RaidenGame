@@ -10,7 +10,7 @@ import java.nio.file.Path;
 
 /**
  * My button with pictures
- * @author 杨芳源
+ * @author 鏉ㄨ姵婧�
  */
 public class MyButton extends JButton {
 	/**
@@ -26,6 +26,10 @@ public class MyButton extends JButton {
 		
 		setBounds(x, y, width, height);
 		
+		addActionListener(listener);
+		
+		if (path == null) return;
+		
 		URL url = null;
 		try {
 			url = path.toUri().toURL();
@@ -33,11 +37,9 @@ public class MyButton extends JButton {
 			e.printStackTrace();
 		}
 		ImageIcon ii = new ImageIcon(url);  
-		//根据按钮大小改变图片大小  
+		//鏍规嵁鎸夐挳澶у皬鏀瑰彉鍥剧墖澶у皬  
 		Image temp = ii.getImage().getScaledInstance(getWidth(), getHeight(), ii.getImage().SCALE_DEFAULT);
 		ii = new ImageIcon(temp);  
 		setIcon(ii);
-		
-		addActionListener(listener);
 	}
 }

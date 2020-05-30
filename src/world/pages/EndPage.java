@@ -12,7 +12,7 @@ import static utils.PageStatus.CLOSE;
 import static utils.PageStatus.MAIN;
 
 /**
- * @author 杨芳源
+ * @author 鏉ㄨ姵婧�
  */
 public class EndPage  implements Page {
     MyButton buttonReturn, buttonClose;
@@ -31,14 +31,12 @@ public class EndPage  implements Page {
     }
 
     public void paint(Graphics g) {
-        g.drawImage(loadImage(Paths.get("data", "images", "Background.png").toFile()),
-                0,0,null);
-        g.drawImage(loadImage(Paths.get("data", "images", "gameover.png").toFile()),
-                50, 30, 380, 300, null);
+        g.drawImage(loadImage(Paths.get("data", "images", "BackgroundLose.png").toFile()),
+                	0,0,null);
         g.drawImage(loadImage(Paths.get("data", "images", "back.png").toFile()),
-                130, 430, 220, 80, null);
+                	130, 430, 220, 80, null);
         g.drawImage(loadImage(Paths.get("data", "images", "exit.png").toFile()),
-                130, 530, 220, 80, null);
+                	130, 530, 220, 80, null);
     }
 
     public void clean(World world) {

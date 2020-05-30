@@ -14,7 +14,7 @@ import static utils.PageStatus.*;
 /**
  * Main page handler
  *
- * @author 杨芳源
+ * @author 鏉ㄨ姵婧�
  */
 public class MainPage implements Page {
     MyButton buttonStart, buttonRankList, buttonHelp, buttonExit;
@@ -29,7 +29,7 @@ public class MainPage implements Page {
             World.pageStatus = PLAYER_CHOSE;
         };
         ActionListener listener2 = (e) -> {
-            World.pageStatus = RANK_LIST;
+            World.pageStatus = RANK_LIST_ONE;
         };
         ActionListener listener3 = (e) -> {
             World.pageStatus = HELP;

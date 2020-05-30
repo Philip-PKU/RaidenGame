@@ -5,11 +5,12 @@ import world.pages.*;
 /**
  * An enum object for game page status.
  *
- * @author 杨芳源 蔡辉宇
+ * @author 鏉ㄨ姵婧� 钄¤緣瀹�
  */
 public enum PageStatus {
     MAIN(new MainPage()),
-    RANK_LIST(new RankListPage()),
+    RANK_LIST_ONE(new RankListOnePage()),
+    RANK_LIST_TWO(new RankListTwoPage()),
     HELP(new HelpPage()),
     MODE_CHOSE(new ModeChosePage()),
     PLAYER_CHOSE(new PlayerChosePage()),
