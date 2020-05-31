@@ -26,7 +26,7 @@ import static utils.PlayerNumber.ONE;
 
 /**
  * The game panel added to JFrame in App (the main class).
- * Functions include initializing the game (in {@code init}) and running the game (in {@code run}).
+ * Functions include initializing the game (in {@link #init}) and running the game (in {@link #run}).
  * <p>
  * Note: This class must stay inside a non-default package because it will be referenced
  * by other classes, and classes in the default package cannot be imported.
