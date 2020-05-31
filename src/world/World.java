@@ -64,7 +64,11 @@ public class World extends JPanel {
         init();
     }
 
-    public void playBackGroundMusic(String path) {
+    /**
+     * Play background music. Note that there can only be one background music at a given time.
+     * @param path Path to background music.
+     */
+    public static void playBackGroundMusic(String path) {
         if (musicPlayer != null) {
             musicPlayer.stop();
         }
@@ -73,6 +77,10 @@ public class World extends JPanel {
         musicPlayer.play();
     }
 
+    /**
+     * Play sound effect. There can be many sound effects playing at the same time.
+     * @param path Path to the sound effect.
+     */
     public static void playSoundEffect(String path) {
         Thread thread = new Thread(() -> {
             Player soundEffectPlayer = new Player();
