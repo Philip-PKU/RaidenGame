@@ -12,8 +12,6 @@ import utils.keyAdapters.RaidenKeyAdapter2;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Deque;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -34,7 +32,7 @@ import static utils.PlayerNumber.ONE;
  * @author 蔡辉宇 杨芳源 张哲瑞 唐宇豪
  */
 public class World extends JPanel {
-    public static Background background;
+    public static Background background = new Background();
 
     // These public static variables can be referenced by any class in the game.
     public static PlayerAircraft player1, player2;
@@ -54,7 +52,6 @@ public class World extends JPanel {
     public static final int desiredFPS = 50;
     public static Timer gameSpeedAdjusterTimer;
     public static GameMode gameMode = SURVIVAL;
-    public static int survivalModeSeconds = 222;
     public static PageStatus pageStatus = GAMING;
     public static PlayerNumber playerNumber = ONE;
     public static GameScheduler gameScheduler;
@@ -92,35 +89,14 @@ public class World extends JPanel {
     }
 
     /**
-     * Initialize the game.
+     * Initialize the game panel.
      *
      * @author 蔡辉宇
      */
     public void init() {
-        // The background image
-        background = new Background();
-
         setLayout(null);
         setVisible(true);
         requestFocus();
-
-        // Timer to adjust game speed
-        gameSpeedAdjusterTimer = new Timer(1000, new ActionListener() {
-            int lastGameStep;
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (lastGameStep != 0) {
-                    int fps = gameStep.intValue() - lastGameStep;
-                    float overheadPerStep = (1000 - fps * msToSleepAtEachGameStep) / (float) fps;
-                    msToSleepAtEachGameStep = (int) ((1000f / desiredFPS) - overheadPerStep);
-                    if (msToSleepAtEachGameStep < 0)
-                        msToSleepAtEachGameStep = 0;
-                }
-                lastGameStep = gameStep.intValue();
-            }
-        });
-        gameSpeedAdjusterTimer.setRepeats(true);
     }
 
     /**

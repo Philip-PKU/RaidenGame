@@ -8,7 +8,10 @@ import utils.PlayerController;
 import world.GameScheduler;
 import world.World;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.nio.file.Paths;
 
 import static java.lang.Thread.sleep;
@@ -108,6 +111,26 @@ public class GamingPage implements Page {
         world.requestFocus();
         gameScheduler = new GameScheduler(gameLevel, playerNumber);
 
+        // Timer to adjust game speed
+        gameSpeedAdjusterTimer = new Timer(1000, new ActionListener() {
+            int lastGameStep;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (lastGameStep != 0) {
+                    int fps = gameStep.intValue() - lastGameStep;
+                    float overheadPerStep = (1000 - fps * msToSleepAtEachGameStep) / (float) fps;
+                    if (overheadPerStep < 0)
+                        overheadPerStep = 0;
+                    msToSleepAtEachGameStep = (int) ((1000f / desiredFPS) - overheadPerStep);
+                    if (msToSleepAtEachGameStep < 0)
+                        msToSleepAtEachGameStep = 0;
+                }
+                lastGameStep = gameStep.intValue();
+            }
+        });
+        gameSpeedAdjusterTimer.setRepeats(true);
+
         // Clear aircraft and interactant lists.
         aircraftList.clear();
         interactantList.clear();
@@ -158,7 +181,6 @@ public class GamingPage implements Page {
             // Remove off screen objects from the global lists and fields
             aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
             interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
-            // TODO: inform UI that player1 has died and collect scores before setting it to NULL
             if (player1 != null && !player1.isAlive())
                 player1 = null;
             if (player2 != null && !player2.isAlive())
