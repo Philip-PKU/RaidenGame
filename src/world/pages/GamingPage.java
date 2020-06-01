@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.GameMode.SURVIVAL;
+import static utils.PageStatus.END;
 import static utils.PageStatus.VICTORY;
 import static utils.PlayerNumber.TWO;
 import static world.World.*;
@@ -136,6 +137,13 @@ public class GamingPage implements Page {
         gameSpeedAdjusterTimer.start();
         while (player1 != null || player2 != null) {
             if (musicPlayer.isEndOfMediaReached()) {
+                if (gameMode == SURVIVAL) {
+                    System.out.println("Victory!");
+                    musicPlayer.stop();
+                    gameSpeedAdjusterTimer.stop();
+                    pageStatus = VICTORY;
+                    return;
+                }
                 musicPlayer.seek(0);
                 musicPlayer.play();
             }
@@ -167,18 +175,11 @@ public class GamingPage implements Page {
             sleep(msToSleepAtEachGameStep);
 
             gameStep.increment();
-            if (gameMode == SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds) {
-                System.out.println("Victory!");
-                musicPlayer.stop();
-                gameSpeedAdjusterTimer.stop();
-                pageStatus = VICTORY;
-                return;
-            }
         }
         System.out.println("Game over");
         musicPlayer.stop();
         gameSpeedAdjusterTimer.stop();
-        //pageStatus = END;
+        pageStatus = END;
 	}
 
 	/**
