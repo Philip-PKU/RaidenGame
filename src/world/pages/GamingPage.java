@@ -16,10 +16,10 @@ import java.nio.file.Paths;
 
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
-import static utils.GameMode.SURVIVAL;
-import static utils.PageStatus.END;
-import static utils.PageStatus.VICTORY;
-import static utils.PlayerNumber.TWO;
+
+import static utils.GameMode.*;
+import static utils.PageStatus.*;
+import static utils.PlayerNumber.*;
 import static world.World.*;
 
 /**
@@ -185,9 +185,17 @@ public class GamingPage implements Page {
             aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
             interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
             if (player1 != null && !player1.isAlive())
+            // TODO: inform UI that player1 has died and collect scores before setting it to NULL
+            if (player1 != null && !player1.isAlive()) {
+            	totalScore += player1.getScore();
+            	totalCoin += player1.getCoin();
                 player1 = null;
-            if (player2 != null && !player2.isAlive())
+        	}
+            if (player2 != null && !player2.isAlive()) {
+            	totalScore += player2.getScore();
+            	totalCoin += player2.getCoin();
                 player2 = null;
+            }
 
             // Periodically print the score
             if (gameStep.intValue() % 100 == 0) {
