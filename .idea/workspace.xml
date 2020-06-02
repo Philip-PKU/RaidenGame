@@ -33,20 +33,7 @@
     <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/result/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/result/1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/BaseRaidenObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/BaseRaidenObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/BumpingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/BumpingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/BigShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/MiddleShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/SmallShootingAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/weapons/BarbetteBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/weapons/BarbetteBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/weapons/BigBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/weapons/BigBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/weapons/StandardPlayerBullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/weapons/StandardPlayerBullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/utils/RaidenKeyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/RaidenKeyAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/world/GameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/world/GameScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/world/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/world/pages/GamingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/world/pages/GamingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/world/pages/VictoryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/world/pages/VictoryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/App.java" afterDir="false" />
     </list>
     <list id="f9ca05ca-5c1f-4ca0-a174-e2c848e6b4d2" name="Revert &quot;sound effect modifications *2&quot;" comment="Revert &quot;sound effect modifications *2&quot;&#10;&#10;This reverts commit b250e817">
       <change beforePath="$PROJECT_DIR$/data/sound effects/Blackhole.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/data/sound effects/Blackhole.mp3" afterDir="false" />
@@ -188,11 +175,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.App" />
       <item itemvalue="JUnit.PeriodicStochasticLaunchConditionTest.test" />
       <item itemvalue="JUnit.test in Raiden" />
       <item itemvalue="JUnit.ConstAccelerationLaunchConditionTest.test" />
       <item itemvalue="JUnit.ConstAccelerationLaunchConditionTest" />
-      <item itemvalue="Application.App" />
     </list>
     <recent_temporary>
       <list>
@@ -235,6 +222,7 @@
       <workItem from="1590813196219" duration="8722000" />
       <workItem from="1590826967945" duration="21000" />
       <workItem from="1590834578712" duration="376000" />
+      <workItem from="1591126035904" duration="439000" />
     </task>
     <task id="LOCAL-00001" summary="add readme">
       <created>1580021981762</created>
@@ -460,7 +448,21 @@
       <option name="project" value="LOCAL" />
       <updated>1591122090453</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="game balance update">
+      <created>1591125900246</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1591125900246</updated>
+    </task>
+    <task id="LOCAL-00034" summary="game balance update (bug fix)">
+      <created>1591125918987</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1591125918987</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,8 +495,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="New Bumping Aircraft, moderate modifications elsewhere" />
-    <MESSAGE value="Removed Flyable Interface" />
     <MESSAGE value="can play bgm now; add BumpingAircraft" />
     <MESSAGE value="separated motionControllers, updated readme.md" />
     <MESSAGE value="massive updates on document; add weaponController" />
@@ -518,7 +518,9 @@
     <MESSAGE value="add sound effects!" />
     <MESSAGE value="rewrote painting and &quot;run&quot;" />
     <MESSAGE value="rearranged file structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="rearranged file structure" />
+    <MESSAGE value="game balance update" />
+    <MESSAGE value="game balance update (bug fix)" />
+    <option name="LAST_COMMIT_MESSAGE" value="game balance update (bug fix)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -558,10 +560,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="703" y="234" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1590681711277" />
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1591122089081">
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1591125918067">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591122089081" />
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591125918067" />
     <state x="158" y="100" width="1736" height="856" key="DiffContextDialog" timestamp="1591116620927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -570,38 +572,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1158" y="260" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591116618452" />
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1591125181958">
+    <state width="1877" height="346" key="GridCell.Tab.0.bottom" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591125181958" />
-    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1591125181958">
+    <state width="1877" height="346" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
+    <state width="1877" height="346" key="GridCell.Tab.0.center" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591125181958" />
-    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1591125181958">
+    <state width="1877" height="346" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
+    <state width="1877" height="346" key="GridCell.Tab.0.left" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591125181958" />
-    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1591125181958">
+    <state width="1877" height="346" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
+    <state width="1877" height="346" key="GridCell.Tab.0.right" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591125181958" />
-    <state width="1877" height="346" key="GridCell.Tab.1.bottom" timestamp="1591124910778">
+    <state width="1877" height="346" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
+    <state width="1877" height="346" key="GridCell.Tab.1.bottom" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="346" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591124910778" />
-    <state width="1877" height="346" key="GridCell.Tab.1.center" timestamp="1591124910778">
+    <state width="1877" height="346" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
+    <state width="1877" height="346" key="GridCell.Tab.1.center" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="346" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591124910778" />
-    <state width="1877" height="346" key="GridCell.Tab.1.left" timestamp="1591124910778">
+    <state width="1877" height="346" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
+    <state width="1877" height="346" key="GridCell.Tab.1.left" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="346" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591124910778" />
-    <state width="1877" height="346" key="GridCell.Tab.1.right" timestamp="1591124910778">
+    <state width="1877" height="346" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
+    <state width="1877" height="346" key="GridCell.Tab.1.right" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="346" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591124910778" />
+    <state width="1877" height="346" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591125938950" />
     <state x="309" y="158" key="MergeDialog" timestamp="1590744025530">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -626,10 +628,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="840" y="434" key="VCS.EditChangelistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591116867161" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591122092372">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591125920115">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591122092372" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591125920115" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1591107921335">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

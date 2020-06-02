@@ -10,7 +10,7 @@ import static main.world.World.windowWidth;
 public class App {
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("飞机大战");
         World world = null;
         try {
             world = new World();
