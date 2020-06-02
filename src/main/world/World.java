@@ -18,6 +18,7 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static java.awt.event.KeyEvent.*;
+import static main.utils.GameLevel.LEVEL_NORMAL;
 import static main.utils.GameMode.SURVIVAL;
 import static main.utils.PageStatus.*;
 import static main.utils.PlayerNumber.ONE;
