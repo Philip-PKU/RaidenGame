@@ -4,6 +4,7 @@
     <root id="archive" name="Raiden.jar">
       <element id="module-output" name="Raiden" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/JavaMediaPlayer.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.8.2/junit-4.8.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jl1.0.1.jar" path-in-jar="/" />
     </root>
   </artifact>
