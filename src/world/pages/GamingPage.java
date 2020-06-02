@@ -28,7 +28,6 @@ import static world.World.*;
  * @author 杨芳源
  */
 public class GamingPage implements Page {
-	static int totalScore, totalCoin;
 	
 	/**
      * Paint the game state, including HP bar, number of coins and game points earned.
@@ -184,8 +183,7 @@ public class GamingPage implements Page {
             // Remove off screen objects from the global lists and fields
             aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
             interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
-            if (player1 != null && !player1.isAlive())
-            // TODO: inform UI that player1 has died and collect scores before setting it to NULL
+
             if (player1 != null && !player1.isAlive()) {
             	totalScore += player1.getScore();
             	totalCoin += player1.getCoin();
