@@ -25,7 +25,7 @@ public final class BumpingAircraft extends BaseAircraft {
                 () -> getY() > 60, () -> {
         }));
         probCoin0 = 0.1f;
-        probCoin1 = 0.2f;
+        probCoin1 = 0.1f;
         probCoin2 = 0.1f;
     }
 

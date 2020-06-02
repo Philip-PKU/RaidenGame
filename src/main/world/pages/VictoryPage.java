@@ -4,7 +4,6 @@ import main.utils.MyButton;
 import main.world.World;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -23,10 +22,10 @@ public class VictoryPage implements Page {
 	public void run(World world) throws IOException {
 		World.addResult(totalScore, totalCoin, playerNumber);
 		
-		ActionListener listener1 = (e)->{World.pageStatus = MAIN;};
-		ActionListener listener2 = (e)->{World.pageStatus = CLOSE;};
-		buttonReturn = new MyButton(130, 430, 220, 80, Paths.get("data", "images", "back.png"), listener1);
-		buttonClose = new MyButton(130, 530, 220, 80, Paths.get("data", "images", "exit.png"), listener2);
+		buttonReturn = new MyButton(130, 430, 220, 80, Paths.get("data", "images", "back.png"),
+				e -> world.changePageStatus(MAIN));
+		buttonClose = new MyButton(130, 530, 220, 80, Paths.get("data", "images", "exit.png"),
+				e -> world.changePageStatus(CLOSE));
 		world.add(buttonReturn);
 		world.add(buttonClose);
 		world.repaint();

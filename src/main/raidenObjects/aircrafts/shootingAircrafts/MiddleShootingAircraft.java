@@ -34,7 +34,7 @@ public final class MiddleShootingAircraft extends BaseShootingAircraft {
                 () -> getWeaponLaunchController().activate()));
         this.registerWeaponLaunchController(new SimpleLaunchController<>(
                 "MiddleShootingAircraft shoots SmallBullet",
-                new PeriodicLaunchCondition(192, 50, 6, 3),
+                new PeriodicLaunchCondition(192, 50, 6, 2),
                 () -> {
                     PlayerAircraft closestPlayer = getClosestPlayer();
                     interactantList.add(new SmallBullet(getX() - 10, getMaxY(),
@@ -45,6 +45,13 @@ public final class MiddleShootingAircraft extends BaseShootingAircraft {
                             closestPlayer.getY() + rand.nextFloat() * 30 - 15));
                 })
         );
+
+        probInvincible = 0.05f;
+        probCure = 0.05f;
+        probCoin1 = 0.05f;
+        probCoin2 = 0.05f;
+        probWeaponUpgrade = 0.03f;
+        probMagnet = 0.05f;
     }
 
     public MiddleShootingAircraft(float x, float y) {

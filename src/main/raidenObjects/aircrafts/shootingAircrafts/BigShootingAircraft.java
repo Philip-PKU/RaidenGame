@@ -36,7 +36,7 @@ public final class BigShootingAircraft extends BaseShootingAircraft {
                 () -> getWeaponLaunchController().activate()));
         this.registerWeaponLaunchController(new SimpleLaunchController<>(
                 "BigShootingAircraft shoots BigBullet",
-                new PeriodicLaunchCondition(150, 50, 6, 3),
+                new PeriodicLaunchCondition(200, 50, 6, 3),
                 () -> {
                     interactantList.add(new BigBullet(getX() - 20, getMaxY() - 5,
                             getX() + rand.nextFloat() * 100 - 50, getY() + windowHeight / 2f + rand.nextFloat() * 150 - 75));

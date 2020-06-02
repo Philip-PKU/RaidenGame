@@ -14,7 +14,7 @@ import static java.lang.Math.toRadians;
  * @author 蔡辉宇
  */
 public final class StandardPlayerBullet extends BaseWeapon {
-    private static int staticDamage = 5;
+    private static int defaultDamage = 5, staticDamage = defaultDamage;
 
     /**
      * Constructor.
@@ -31,8 +31,8 @@ public final class StandardPlayerBullet extends BaseWeapon {
         this.setRotation((float) toRadians(theta));
     }
 
-    public static int getStaticDamage() {
-        return staticDamage;
+    public static int getDefaultDamage() {
+        return defaultDamage;
     }
 
     public static void setStaticDamage(int staticDamage1) {

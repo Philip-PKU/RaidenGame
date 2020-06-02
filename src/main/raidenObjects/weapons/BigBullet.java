@@ -24,7 +24,7 @@ public final class BigBullet extends BaseWeapon {
         super("BigBullet", x, y, 10, 10,
                 Faction.ENEMY, staticDamage);
         this.registerMotionController(ConstSpeedXYTargetAwareMotionController.createFromXY(
-                x, y, targetX, targetY, 4.5f));
+                x, y, targetX, targetY, 4f));
     }
 
     public static int getStaticDamage() {

@@ -57,12 +57,12 @@ public class GameScheduler {
                 new SimpleLaunchController<>(
                         "BigShootingAircraft increases HP",
                         new PeriodicStochasticLaunchCondition(2000, 1800, 0.5f),
-                        () -> BigShootingAircraft.setStaticMaxHp(min(1200, (int) (BigShootingAircraft.getStaticMaxHp() * 1.2f)))
+                        () -> BigShootingAircraft.setStaticMaxHp(min(1200, (int) (BigShootingAircraft.getStaticMaxHp() * 1.25f)))
                 ),
                 new SimpleLaunchController<>(
                         "BarbetteAircraft increases HP",
                         new PeriodicStochasticLaunchCondition(3000, 2500, 0.4f),
-                        () -> BarbetteAircraft.setStaticMaxHp(min(1500, (int) (BarbetteAircraft.getStaticMaxHp() * 1.15f)))
+                        () -> BarbetteAircraft.setStaticMaxHp(min(1500, (int) (BarbetteAircraft.getStaticMaxHp() * 1.2f)))
                 )
         );
         aircraftHpControllers.forEach(hpController -> {
@@ -168,12 +168,12 @@ public class GameScheduler {
         bonusLaunchControllers = Arrays.asList(
                 new SimpleLaunchController<>(
                         "New small CoinBonus",
-                        new PeriodicStochasticLaunchCondition(50, 10, 0.15f),
+                        new PeriodicStochasticLaunchCondition(100, 10, 0.05f),
                         () -> interactantList.add(new CoinBonus(LOC_RANDOM, COIN_SMALL))
                 ),
                 new SimpleLaunchController<>(
                         "New medium CoinBonus",
-                        new PeriodicStochasticLaunchCondition(100, 880, 0.05f),
+                        new PeriodicStochasticLaunchCondition(100, 880, 0.03f),
                         () -> interactantList.add(new CoinBonus(LOC_RANDOM, COIN_MEDIUM))
                 ),
                 new SimpleLaunchController<>(

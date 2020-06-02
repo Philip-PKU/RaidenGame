@@ -23,7 +23,7 @@ public final class BarbetteBullet extends BaseWeapon {
         super("BarbetteBullet", x, y, 15, 15,
                 Faction.ENEMY, staticDamage);
         this.registerMotionController(new ConstAccelerationTargetTrackingMotionController(
-                getClosestPlayer(), 0.3f, 1.5f, 3.5f));
+                getClosestPlayer(), 0.08f, 1.5f, 2.8f));
     }
 
     public static int getStaticDamage() {

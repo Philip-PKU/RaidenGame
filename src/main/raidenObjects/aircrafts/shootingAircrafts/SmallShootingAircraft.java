@@ -30,8 +30,9 @@ public final class SmallShootingAircraft extends BaseShootingAircraft {
         super("SmallShootingAircraft",35, 21, Faction.ENEMY,
                 staticMaxHp, 13, 50, 50);
         probCoin0 = 0.05f;
-        probCoin1 = 0.1f;
+        probCoin1 = 0.05f;
         probCoin2 = 0.05f;
+        probMagnet = 0.05f;
     }
 
     public SmallShootingAircraft(float x, float y) {

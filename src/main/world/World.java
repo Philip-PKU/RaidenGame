@@ -12,13 +12,12 @@ import java.awt.*;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Deque;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static java.awt.event.KeyEvent.*;
-import static main.utils.GameLevel.LEVEL_NORMAL;
 import static main.utils.GameMode.SURVIVAL;
 import static main.utils.PageStatus.*;
 import static main.utils.PlayerNumber.ONE;
@@ -141,59 +140,57 @@ public class World extends JPanel {
         thread.start();
         pageStatus = other;
     }
-    
+
     /**
-	 * Add result to ranklist
-	 * 
-	 * @param score
-	 * @param coin
-	 * @param number: playerNumer
-	 * @author 杨芳源
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
-	 */
-	public static void addResult(int score, int coin, PlayerNumber number) throws IOException {
-		File file;
-		if (number == ONE)
-			file = Paths.get("data", "result", "1.txt").toFile();
-		else
-			file = Paths.get("data", "result", "2.txt").toFile();
-		
-		DataInputStream input = null;
-		try {
-			input= new DataInputStream(new FileInputStream(file));
-		} catch (Exception e) {}
-		
-		int n = input.readInt();
-		ArrayList<ResultPair> list = new ArrayList<ResultPair>();
-		for (int i = 0; i < n; i++) {
-			int s = input.readInt();
-			int c = input.readInt();
-			list.add(new ResultPair(s,c));
-		}
-		input.close();
-		list.add(new ResultPair(score, coin));
-		list.sort(new Comparator<ResultPair>() {
-			public int compare(ResultPair a, ResultPair b) {
-				if (a.score == b.score)
-					return b.coin - a.coin;
-				return b.score - a.score;
-			}
-		});
-		n = n>7 ? 8 : n+1;
-		System.out.print(n+" "+score+" "+coin);
-		
-		DataOutputStream output = null;
-		try {
-			output = new DataOutputStream(new FileOutputStream(file));
-		} catch (Exception e) {}
-		
-		output.writeInt(n);
-		for (int i = 0; i < n; i++) {
-			output.writeInt(list.get(i).score);
-			output.writeInt(list.get(i).coin);
-		}
-		output.close();
-	}
+     * Add result to ranklist
+     *
+     * @param score
+     * @param coin
+     * @param number: playerNumer
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @author 杨芳源
+     */
+    public static void addResult(int score, int coin, PlayerNumber number) throws IOException {
+        File file;
+        if (number == ONE)
+            file = Paths.get("data", "result", "1.txt").toFile();
+        else
+            file = Paths.get("data", "result", "2.txt").toFile();
+
+        List<ResultPair> list = null;
+        int n = 0;
+        try (DataInputStream input = new DataInputStream(new FileInputStream(file))) {
+            n = input.readInt();
+            list = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                int s = input.readInt();
+                int c = input.readInt();
+                list.add(new ResultPair(s, c));
+            }
+            list.add(new ResultPair(score, coin));
+            list.sort((a, b) -> {
+                if (a.score == b.score)
+                    return b.coin - a.coin;
+                return b.score - a.score;
+            });
+            n = n > 7 ? 8 : n + 1;
+            System.out.print(n + " " + score + " " + coin);
+        } catch (Exception ignored) {
+        }
+
+        if (list == null)
+            return;
+
+        try (DataOutputStream output = new DataOutputStream(new FileOutputStream(file))) {
+            output.writeInt(n);
+            for (int i = 0; i < n; i++) {
+                output.writeInt(list.get(i).score);
+                output.writeInt(list.get(i).coin);
+            }
+        } catch (Exception ignored) {
+        }
+
+    }
 }
 

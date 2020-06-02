@@ -84,20 +84,23 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             super("PlayerAircraft shoots StandardPlayerBullet", weaponLevel);
             setLaunchCondition(KeyboardWeaponLaunchCondition.createFromPeriodicLaunchCondition(2, keyAdapter));
             if (weaponLevel == 0) {
+                StandardPlayerBullet.setStaticDamage(StandardPlayerBullet.getDefaultDamage());
                 this.setLaunchable(() -> {
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 0));
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 8));
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -8));
                 });
             } else if (weaponLevel == 1) {
+                StandardPlayerBullet.setStaticDamage(StandardPlayerBullet.getDefaultDamage());
                 this.setLaunchable(() -> {
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 0));
-                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 5));
-                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -5));
-                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 10));
-                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -10));
+                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 8));
+                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -8));
+                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 16));
+                    interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), -16));
                 });
             } else if (weaponLevel >= 2) {
+                StandardPlayerBullet.setStaticDamage(StandardPlayerBullet.getDefaultDamage()/5*6);
                 this.setLaunchable(() -> {
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 0));
                     interactantList.add(new StandardPlayerBullet(getX(), getMinY(), getFaction(), 8));
@@ -224,9 +227,9 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             super("PlayerAircraft shoots TrackingBullet", weaponLevel);
             setLaunchable(() -> {
                 interactantList.add(new TrackingPlayerBullet(
-                        getX() - 20, getMinY(), getFaction(), getEnemyToTrack(true), -50));
+                        getX() - 20, getMinY(), getFaction(), getEnemyToTrack(true), -60));
                 interactantList.add(new TrackingPlayerBullet(
-                        getX() + 20, getMinY(), getFaction(), getEnemyToTrack(false), 50));
+                        getX() + 20, getMinY(), getFaction(), getEnemyToTrack(false), 60));
             });
             if (weaponLevel == 0) {
                 setLaunchCondition(new PeriodicLaunchCondition(50, 0));

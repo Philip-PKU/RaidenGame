@@ -106,6 +106,8 @@ public class GamingPage implements Page {
      */
 	public void run(World world) throws InterruptedException {
         System.out.println(playerNumber);
+        keyAdapter1.clearStates();
+        keyAdapter2.clearStates();
         world.addKeyListener(keyAdapter1);  // monitor the keyboard
         world.addKeyListener(keyAdapter2);  // monitor the keyboard
         world.requestFocus();

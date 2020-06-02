@@ -64,7 +64,7 @@ public abstract class BaseRaidenObject {
         } else if (initLocation.equals(InitLocation.LOC_RANDOM)) {
             setX(rand.nextInt(windowWidth - imgSizeX) + halfImgSizeX);
         } else if (initLocation.equals(InitLocation.LOC_RIGHT)) {
-            setX(rand.nextInt(windowWidth / 2 - halfImgSizeX) + windowWidth);
+            setX(rand.nextInt(windowWidth / 2 - halfImgSizeX) + windowWidth / 2);
         }
     }
 

@@ -24,6 +24,10 @@ public class RaidenKeyAdapter extends KeyAdapter {
         this.bombKey = bombKey;
     }
 
+    public void clearStates() {
+        weaponState = bombState = motionState = 0;
+    }
+
     public int getMotionState() {
         return motionState;
     }
