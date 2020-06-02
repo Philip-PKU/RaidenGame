@@ -4,19 +4,35 @@ import raidenObjects.BaseRaidenObject;
 import raidenObjects.aircrafts.BaseAircraft;
 import raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import utils.Faction;
+import utils.GameMode;
 import utils.PlayerController;
+import utils.PlayerNumber;
+import utils.ResultPair;
 import world.GameScheduler;
 import world.World;
 
 import java.awt.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Comparator;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.xml.internal.ws.encoding.MIMEPartStreamingDataHandler;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.GameLevel.LEVEL_NORMAL;
-import static utils.GameMode.SURVIVAL;
-import static utils.PageStatus.VICTORY;
-import static utils.PlayerNumber.TWO;
+import static utils.GameMode.*;
+import static utils.PageStatus.*;
+import static utils.PlayerNumber.*;
 import static world.World.*;
 
 /**
@@ -25,7 +41,6 @@ import static world.World.*;
  * @author 鏉ㄨ姵婧�
  */
 public class GamingPage implements Page {
-	static int totalScore, totalCoin;
 	
 	/**
      * Paint the game state, including HP bar, number of coins and game points earned.
@@ -57,7 +72,6 @@ public class GamingPage implements Page {
         }
         if (player2 != null) {
             g.setColor(Color.white);
-            //g.setFont(defaultFont);
             g.drawString("鐢熷懡锛�", (int) (windowWidth * 0.6), (int) (windowHeight * 0.05));
             g.setColor(Color.red);
             g.drawRect((int) (windowWidth * 0.72), (int) (windowHeight * 0.035),
@@ -101,8 +115,9 @@ public class GamingPage implements Page {
      *
      * @throws InterruptedException If sleep is interrupted.
      * @author 钄¤緣瀹�
+	 * @throws IOException 
      */
-	public void run(World world) throws InterruptedException {
+	public void run(World world) throws InterruptedException, IOException {
         System.out.println(playerNumber);
         world.addKeyListener(keyAdapter1);  // monitor the keyboard
         world.addKeyListener(keyAdapter2);  // monitor the keyboard
@@ -156,7 +171,7 @@ public class GamingPage implements Page {
             // TODO: inform UI that player1 has died and collect scores before setting it to NULL
             if (player1 != null && !player1.isAlive()) {
             	totalScore += player1.getScore();
-            	totalScore += player1.getCoin();
+            	totalCoin += player1.getCoin();
                 player1 = null;
         	}
             if (player2 != null && !player2.isAlive()) {
@@ -176,7 +191,7 @@ public class GamingPage implements Page {
             sleep(msToSleepAtEachGameStep);
 
             gameStep.increment();
-            if (gameMode == SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds) {
+            if (gameMode == TIMER && gameStep.intValue() >= desiredFPS * survivalModeSeconds) {
                 System.out.println("Victory!");
                 musicPlayer.stop();
                 gameSpeedAdjusterTimer.stop();
@@ -187,15 +202,15 @@ public class GamingPage implements Page {
         System.out.println("Game over");
         musicPlayer.stop();
         gameSpeedAdjusterTimer.stop();
-        //pageStatus = END;
+        pageStatus = END;
 	}
 
 	/**
 	 * @param world
 	 */
 	public void clean(World world) {
-		// TODO Auto-generated method stub
         world.revalidate();
         world.repaint();
 	}
+	
 }

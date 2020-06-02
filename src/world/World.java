@@ -14,6 +14,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -59,6 +69,7 @@ public class World extends JPanel {
     public static PlayerNumber playerNumber = ONE;
     public static GameScheduler gameScheduler;
     public static GameLevel gameLevel = LEVEL_NORMAL;
+    public static int totalScore, totalCoin;
 
     public World() {
         init();
@@ -125,7 +136,11 @@ public class World extends JPanel {
     public void paint(Graphics g) {
         synchronized (this) {
             if (pageStatus != CLOSE) {
-                pageStatus.getPage().paint(g);
+                try {
+					pageStatus.getPage().paint(g);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
             }
         }
     }
@@ -147,8 +162,9 @@ public class World extends JPanel {
      *
      * @throws InterruptedException
      * @author 杨芳源
+     * @throws IOException 
      */
-    void runPageHandler(PageStatus flag) throws InterruptedException {
+    void runPageHandler(PageStatus flag) throws InterruptedException, IOException {
         if (flag != CLOSE) {
             flag.getPage().run(this);
         }
@@ -159,8 +175,9 @@ public class World extends JPanel {
      *
      * @throws InterruptedException
      * @author 杨芳源
+     * @throws IOException 
      */
-    public void run() throws InterruptedException {
+    public void run() throws InterruptedException, IOException {
         pageStatus = MAIN;
         PageStatus flag = MAIN;
         runPageHandler(pageStatus);
@@ -182,5 +199,59 @@ public class World extends JPanel {
             runPageHandler(pageStatus);
         }
     }
+    
+    /**
+	 * Add result to ranklist
+	 * 
+	 * @param score
+	 * @param coin
+	 * @param number: playerNumer
+	 * @author 杨芳源
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 */
+	public static void addResult(int score, int coin, PlayerNumber number) throws IOException {
+		File file;
+		if (number == ONE)
+			file = Paths.get("data", "result", "1.txt").toFile();
+		else
+			file = Paths.get("data", "result", "2.txt").toFile();
+		
+		DataInputStream input = null;
+		try {
+			input= new DataInputStream(new FileInputStream(file));
+		} catch (Exception e) {}
+		
+		int n = input.readInt();
+		ArrayList<ResultPair> list = new ArrayList<ResultPair>();
+		for (int i = 0; i < n; i++) {
+			int s = input.readInt();
+			int c = input.readInt();
+			list.add(new ResultPair(s,c));
+		}
+		input.close();
+		list.add(new ResultPair(score, coin));
+		list.sort(new Comparator<ResultPair>() {
+			public int compare(ResultPair a, ResultPair b) {
+				if (a.score == b.score)
+					return b.coin - a.coin;
+				return b.score - a.score;
+			}
+		});
+		n = n>7 ? 8 : n+1;
+		System.out.print(n+" "+score+" "+coin);
+		
+		DataOutputStream output = null;
+		try {
+			output = new DataOutputStream(new FileOutputStream(file));
+		} catch (Exception e) {}
+		
+		output.writeInt(n);
+		for (int i = 0; i < n; i++) {
+			output.writeInt(list.get(i).score);
+			output.writeInt(list.get(i).coin);
+		}
+		output.close();
+	}
 }
 
