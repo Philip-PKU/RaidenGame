@@ -8,20 +8,24 @@ import utils.PlayerController;
 import world.GameScheduler;
 import world.World;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.nio.file.Paths;
 
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.GameMode.SURVIVAL;
-import static utils.PageStatus.*;
+import static utils.PageStatus.END;
+import static utils.PageStatus.VICTORY;
 import static utils.PlayerNumber.TWO;
 import static world.World.*;
 
 /**
  * Gaming Page handler.
  *
- * @author 鏉ㄨ姵婧�
+ * @author 杨芳源
  */
 public class GamingPage implements Page {
 	static int totalScore, totalCoin;
@@ -29,12 +33,12 @@ public class GamingPage implements Page {
 	/**
      * Paint the game state, including HP bar, number of coins and game points earned.
      *
-     * @author 鏉ㄨ姵婧�
+     * @author 杨芳源
      */
     void paintGameState(Graphics g) {
         if (player1 != null) {
             g.setColor(Color.white);
-            g.drawString("鐢熷懡锛�", (int) (windowWidth * 0.05), (int) (windowHeight * 0.05));
+            g.drawString("生命：", (int) (windowWidth * 0.05), (int) (windowHeight * 0.05));
             g.setColor(Color.red);
             g.drawRect((int) (windowWidth * 0.12), (int) (windowHeight * 0.035),
                     (int) (windowWidth * 0.2), (int) (windowHeight * 0.02));
@@ -42,7 +46,7 @@ public class GamingPage implements Page {
                     (int) (windowWidth * 0.2 * player1.getHp() / player1.getMaxHp()), (int) (windowHeight * 0.02));
 
             g.setColor(Color.white);
-            g.drawString("寰楀垎锛�" + player1.getScore(), (int) (windowWidth * 0.05), (int) (windowHeight * 0.09));
+            g.drawString("得分：" + player1.getScore(), (int) (windowWidth * 0.05), (int) (windowHeight * 0.09));
 
             g.drawImage(loadImage(Paths.get("data", "images", "CoinBonus20.png").toFile()),
                     (int) (windowWidth * 0.05), (int) (windowHeight * 0.11), null);
@@ -57,7 +61,7 @@ public class GamingPage implements Page {
         if (player2 != null) {
             g.setColor(Color.white);
             //g.setFont(defaultFont);
-            g.drawString("鐢熷懡锛�", (int) (windowWidth * 0.6), (int) (windowHeight * 0.05));
+            g.drawString("生命：", (int) (windowWidth * 0.6), (int) (windowHeight * 0.05));
             g.setColor(Color.red);
             g.drawRect((int) (windowWidth * 0.72), (int) (windowHeight * 0.035),
                     (int) (windowWidth * 0.2), (int) (windowHeight * 0.02));
@@ -65,7 +69,7 @@ public class GamingPage implements Page {
                     (int) (windowWidth * 0.2 * player2.getHp() / player2.getMaxHp()), (int) (windowHeight * 0.02));
 
             g.setColor(Color.white);
-            g.drawString("寰楀垎锛�" + player2.getScore(), (int) (windowWidth * 0.60), (int) (windowHeight * 0.09));
+            g.drawString("得分：" + player2.getScore(), (int) (windowWidth * 0.60), (int) (windowHeight * 0.09));
 
             g.drawImage(loadImage(Paths.get("data", "images", "CoinBonus20.png").toFile()),
                     (int) (windowWidth * 0.60), (int) (windowHeight * 0.11), null);
@@ -82,7 +86,7 @@ public class GamingPage implements Page {
     /**
      * Paint the Gaming page
      *
-     * @author 钄¤緣瀹�
+     * @author 蔡辉宇
      */
     public void paint(Graphics g) {
         background.paint(g);
@@ -99,7 +103,7 @@ public class GamingPage implements Page {
      * Run the game.
      *
      * @throws InterruptedException If sleep is interrupted.
-     * @author 钄¤緣瀹�
+     * @author 蔡辉宇
      */
 	public void run(World world) throws InterruptedException {
         System.out.println(playerNumber);
@@ -107,6 +111,26 @@ public class GamingPage implements Page {
         world.addKeyListener(keyAdapter2);  // monitor the keyboard
         world.requestFocus();
         gameScheduler = new GameScheduler(gameLevel, playerNumber);
+
+        // Timer to adjust game speed
+        gameSpeedAdjusterTimer = new Timer(1000, new ActionListener() {
+            int lastGameStep;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (lastGameStep != 0) {
+                    int fps = gameStep.intValue() - lastGameStep;
+                    float overheadPerStep = (1000 - fps * msToSleepAtEachGameStep) / (float) fps;
+                    if (overheadPerStep < 0)
+                        overheadPerStep = 0;
+                    msToSleepAtEachGameStep = (int) ((1000f / desiredFPS) - overheadPerStep);
+                    if (msToSleepAtEachGameStep < 0)
+                        msToSleepAtEachGameStep = 0;
+                }
+                lastGameStep = gameStep.intValue();
+            }
+        });
+        gameSpeedAdjusterTimer.setRepeats(true);
 
         // Clear aircraft and interactant lists.
         aircraftList.clear();
@@ -139,6 +163,13 @@ public class GamingPage implements Page {
         gameSpeedAdjusterTimer.start();
         while (player1 != null || player2 != null) {
             if (musicPlayer.isEndOfMediaReached()) {
+                if (gameMode == SURVIVAL) {
+                    System.out.println("Victory!");
+                    musicPlayer.stop();
+                    gameSpeedAdjusterTimer.stop();
+                    pageStatus = VICTORY;
+                    return;
+                }
                 musicPlayer.seek(0);
                 musicPlayer.play();
             }
@@ -153,17 +184,10 @@ public class GamingPage implements Page {
             // Remove off screen objects from the global lists and fields
             aircraftList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
             interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);
-            // TODO: inform UI that player1 has died and collect scores before setting it to NULL
-            if (player1 != null && !player1.isAlive()) {
-            	totalScore += player1.getScore();
-            	totalScore += player1.getCoin();
+            if (player1 != null && !player1.isAlive())
                 player1 = null;
-        	}
-            if (player2 != null && !player2.isAlive()) {
-            	totalScore += player2.getScore();
-            	totalCoin += player2.getCoin();
+            if (player2 != null && !player2.isAlive())
                 player2 = null;
-            }
 
             // Periodically print the score
             if (gameStep.intValue() % 100 == 0) {
@@ -176,13 +200,6 @@ public class GamingPage implements Page {
             sleep(msToSleepAtEachGameStep);
 
             gameStep.increment();
-            if (gameMode == SURVIVAL && gameStep.intValue() >= desiredFPS * survivalModeSeconds) {
-                System.out.println("Victory!");
-                musicPlayer.stop();
-                gameSpeedAdjusterTimer.stop();
-                pageStatus = VICTORY;
-                return;
-            }
         }
         System.out.println("Game over");
         musicPlayer.stop();
