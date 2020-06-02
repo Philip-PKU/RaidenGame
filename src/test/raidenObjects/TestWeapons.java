@@ -1,4 +1,4 @@
-package test;
+package test.raidenObjects;
 
 import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.aircrafts.shootingAircrafts.MiddleShootingAircraft;

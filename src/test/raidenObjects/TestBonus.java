@@ -1,4 +1,4 @@
-package test;
+package test.raidenObjects;
 
 import main.launchControllers.LaunchCondition;
 import main.launchControllers.SimpleLaunchControllerWithLevel;
