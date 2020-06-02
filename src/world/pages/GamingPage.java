@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import static java.lang.Thread.sleep;
 import static raidenObjects.BaseRaidenObject.loadImage;
 import static utils.GameMode.SURVIVAL;
-import static utils.PageStatus.VICTORY;
+import static utils.PageStatus.*;
 import static utils.PlayerNumber.TWO;
 import static world.World.*;
 
@@ -187,7 +187,7 @@ public class GamingPage implements Page {
         System.out.println("Game over");
         musicPlayer.stop();
         gameSpeedAdjusterTimer.stop();
-        //pageStatus = END;
+        pageStatus = END;
 	}
 
 	/**
