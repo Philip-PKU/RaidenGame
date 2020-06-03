@@ -1,14 +1,14 @@
-package main.ui.world.pages;
+package main.ui.pages;
 
-import main.ui.world.World;
-import main.utils.MyButton;
+import main.World;
+import main.utils.RaidenButton;
 
 import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+import static main.World.*;
 import static main.raidenObjects.BaseRaidenObject.loadImage;
-import static main.ui.world.World.*;
 import static main.utils.PageStatus.CLOSE;
 import static main.utils.PageStatus.MAIN;
 
@@ -16,14 +16,14 @@ import static main.utils.PageStatus.MAIN;
  * @author 鏉ㄨ姵婧�
  */
 public class EndPage  implements Page {
-    MyButton buttonReturn, buttonClose;
+    RaidenButton buttonReturn, buttonClose;
 
     public void run(World world) throws IOException {
     	addResult(totalScore, totalCoin, playerNumber);
 
-        buttonReturn = new MyButton(130, 430, 220, 80, Paths.get("data", "images", "back.png"),
+        buttonReturn = new RaidenButton(130, 430, 220, 80, Paths.get("data", "images", "back.png"),
                 e -> world.changePageStatus(MAIN));
-        buttonClose = new MyButton(130, 530, 220, 80, Paths.get("data", "images", "exit.png"),
+        buttonClose = new RaidenButton(130, 530, 220, 80, Paths.get("data", "images", "exit.png"),
                 e -> world.changePageStatus(CLOSE));
         world.add(buttonReturn);
         world.add(buttonClose);

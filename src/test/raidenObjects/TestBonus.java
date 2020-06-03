@@ -9,8 +9,8 @@ import main.utils.Faction;
 import main.utils.PlayerController;
 import org.junit.Test;
 
-import static main.ui.world.World.windowHeight;
-import static main.ui.world.World.windowWidth;
+import static main.World.windowHeight;
+import static main.World.windowWidth;
 import static org.junit.Assert.*;
 
 /**

@@ -3,7 +3,7 @@ package main.utils;
 /**
  * Store game result including score and coin
  *
- * @author 杨芳源
+ * @author 杨芳源 蔡辉宇
  */
 public class ResultPair {
 	public int score, coin;

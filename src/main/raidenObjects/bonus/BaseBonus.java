@@ -1,19 +1,19 @@
 package main.raidenObjects.bonus;
 
+import main.World;
 import main.motionControllers.ConstSpeedTargetTrackingMotionController;
 import main.motionControllers.ConstSpeedYMotionController;
 import main.motionControllers.HoveringXMotionController;
 import main.motionControllers.XYMotionController;
 import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.ui.world.World;
 import main.utils.Faction;
-
-import static main.ui.world.World.player1;
-import static main.ui.world.World.player2;
 
 import java.io.File;
 import java.nio.file.Paths;
+
+import static main.World.player1;
+import static main.World.player2;
 
 /**
  * Base class for all bonuses.

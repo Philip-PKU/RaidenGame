@@ -1,7 +1,5 @@
 package main.raidenObjects.aircrafts.shootingAircrafts;
 
-import static main.ui.world.World.*;
-
 import main.launchControllers.PeriodicLaunchCondition;
 import main.launchControllers.SimpleLaunchController;
 import main.motionControllers.*;
@@ -11,6 +9,7 @@ import main.utils.InitLocation;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static main.World.*;
 
 /**
  * BigShootingAircraft. A big, heavily-armed aircraft that ruthlessly bombard everything beneath it.

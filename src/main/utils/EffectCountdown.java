@@ -1,8 +1,8 @@
 package main.utils;
 
-import static main.ui.world.World.desiredFPS;
-
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+
+import static main.World.desiredFPS;
 
 /**
  * A countdown utility for {@link main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft} effects.

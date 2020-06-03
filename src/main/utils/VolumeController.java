@@ -2,8 +2,6 @@ package main.utils;
 
 import javax.sound.sampled.*;
 
-import javafx.util.Pair;
-
 import static javax.sound.sampled.Port.Info.*;
 
 /**
@@ -59,7 +57,7 @@ public class VolumeController {
      * 
      * @author 杨芳源
      */
-    public static Pair<Float, Float> getVolumeInterval() {
+    public static VolumeRange getVolumeInterval() {
     	Line.Info[] sources = {SPEAKER, LINE_OUT, HEADPHONE};
 
         for (Line.Info source : sources) {
@@ -68,8 +66,7 @@ public class VolumeController {
                     Port outline = (Port) AudioSystem.getLine(source);
                     outline.open();
                     FloatControl volumeControl = (FloatControl) outline.getControl(FloatControl.Type.VOLUME);
-                    Pair<Float, Float> pair = new Pair<>(volumeControl.getMinimum(), volumeControl.getMaximum());
-                    return pair;
+                    return new VolumeRange(volumeControl.getMinimum(), volumeControl.getMaximum());
                 } catch (LineUnavailableException ex) {
                     System.err.println("source not supported");
                     ex.printStackTrace();

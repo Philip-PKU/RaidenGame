@@ -1,8 +1,8 @@
 package main.motionControllers;
 
-import static main.ui.world.World.isOutOfWindow;
-
 import main.utils.RaidenKeyAdapter;
+
+import static main.World.isOutOfWindow;
 
 /**
  * A motion controller that set speed according to keyboard inputs.

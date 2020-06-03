@@ -2,10 +2,10 @@ package main.raidenObjects;
 
 import main.utils.Faction;
 
-import static main.ui.world.World.gameStep;
-
 import java.io.File;
 import java.nio.file.Paths;
+
+import static main.World.gameStep;
 
 /**
  * An object whose sole purpose is to display the residue of superpower firing.

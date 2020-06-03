@@ -1,10 +1,10 @@
 package main.ui;
 
-import javax.swing.JSlider;
+import main.utils.VolumeRange;
+
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import javafx.util.Pair;
 
 import static main.utils.VolumeController.*;
 
@@ -13,23 +13,22 @@ import static main.utils.VolumeController.*;
  *
  * @author 杨芳源
  */
-public class VolumeSlider extends JSlider{
-	public VolumeSlider() {
-		super(0,100);
-		Pair<Float, Float> volumeIntervalPair = getVolumeInterval();
-		System.out.println(volumeIntervalPair.getKey()+" "+volumeIntervalPair.getValue());
-		setValue((int)((getVolume()-volumeIntervalPair.getKey())*100.0/(volumeIntervalPair.getValue()-volumeIntervalPair.getKey())));
-		setMajorTickSpacing(20);
-		setMinorTickSpacing(5);
-		setPaintLabels(true);
-		setPaintTicks(true);
-		addChangeListener(new ChangeListener() {
-		    @Override
-		    public void stateChanged(ChangeEvent e) {
-		    	Pair<Float, Float> volumeIntervalPair = getVolumeInterval();
-		    	float volume = (float)(getValue()/100.0) * (volumeIntervalPair.getValue()-volumeIntervalPair.getKey()) + volumeIntervalPair.getKey();
-		    	setVolume(volume);
-		    }
-		});
-	}
+public class VolumeSlider extends JSlider {
+    public VolumeSlider() {
+        super(0, 100);
+        VolumeRange volumeRange = getVolumeInterval();
+        setValue((int) ((getVolume() - volumeRange.getMin()) * 100.0 / (volumeRange.getMax() - volumeRange.getMin())));
+        setMajorTickSpacing(20);
+        setMinorTickSpacing(5);
+        setPaintLabels(true);
+        setPaintTicks(true);
+        addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                float volume = (getValue() / 100f) * (volumeRange.getMax() - volumeRange.getMin()) + volumeRange.getMin();
+                System.out.println(volume);
+                setVolume(volume);
+            }
+        });
+    }
 }

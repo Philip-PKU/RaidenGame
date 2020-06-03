@@ -1,8 +1,8 @@
 package main.launchControllers;
 
-import static main.ui.world.World.rand;
-
 import main.utils.GameLevel;
+
+import static main.World.rand;
 
 /**
  * A Periodic Stochastic Launch Condition.

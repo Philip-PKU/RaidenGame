@@ -1,11 +1,11 @@
 package main.utils;
 
-import main.ui.world.pages.*;
+import main.ui.pages.*;
 
 /**
  * An enum object for game page status.
  *
- * @author 鏉ㄨ姵婧� 钄¤緣瀹�
+ * @author 杨芳源 蔡辉宇
  */
 public enum PageStatus {
     MAIN(new MainPage()),

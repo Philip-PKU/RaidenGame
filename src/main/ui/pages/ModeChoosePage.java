@@ -1,7 +1,7 @@
-package main.ui.world.pages;
+package main.ui.pages;
 
-import main.ui.world.World;
-import main.utils.MyButton;
+import main.World;
+import main.utils.RaidenButton;
 
 import java.awt.*;
 import java.nio.file.Paths;
@@ -18,20 +18,20 @@ import static main.utils.PageStatus.PLAYER_CHOOSE;
  * @author 杨芳源
  */
 public class ModeChoosePage implements Page {
-    static MyButton buttonSurvival, buttonTime, buttonBack;
+    static RaidenButton buttonSurvival, buttonTime, buttonBack;
 
     public void run(World world) {
-        buttonSurvival = new MyButton(150, 320, 180, 80, Paths.get("data", "images", "survival.png"),
+        buttonSurvival = new RaidenButton(150, 320, 180, 80, Paths.get("data", "images", "survival.png"),
                 e -> {
                     World.gameMode = SURVIVAL;
                     world.changePageStatus(GAMING);
                 });
-        buttonTime = new MyButton(150, 460, 180, 80, Paths.get("data", "images", "time.png"),
+        buttonTime = new RaidenButton(150, 460, 180, 80, Paths.get("data", "images", "time.png"),
                 e -> {
                     World.gameMode = TIMER;
                     world.changePageStatus(GAMING);
                 });
-        buttonBack = new MyButton(300, 600, 100, 70, Paths.get("data", "images", "previous.png"),
+        buttonBack = new RaidenButton(300, 600, 100, 70, Paths.get("data", "images", "previous.png"),
                 e -> world.changePageStatus(PLAYER_CHOOSE));
 
         world.add(buttonSurvival);

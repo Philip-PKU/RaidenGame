@@ -1,7 +1,7 @@
-package main.ui.world.pages;
+package main.ui.pages;
 
-import main.ui.world.World;
-import main.utils.MyButton;
+import main.World;
+import main.utils.RaidenButton;
 
 import java.awt.*;
 import java.nio.file.Paths;
@@ -14,23 +14,23 @@ import static main.utils.PageStatus.MAIN;
  *
  */
 public class HelpPage implements Page {
-	MyButton buttonBack, buttonPage1, buttonPage2, buttonPage3;
+	RaidenButton buttonBack, buttonPage1, buttonPage2, buttonPage3;
 	static int pageNumber = 1;
 	
 	public void run(World world) {
-        buttonBack = new MyButton(360, 640, 100, 70, Paths.get("data", "images", "previous.png"),
+        buttonBack = new RaidenButton(360, 640, 100, 70, Paths.get("data", "images", "previous.png"),
 				e -> world.changePageStatus(MAIN));
-        buttonPage1 = new MyButton(22, 655, 90, 35, null,
+        buttonPage1 = new RaidenButton(22, 655, 90, 35, null,
 				e -> {
 					pageNumber = 1;
 					world.repaint();
 				});
-        buttonPage2 = new MyButton(130, 655, 90, 35, null,
+        buttonPage2 = new RaidenButton(130, 655, 90, 35, null,
 				e -> {
         			pageNumber = 2;
         			world.repaint();
 				});
-        buttonPage3 = new MyButton(240, 655, 90, 35, null,
+        buttonPage3 = new RaidenButton(240, 655, 90, 35, null,
 				e -> {
         			pageNumber = 3;
         			world.repaint();

@@ -13,7 +13,7 @@ import java.nio.file.Path;
  *
  * @author 杨芳源
  */
-public class MyButton extends JButton {
+public class RaidenButton extends JButton {
     /**
      * Initiate my button
      *
@@ -24,7 +24,7 @@ public class MyButton extends JButton {
      * @param path:     A {@link Path} object for retrieving the pictures.
      * @param listener: An {@link ActionListener} object to apply to the button.
      */
-    public MyButton(int x, int y, int width, int height, Path path, ActionListener listener) {
+    public RaidenButton(int x, int y, int width, int height, Path path, ActionListener listener) {
 
         setBounds(x, y, width, height);
 

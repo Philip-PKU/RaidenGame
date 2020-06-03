@@ -1,7 +1,7 @@
-package main.ui.world.pages;
+package main.ui.pages;
 
-import main.ui.world.World;
-import main.utils.MyButton;
+import main.World;
+import main.utils.RaidenButton;
 
 import java.awt.*;
 import java.io.DataInputStream;
@@ -21,13 +21,13 @@ import static main.utils.PageStatus.RANK_LIST_ONE;
  *
  */
 public class RankListTwoPage implements Page {
-	MyButton buttonBack, buttonOnePlayer;
+	RaidenButton buttonBack, buttonOnePlayer;
 	List<Integer> sList, cList;
 
 	public void run(World world) {
-        buttonBack = new MyButton(10, 640, 110, 80, Paths.get("data", "images", "previous.png"),
+        buttonBack = new RaidenButton(10, 640, 110, 80, Paths.get("data", "images", "previous.png"),
 				e -> world.changePageStatus(MAIN));
-        buttonOnePlayer = new MyButton(115, 70, 100, 30, null,
+        buttonOnePlayer = new RaidenButton(115, 70, 100, 30, null,
 				e -> world.changePageStatus(RANK_LIST_ONE));
         world.add(buttonBack);
         world.add(buttonOnePlayer);

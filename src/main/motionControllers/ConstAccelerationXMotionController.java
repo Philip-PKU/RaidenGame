@@ -1,6 +1,6 @@
 package main.motionControllers;
 
-import static main.ui.world.World.gameStep;
+import static main.World.gameStep;
 
 /**
  * A motion controller with constant acceleration in the X direction.

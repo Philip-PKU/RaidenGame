@@ -6,10 +6,10 @@ import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import main.raidenObjects.bonus.InvincibleBonus;
 import main.utils.Faction;
 
-import static main.ui.world.World.aircraftList;
-
 import java.io.File;
 import java.nio.file.Paths;
+
+import static main.World.aircraftList;
 
 /**
  * Subclass of BaseRaidenObject, base class for all weapons in the game.

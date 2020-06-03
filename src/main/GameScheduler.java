@@ -1,4 +1,4 @@
-package main.ui.world;
+package main;
 
 import main.launchControllers.ConstAccelerationLaunchCondition;
 import main.launchControllers.PeriodicStochasticLaunchCondition;
@@ -18,8 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.Math.min;
+import static main.World.*;
 import static main.raidenObjects.bonus.CoinBonus.*;
-import static main.ui.world.World.*;
 import static main.utils.InitLocation.*;
 
 /**

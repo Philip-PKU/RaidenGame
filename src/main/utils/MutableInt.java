@@ -1,6 +1,6 @@
 package main.utils;
 
-import main.ui.world.World;
+import main.World;
 
 /**
  * A utility for keeping track of the game step.

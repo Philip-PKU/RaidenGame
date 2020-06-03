@@ -1,6 +1,6 @@
-package main.ui.world.pages;
+package main.ui.pages;
 
-import main.ui.world.World;
+import main.World;
 import main.utils.PageStatus;
 
 import java.awt.*;

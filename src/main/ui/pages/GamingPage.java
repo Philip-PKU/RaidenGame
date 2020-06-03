@@ -1,10 +1,10 @@
-package main.ui.world.pages;
+package main.ui.pages;
 
+import main.GameScheduler;
+import main.World;
 import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.aircrafts.BaseAircraft;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.ui.world.GameScheduler;
-import main.ui.world.World;
 import main.utils.Faction;
 import main.utils.PlayerController;
 
@@ -15,8 +15,8 @@ import java.awt.event.ActionListener;
 import java.nio.file.Paths;
 
 import static java.lang.Thread.sleep;
+import static main.World.*;
 import static main.raidenObjects.BaseRaidenObject.loadImage;
-import static main.ui.world.World.*;
 import static main.utils.GameMode.TIMER;
 import static main.utils.PageStatus.END;
 import static main.utils.PageStatus.VICTORY;

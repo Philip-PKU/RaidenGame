@@ -1,13 +1,12 @@
 package main;
 
 
+import main.ui.MenuBar;
+
 import javax.swing.*;
 
-import main.ui.MenuBar;
-import main.ui.world.World;
-
-import static main.ui.world.World.windowHeight;
-import static main.ui.world.World.windowWidth;
+import static main.World.windowHeight;
+import static main.World.windowWidth;
 
 public class App {
 
@@ -25,7 +24,7 @@ public class App {
         
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(windowWidth + 20, windowHeight + 70);
+        frame.setSize(windowWidth + 15, windowHeight + 61);
         frame.setLocationRelativeTo(null);
 
         frame.add(world);

@@ -1,14 +1,10 @@
 package main.ui;
 
+import main.World;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
-
-import main.ui.world.World;
 
 import static main.utils.GameLevel.*;
 
@@ -42,7 +38,7 @@ public class MenuBar extends JMenuBar{
 			this.add( menus[i] );
 			for( int j=0; j<menuitems[i].length; j++ ){
 				menus[i].add( menuitems[i][j]);
-				menuitems[i][j].addActionListener(new menuActionListner());
+				menuitems[i][j].addActionListener(new menuActionListener());
 			}
 		}
 	}
@@ -58,7 +54,7 @@ public class MenuBar extends JMenuBar{
 		item.setText(text);
 	}
 	
-	class menuActionListner implements ActionListener{
+	class menuActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JMenuItem item = (JMenuItem)e.getSource();

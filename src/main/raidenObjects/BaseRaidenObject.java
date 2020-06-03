@@ -17,7 +17,7 @@ import java.util.TreeMap;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.atan;
-import static main.ui.world.World.*;
+import static main.World.*;
 
 /**
  * Base class of all flying objects in the game, including planes and interactants.

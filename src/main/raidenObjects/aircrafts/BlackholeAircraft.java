@@ -1,8 +1,8 @@
 package main.raidenObjects.aircrafts;
 
+import main.World;
 import main.motionControllers.ConstSpeedYMotionController;
 import main.raidenObjects.weapons.PlayerBeam;
-import main.ui.world.World;
 import main.utils.Faction;
 import main.utils.InitLocation;
 

@@ -3,9 +3,9 @@ package main.raidenObjects.weapons;
 import main.raidenObjects.aircrafts.BaseAircraft;
 import main.utils.Faction;
 
-import static main.ui.world.World.*;
-
 import java.awt.*;
+
+import static main.World.*;
 
 /**
  * PlayerBeam.

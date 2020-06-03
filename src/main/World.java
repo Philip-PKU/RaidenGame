@@ -1,4 +1,4 @@
-package main.ui.world;
+package main;
 
 import main.raidenObjects.Background;
 import main.raidenObjects.BaseRaidenObject;
@@ -63,24 +63,15 @@ public class World extends JPanel {
     public World() throws IOException, InterruptedException {
         setLayout(null);
         setBounds(0, 0, windowWidth, windowHeight);
-        playBackGroundMusic(Paths.get("data", "bgm", "15. War Council.mp3").toString());
-        // The volume control functions in class {@code Player} does not appear to work. DO NOT USE IT.
-        // Instead, use {@Code VolumeController} in package utils.
-        VolumeController.setVolume(0.08f);
 
         pageStatus = MAIN;
         pageStatus.getPage().run(this);
     }
 
-    public void playBackGroundMusic(String path) {
-        if (musicPlayer != null) {
-            musicPlayer.stop();
-        }
-        musicPlayer = new Player();
-        musicPlayer.setSourceLocation(path);
-        musicPlayer.play();
-    }
-
+    /**
+     * Load and play a sound effect. There can be many sound effects playing at the same time.
+     * @param path Path to the sound effect file.
+     */
     public static void playSoundEffect(String path) {
         Thread thread = new Thread(() -> {
             Player soundEffectPlayer = new Player();
@@ -92,67 +83,13 @@ public class World extends JPanel {
     }
 
     /**
-     * Convenience function checking if a given point if out of the game panel.
+     * Add result to rank list
      *
-     * @param x The x coordinate of the point.
-     * @param y The y coordinate of the point.
-     * @return true iff (x, y) is out of the window, and false otherwise.
-     * @author 蔡辉宇
+     * @param score  Score of this game.
+     * @param coin   Coin received in this game.
+     * @param number: playerNumber
      */
-    public static boolean isOutOfWindow(float x, float y) {
-        return x < 0 || x >= windowWidth || y < 0 || y >= windowHeight;
-    }
-
-    /**
-     * In gaming interface, paint the panel by painting the background, all aircrafts and all interactants.
-     *
-     * @author 蔡辉宇
-     */
-    @Override
-    public void paint(Graphics g) {
-        if (pageStatus != CLOSE) {
-            try {
-                pageStatus.getPage().paintComponent(g, this);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-    /**
-     * Remove components when pageStatus changes
-     *
-     * @author 杨芳源
-     */
-    public void changePageStatus(PageStatus other) {
-        pageStatus.getPage().clean(this);
-        if (other == CLOSE) {
-            System.exit(0);
-        }
-        Thread thread = new Thread(() -> {
-            try {
-                other.getPage().run(this);
-            } catch (InterruptedException | IOException e) {
-                e.printStackTrace();
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
-        pageStatus = other;
-    }
-
-    /**
-     * Add result to ranklist
-     *
-     * @param score
-     * @param coin
-     * @param number: playerNumer
-     * @throws IOException
-     * @throws FileNotFoundException
-     * @author 杨芳源
-     */
-    public static void addResult(int score, int coin, PlayerNumber number) throws IOException {
+    public static void addResult(int score, int coin, PlayerNumber number) {
         File file;
         if (number == ONE)
             file = Paths.get("data", "result", "1.txt").toFile();
@@ -192,6 +129,75 @@ public class World extends JPanel {
         } catch (Exception ignored) {
         }
 
+    }
+
+    /**
+     * Convenience function checking if a given point if out of the game panel.
+     *
+     * @param x The x coordinate of the point.
+     * @param y The y coordinate of the point.
+     * @return true iff (x, y) is out of the window, and false otherwise.
+     */
+    public static boolean isOutOfWindow(float x, float y) {
+        return x < 0 || x >= windowWidth || y < 0 || y >= windowHeight;
+    }
+
+    /**
+     * In gaming interface, paint the panel by painting the background, all aircrafts and all interactants.
+     */
+    @Override
+    public void paint(Graphics g) {
+        if (pageStatus != CLOSE) {
+            try {
+                pageStatus.getPage().paintComponent(g, this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    /**
+     * Remove components when pageStatus changes
+     */
+    public void changePageStatus(PageStatus other) {
+        pageStatus.getPage().clean(this);
+        if (other == CLOSE) {
+            System.exit(0);
+        }
+        Thread thread = new Thread(() -> {
+            try {
+                other.getPage().run(this);
+            } catch (InterruptedException | IOException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+        pageStatus = other;
+    }
+
+    /**
+     * Plays background music. There can be only one file playing at a time.
+     * If the file requested is currently being played, ignore the request.
+     * If the file requested has finished playing, start over again.
+     * Otherwise, stop the currently playing music and play the requested file.
+     * @param path Path to the background music.
+     */
+    public void playBackGroundMusic(String path) {
+        if (musicPlayer != null && musicPlayer.getSourceLocation() != null) {
+            if (musicPlayer.getSourceLocation().equals(path)) {
+                if (musicPlayer.isEndOfMediaReached()) {
+                    musicPlayer.seek(0);
+                    musicPlayer.play();
+                }
+                return;
+            }
+            musicPlayer.stop();
+        }
+        musicPlayer = new Player();
+        musicPlayer.setSourceLocation(path);
+        musicPlayer.play();
     }
 }
 

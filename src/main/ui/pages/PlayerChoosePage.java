@@ -1,7 +1,7 @@
-package main.ui.world.pages;
+package main.ui.pages;
 
-import main.ui.world.World;
-import main.utils.MyButton;
+import main.World;
+import main.utils.RaidenButton;
 
 import java.awt.*;
 import java.nio.file.Paths;
@@ -18,20 +18,20 @@ import static main.utils.PlayerNumber.TWO;
  * @author 杨芳源
  */
 public class PlayerChoosePage implements Page {
-    MyButton buttonOne, buttonTwo, buttonBack;
+    RaidenButton buttonOne, buttonTwo, buttonBack;
 
     public void run(World world) {
-        buttonOne = new MyButton(150, 320, 180, 80, Paths.get("data", "images", "oneplayer.png"),
+        buttonOne = new RaidenButton(150, 320, 180, 80, Paths.get("data", "images", "oneplayer.png"),
                 e -> {
                     World.playerNumber = ONE;
                     world.changePageStatus(MODE_CHOOSE);
                 });
-        buttonTwo = new MyButton(150, 460, 180, 80, Paths.get("data", "images", "twoplayer.png"),
+        buttonTwo = new RaidenButton(150, 460, 180, 80, Paths.get("data", "images", "twoplayer.png"),
                 e -> {
                     World.playerNumber = TWO;
                     world.changePageStatus(MODE_CHOOSE);
                 });
-        buttonBack = new MyButton(300, 600, 100, 70, Paths.get("data", "images", "previous.png"),
+        buttonBack = new RaidenButton(300, 600, 100, 70, Paths.get("data", "images", "previous.png"),
                 e -> world.changePageStatus(MAIN));
         
         world.add(buttonOne);

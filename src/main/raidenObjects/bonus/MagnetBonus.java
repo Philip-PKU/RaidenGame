@@ -1,13 +1,13 @@
 package main.raidenObjects.bonus;
 
-import static main.ui.world.World.windowWidth;
-
 import main.motionControllers.HoveringXMotionController;
 import main.motionControllers.MotionController;
 import main.motionControllers.XYMotionController;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import main.utils.Faction;
 import main.utils.InitLocation;
+
+import static main.World.windowWidth;
 
 /**
  * Bonus that gives player the ability to attract other bonuses.
