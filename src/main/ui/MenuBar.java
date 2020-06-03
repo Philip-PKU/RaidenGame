@@ -3,19 +3,17 @@ package main.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import com.sun.xml.internal.ws.api.Component;
 
 import main.ui.world.World;
 
 import static main.utils.GameLevel.*;
 
 /**
- * Initiate the Menu bar
+ * Initiate the top menu bar
  *
  * @author 杨芳源
  */

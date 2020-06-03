@@ -54,6 +54,11 @@ public class VolumeController {
             throw new RuntimeException("In Utils.Mp3Player: Unable to find any output line.");
     }
     
+    /**
+     * Get minimum volume and maximum volume 
+     * 
+     * @author 杨芳源
+     */
     public static Pair<Float, Float> getVolumeInterval() {
     	Line.Info[] sources = {SPEAKER, LINE_OUT, HEADPHONE};
 

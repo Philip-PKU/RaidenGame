@@ -4,7 +4,6 @@ package main;
 import javax.swing.*;
 
 import main.ui.MenuBar;
-import main.ui.MenuBar;
 import main.ui.world.World;
 
 import static main.ui.world.World.windowHeight;

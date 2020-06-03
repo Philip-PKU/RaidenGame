@@ -1,7 +1,5 @@
 package main.ui;
 
-import java.awt.TextField;
-
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -11,6 +9,7 @@ import javafx.util.Pair;
 import static main.utils.VolumeController.*;
 
 /**
+ * Slider for adjusting the relative volume.
  *
  * @author 杨芳源
  */
