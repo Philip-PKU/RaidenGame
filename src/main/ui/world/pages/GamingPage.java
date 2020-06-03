@@ -35,50 +35,53 @@ public class GamingPage implements Page {
      * @author 杨芳源
      */
     void paintGameState(Graphics g) {
-        if (player1 != null) {
+        if (player2 != null || playerNumber == TWO) {
             g.setColor(Color.white);
             g.drawString("生命：", (int) (windowWidth * 0.05), (int) (windowHeight * 0.05));
             g.setColor(Color.red);
             g.drawRect((int) (windowWidth * 0.12), (int) (windowHeight * 0.035),
                     (int) (windowWidth * 0.2), (int) (windowHeight * 0.02));
+            double hp = player2==null ? 0. : (double)player2.getHp() / player2.getMaxHp();
             g.fillRect((int) (windowWidth * 0.12), (int) (windowHeight * 0.035),
-                    (int) (windowWidth * 0.2 * player1.getHp() / player1.getMaxHp()), (int) (windowHeight * 0.02));
+                    (int) (windowWidth * 0.2 * hp), (int) (windowHeight * 0.02));
 
             g.setColor(Color.white);
-            g.drawString("得分：" + player1.getScore(), (int) (windowWidth * 0.05), (int) (windowHeight * 0.09));
-
+            int score = player2==null ? totalScore : player2.getScore();
+            g.drawString("得分：" + score, (int) (windowWidth * 0.05), (int) (windowHeight * 0.09));
+            
+            int coin = player2==null ? totalCoin : player2.getCoin();
             g.drawImage(loadImage(Paths.get("data", "images", "CoinBonus20.png").toFile()),
                     (int) (windowWidth * 0.05), (int) (windowHeight * 0.11), null);
-            g.drawString("\u00D7" + player1.getCoin(),
-                    (int) (windowWidth * 0.1), (int) (windowHeight * 0.13));
+            g.drawString("\u00D7" + coin, (int) (windowWidth * 0.1), (int) (windowHeight * 0.13));
 
+            int bomb = player2==null ? 0 : player2.getAvailableSuperpowers();
             g.drawImage(loadImage(Paths.get("data", "images", "SuperpowerBonusSmall.png").toFile()),
                     (int) (windowWidth * 0.2), (int) (windowHeight * 0.11), null);
-            g.drawString("\u00D7" + player1.getAvailableSuperpowers(),
-                    (int) (windowWidth * 0.25), (int) (windowHeight * 0.13));
+            g.drawString("\u00D7" + bomb,(int) (windowWidth * 0.25), (int) (windowHeight * 0.13));
         }
-        if (player2 != null) {
-            g.setColor(Color.white);
-            //g.setFont(defaultFont);
-            g.drawString("生命：", (int) (windowWidth * 0.6), (int) (windowHeight * 0.05));
+        if (player1 != null || playerNumber == TWO) {
+        	g.setColor(Color.white);
+            g.drawString("生命：", (int) (windowWidth * 0.60), (int) (windowHeight * 0.05));
             g.setColor(Color.red);
             g.drawRect((int) (windowWidth * 0.72), (int) (windowHeight * 0.035),
                     (int) (windowWidth * 0.2), (int) (windowHeight * 0.02));
+            double hp = player1==null ? 0. : (double)player1.getHp() / player1.getMaxHp();
             g.fillRect((int) (windowWidth * 0.72), (int) (windowHeight * 0.035),
-                    (int) (windowWidth * 0.2 * player2.getHp() / player2.getMaxHp()), (int) (windowHeight * 0.02));
+                    (int) (windowWidth * 0.2 * hp), (int) (windowHeight * 0.02));
 
             g.setColor(Color.white);
-            g.drawString("得分：" + player2.getScore(), (int) (windowWidth * 0.60), (int) (windowHeight * 0.09));
-
+            int score = player1==null ? totalScore : player1.getScore();
+            g.drawString("得分：" + score, (int) (windowWidth * 0.60), (int) (windowHeight * 0.09));
+            
+            int coin = player1==null ? totalCoin : player1.getCoin();
             g.drawImage(loadImage(Paths.get("data", "images", "CoinBonus20.png").toFile()),
                     (int) (windowWidth * 0.60), (int) (windowHeight * 0.11), null);
-            g.drawString("\u00D7" + player2.getCoin(),
-                    (int) (windowWidth * 0.65), (int) (windowHeight * 0.13));
-           
+            g.drawString("\u00D7" + coin, (int) (windowWidth * 0.65), (int) (windowHeight * 0.13));
+
+            int bomb = player1==null ? 0 : player1.getAvailableSuperpowers();
             g.drawImage(loadImage(Paths.get("data", "images", "SuperpowerBonusSmall.png").toFile()),
                     (int) (windowWidth * 0.75), (int) (windowHeight * 0.11), null);
-            g.drawString("\u00D7" + player2.getAvailableSuperpowers(),
-                    (int) (windowWidth * 0.8), (int) (windowHeight * 0.13));
+            g.drawString("\u00D7" + bomb,(int) (windowWidth * 0.80), (int) (windowHeight * 0.13));
         }
     }
     
