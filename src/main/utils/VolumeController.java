@@ -2,6 +2,8 @@ package main.utils;
 
 import javax.sound.sampled.*;
 
+import javafx.util.Pair;
+
 import static javax.sound.sampled.Port.Info.*;
 
 /**
@@ -51,4 +53,25 @@ public class VolumeController {
         if (!foundSource)
             throw new RuntimeException("In Utils.Mp3Player: Unable to find any output line.");
     }
+    
+    public static Pair<Float, Float> getVolumeInterval() {
+    	Line.Info[] sources = {SPEAKER, LINE_OUT, HEADPHONE};
+
+        for (Line.Info source : sources) {
+            if (AudioSystem.isLineSupported(source)) {
+                try {
+                    Port outline = (Port) AudioSystem.getLine(source);
+                    outline.open();
+                    FloatControl volumeControl = (FloatControl) outline.getControl(FloatControl.Type.VOLUME);
+                    Pair<Float, Float> pair = new Pair<>(volumeControl.getMinimum(), volumeControl.getMaximum());
+                    return pair;
+                } catch (LineUnavailableException ex) {
+                    System.err.println("source not supported");
+                    ex.printStackTrace();
+                }
+            }
+        }
+        throw new RuntimeException("In Utils.Mp3Player: Unable to find any output line.");
+    }
+    
 }
