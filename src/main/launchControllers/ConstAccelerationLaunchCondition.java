@@ -1,10 +1,11 @@
 package main.launchControllers;
 
+import static main.ui.world.World.rand;
+
 import main.utils.GameLevel;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static main.world.World.rand;
 
 /**
  * Issue launch faster and faster, with a constant acceleration.

@@ -1,11 +1,11 @@
 package main;
 
-import main.world.World;
+import static main.ui.world.World.windowHeight;
+import static main.ui.world.World.windowWidth;
 
 import javax.swing.*;
 
-import static main.world.World.windowHeight;
-import static main.world.World.windowWidth;
+import main.ui.world.World;
 
 public class App {
 

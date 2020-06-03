@@ -2,9 +2,9 @@ package main.raidenObjects.aircrafts;
 
 import main.motionControllers.ConstSpeedYMotionController;
 import main.raidenObjects.weapons.PlayerBeam;
+import main.ui.world.World;
 import main.utils.Faction;
 import main.utils.InitLocation;
-import main.world.World;
 
 import java.nio.file.Paths;
 

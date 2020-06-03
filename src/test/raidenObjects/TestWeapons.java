@@ -10,7 +10,7 @@ import main.utils.InitLocation;
 import main.utils.PlayerController;
 import org.junit.Test;
 
-import static main.world.World.*;
+import static main.ui.world.World.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 

@@ -6,14 +6,14 @@ import main.motionControllers.HoveringXMotionController;
 import main.motionControllers.XYMotionController;
 import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+import main.ui.world.World;
 import main.utils.Faction;
-import main.world.World;
+
+import static main.ui.world.World.player1;
+import static main.ui.world.World.player2;
 
 import java.io.File;
 import java.nio.file.Paths;
-
-import static main.world.World.player1;
-import static main.world.World.player2;
 
 /**
  * Base class for all bonuses.

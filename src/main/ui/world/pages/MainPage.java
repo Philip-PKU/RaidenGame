@@ -1,7 +1,7 @@
-package main.world.pages;
+package main.ui.world.pages;
 
+import main.ui.world.World;
 import main.utils.MyButton;
-import main.world.World;
 
 import javax.swing.*;
 import java.awt.*;

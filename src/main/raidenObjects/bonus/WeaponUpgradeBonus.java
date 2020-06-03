@@ -9,10 +9,10 @@ import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import main.utils.Faction;
 import main.utils.InitLocation;
 
+import static main.ui.world.World.*;
+
 import java.io.File;
 import java.nio.file.Paths;
-
-import static main.world.World.*;
 
 /**
  * Bonus that gives the player weapon updates.

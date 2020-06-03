@@ -1,4 +1,4 @@
-package main.world;
+package main.ui.world;
 
 import main.launchControllers.ConstAccelerationLaunchCondition;
 import main.launchControllers.PeriodicStochasticLaunchCondition;
@@ -19,8 +19,8 @@ import java.util.List;
 
 import static java.lang.Math.min;
 import static main.raidenObjects.bonus.CoinBonus.*;
+import static main.ui.world.World.*;
 import static main.utils.InitLocation.*;
-import static main.world.World.*;
 
 /**
  * Manages all {@link BaseRaidenObject}s in the game.

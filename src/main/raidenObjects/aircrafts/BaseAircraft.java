@@ -4,13 +4,13 @@ import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
 import main.raidenObjects.bonus.*;
 import main.raidenObjects.weapons.BaseWeapon;
+import main.ui.world.World;
 import main.utils.Faction;
-import main.world.World;
+
+import static main.ui.world.World.*;
 
 import java.io.File;
 import java.nio.file.Paths;
-
-import static main.world.World.*;
 
 /**
  * Subclass of BaseRaidenObject, base class of all aircrafts in the game,

@@ -1,4 +1,4 @@
-package main.world;
+package main.ui.world;
 
 import main.raidenObjects.Background;
 import main.raidenObjects.BaseRaidenObject;

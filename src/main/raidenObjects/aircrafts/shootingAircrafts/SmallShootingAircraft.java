@@ -1,5 +1,7 @@
 package main.raidenObjects.aircrafts.shootingAircrafts;
 
+import static main.ui.world.World.*;
+
 import main.launchControllers.PeriodicLaunchCondition;
 import main.launchControllers.SimpleLaunchController;
 import main.motionControllers.ConstSpeedXYTargetAwareMotionController;
@@ -11,7 +13,6 @@ import main.utils.InitLocation;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static main.world.World.*;
 
 /**
  * SmallShootingAircraft. A tiny aircraft that trumps in surprise attacks.

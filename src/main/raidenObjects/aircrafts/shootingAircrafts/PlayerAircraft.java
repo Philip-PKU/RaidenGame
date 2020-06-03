@@ -12,15 +12,15 @@ import main.raidenObjects.weapons.BigPlayerBullet;
 import main.raidenObjects.weapons.PlayerBeam;
 import main.raidenObjects.weapons.StandardPlayerBullet;
 import main.raidenObjects.weapons.TrackingPlayerBullet;
+import main.ui.world.World;
 import main.utils.*;
-import main.world.World;
 
 import java.io.File;
 import java.nio.file.Paths;
 
 import static java.lang.Math.*;
 import static main.raidenObjects.bonus.WeaponUpgradeBonus.*;
-import static main.world.World.*;
+import static main.ui.world.World.*;
 
 /**
  * PlayerAircraft. A mobile, versatile aircraft with little strength but great potential.

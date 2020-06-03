@@ -1,5 +1,7 @@
 package main.raidenObjects.aircrafts.shootingAircrafts;
 
+import static main.ui.world.World.interactantList;
+
 import main.launchControllers.PeriodicLaunchCondition;
 import main.launchControllers.SimpleLaunchController;
 import main.motionControllers.ConstSpeedYMotionController;
@@ -8,8 +10,6 @@ import main.motionControllers.TwoStagedMotionController;
 import main.raidenObjects.weapons.BarbetteBullet;
 import main.utils.Faction;
 import main.utils.InitLocation;
-
-import static main.world.World.interactantList;
 
 /**
  * Barbette. A giant, powerful, tank-like aircraft that never hesitates to kill.

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-import static main.world.World.rand;
+import static main.ui.world.World.rand;
 import static org.junit.Assert.*;
 import static test.Constants.numOfTrails;
 

@@ -4,7 +4,7 @@ import main.launchControllers.LaunchCondition;
 import main.launchControllers.TwoStagedPeriodicLaunchCondition;
 import org.junit.Test;
 
-import static main.world.World.rand;
+import static main.ui.world.World.rand;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static test.Constants.numOfTrails;

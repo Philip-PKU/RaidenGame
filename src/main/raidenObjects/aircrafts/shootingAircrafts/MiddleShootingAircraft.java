@@ -1,13 +1,13 @@
 package main.raidenObjects.aircrafts.shootingAircrafts;
 
+import static main.ui.world.World.*;
+
 import main.launchControllers.PeriodicLaunchCondition;
 import main.launchControllers.SimpleLaunchController;
 import main.motionControllers.*;
 import main.raidenObjects.weapons.SmallBullet;
 import main.utils.Faction;
 import main.utils.InitLocation;
-
-import static main.world.World.*;
 
 /**
  * MiddleShootingAircraft. A middle-sized, player-aiming aircraft skilled at limiting the enemy's position.

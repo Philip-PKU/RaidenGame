@@ -1,16 +1,16 @@
-package main.world.pages;
+package main.ui.world.pages;
 
+import main.ui.world.World;
 import main.utils.MyButton;
-import main.world.World;
 
 import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 
 import static main.raidenObjects.BaseRaidenObject.loadImage;
+import static main.ui.world.World.*;
 import static main.utils.PageStatus.CLOSE;
 import static main.utils.PageStatus.MAIN;
-import static main.world.World.*;
 
 /**
  * @author 鏉ㄨ姵婧�

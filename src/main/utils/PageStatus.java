@@ -1,6 +1,6 @@
 package main.utils;
 
-import main.world.pages.*;
+import main.ui.world.pages.*;
 
 /**
  * An enum object for game page status.
