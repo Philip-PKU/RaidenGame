@@ -45,9 +45,11 @@ public class PeriodicStochasticLaunchCondition implements LaunchCondition {
         return randomFloat < prob;
     }
 
-    public void scaleByGameLevel(GameLevel gameLevel) {
-        float[] coeffs = {0.7f, 1f, 1.5f, 2f};
+    public void scaleByGameLevel(GameLevel gameLevel, boolean increaseCooldown) {
+        float[] coeffs = {0.7f, 1f, 1.3f, 1.6f};
         float coeff = coeffs[gameLevel.ordinal()];
+        if (!increaseCooldown)
+            coeff = 1 / coeff;
         cooldown = (int) (cooldown * coeff);
         curCooldown = (int) (curCooldown * coeff);
         prob /= coeff;

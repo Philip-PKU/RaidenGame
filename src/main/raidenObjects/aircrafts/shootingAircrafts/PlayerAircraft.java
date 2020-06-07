@@ -177,9 +177,9 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     public class BeamLaunchController extends SimpleLaunchController<LaunchCondition> {
         public BeamLaunchController() {
             super("PlayerAircraft fires PlayerBeam");
-            PlayerBeam.setStaticDamage(PlayerBeam.getStaticDamage() * 2);
+            PlayerBeam.setStaticDamage(PlayerBeam.getDefaultDamage() * 3);
             setLaunchCondition(KeyboardWeaponLaunchCondition.createFromTwoStagedPeriodicLaunchCondition(1, 1, 150, keyAdapter,
-                    () -> PlayerBeam.setStaticDamage(PlayerBeam.getStaticDamage() / 2)));
+                    () -> PlayerBeam.setStaticDamage(PlayerBeam.getDefaultDamage())));
             setLaunchable(() -> {
                 interactantList.add(new PlayerBeam(getX(), getMinY() + 10, getFaction()));
             });
@@ -239,7 +239,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
             } else if (weaponLevel == 2) {
                 setLaunchCondition(new PeriodicLaunchCondition(50, 0, 5, 3));
             } else if (weaponLevel >= highestWeaponLevel) {
-                setLaunchCondition(new TwoStagedPeriodicLaunchCondition(3, 0, 50, 0, 70));
+                setLaunchCondition(new TwoStagedPeriodicLaunchCondition(3, 0, 15, 0, 70));
             }
         }
     }

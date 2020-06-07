@@ -186,7 +186,7 @@ public class GamingPage implements Page {
                 musicPlayer.play();
             }
             // Periodically add new planes / bonuses
-            gameScheduler.scheduleObjectInserts();
+            gameScheduler.schedule();
 
             // Move everything in the game one step forward
             background.step();

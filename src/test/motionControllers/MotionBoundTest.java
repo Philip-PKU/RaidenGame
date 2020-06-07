@@ -1,18 +1,19 @@
 package test.motionControllers;
 
 
+import main.raidenObjects.BaseRaidenObject;
+import main.raidenObjects.aircrafts.BumpingAircraft;
+import main.raidenObjects.aircrafts.shootingAircrafts.BigShootingAircraft;
+import main.raidenObjects.aircrafts.shootingAircrafts.MiddleShootingAircraft;
+import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+import main.utils.Faction;
+import main.utils.InitLocation;
+import main.utils.PlayerController;
 import org.junit.Test;
 
 import static main.World.*;
 import static org.junit.Assert.assertFalse;
-import main.utils.Faction;
-import main.utils.InitLocation;
-import main.utils.PlayerController;
-import main.raidenObjects.aircrafts.shootingAircrafts.MiddleShootingAircraft;
-import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.raidenObjects.aircrafts.shootingAircrafts.BigShootingAircraft;
-import main.raidenObjects.BaseRaidenObject;
-import main.raidenObjects.aircrafts.BumpingAircraft;
+import static test.Constants.numOfTrails;
 public class MotionBoundTest {
 	
 	@Test
@@ -26,7 +27,7 @@ public class MotionBoundTest {
 		aircraftList.add(enemy1);
 		aircraftList.add(enemy2);
 		aircraftList.add(enemy3);
-		for(int timeStep = 0; timeStep < 2000; timeStep++) {
+		for(int timeStep = 0; timeStep < numOfTrails; timeStep++) {
 			player.step();
             interactantList.forEach(BaseRaidenObject::step);
             interactantList.removeIf(BaseRaidenObject::isInvisibleOrOutOfWorld);

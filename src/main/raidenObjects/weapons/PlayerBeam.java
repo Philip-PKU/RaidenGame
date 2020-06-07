@@ -17,7 +17,7 @@ import static main.World.*;
  * @author 蔡辉宇
  */
 public class PlayerBeam extends BaseWeapon {
-    static int staticDamage = 2;
+    static int defaultDamage = 2, staticDamage = defaultDamage;
 
     /**
      * Constructor.
@@ -30,8 +30,8 @@ public class PlayerBeam extends BaseWeapon {
         super("PlayerBeam", x, y, 26, 290, faction, 2);
     }
 
-    public static int getStaticDamage() {
-        return staticDamage;
+    public static int getDefaultDamage() {
+        return defaultDamage;
     }
 
     public static void setStaticDamage(int staticDamage) {

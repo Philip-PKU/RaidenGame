@@ -69,6 +69,29 @@ public class World extends JPanel {
     }
 
     /**
+     * Plays background music. There can be only one file playing at a time.
+     * If the file requested is currently being played, ignore the request.
+     * If the file requested has finished playing, start over again.
+     * Otherwise, stop the currently playing music and play the requested file.
+     * @param path Path to the background music.
+     */
+    public static void playBackGroundMusic(String path) {
+        if (musicPlayer != null && musicPlayer.getSourceLocation() != null) {
+            if (musicPlayer.getSourceLocation().equals(path)) {
+                if (musicPlayer.isEndOfMediaReached()) {
+                    musicPlayer.seek(0);
+                    musicPlayer.play();
+                }
+                return;
+            }
+            musicPlayer.stop();
+        }
+        musicPlayer = new Player();
+        musicPlayer.setSourceLocation(path);
+        musicPlayer.play();
+    }
+
+    /**
      * Load and play a sound effect. There can be many sound effects playing at the same time.
      * @param path Path to the sound effect file.
      */
@@ -175,29 +198,6 @@ public class World extends JPanel {
         thread.setDaemon(true);
         thread.start();
         pageStatus = other;
-    }
-
-    /**
-     * Plays background music. There can be only one file playing at a time.
-     * If the file requested is currently being played, ignore the request.
-     * If the file requested has finished playing, start over again.
-     * Otherwise, stop the currently playing music and play the requested file.
-     * @param path Path to the background music.
-     */
-    public void playBackGroundMusic(String path) {
-        if (musicPlayer != null && musicPlayer.getSourceLocation() != null) {
-            if (musicPlayer.getSourceLocation().equals(path)) {
-                if (musicPlayer.isEndOfMediaReached()) {
-                    musicPlayer.seek(0);
-                    musicPlayer.play();
-                }
-                return;
-            }
-            musicPlayer.stop();
-        }
-        musicPlayer = new Player();
-        musicPlayer.setSourceLocation(path);
-        musicPlayer.play();
     }
 }
 

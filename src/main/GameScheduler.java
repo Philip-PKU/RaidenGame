@@ -23,7 +23,7 @@ import static main.raidenObjects.bonus.CoinBonus.*;
 import static main.utils.InitLocation.*;
 
 /**
- * Manages all {@link BaseRaidenObject}s in the game.
+ * Insert and manipulate the properties of all {@link BaseRaidenObject}s in the game.
  *
  * @author 蔡辉宇 张哲瑞
  */
@@ -66,7 +66,7 @@ public class GameScheduler {
                 )
         );
         aircraftHpControllers.forEach(hpController -> {
-            hpController.getLaunchCondition().scaleByGameLevel(gameLevel);
+            hpController.getLaunchCondition().scaleByGameLevel(gameLevel, false);
             hpController.activate();
         });
 
@@ -203,12 +203,12 @@ public class GameScheduler {
                 )
         );
         bonusLaunchControllers.forEach(launchController -> {
-            launchController.getLaunchCondition().scaleByGameLevel(gameLevel);
+            launchController.getLaunchCondition().scaleByGameLevel(gameLevel, true);
             launchController.activate();
         });
     }
 
-    public void scheduleObjectInserts() {
+    public void schedule() {
         aircraftHpControllers.forEach(SimpleLaunchController::launchIfPossible);
         aircraftLaunchControllers.forEach(SimpleLaunchController::launchIfPossible);
         bonusLaunchControllers.forEach(SimpleLaunchController::launchIfPossible);
