@@ -53,9 +53,10 @@ public class VolumeController {
     }
     
     /**
-     * Get minimum volume and maximum volume 
+     * Get minimum volume and maximum volume of current system.
      * 
      * @author 杨芳源
+     * @return A {@link VolumeRange} object indicating minimum and maximum volume of current system. 
      */
     public static VolumeRange getVolumeInterval() {
     	Line.Info[] sources = {SPEAKER, LINE_OUT, HEADPHONE};

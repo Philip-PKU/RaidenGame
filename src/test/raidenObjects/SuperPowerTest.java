@@ -1,15 +1,14 @@
 package test.raidenObjects;
 
+import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+import main.raidenObjects.bonuses.SuperPowerBonus;
+import main.utils.Faction;
+import main.utils.PlayerController;
+import org.junit.Test;
+
 import static main.World.windowHeight;
 import static main.World.windowWidth;
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.raidenObjects.bonus.SuperPowerBonus;
-import main.utils.Faction;
-import main.utils.PlayerController;
 
 public class SuperPowerTest {
 	@Test

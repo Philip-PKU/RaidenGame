@@ -32,7 +32,7 @@ public class GamingPage implements Page {
 	/**
      * Paint the game state, including HP bar, number of coins and game points earned.
      *
-     * @author 杨芳源
+     * @param g A {@link Graphics} object used to paint the game state.
      */
     void paintGameState(Graphics g) {
         if (player2 != null || playerNumber == TWO) {
@@ -220,7 +220,8 @@ public class GamingPage implements Page {
 	}
 
 	/**
-	 * @param world
+     * Cleans the world object.
+	 * @param world A world object.
 	 */
 	public void clean(World world) {
 		// TODO Auto-generated method stub

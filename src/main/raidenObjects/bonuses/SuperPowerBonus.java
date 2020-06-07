@@ -1,4 +1,4 @@
-package main.raidenObjects.bonus;
+package main.raidenObjects.bonuses;
 
 import main.motionControllers.HoveringXMotionController;
 import main.motionControllers.MotionController;
@@ -10,37 +10,35 @@ import main.utils.InitLocation;
 import static main.World.windowWidth;
 
 /**
- * Bonus that gives player the ability to attract other bonuses.
+ * Bonus that gives the player an extra superpower.
  *
- * @see PlayerAircraft#getMagnetCountdown()
+ * @see PlayerAircraft.SuperpowerLaunchController
  *
- * @author 张哲瑞
+ * @author 唐宇豪
  */
-public final class MagnetBonus extends BaseBonus {
-    static int effectiveGameSteps = 300;
-
-    public MagnetBonus() {
-        super("MagnetBonus",20, 20, Faction.BONUS);
+public final class SuperPowerBonus extends BaseBonus {
+    public SuperPowerBonus() {
+        super("SuperPowerBonus",20, 20, Faction.BONUS);
         MotionController XController = new HoveringXMotionController(0.5f, 20, windowWidth - 20);
         MotionController XYController = XYMotionController.createFromXController(
                 XController, 1.5f);
         this.registerMotionController(XYController);
     }
 
-    public MagnetBonus(float x, float y) {
+    public SuperPowerBonus(float x, float y) {
         this();
         setX(x);
         setY(y);
     }
 
-    public MagnetBonus(InitLocation initLocation) {
+    public SuperPowerBonus(InitLocation initLocation) {
         this();
-        initXFromLocation(initLocation);;
+        initXFromLocation(initLocation);
     }
 
     @Override
     public void bonus(PlayerAircraft aircraft) {
         super.bonus(aircraft);
-        aircraft.getMagnetCountdown().extendDurationBy(effectiveGameSteps);
+        aircraft.incrAvailableSuperpowers();
     }
 }

@@ -1,4 +1,4 @@
-package main.raidenObjects.bonus;
+package main.raidenObjects.bonuses;
 
 import main.World;
 import main.motionControllers.ConstSpeedTargetTrackingMotionController;

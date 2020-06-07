@@ -3,7 +3,7 @@ package main.raidenObjects.weapons;
 import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.aircrafts.BaseAircraft;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.raidenObjects.bonus.InvincibleBonus;
+import main.raidenObjects.bonuses.InvincibleBonus;
 import main.utils.Faction;
 
 import java.io.File;

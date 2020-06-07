@@ -3,7 +3,7 @@ package main.raidenObjects.aircrafts;
 import main.World;
 import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.raidenObjects.bonus.*;
+import main.raidenObjects.bonuses.*;
 import main.raidenObjects.weapons.BaseWeapon;
 import main.utils.Faction;
 
@@ -72,7 +72,12 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         return numOfDeathEffectImages;
     }
 
-
+    /**
+     * Receive damage from a given source.
+     * If the damage is large enough to kill the aircraft, mark it as dead and invoke {@link #afterKilledByPlayer(Faction)}.
+     * @param damage Damage done to the aircraft.
+     * @param source Source of the damage.
+     */
     public void receiveDamage(int damage, Faction source) {
         hp -= damage;
         if (getFaction().isPlayer())
@@ -144,6 +149,10 @@ public abstract class BaseAircraft extends BaseRaidenObject {
         }
     }
 
+    /**
+     * Emit bonuses and add scores to player after being killed by it.
+     * @param source Killer of current aircraft.
+     */
     public void afterKilledByPlayer(Faction source) {
         World.playSoundEffect(deathSoundEffectPath);
 

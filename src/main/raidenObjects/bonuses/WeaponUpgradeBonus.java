@@ -1,4 +1,4 @@
-package main.raidenObjects.bonus;
+package main.raidenObjects.bonuses;
 
 import main.launchControllers.PeriodicLaunchCondition;
 import main.launchControllers.SimpleLaunchController;

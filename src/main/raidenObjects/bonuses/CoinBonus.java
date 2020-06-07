@@ -1,4 +1,4 @@
-package main.raidenObjects.bonus;
+package main.raidenObjects.bonuses;
 
 import main.motionControllers.HoveringXMotionController;
 import main.motionControllers.MotionController;

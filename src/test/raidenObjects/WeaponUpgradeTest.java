@@ -1,17 +1,16 @@
 package test.raidenObjects;
 
-import static main.World.windowHeight;
-import static main.World.windowWidth;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import main.launchControllers.LaunchCondition;
 import main.launchControllers.SimpleLaunchControllerWithLevel;
 import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.raidenObjects.bonus.WeaponUpgradeBonus;
+import main.raidenObjects.bonuses.WeaponUpgradeBonus;
 import main.utils.Faction;
 import main.utils.PlayerController;
+import org.junit.Test;
+
+import static main.World.windowHeight;
+import static main.World.windowWidth;
+import static org.junit.Assert.assertEquals;
 
 public class WeaponUpgradeTest {
 	@Test

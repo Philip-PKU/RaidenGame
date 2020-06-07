@@ -10,7 +10,7 @@ import main.raidenObjects.aircrafts.shootingAircrafts.BarbetteAircraft;
 import main.raidenObjects.aircrafts.shootingAircrafts.BigShootingAircraft;
 import main.raidenObjects.aircrafts.shootingAircrafts.MiddleShootingAircraft;
 import main.raidenObjects.aircrafts.shootingAircrafts.SmallShootingAircraft;
-import main.raidenObjects.bonus.*;
+import main.raidenObjects.bonuses.*;
 import main.utils.GameLevel;
 import main.utils.PlayerNumber;
 
@@ -19,7 +19,7 @@ import java.util.List;
 
 import static java.lang.Math.min;
 import static main.World.*;
-import static main.raidenObjects.bonus.CoinBonus.*;
+import static main.raidenObjects.bonuses.CoinBonus.*;
 import static main.utils.InitLocation.*;
 
 /**

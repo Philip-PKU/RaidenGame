@@ -7,8 +7,8 @@ import main.raidenObjects.BaseRaidenObject;
 import main.raidenObjects.SuperpowerResidue;
 import main.raidenObjects.aircrafts.BaseAircraft;
 import main.raidenObjects.aircrafts.BlackholeAircraft;
-import main.raidenObjects.bonus.InvincibleBonus;
-import main.raidenObjects.bonus.SuperPowerBonus;
+import main.raidenObjects.bonuses.InvincibleBonus;
+import main.raidenObjects.bonuses.SuperPowerBonus;
 import main.raidenObjects.weapons.BigPlayerBullet;
 import main.raidenObjects.weapons.PlayerBeam;
 import main.raidenObjects.weapons.StandardPlayerBullet;
@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 
 import static java.lang.Math.*;
 import static main.World.*;
-import static main.raidenObjects.bonus.WeaponUpgradeBonus.*;
+import static main.raidenObjects.bonuses.WeaponUpgradeBonus.*;
 
 /**
  * PlayerAircraft. A mobile, versatile aircraft with little strength but great potential.
@@ -60,7 +60,7 @@ public final class PlayerAircraft extends BaseShootingAircraft {
     protected EffectCountdown invincibleCountdown = new EffectCountdown();
     /**
      * An {@link EffectCountdown} object controlling the magnet effect.
-     * This effect attracts all bonuses except {@link main.raidenObjects.bonus.WeaponUpgradeBonus} to this aircraft.
+     * This effect attracts all bonuses except {@link main.raidenObjects.bonuses.WeaponUpgradeBonus} to this aircraft.
      * The effect will disable automatically in a few seconds.
      */
     protected EffectCountdown magnetCountdown = new EffectCountdown();

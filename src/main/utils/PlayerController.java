@@ -2,7 +2,7 @@ package main.utils;
 
 /**
  * An enum for the controller of the player.
- * Used in constructor of {@link raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft} for selecting motion controller.
+ * Used in constructor of {@link main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft} for selecting motion controller.
  *
  * @author 蔡辉宇
  */

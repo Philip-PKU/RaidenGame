@@ -1,16 +1,15 @@
 package test.raidenObjects;
 
+import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
+import main.raidenObjects.bonuses.CoinBonus;
+import main.raidenObjects.bonuses.CureBonus;
+import main.utils.Faction;
+import main.utils.PlayerController;
+import org.junit.Test;
+
 import static main.World.windowHeight;
 import static main.World.windowWidth;
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import main.raidenObjects.aircrafts.shootingAircrafts.PlayerAircraft;
-import main.raidenObjects.bonus.CoinBonus;
-import main.raidenObjects.bonus.CureBonus;
-import main.utils.Faction;
-import main.utils.PlayerController;
 
 public class CureTest {
 	@Test

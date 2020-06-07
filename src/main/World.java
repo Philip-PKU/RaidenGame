@@ -181,23 +181,24 @@ public class World extends JPanel {
 
 
     /**
-     * Remove components when pageStatus changes
+     * Remove components when pageStatus changes.
+     * @param target The page status to change to.
      */
-    public void changePageStatus(PageStatus other) {
+    public void changePageStatus(PageStatus target) {
         pageStatus.getPage().clean(this);
-        if (other == CLOSE) {
+        if (target == CLOSE) {
             System.exit(0);
         }
         Thread thread = new Thread(() -> {
             try {
-                other.getPage().run(this);
+                target.getPage().run(this);
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
         });
         thread.setDaemon(true);
         thread.start();
-        pageStatus = other;
+        pageStatus = target;
     }
 }
 

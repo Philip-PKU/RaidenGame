@@ -21,16 +21,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d506d6f-26c7-4cc2-a11f-7920527d1fe8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/boss9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/herotrackingbullet0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/herotrackingbullet1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/herotrackingbullet2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/herotrackingbullet3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/herotrackingbullet4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/laserlight9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/mine9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/images/ourmine.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/result/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/result/1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GameScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameScheduler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/launchControllers/PeriodicStochasticLaunchCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/launchControllers/PeriodicStochasticLaunchCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/BaseAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/BaseAircraft.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/aircrafts/shootingAircrafts/PlayerAircraft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/weapons/PlayerBeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/weapons/PlayerBeam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/bonus/BaseBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/bonuses/BaseBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/bonus/CoinBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/bonuses/CoinBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/bonus/CureBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/bonuses/CureBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/bonus/InvincibleBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/bonuses/InvincibleBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/bonus/MagnetBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/bonuses/MagnetBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/bonus/SuperPowerBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/bonuses/SuperPowerBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/bonus/WeaponUpgradeBonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/bonuses/WeaponUpgradeBonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/raidenObjects/weapons/BaseWeapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/raidenObjects/weapons/BaseWeapon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/ui/pages/GamingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/pages/GamingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/motionControllers/MotionBoundTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/motionControllers/MotionBoundTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/motionControllers/MotionSpeedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/motionControllers/MotionSpeedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/utils/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/PlayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/utils/VolumeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/utils/VolumeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/raidenObjects/BigBulletTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/raidenObjects/BigBulletTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/raidenObjects/CoinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/raidenObjects/CoinTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/raidenObjects/CureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/raidenObjects/CureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/raidenObjects/MagnetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/raidenObjects/MagnetTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/raidenObjects/SuperPowerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/raidenObjects/SuperPowerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/raidenObjects/WeaponUpgradeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/raidenObjects/WeaponUpgradeTest.java" afterDir="false" />
     </list>
     <list id="f9ca05ca-5c1f-4ca0-a174-e2c848e6b4d2" name="Revert &quot;sound effect modifications *2&quot;" comment="Revert &quot;sound effect modifications *2&quot;&#10;&#10;This reverts commit b250e817">
       <change beforePath="$PROJECT_DIR$/data/sound effects/Blackhole.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/data/sound effects/Blackhole.mp3" afterDir="false" />
@@ -225,7 +283,9 @@
       <workItem from="1590826967945" duration="21000" />
       <workItem from="1590834578712" duration="376000" />
       <workItem from="1591126035904" duration="5634000" />
-      <workItem from="1591515968851" duration="3045000" />
+      <workItem from="1591515968851" duration="3770000" />
+      <workItem from="1591535690208" duration="427000" />
+      <workItem from="1591538410060" duration="2784000" />
     </task>
     <task id="LOCAL-00001" summary="add readme">
       <created>1580021981762</created>
@@ -486,7 +546,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591177215443</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="bug fix">
+      <created>1591521016188</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1591521016188</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +574,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="rearranged class structure (bonus no longer belongs to aircraft); add two player mode" />
     <MESSAGE value="add survival mode; player can now manually control weapon launch (via 'Z' and '/' key)" />
     <MESSAGE value="1. Add manual superpower fire and created visual effects; 2. Add Tracking Bullet and respective upgrade Bonus; 3. Add leveled weapon system; 4. Moved all player-specific functions to class PlayerAircraft" />
     <MESSAGE value="Aircraft now might give bonus when shot by player" />
@@ -532,7 +598,8 @@
     <MESSAGE value="add title" />
     <MESSAGE value="updated readme" />
     <MESSAGE value="structure update; remove javafx dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="structure update; remove javafx dependency" />
+    <MESSAGE value="bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -569,38 +636,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="515" y="349" width="890" height="341" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591177568880" />
-    <state x="703" y="234" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1590681711277">
+    <state x="703" y="234" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591540392344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="703" y="234" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1590681711277" />
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1591177210622">
+    <state x="703" y="234" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1591540392344" />
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2" timestamp="1591521013236">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591177210622" />
+    <state x="480" y="0" width="1091" height="1040" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591521013236" />
     <state x="158" y="100" width="1736" height="856" key="DiffContextDialog" timestamp="1591116620927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="158" y="100" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591116620927" />
-    <state x="1158" y="260" key="FileChooserDialogImpl" timestamp="1591177480254">
+    <state x="1158" y="260" key="FileChooserDialogImpl" timestamp="1591540218167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1158" y="260" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591177480254" />
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1591520642754">
+    <state x="1158" y="260" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591540218167" />
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1591540392476">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591520642754" />
-    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1591520642754">
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591540392476" />
+    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1591540392476">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591520642754" />
-    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1591520642753">
+    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591540392476" />
+    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1591540392475">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591520642753" />
-    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1591520642754">
+    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591540392475" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1591540392476">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591520642754" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591540392476" />
     <state width="1877" height="346" key="GridCell.Tab.1.bottom" timestamp="1591125938950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -641,10 +708,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="840" y="434" key="VCS.EditChangelistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591116867161" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591177218861">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591521019275">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591177218861" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591521019275" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1591107921335">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
